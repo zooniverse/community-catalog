@@ -23,13 +23,17 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.styl$/,
-        loader: "stylus-loader", // compiles Styl to CSS
-      }
+        test: /\.ico$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
+      },
     ]
   },
   plugins: [
     new webpack.ProvidePlugin({
+      favicon: 'src/favicon.ico',
       process: 'process/browser',
     }),
     HtmlWebpackPluginConfig
