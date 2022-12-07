@@ -1,8 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import favicon from './favicon.ico'
 
-ReactDOM.render(
-  <h1>Zooniverse Community Catalog</h1>,
-  document.getElementById('app')
+const appRoot = ReactDOM.createRoot(document.getElementById('app'))
+appRoot.render(
+  <React.StrictMode>
+    <h1>Zooniverse Community Catalog</h1>
+  </React.StrictMode>
 )
