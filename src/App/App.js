@@ -1,12 +1,15 @@
 import React from 'react'
+import { Box, Grommet, Heading, Paragraph as P } from 'grommet'
 
 export default function App () {
   return (
-    <>
-      <h1>Zooniverse Community Catalog</h1>
-      <main>
-        <p>This website is currently being built.</p>
-      </main>
-    </>
+    <Grommet plain>
+      <Box>
+        <Heading>Zooniverse Community Catalog</Heading>
+        <Box as='main'>
+          <P>This website is currently being built.</P>
+        </Box>
+      </Box>
+    </Grommet>
   )
 }
