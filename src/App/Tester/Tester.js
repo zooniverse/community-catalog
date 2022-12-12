@@ -11,6 +11,14 @@ export default function Tester () {
 
   function formTester_onSubmit () {
     console.log('+++ SUBMITTED: ', query)
+
+    talkAPI.get('/searches', {
+      section: 'zooniverse',
+      types: 'comments',
+      page: 1,
+      page_size: 20,
+      query
+    }).then(res => console.log(res))
   }
 
   return (
