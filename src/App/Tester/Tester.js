@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Button, Form, Paragraph as P, TextInput } from 'grommet'
+import { Box, Button, Form, Paragraph as P, TextInput } from 'grommet'
 import { talkAPI } from '@zooniverse/panoptes-js'
 
 export default function Tester () {
   const [ query, setQuery ] = useState('')
+  const [ results, setResults ] = useState([])
 
   function textQuery_onChange (e) {
     setQuery(e?.target?.value || '')
@@ -11,33 +12,54 @@ export default function Tester () {
 
   function formTester_onSubmit () {
     console.log('+++ SUBMITTED: ', query)
+    fetchTalkSearchResults(query)
+  }
 
-    talkAPI.get('/searches', {
-      section: 'zooniverse',
-      types: 'comments',
-      page: 1,
-      page_size: 20,
-      query
-    }).then(res => console.log(res))
+  async function fetchTalkSearchResults (query) {
+    try {
+      const response = await talkAPI.get('/searches', {
+        section: 'zooniverse',
+        types: 'comments',
+        page: 1,
+        page_size: 20,
+        query
+      })
+
+      if (!response?.ok) throw new Error('Couldn\'t fetch Talk search results')
+
+      const results = response.body?.searches.filter(s => s?.body) || []
+      setResults(results)
+
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
-    <Form
-      className='form-tester'
-      onSubmit={formTester_onSubmit}
-    >
-      <P>Tester Component</P>
-      <TextInput
-        className='text-query'
-        onChange={textQuery_onChange}
-        placeholder='Type in a query'
-        value={query}
-      />
-      <Button
-        className='button-submit'
-        primary label='Submit'
-        type='submit'
-      />
-    </Form>
+    <Box>
+      <Form
+        className='form-tester'
+        onSubmit={formTester_onSubmit}
+      >
+        <P>Tester Component</P>
+        <TextInput
+          className='text-query'
+          onChange={textQuery_onChange}
+          placeholder='Search Zooniverse Talk (hint: use env=production)'
+          value={query}
+        />
+        <Button
+          className='button-submit'
+          primary label='Submit'
+          type='submit'
+        />
+      </Form>
+      {results.map(result => {
+        return (
+          <P>{result.body}</P>
+        )
+      })}
+
+    </Box>
   )
 }
