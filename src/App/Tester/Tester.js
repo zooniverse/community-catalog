@@ -9,13 +9,14 @@ export default function Tester () {
     setQuery(e?.target?.value || '')
   }
 
-  function form_onSubmit () {
+  function formTester_onSubmit () {
     console.log('+++ SUBMITTED: ', query)
   }
 
   return (
     <Form
-      onSubmit={form_onSubmit}
+      className='form-tester'
+      onSubmit={formTester_onSubmit}
     >
       <P>Tester Component</P>
       <TextInput
