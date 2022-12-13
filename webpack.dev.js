@@ -9,6 +9,14 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 })
 
 module.exports = {
+  devServer: {
+    allowedHosts: [
+      'localhost',
+      '.zooniverse.org'
+    ],
+    host: process.env.HOST || 'localhost',
+    server: 'https'
+  },
   entry: './src/main.js',
   output: {
     filename: '[name].js',
@@ -38,12 +46,9 @@ module.exports = {
     }),
     HtmlWebpackPluginConfig
   ],
-  devServer: {
-    allowedHosts: [
-      'localhost',
-      '.zooniverse.org'
-    ],
-    host: process.env.HOST || 'localhost',
-    server: 'https'
-  }
+  resolve: {
+    alias: {
+      '@src': path.resolve(__dirname, 'src'),
+    },
+  },
 }
