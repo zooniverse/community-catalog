@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Box, Button, Form, Paragraph as P, TextInput } from 'grommet'
+import { Box, Form, Paragraph as P, TextInput } from 'grommet'
 import { talkAPI } from '@zooniverse/panoptes-js'
+import { Markdownz, PrimaryButton } from '@zooniverse/react-components'
 
 export default function Tester () {
   const [ query, setQuery ] = useState('')
@@ -48,7 +49,7 @@ export default function Tester () {
           placeholder='Search Zooniverse Talk (hint: use env=production)'
           value={query}
         />
-        <Button
+        <PrimaryButton
           className='button-submit'
           primary label='Submit'
           type='submit'
@@ -56,7 +57,11 @@ export default function Tester () {
       </Form>
       {results.map(result => {
         return (
-          <P>{result.body}</P>
+          <Markdownz
+            baseURI='https://www.zooniverse.org'
+          >
+            {result.body}
+          </Markdownz>
         )
       })}
 
