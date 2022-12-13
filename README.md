@@ -22,3 +22,15 @@ How to run the website on your computer:
 
 How to deploy the website to community-catalog.zooniverse.org:
 - TODO
+
+### Developer Notes
+
+**Scope & Lifespan**
+@shaunanoordin 2022.12.13:
+- `community-catalog` is meant to be a "fast development" custom front end, with
+  a specific experimental goal and a **limited** lifespan.
+- Starting code was based off _a very stripped down version_ of
+  [create-react-app v5](https://github.com/facebook/create-react-app) and
+  [Front-End-Monorepo](https://github.com/zooniverse/front-end-monorepo).
+  Dependencies are kept at a minimum to make maintenance easier.
+- This repo should be archived after (TODO: INSERT INITIAL LIFESPAN DATE HERE).
