@@ -50,5 +50,8 @@ module.exports = {
     alias: {
       '@src': path.resolve(__dirname, 'src'),
     },
+    fallback: {
+      'url': require.resolve('url/'),  // Required by panoptes-client
+    },
   },
 }
