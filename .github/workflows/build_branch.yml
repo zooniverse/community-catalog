@@ -1,4 +1,4 @@
-name: Build Community Catalog PR branch
+name: Build Community Catalog PR branch (test build)
 
 on:
   # Run this workflow on changes to any PR.
