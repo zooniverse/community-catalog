@@ -21,7 +21,10 @@ How to run the website on your computer:
 - Open `https://local.zooniverse.org:8080` in your browser to view the website.
 
 How to deploy the website to community-catalog.zooniverse.org:
-- TODO
+- Deploys are performed via GitHub actions.
+  - Option 1: Check the `#deploys` channel on our Zooniverse Slack for the necessary chat commands.
+  - Option 2: manually update the `production-release` tag to the latest commit in this repo (or the commit you wish to deploy).
+- Monitor progress on the [GitHub Actions tab](https://github.com/zooniverse/community-catalog/actions) of this repo.  
 
 ### Developer Notes
 
