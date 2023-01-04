@@ -1,4 +1,4 @@
 import { AppContext } from './AppContext.js'
-import { AppStore } from './AppStore.js'
+import { initAppStore } from './AppStore.js'
 
-export { AppContext, AppStore }
+export { AppContext, initAppStore }

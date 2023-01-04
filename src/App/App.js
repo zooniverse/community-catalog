@@ -4,7 +4,7 @@ import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
 import { config } from '@src/config.js'
-import { AppContext, AppStore } from '@src/store'
+import { AppContext, initAppStore } from '@src/store'
 
 import Tester from '@src/App/Tester'
 import DebugComponentInput from '@src/App/DebugComponentInput.js'
@@ -28,7 +28,7 @@ export default function App () {
 
   return (
     <Grommet theme={appTheme}>
-      <AppContext.Provider value={AppStore}>
+      <AppContext.Provider value={initAppStore()}>
         <Box>
           <Heading>Zooniverse Community Catalog</Heading>
           <Box as='main'>
