@@ -12,8 +12,8 @@ export default function App () {
 
   async function checkUser () {
     try {
-      const token = await auth.checkBearerToken()
-      console.log('+++ token: ', token)
+      const user = await auth.checkCurrent()
+      console.log('+++ user: ', user)
     } catch (err) {
       console.error(err)
     }
