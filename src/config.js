@@ -12,12 +12,12 @@ const envFromBrowser = getSearchParam('env')
 const envFromShell = process.env.NODE_ENV
 const env = envFromBrowser || envFromShell || DEFAULT_ENV
 
-if (!env.match(/^(production|staging|development)$/)) {
+if (!env.match(/^(production|test|development)$/)) {
   throw new Error(`Error: Invalid Environment - ${envFromShell}`)
 }
 
 const baseConfig = {
-  staging: {
+  test: {
     panoptesAppId: ''
   },
   production: {
@@ -25,7 +25,7 @@ const baseConfig = {
   }
 }
 
-baseConfig.development = baseConfig.staging
+baseConfig.development = baseConfig.test
 
 const config = baseConfig[env]
 export { env, config }

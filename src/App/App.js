@@ -7,16 +7,17 @@ import { config } from '@src/config.js'
 import { AppContext, initAppStore } from '@src/store'
 
 import Tester from '@src/App/Tester'
-import DebugComponentInput from '@src/App/DebugComponentInput.js'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
 export default function App () {
+  const store = initAppStore()
 
   async function checkUser () {
     try {
       const user = await auth.checkCurrent()
-      console.log('+++ user: ', user)
+      store.setUser(user)
+      store.setInitialised(true)
     } catch (err) {
       console.error(err)
     }
@@ -28,14 +29,19 @@ export default function App () {
 
   return (
     <Grommet theme={appTheme}>
-      <AppContext.Provider value={initAppStore()}>
+      <AppContext.Provider value={store}>
         <Box>
           <Heading>Zooniverse Community Catalog</Heading>
-          <Box as='main'>
-            <P>This website is currently being built.</P>
-          </Box>
-          <Tester />
-          <DebugComponentInput />
+          {(store.initialised) ?
+          <>
+            <Box as='main'>
+              <P>This website is currently being built.</P>
+              <P>{(store.user) ? `Logged in as ${store.user.display_name || store.user.login}` : 'User isn\'t logged in'}</P>
+            </Box>
+            <Tester />
+          </> :
+          <P>Loading...</P>
+          }
         </Box>
       </AppContext.Provider>
     </Grommet>
