@@ -3,8 +3,11 @@ import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'gromme
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
-import Tester from '@src/App/Tester'
 import { config } from '@src/config.js'
+import { AppContext, AppStore } from '@src/store'
+
+import Tester from '@src/App/Tester'
+import DebugComponentInput from '@src/App/DebugComponentInput.js'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
@@ -25,13 +28,16 @@ export default function App () {
 
   return (
     <Grommet theme={appTheme}>
-      <Box>
-        <Heading>Zooniverse Community Catalog</Heading>
-        <Box as='main'>
-          <P>This website is currently being built.</P>
+      <AppContext.Provider value={AppStore}>
+        <Box>
+          <Heading>Zooniverse Community Catalog</Heading>
+          <Box as='main'>
+            <P>This website is currently being built.</P>
+          </Box>
+          <Tester />
+          <DebugComponentInput />
         </Box>
-        <Tester />
-      </Box>
+      </AppContext.Provider>
     </Grommet>
   )
 }
