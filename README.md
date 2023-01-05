@@ -22,9 +22,12 @@ How to run the website on your computer:
 
 How to deploy the website to community-catalog.zooniverse.org:
 - Deploys are performed via GitHub actions.
-  - Option 1: Check the `#deploys` channel on our Zooniverse Slack for the necessary chat commands.
-  - Option 2: manually update the `production-release` tag to the latest commit in this repo (or the commit you wish to deploy).
-- Monitor progress on the [GitHub Actions tab](https://github.com/zooniverse/community-catalog/actions) of this repo.  
+  - Option 1: Check the `#deploys` channel on our Zooniverse Slack for the
+    necessary chat commands.
+  - Option 2: manually update the `production-release` tag to the latest commit
+    in this repo (or the commit you wish to deploy).
+- Monitor progress on the [GitHub Actions tab](https://github.com/zooniverse/community-catalog/actions)
+  of this repo.  
 
 ### Developer Notes
 
@@ -37,3 +40,14 @@ How to deploy the website to community-catalog.zooniverse.org:
   [Front-End-Monorepo](https://github.com/zooniverse/front-end-monorepo).
   Dependencies are kept at a minimum to make maintenance easier.
 - This repo should be archived after (TODO: INSERT INITIAL LIFESPAN DATE HERE).
+
+**Auth & Login**
+@shaunanoordin 2023.01.05
+- Unlike many of our earlier CFEs (custom front ends), the Community Catalog
+  doesn't use oAuth for authentication.
+- Instead, the CC relies on the trust afforded across the entire Zooniverse
+  domain. If you're on any `*.zooniverse.org` site, you're also logged in to
+  `community-catalog.zooniverse.org`
+- This reason (along with other CORS-related API calls) is why, when
+  testing/developing on local, you need to have `local.zooniverse.org:8080`
+  set up.
