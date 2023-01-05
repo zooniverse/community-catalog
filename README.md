@@ -44,7 +44,7 @@ How to deploy the website to community-catalog.zooniverse.org:
 **Auth & Login**
 @shaunanoordin 2023.01.05
 - Unlike many of our earlier CFEs (custom front ends), the Community Catalog
-  doesn't use oAuth for authentication.
+  doesn't use `oauth` from `panoptes-client` for logins.
 - Instead, the CC relies on the trust afforded across the entire Zooniverse
   domain. If you're on any `*.zooniverse.org` site, you're also logged in to
   `community-catalog.zooniverse.org`
