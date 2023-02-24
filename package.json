@@ -50,5 +50,9 @@
   },
   "overrides": {
     "trim": "^1.0.1"
+  },
+  "engines": {
+    "node": ">= 18",
+    "npm": ">= 9"
   }
 }
