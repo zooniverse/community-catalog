@@ -14,7 +14,6 @@ module.exports = {
       'localhost',
       '.zooniverse.org'
     ],
-    host: process.env.HOST || 'localhost',
     server: 'https'
   },
   entry: './src/main.js',
