@@ -27,6 +27,8 @@ export default function App () {
     checkUser()
   }, [])
 
+  console.log('+++ appTheme: ', appTheme)
+
   return (
     <Grommet theme={appTheme}>
       <AppContext.Provider value={store}>
