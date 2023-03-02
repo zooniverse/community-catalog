@@ -1,7 +1,12 @@
 import React from 'react'
 import { Anchor, Box, Text, TextInput } from 'grommet'
+import { Search, Share } from 'grommet-icons'
 import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
+
+const HeaderLogoAndTitle = styled(Box)`
+  margin-right: 4em;
+`
 
 const HeaderTitle = styled(Text)`
   text-transform: uppercase;
@@ -10,8 +15,14 @@ const HeaderTitle = styled(Text)`
 const HeaderLink = styled(Anchor)`
   background: #ffffff;
   color: #000000;
-  width: 24em;
+  flex: 0 0 auto;
   padding: 1em;
+  width: 14em;
+`
+
+const HeaderSearch = styled(TextInput)`
+  background: #ffffff;
+  color: #000000;
 `
 
 export default function Header () {
@@ -20,32 +31,39 @@ export default function Header () {
       align='center'
       alignContent='center'
       as='header'
-      background='dark-1'
+      background='#000000'
       direction='row'
       gap='small'
       pad='small'
+      wrap={true}
     >
-      <Box
+      <HeaderLogoAndTitle
         align='center'
         flex='false'
         width='xsmall'
       >
-        <ZooniverseLogo size='4em' style={{ color: '#00979d' }} />
+        <ZooniverseLogo size='2em' style={{ color: '#00979d' }} />
         <HeaderTitle textAlign='center'>Communities &amp; Crowds</HeaderTitle>
-      </Box>
+      </HeaderLogoAndTitle>
       <HeaderLink
+        icon={<Share size='small' />}
         label='Project Home Page'
         href='https://www.zooniverse.org'
+        reverse={true}
         size='small'
       />
       <HeaderLink
+        icon={<Share size='small' />}
         label='Talk Board'
         href='https://www.zooniverse.org/talk'
+        reverse={true}
         size='small'
       />
-      <TextInput
-        
-      />
+      <Box>
+        <HeaderSearch
+          icon={<Search size='small' />}
+        />
+      </Box>
     </Box>
   )
 }
