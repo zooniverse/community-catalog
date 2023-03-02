@@ -1,15 +1,24 @@
 import React from 'react'
-import { Box, Button, Text, TextInput } from 'grommet'
+import { Anchor, Box, Text, TextInput } from 'grommet'
 import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
 
-const HeaderText = styled(Text)`
+const HeaderTitle = styled(Text)`
   text-transform: uppercase;
+`
+
+const HeaderLink = styled(Anchor)`
+  background: #ffffff;
+  color: #000000;
+  width: 24em;
+  padding: 1em;
 `
 
 export default function Header () {
   return (
     <Box
+      align='center'
+      alignContent='center'
       as='header'
       background='dark-1'
       direction='row'
@@ -22,17 +31,17 @@ export default function Header () {
         width='xsmall'
       >
         <ZooniverseLogo size='4em' style={{ color: '#00979d' }} />
-        <HeaderText textAlign='center'>Communities &amp; Crowds</HeaderText>
+        <HeaderTitle textAlign='center'>Communities &amp; Crowds</HeaderTitle>
       </Box>
-      <Button
-        background='light-1'
+      <HeaderLink
         label='Project Home Page'
         href='https://www.zooniverse.org'
+        size='small'
       />
-      <Button
-       background='light-1'
-        label='Project Home Page'
-        href='https://www.zooniverse.org'
+      <HeaderLink
+        label='Talk Board'
+        href='https://www.zooniverse.org/talk'
+        size='small'
       />
       <TextInput
         
