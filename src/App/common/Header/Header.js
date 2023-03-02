@@ -20,7 +20,11 @@ const HeaderLink = styled(Anchor)`
   width: 14em;
 `
 
-const HeaderSearch = styled(TextInput)`
+const HeaderSearchForm = styled('form')`
+  margin: 0;
+`
+
+const HeaderSearchInput = styled(TextInput)`
   background: #ffffff;
   color: #000000;
 `
@@ -59,11 +63,16 @@ export default function Header () {
         reverse={true}
         size='small'
       />
-      <Box>
-        <HeaderSearch
+      
+      <HeaderSearchForm
+        action='/search'
+        method='get'
+      >
+        <HeaderSearchInput
+          name='query'
           icon={<Search size='small' />}
         />
-      </Box>
+      </HeaderSearchForm>
     </Box>
   )
 }
