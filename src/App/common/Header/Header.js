@@ -17,7 +17,8 @@ const HeaderLink = styled(Anchor)`
   color: #000000;
   flex: 0 0 auto;
   padding: 1em;
-  width: 14em;
+  text-align: center;
+  width: 13em;
 `
 
 const HeaderSearchForm = styled('form')`
@@ -46,8 +47,8 @@ export default function Header () {
         flex='false'
         width='xsmall'
       >
-        <ZooniverseLogo size='2em' style={{ color: '#00979d' }} />
-        <HeaderTitle textAlign='center'>Communities &amp; Crowds</HeaderTitle>
+        <ZooniverseLogo size='3em' style={{ color: '#00979d' }} />
+        <HeaderTitle textAlign='center' size='xsmall'>Communities &amp; Crowds</HeaderTitle>
       </HeaderLogoAndTitle>
       <HeaderLink
         icon={<Share size='small' />}
@@ -55,6 +56,8 @@ export default function Header () {
         href='https://www.zooniverse.org'
         reverse={true}
         size='small'
+        target='_blank'
+        weight='normal'
       />
       <HeaderLink
         icon={<Share size='small' />}
@@ -62,6 +65,8 @@ export default function Header () {
         href='https://www.zooniverse.org/talk'
         reverse={true}
         size='small'
+        target='_blank'
+        weight='normal'
       />
       
       <HeaderSearchForm
