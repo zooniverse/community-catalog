@@ -5,6 +5,7 @@ import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
 import { AppContext, initAppStore } from '@src/store'
 
+import Header from '@src/App/common/Header'
 import Tester from '@src/App/Tester'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
@@ -26,10 +27,13 @@ export default function App () {
     checkUser()
   }, [])
 
+  console.log('+++ appTheme: ', appTheme)
+
   return (
     <Grommet theme={appTheme}>
       <AppContext.Provider value={store}>
         <Box>
+          <Header />
           <Heading>Zooniverse Community Catalog</Heading>
           {(store.initialised) ?
           <>
