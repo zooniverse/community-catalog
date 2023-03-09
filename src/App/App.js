@@ -3,8 +3,8 @@ import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'gromme
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
-import { AppContext, initAppStore } from '@src/store'
 
+import { AppContext, initAppStore } from '@src/store'
 import Header from '@src/App/common/Header'
 import Tester from '@src/App/Tester'
 
