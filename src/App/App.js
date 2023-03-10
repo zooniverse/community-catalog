@@ -3,6 +3,7 @@ import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'gromme
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
+import { Outlet, Link } from 'react-router-dom'
 
 import { AppContext, initAppStore } from '@src/store'
 import Header from '@src/App/common/Header'
@@ -41,7 +42,9 @@ export default function App () {
               <P>This website is currently being built.</P>
               <P>{(store.user) ? `Logged in as ${store.user.display_name || store.user.login}` : 'User isn\'t logged in'}</P>
             </Box>
+            <Link to='search'>Search</Link>
             <Tester />
+            <Outlet />
           </> :
           <P>Loading...</P>
           }
