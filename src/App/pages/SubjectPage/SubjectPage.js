@@ -1,10 +1,10 @@
 import React from 'react'
 import { Box } from 'grommet'
 
-export default function HomePage () {
+export default function SubjectPage () {
   return (
     <Box>
-      Home page
+      Subject page
     </Box>
   )
 }
