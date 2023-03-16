@@ -4,6 +4,7 @@ import App from '@src/App'
 import HomePage from '@src/App/pages/HomePage'
 import SearchPage from '@src/App/pages/SearchPage'
 import SubjectPage from '@src/App/pages/SubjectPage'
+import Tester from '@src/App/Tester'
 
 export const router = createBrowserRouter([
   {
@@ -21,9 +22,12 @@ export const router = createBrowserRouter([
       },
       {
         path: 'subject',
-        element: <h1>Search</h1>,
-      }
-
+        element: <SubjectPage />,
+      },
+      {
+        path: 'test',
+        element: <Tester />,
+      },
     ]
   },
 ])
