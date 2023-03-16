@@ -3,7 +3,7 @@ import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'gromme
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 import { AppContext, initAppStore } from '@src/store'
 import Header from '@src/App/common/Header'
@@ -39,7 +39,11 @@ export default function App () {
             <Outlet />
 
             <Box size='small' border={true}>
+              <Heading as='h6'>Debug Panel</Heading>
               <P size='small'>{(store.user) ? `Logged in as ${store.user.display_name || store.user.login}` : 'User isn\'t logged in'}</P>
+              <Box size='small' as='nav' direction='row'>
+                <Link to='/'>Home Page</Link> | <Link to='/search'>Search Page</Link> | <Link to='/subject/12345'>Subject Page</Link>
+              </Box>
             </Box>
           </Box> :
           <P>Loading...</P>
