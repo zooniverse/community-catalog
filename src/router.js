@@ -25,6 +25,10 @@ export const router = createBrowserRouter([
         element: <SubjectPage />,
       },
       {
+        path: 'subject/:subjectId',
+        element: <SubjectPage />,
+      },
+      {
         path: 'test',
         element: <Tester />,
       },
