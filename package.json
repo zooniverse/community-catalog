@@ -44,7 +44,7 @@
     "@zooniverse/react-components": "^1.4.1",
     "grommet": "^2.30.0",
     "grommet-icons": "^4.9.0",
-    "panoptes-client": "^4.2.7",
+    "panoptes-client": "^5.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
