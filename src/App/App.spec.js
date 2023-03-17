@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import App from './App.js'
 
 // mock Panoptes auth calls
@@ -8,10 +8,7 @@ auth.checkCurrent.mockResolvedValue(null)
 
 describe('App', function () {
   test('should render logo', async function () {
-    act(function () {
-      render(<App />)
-    })
-  
+    render(<App />)
     const logo = await screen.findByText(/Zooniverse Logo/i)
     expect(logo).toBeInTheDocument()
   })
