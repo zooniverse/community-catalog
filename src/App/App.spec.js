@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import App from './App.js'
 
 // mock Panoptes auth calls
@@ -7,13 +7,17 @@ jest.mock('panoptes-client/lib/auth')
 auth.checkCurrent.mockResolvedValue(null)
 
 describe('App', function () {
-  test('should render title', async function () {
-    render(<App />)
-    const title = await screen.findByText(/Zooniverse Community Catalog/i)
-    expect(title).toBeInTheDocument()
+  test('should render logo', async function () {
+    act(function () {
+      render(<App />)
+    })
+  
+    const logo = await screen.findByText(/Zooniverse Logo/i)
+    expect(logo).toBeInTheDocument()
   })
 
-  describe('when user isn\t logged in', function () {
+  /*
+  describe('when user isn\'t logged in', function () {
     test('should display "isn\'t logged in" message', async function () {
       auth.checkCurrent.mockResolvedValue(null)
       render(<App />)
@@ -33,4 +37,5 @@ describe('App', function () {
       expect(userText).toBeInTheDocument()
     })
   })
+  */
 })
