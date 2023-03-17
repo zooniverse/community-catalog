@@ -44,10 +44,10 @@ export default function Header () {
     >
       <HeaderLogoAndTitle
         align='center'
-        flex='false'
+        flex={false}
         width='xsmall'
       >
-        <ZooniverseLogo size='3em' style={{ color: '#00979d' }} />
+        <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
         <HeaderTitle textAlign='center' size='xsmall'>Communities &amp; Crowds</HeaderTitle>
       </HeaderLogoAndTitle>
       <HeaderLink

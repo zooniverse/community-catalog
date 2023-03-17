@@ -14,12 +14,14 @@ module.exports = {
       'localhost',
       '.zooniverse.org'
     ],
-    server: 'https'
+    historyApiFallback: true,
+    server: 'https',
   },
   entry: './src/main.js',
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   mode: 'development',
   module: {

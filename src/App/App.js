@@ -3,10 +3,10 @@ import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'gromme
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
-import { AppContext, initAppStore } from '@src/store'
+import { Link, Outlet } from 'react-router-dom'
 
+import { AppContext, initAppStore } from '@src/store'
 import Header from '@src/App/common/Header'
-import Tester from '@src/App/Tester'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
@@ -27,22 +27,23 @@ export default function App () {
     checkUser()
   }, [])
 
-  console.log('+++ appTheme: ', appTheme)
-
   return (
     <Grommet theme={appTheme}>
       <AppContext.Provider value={store}>
         <Box>
           <Header />
-          <Heading>Zooniverse Community Catalog</Heading>
           {(store.initialised) ?
-          <>
-            <Box as='main'>
-              <P>This website is currently being built.</P>
-              <P>{(store.user) ? `Logged in as ${store.user.display_name || store.user.login}` : 'User isn\'t logged in'}</P>
+          <Box as='main'>
+            <Outlet />
+
+            <Box size='small' border={true}>
+              <Heading as='h6'>Debug Panel</Heading>
+              <P size='small'>{(store.user) ? `Logged in as ${store.user.display_name || store.user.login}` : 'User isn\'t logged in'}</P>
+              <Box size='small' as='nav' direction='row'>
+                <Link to='/'>Home Page</Link> | <Link to='/search'>Search Page</Link> | <Link to='/subject/12345'>Subject Page</Link>
+              </Box>
             </Box>
-            <Tester />
-          </> :
+          </Box> :
           <P>Loading...</P>
           }
         </Box>
