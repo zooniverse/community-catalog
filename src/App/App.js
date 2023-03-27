@@ -27,7 +27,7 @@ export default function App () {
     checkUser()
   }, [])
 
-  console.log('+++ appTheme: ', appTheme)
+  console.log('+++ appTheme.global.colors: ', appTheme?.global?.colors)
 
   return (
     <Grommet theme={appTheme}>

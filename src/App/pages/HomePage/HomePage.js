@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Carousel } from 'grommet'
+import { Box, Button, Carousel, Text } from 'grommet'
 import SubjectImage from '@src/App/components/SubjectImage'
 
 export default function HomePage () {
@@ -13,9 +13,11 @@ export default function HomePage () {
     >
       <Box
         alignSelf='center'
+        gap='small'
         width={`${imgWidth}px`}
       >
-        Home Page
+        <Text>Examples from Project 12268, Subject Set 98889</Text>
+
         <Carousel
           wrap={true}
         >
@@ -35,6 +37,13 @@ export default function HomePage () {
             height={imgHeight}
           />
         </Carousel>
+        
+        <Button
+          alignSelf='end'
+          background='drawing-pink'
+          color='drawing-pink'
+          label='Random Subject'
+        />
       </Box>
     </Box>
   )
