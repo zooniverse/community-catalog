@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 
 import SubjectImage from '@src/components/SubjectImage'
+import SearchResult from './SearchResult.js'
 import fetchTagSearchResults from '@src/helpers/fetchTagSearchResults.js'
 
 export default function ResultsList ({
@@ -27,12 +28,9 @@ export default function ResultsList ({
         wrap={true}
       >
         {searchResults.map(sr => (
-          <SubjectImage
+          <SearchResult
             subjectId={sr.taggable_id.toString()}
             key={sr.taggable_id}
-            small={true}
-            width={200}
-            height={200}
           />
         ))}
       </Box>
