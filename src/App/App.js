@@ -6,7 +6,7 @@ import zooTheme from '@zooniverse/grommet-theme'
 import { Link, Outlet } from 'react-router-dom'
 
 import { AppContext, initAppStore } from '@src/store'
-import Header from '@src/App/common/Header'
+import Header from '@src/App/components/Header'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
