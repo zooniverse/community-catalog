@@ -8,6 +8,7 @@ export default function SmallSubjectImage ({
   subjectId = '',  // For an example, use Subject '69734802', of Project 12268, in Subject Set 98889. see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
   width = 200,
   height = 200,
+  fit,
   small = false,
 }) {
 
@@ -38,35 +39,24 @@ export default function SmallSubjectImage ({
     imgSrc = subjectData.locations?.[0]?.['image/jpeg']
              || subjectData.locations?.[0]?.['image/png']
 
-    console.log('+++ imgSrc: ', imgSrc)
     if (small && imgSrc.match(/^https?:\/\/panoptes-uploads.zooniverse.org\//)) {
       imgSrc = `https://thumbnails.zooniverse.org/${width}x${height}/${imgSrc?.replace(/^https?:\/\//ig, '')}`
     }
   }
 
   if (!imgSrc) imgSrc = 'https://placekitten.com/g/200/200'  // TODO: placeholder 
-
-  if (small) {
-    return (
-      <Box
-        width={`${width}px`}
-        height={`${height}px`}
-      >
-        <Image
-          fit='cover'
-          src={imgSrc}
-        />
-      </Box>
-    )
-  } else {
-
-    return (
+  
+  return (
+    <Box
+      background='light-1'
+      border={true}
+      width={`${width}px`}
+      height={`${height}px`} 
+    >
       <Image
-        width={`${width}px`}
-        height={`${height}px`}
-        fit='contain'
+        fit={fit || (small ? 'cover' : 'contain')}
         src={imgSrc}
       />
-    )
-  }
+    </Box>
+  )
 }
