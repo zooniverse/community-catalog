@@ -15,7 +15,7 @@ export default function SmallSubjectImage ({
   const [ subjectData, setSubjectData ] = useState(subject)
 
   useEffect(function () {
-    setSubjectData(subject)
+    if (subject) setSubjectData(subject)
 
     // If no Subject has been specified, but we have a Subject ID, fetch that Subject.
     if (!subjectData && subjectId) {
