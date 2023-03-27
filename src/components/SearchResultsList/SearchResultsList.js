@@ -5,7 +5,7 @@ import SubjectImage from '@src/components/SubjectImage'
 import SearchResult from './SearchResult.js'
 import fetchTagSearchResults from '@src/helpers/fetchTagSearchResults.js'
 
-export default function ResultsList ({
+export default function SearchResultsList ({
   query = 'tables',
 }) {
   const [ searchResults, setSearchResults ] = useState([])

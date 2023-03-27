@@ -1,11 +1,15 @@
 import React from 'react'
 import { Box, Button, Carousel, Text } from 'grommet'
+
 import SubjectImage from '@src/components/SubjectImage'
 import ResultsList from '@src/components/SearchResultsList'
+import getQuery from '@src/helpers/getQuery'
 
 export default function HomePage () {
   const imgWidth = 600
   const imgHeight = 300
+
+  const query = getQuery() || 'tables'
 
   return (
     <>
@@ -48,7 +52,7 @@ export default function HomePage () {
           />
         </Box>
       </Box>
-      <ResultsList />
+      <ResultsList query={query} />
     </>
   )
 }
