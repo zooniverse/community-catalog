@@ -38,7 +38,8 @@ export default function SmallSubjectImage ({
     imgSrc = subjectData.locations?.[0]?.['image/jpeg']
              || subjectData.locations?.[0]?.['image/png']
 
-    if (small && imgSrc.match(/^https?:\/\/panoptes-upload.zooniverse.org\//)) {
+    console.log('+++ imgSrc: ', imgSrc)
+    if (small && imgSrc.match(/^https?:\/\/panoptes-uploads.zooniverse.org\//)) {
       imgSrc = `https://thumbnails.zooniverse.org/${width}x${height}/${imgSrc?.replace(/^https?:\/\//ig, '')}`
     }
   }
