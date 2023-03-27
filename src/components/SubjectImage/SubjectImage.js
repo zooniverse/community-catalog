@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Image } from 'grommet'
-import { subjects } from '@zooniverse/panoptes-js'
+import fetchSubject from '@src/helpers/fetchSubject'
 
 export default function SmallSubjectImage ({
   src,
@@ -15,27 +15,15 @@ export default function SmallSubjectImage ({
   const [ subjectData, setSubjectData ] = useState(subject)
 
   useEffect(function () {
-
-    async function fetchSubject (subjectId) {
-      try {
-        const { body } = await subjects.get({ id: subjectId })
-        const [ data ] = body.subjects
-        setSubjectData(data)
-      } catch (err) {
-        console.error('ERROR: ', err)
-        // TODO: handle errors
-      }
-    }
-
+    // If no Subject has been specified, but we have a Subject ID, fetch that Subject.
     if (!subjectData && subjectId) {
-      fetchSubject(subjectId)
+      fetchSubject(subjectId, setSubjectData)
     }
-
   }, [subjectId])
   
-
   let imgSrc = src
   if (subjectData) {
+      // TODO: improve URL extraction
     imgSrc = subjectData.locations?.[0]?.['image/jpeg']
              || subjectData.locations?.[0]?.['image/png']
 
