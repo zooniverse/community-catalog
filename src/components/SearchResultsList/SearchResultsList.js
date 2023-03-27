@@ -25,6 +25,7 @@ export default function ResultsList ({
       <Box
         direction='row'
         gap='medium'
+        justify='center'
         wrap={true}
       >
         {searchResults.map(sr => (
