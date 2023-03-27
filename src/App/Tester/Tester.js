@@ -13,7 +13,7 @@ export default function Tester () {
 
   function formTester_onSubmit () {
     console.log('+++ SUBMITTED: ', query)
-    fetchTalkSearchResults(query)
+    fetchTagSearchResults(query)
   }
 
   async function fetchTalkSearchResults (query) {
@@ -29,6 +29,29 @@ export default function Tester () {
       if (!response?.ok) throw new Error('Couldn\'t fetch Talk search results')
 
       const results = response.body?.searches.filter(s => s?.body) || []
+      setResults(results)
+
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async function fetchTagSearchResults (query) {
+    // https://talk.zooniverse.org/tags/popular?http_cache=true&page=1&taggable_type=Subject&section=project-7929&name=flares
+    try {
+      const response = await talkAPI.get('/tags/popular', {
+        section: 'project-12268',  // Scarlets & Blues ; requires ?env=production
+        taggable_type: 'Subject',
+        page: 1,
+        page_size: 20,
+        name: query
+      })
+
+      console.log('+++ response.body: ', response.body)
+
+      if (!response?.ok) throw new Error('Couldn\'t fetch tag search results')
+
+      const results = response.body?.popular.filter(s => s?.body) || []
       setResults(results)
 
     } catch (err) {
