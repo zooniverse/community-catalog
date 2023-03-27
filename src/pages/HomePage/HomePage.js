@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Button, Carousel, Text } from 'grommet'
-import SubjectImage from '@src/App/components/SubjectImage'
-import ResultsList from '@src/App/components/SearchResultsList'
+import SubjectImage from '@src/components/SubjectImage'
+import ResultsList from '@src/components/SearchResultsList'
 
 export default function HomePage () {
   const imgWidth = 600

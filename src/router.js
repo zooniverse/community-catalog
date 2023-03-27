@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '@src/App'
 
-import HomePage from '@src/App/pages/HomePage'
-import SearchPage from '@src/App/pages/SearchPage'
-import SubjectPage from '@src/App/pages/SubjectPage'
+import HomePage from '@src/pages/HomePage'
+import SearchPage from '@src/pages/SearchPage'
+import SubjectPage from '@src/pages/SubjectPage'
 import Tester from '@src/App/Tester'
 
 export const router = createBrowserRouter([

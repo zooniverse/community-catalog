@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 import { talkAPI } from '@zooniverse/panoptes-js'
 
-import SubjectImage from '@src/App/components/SubjectImage'
+import SubjectImage from '@src/components/SubjectImage'
 
 async function fetchTagSearchResults (
   query = '',
