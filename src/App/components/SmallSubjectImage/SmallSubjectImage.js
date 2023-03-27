@@ -4,31 +4,30 @@ import { subjects } from '@zooniverse/panoptes-js'
 
 export default function SmallSubjectImage ({
   src,
-  subject,
-  subjectId = '69734802',  // Part of Project 12268, Subject Set 98889, see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
+  subject = undefined,
+  subjectId = '',  // For an example, use Subject '69734802', of Project 12268, in Subject Set 98889. see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
   width = 200,
   height = 200,
-  small = true,
+  small = false,
 }) {
 
   const [ subjectData, setSubjectData ] = useState(subject)
 
   useEffect(function () {
 
-    async function fetchSubject () {
+    async function fetchSubject (subjectId) {
       try {
         const { body } = await subjects.get({ id: subjectId })
         const [ data ] = body.subjects
         setSubjectData(data)
-        console.log('+++ data: ', data)
       } catch (err) {
         console.error('ERROR: ', err)
         // TODO: handle errors
       }
     }
 
-    if (!subjectData) {
-      fetchSubject()
+    if (!subjectData && subjectId) {
+      fetchSubject(subjectId)
     }
 
   }, [subjectId])
