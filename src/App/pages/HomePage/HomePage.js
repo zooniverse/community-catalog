@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from 'grommet'
-import SmallSubjectImage from '@src/App/components/SmallSubjectImage/SmallSubjectImage'
+import SubjectImage from '@src/App/components/SubjectImage/SubjectImage'
 
 export default function HomePage () {
   return (
@@ -8,7 +8,10 @@ export default function HomePage () {
       Home page
 
       <Box>
-        <SmallSubjectImage />
+        <SubjectImage
+          subjectId='69734802'
+          small={true}
+        />
       </Box>
     </Box>
   )
