@@ -17,7 +17,9 @@ export default function KeywordsList () {
   const [ keywords, setKeywords ] = useState([])
 
   useEffect(function () {
-    fetchKeywords(setKeywords)
+    fetchKeywords({ 
+      setData: setKeywords
+    })
   }, [])
 
   return (
