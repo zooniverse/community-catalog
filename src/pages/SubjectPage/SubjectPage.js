@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 
 import SubjectImage from '@src/components/SubjectImage'
 import SearchResultsList from '@src/components/SearchResultsList'
+import SubjectKeywords from '@src/components/SubjectKeywords'
+
 import fetchSubject from '@src/helpers/fetchSubject.js'
 import getQuery from '@src/helpers/getQuery.js'
 
@@ -60,7 +62,7 @@ export default function SubjectPage () {
               <Text>Metadata</Text>
             </Box>
             <Box>
-              <Text>Tags</Text>
+              <SubjectKeywords subject={subjectData} />
             </Box>
           </Box>
         </Box>

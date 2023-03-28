@@ -14,11 +14,11 @@ const KeywordText = styled(Text)`
 `
 
 export default function KeywordsList () {
-  const [ keywords, setKeywords ] = useState([])
+  const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
     fetchKeywords({ 
-      setData: setKeywords
+      setData: setKeywordsData
     })
   }, [])
 
@@ -37,7 +37,7 @@ export default function KeywordsList () {
         gap='small'
         wrap={true}
       >
-        {keywords.map((keyword, i) => (
+        {keywordsData.map((keyword, i) => (
           <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`}>
             <Box
               background='#ffffff'
@@ -50,7 +50,7 @@ export default function KeywordsList () {
             </Box>
           </KeywordLink>
         ))}
-        {(keywords.length === 0) && <Text>No keywords found, sorry</Text>}
+        {(keywordsData.length === 0) && <Text>No keywords found, sorry</Text>}
       </Box>
       <Box
         align='end'
