@@ -9,10 +9,6 @@ const KeywordLink = styled(Link)`
   text-decoration: none;
 `
 
-const KeywordText = styled(Text)`
-  text-decoration: none;
-`
-
 export default function KeywordsList () {
   const [ keywordsData, setKeywordsData ] = useState([])
 
