@@ -25,7 +25,9 @@ export default function SubjectKeywords ({
   }, [ subject ])
 
   return (
-    <Box border={true} align='end'>
+    <Box
+      align='end'
+    >
       <Text color='light-6' margin={{ bottom: 'small' }}>
         COMMUNITY TAGS:
       </Text>

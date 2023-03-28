@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import SubjectImage from '@src/components/SubjectImage'
 import SearchResultsList from '@src/components/SearchResultsList'
 import SubjectKeywords from '@src/components/SubjectKeywords'
+import SubjectMetadata from '@src/components/SubjectMetadata'
 
 import fetchSubject from '@src/helpers/fetchSubject.js'
 import getQuery from '@src/helpers/getQuery.js'
@@ -29,18 +30,21 @@ export default function SubjectPage () {
           Subject page &nbsp;
           {subjectId ? `for subject ${subjectId}` : '(no subject chosen)'}
         </Heading>
-        <Box direction='row'>
+        <Box
+          direction='row'
+          gap='medium'
+        >
           <SubjectImage
             subject={subjectData}
-            width={600}
-            height={600}
+            width={800}
+            height={500}
           />
-          <Box>Subject Discussion</Box>
+          <Box border={true}>Subject Discussion</Box>
         </Box>
       </Box>
       <Box
         direction='row'
-        gap='small'
+        gap='medium'
         pad='small'
       >
         <Box>
@@ -56,14 +60,11 @@ export default function SubjectPage () {
           <Box
             direction='row'
             gap='small'
-            width='600px'
+            justify='around'
+            width='800px'
           >
-            <Box>
-              <Text>Metadata</Text>
-            </Box>
-            <Box>
-              <SubjectKeywords subject={subjectData} />
-            </Box>
+            <SubjectMetadata subject={subjectData} />
+            <SubjectKeywords subject={subjectData} />
           </Box>
         </Box>
         <Box border={true}>
