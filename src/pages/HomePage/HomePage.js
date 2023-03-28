@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Button, Carousel, Text } from 'grommet'
+import { Link } from 'react-router-dom'
 
 import SubjectImage from '@src/components/SubjectImage'
 import SearchResultsList from '@src/components/SearchResultsList'
@@ -11,6 +12,7 @@ export default function HomePage () {
   const imgHeight = 300
 
   const query = getQuery() || 'tables'
+  const subjects = [ '69734802', '69734801', '69734803' ]
 
   return (
     <>
@@ -24,27 +26,19 @@ export default function HomePage () {
           width={`${imgWidth}px`}
         >
           <Text>Examples from Project 12268, Subject Set 98889</Text>
-
           <Carousel
             wrap={true}
           >
-            <SubjectImage
-              subjectId='69734802'
-              width={imgWidth}
-              height={imgHeight}
-            />
-            <SubjectImage
-              subjectId='69734801'
-              width={imgWidth}
-              height={imgHeight}
-            />
-            <SubjectImage
-              subjectId='69734803'
-              width={imgWidth}
-              height={imgHeight}
-            />
+            {subjects.map(sbjId => (
+              <Link to={`/subject/${sbjId}`}>
+                <SubjectImage
+                  subjectId={sbjId}
+                  width={imgWidth}
+                  height={imgHeight}
+                />
+              </Link>
+            ))}
           </Carousel>
-          
           <Button
             alignSelf='end'
             background='drawing-pink'

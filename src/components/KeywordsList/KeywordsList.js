@@ -20,8 +20,6 @@ export default function KeywordsList () {
     fetchKeywords(setKeywords)
   }, [])
 
-  console.log('+++ keywords: ', keywords)
-
   return (
     <Box>
       <Box
