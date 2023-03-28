@@ -6,7 +6,7 @@ import zooTheme from '@zooniverse/grommet-theme'
 import { Link, Outlet } from 'react-router-dom'
 
 import { AppContext, initAppStore } from '@src/store'
-import Header from '@src/App/common/Header'
+import Header from '@src/components/Header'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
@@ -26,6 +26,8 @@ export default function App () {
   useEffect(function init () {
     checkUser()
   }, [])
+
+  console.log('+++ appTheme.global.colors: ', appTheme?.global?.colors)
 
   return (
     <Grommet theme={appTheme}>
