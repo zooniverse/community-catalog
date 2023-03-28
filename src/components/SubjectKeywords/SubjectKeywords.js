@@ -1,43 +1,45 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Box, Text } from 'grommet'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import fetchKeywords from '@src/helpers/fetchKeywords.js'
+import fetchKeywords from '@src/helpers/fetchKeywords'
 
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
 
-export default function KeywordsList () {
+export default function SubjectKeywords ({
+  subject = undefined,
+}) {
+
   const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
-    fetchKeywords({ 
-      setData: setKeywordsData
-    })
-
-  }, [])
+    if (subject) {
+      fetchKeywords({
+        setData: setKeywordsData,
+        subject
+      })
+    }
+  }, [ subject ])
 
   return (
-    <Box elevation='medium'>
+    <Box
+      align='end'
+    >
+      <Text color='light-6' margin={{ bottom: 'small' }}>
+        COMMUNITY TAGS:
+      </Text>
       <Box
-        background='white'
-        pad='small'
-      >
-        <Text>Use these keywords to start exploring:</Text>
-      </Box>
-      <Box
-        background='accent-1'
         direction='row'
-        pad='small'
         gap='small'
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
           <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`}>
             <Box
-              background='white'
+              background='light-2'
               elevation='xsmall'
               margin={{ bottom: 'small' }}
               pad={{ horizontal: 'small', vertical: 'xsmall' }}
@@ -47,14 +49,6 @@ export default function KeywordsList () {
             </Box>
           </KeywordLink>
         ))}
-        {(keywordsData.length === 0) && <Text>No keywords found, sorry</Text>}
-      </Box>
-      <Box
-        align='end'
-        alignContent='end'
-        pad='small'
-      >
-        <Text color='drawing-pink'>Advanced Search &nbsp; &nbsp; Show more</Text>
       </Box>
     </Box>
   )

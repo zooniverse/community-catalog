@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Image } from 'grommet'
 import fetchSubject from '@src/helpers/fetchSubject'
 
-export default function SmallSubjectImage ({
+export default function SubjectImage ({
   src,
   subject = undefined,
   subjectId = '',  // For an example, use Subject '69734802', of Project 12268, in Subject Set 98889. see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
