@@ -16,6 +16,7 @@ export default function KeywordsList () {
     fetchKeywords({ 
       setData: setKeywordsData
     })
+
   }, [])
 
   return (
