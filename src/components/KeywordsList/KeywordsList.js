@@ -21,7 +21,7 @@ export default function KeywordsList () {
   }, [])
 
   return (
-    <Box>
+    <Box elevation='medium'>
       <Box
         background='#ffffff'
         pad='small'
@@ -39,6 +39,7 @@ export default function KeywordsList () {
           <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`}>
             <Box
               background='#ffffff'
+              elevation='xsmall'
               margin={{ bottom: 'small' }}
               pad={{ horizontal: 'small', vertical: 'xsmall' }}
               round='large'
