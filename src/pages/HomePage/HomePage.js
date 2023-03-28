@@ -2,7 +2,8 @@ import React from 'react'
 import { Box, Button, Carousel, Text } from 'grommet'
 
 import SubjectImage from '@src/components/SubjectImage'
-import ResultsList from '@src/components/SearchResultsList'
+import SearchResultsList from '@src/components/SearchResultsList'
+import KeywordsList from '@src/components/KeywordsList'
 import getQuery from '@src/helpers/getQuery'
 
 export default function HomePage () {
@@ -52,7 +53,8 @@ export default function HomePage () {
           />
         </Box>
       </Box>
-      <ResultsList query={query} />
+      <KeywordsList />
+      <SearchResultsList query={query} />
     </>
   )
 }
