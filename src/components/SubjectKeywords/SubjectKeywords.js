@@ -43,7 +43,7 @@ export default function SubjectKeywords ({
               pad={{ horizontal: 'small', vertical: 'xsmall' }}
               round='large'
             >
-              <Text color='#000000'>#{keyword.name}</Text>
+              <Text color='black'>#{keyword.name}</Text>
             </Box>
           </KeywordLink>
         ))}

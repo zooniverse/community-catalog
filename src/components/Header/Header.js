@@ -13,8 +13,8 @@ const HeaderTitle = styled(Text)`
 `
 
 const HeaderLink = styled(Anchor)`
-  background: #ffffff;
-  color: #000000;
+  background: white;
+  color: black;
   flex: 0 0 auto;
   padding: 1em;
   text-align: center;
@@ -26,8 +26,8 @@ const HeaderSearchForm = styled('form')`
 `
 
 const HeaderSearchInput = styled(TextInput)`
-  background: #ffffff;
-  color: #000000;
+  background: white;
+  color: black;
 `
 
 export default function Header () {
@@ -36,7 +36,7 @@ export default function Header () {
       align='center'
       alignContent='center'
       as='header'
-      background='#000000'
+      background='black'
       direction='row'
       gap='small'
       pad='small'

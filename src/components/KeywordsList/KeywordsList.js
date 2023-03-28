@@ -21,7 +21,7 @@ export default function KeywordsList () {
   return (
     <Box elevation='medium'>
       <Box
-        background='#ffffff'
+        background='white'
         pad='small'
       >
         <Text>Use these keywords to start exploring:</Text>
@@ -36,13 +36,13 @@ export default function KeywordsList () {
         {keywordsData.map((keyword, i) => (
           <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`}>
             <Box
-              background='#ffffff'
+              background='white'
               elevation='xsmall'
               margin={{ bottom: 'small' }}
               pad={{ horizontal: 'small', vertical: 'xsmall' }}
               round='large'
             >
-              <Text color='#000000'>#{keyword.name}</Text>
+              <Text color='black'>#{keyword.name}</Text>
             </Box>
           </KeywordLink>
         ))}
