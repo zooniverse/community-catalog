@@ -22,7 +22,7 @@ export default function SubjectPage () {
   }, [])
 
   return (
-    <Box>
+    <>
       <Box
         pad='medium'
       >
@@ -73,6 +73,6 @@ export default function SubjectPage () {
 
       </Box>
       <SearchResultsList query={query} />
-    </Box>
+    </>
   )
 }
