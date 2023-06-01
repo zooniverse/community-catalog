@@ -27,8 +27,6 @@ export default function App () {
     checkUser()
   }, [])
 
-  console.log('+++ appTheme.global.colors: ', appTheme?.global?.colors)
-
   return (
     <Grommet theme={appTheme}>
       <AppContext.Provider value={store}>
@@ -46,7 +44,7 @@ export default function App () {
               </Box>
             </Box>
           </Box> :
-          <P>Loading...</P>
+          <P>Initialising...</P>
           }
         </Box>
       </AppContext.Provider>
