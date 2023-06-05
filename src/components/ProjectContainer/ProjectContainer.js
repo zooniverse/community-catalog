@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Heading } from 'grommet'
 import { Outlet, useParams } from 'react-router-dom'
 
-import useStores from '@src/store/useStores.js'
+import { useStores } from '@src/store'
 import projectsJson from '@src/projects.json'
 
 
