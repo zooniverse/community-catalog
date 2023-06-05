@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box } from 'grommet'
+import { Heading } from 'grommet'
 import { Outlet, useParams } from 'react-router-dom'
 
 import { useStores } from '@src/store/useStores.js'
@@ -21,7 +21,12 @@ export default function ProjectContainer ({}) {
 
   console.log('+++ ProjectContainer')
 
+  if (!selectedProject) return null
+
   return (
-    <Outlet />
+    <>
+      <Heading as='h1'>{selectedProject.name}</Heading>
+      <Outlet />
+    </>
   )
 }
