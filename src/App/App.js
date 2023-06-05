@@ -5,13 +5,13 @@ import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
 import { Link, Outlet } from 'react-router-dom'
 
-import { AppContext, initAppStore } from '@src/store'
+import { AppContext, useStores } from '@src/store'
 import Header from '@src/components/Header'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
 export default function App () {
-  const store = initAppStore()
+  const store = useStores()
 
   async function checkUser () {
     try {
