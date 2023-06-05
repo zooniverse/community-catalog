@@ -21,7 +21,7 @@ export default function ProjectContainer ({}) {
 
   console.log('+++ ProjectContainer')
 
-  if (!selectedProject) return null
+  if (!selectedProject) throw new Error('ERROR: could not find project')
 
   return (
     <>
