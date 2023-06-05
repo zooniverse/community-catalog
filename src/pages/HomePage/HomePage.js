@@ -30,7 +30,7 @@ export default function HomePage () {
             wrap={true}
           >
             {subjects.map(sbjId => (
-              <Link to={`/subject/${sbjId}`}>
+              <Link to={`/subject/${sbjId}`} key={`home-subject-${sbjId}`}>
                 <SubjectImage
                   subjectId={sbjId}
                   width={imgWidth}
