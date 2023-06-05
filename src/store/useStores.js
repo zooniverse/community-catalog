@@ -1,13 +1,10 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import AppContext from './AppContext.js'
 
-export function useStores () {
-  const [ initialised, setInitialised ] = useState(false)
-  const [ user, setUser ] = useState(null)
-  const [ project, setProject ] = useState(null)
-
-  return {
-    initialised, setInitialised,
-    user, setUser,
-    project, setProject,
-  }
+export default function useStores(
+  /** optional function which should take a store and return an object containing filtered store properties. */
+  storeMapper = store => store
+) {
+  const appStore = useContext(AppContext)
+  return storeMapper(appStore)
 }

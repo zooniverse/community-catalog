@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Heading } from 'grommet'
 import { Outlet, useParams } from 'react-router-dom'
 
-import { useStores } from '@src/store/useStores.js'
+import useStores from '@src/store/useStores.js'
 import projectsJson from '@src/projects.json'
 
 
@@ -18,8 +18,6 @@ export default function ProjectContainer ({}) {
   useEffect(function () {
     store.setProject(selectedProject)
   }, [ selectedProject ])
-
-  console.log('+++ ProjectContainer')
 
   if (!selectedProject) throw new Error('ERROR: could not find project')
 

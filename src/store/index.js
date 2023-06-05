@@ -1,4 +1,5 @@
-import { AppContext } from './AppContext.js'
-import { useStores } from './useStores.js'
+import AppContext from './AppContext.js'
+import AppStore from './AppStore.js'
+import useStores from './useStores.js'
 
-export { AppContext, useStores }
+export { AppContext, AppStore, useStores }

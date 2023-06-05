@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'grommet'
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
@@ -11,13 +11,14 @@ import Header from '@src/components/Header'
 const appTheme = deepMerge(baseTheme, zooTheme)
 
 export default function App () {
+  const [ initialised, setInitialised ] = useState(false)
   const store = useStores()
 
   async function checkUser () {
     try {
       const user = await auth.checkCurrent()
       store.setUser(user)
-      store.setInitialised(true)
+      setInitialised(true)
     } catch (err) {
       console.error(err)
     }
@@ -32,7 +33,7 @@ export default function App () {
       <AppContext.Provider value={store}>
         <Box>
           <Header />
-          {(store.initialised) ?
+          {(initialised) ?
           <Box as='main'>
             <Outlet />
 
