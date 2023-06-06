@@ -5,8 +5,6 @@ export default async function fetchTagSearchResults (
   query = '',
   setData = (data) => { console.log('fetchTagSearchResults: ', data) }
 ) {
-  console.log('+++ fetchTagSearchResults ', projectId, query)
-
   // Example: https://talk.zooniverse.org/tags/popular?http_cache=true&page=1&taggable_type=Subject&section=project-7929&name=flares
   try {
     const response = await talkAPI.get('/tags/popular', {

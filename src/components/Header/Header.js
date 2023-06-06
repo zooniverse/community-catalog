@@ -35,6 +35,30 @@ const HeaderSearchInput = styled(TextInput)`
 function Header () {
   const store = useStores()
   const projectSlug = store.project?.slug || ''
+  const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
+  const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
+
+  if (!store.project) return (
+    <Box
+      align='center'
+      alignContent='center'
+      as='header'
+      background='black'
+      direction='row'
+      gap='small'
+      pad='small'
+      wrap={true}
+    >
+      <HeaderLogoAndTitle
+        align='center'
+        flex={false}
+        width='xsmall'
+      >
+        <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
+        <HeaderTitle textAlign='center' size='xsmall'>Communities &amp; Crowds</HeaderTitle>
+      </HeaderLogoAndTitle>
+    </Box>
+  )
 
   return (
     <Box
@@ -58,7 +82,7 @@ function Header () {
       <HeaderLink
         icon={<Share size='small' />}
         label='Project Home Page'
-        href='https://www.zooniverse.org'
+        href={projectURL}
         reverse={true}
         size='small'
         target='_blank'
@@ -67,24 +91,21 @@ function Header () {
       <HeaderLink
         icon={<Share size='small' />}
         label='Talk Board'
-        href='https://www.zooniverse.org/talk'
+        href={talkURL}
         reverse={true}
         size='small'
         target='_blank'
         weight='normal'
       />
-
-      {store.project && (
-        <HeaderSearchForm
-          action={`/projects/${projectSlug}/search`}
-          method='get'
-        >
-          <HeaderSearchInput
-            name='query'
-            icon={<Search size='small' />}
-          />
-        </HeaderSearchForm>
-      )}
+      <HeaderSearchForm
+        action={`/projects/${projectSlug}/search`}
+        method='get'
+      >
+        <HeaderSearchInput
+          name='query'
+          icon={<Search size='small' />}
+        />
+      </HeaderSearchForm>
     </Box>
   )
 }
