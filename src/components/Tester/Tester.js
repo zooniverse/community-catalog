@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Box, Form, Paragraph as P, TextInput } from 'grommet'
 import { talkAPI } from '@zooniverse/panoptes-js'
 import { Markdownz, PrimaryButton } from '@zooniverse/react-components'

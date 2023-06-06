@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 
-import SubjectImage from '@src/components/SubjectImage'
 import SearchResult from './SearchResult.js'
 import fetchTagSearchResults from '@src/helpers/fetchTagSearchResults.js'
 

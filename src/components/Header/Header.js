@@ -1,4 +1,3 @@
-import React from 'react'
 import { Anchor, Box, Text, TextInput } from 'grommet'
 import { Search, Share } from 'grommet-icons'
 import { ZooniverseLogo } from '@zooniverse/react-components'

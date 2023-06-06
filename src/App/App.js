@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'grommet'
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'

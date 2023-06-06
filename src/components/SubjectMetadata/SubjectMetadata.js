@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { Box, Table, TableCell, TableRow, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'

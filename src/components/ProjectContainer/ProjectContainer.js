@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Heading } from 'grommet'
 import { Outlet, useParams } from 'react-router-dom'
 
