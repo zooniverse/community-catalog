@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 
+import { useStores } from '@src/store'
 import SubjectImage from '@src/components/SubjectImage'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 
 export default function SearchResult ({
   subjectId = '',
 }) {
+  const store = useStores()
+  const projectSlug = store.project?.slug || ''
+
   const [ subjectData, setSubjectData ] = useState(null)
 
   useEffect(function () {
@@ -16,7 +20,7 @@ export default function SearchResult ({
 
   return (
     <Link
-      to={`/subject/${subjectId}`}
+      to={`/projects/${projectSlug}/subject/${subjectId}`}
     >
       <Box
         background='white'
