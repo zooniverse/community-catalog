@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Text } from 'grommet'
 import styled from 'styled-components'
 
+import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
 
 const KeywordLink = styled(Link)`
@@ -10,11 +11,13 @@ const KeywordLink = styled(Link)`
 `
 
 export default function KeywordsList () {
+  const store = useStores()
   const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
     fetchKeywords({ 
-      setData: setKeywordsData
+      setData: setKeywordsData,
+      projectId: store.project?.id
     })
 
   }, [])
@@ -35,7 +38,7 @@ export default function KeywordsList () {
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`}>
+          <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
             <Box
               background='white'
               elevation='xsmall'

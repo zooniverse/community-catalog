@@ -1,11 +1,22 @@
-import { useState } from 'react'
+import { types } from 'mobx-state-tree'
 
-export function initAppStore () {
-  const [ initialised, setInitialised ] = useState(false)
-  const [ user, setUser ] = useState(null)
-
+const AppStore = types.model('AppStore', {
+  
+  project: types.maybe(types.frozen()),
+  user: types.maybe(types.frozen()),
+  
+}).actions(self => {
   return {
-    initialised, setInitialised,
-    user, setUser,
+
+    setProject (val) {
+      self.project = val
+    },
+
+    setUser (val) {
+      self.user = val
+    },
+
   }
-}
+})
+
+export default AppStore

@@ -1,13 +1,18 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { Box, Button, Carousel, Text } from 'grommet'
 import { Link } from 'react-router-dom'
+import { observer } from 'mobx-react'
 
+import { useStores } from '@src/store'
 import SubjectImage from '@src/components/SubjectImage'
 import SearchResultsList from '@src/components/SearchResultsList'
 import KeywordsList from '@src/components/KeywordsList'
 import getQuery from '@src/helpers/getQuery'
 
-export default function HomePage () {
+function HomePage () {
+  const store = useStores()
+  const projectSlug = store.project?.slug || ''
+
   const imgWidth = 600
   const imgHeight = 300
 
@@ -30,7 +35,7 @@ export default function HomePage () {
             wrap={true}
           >
             {subjects.map(sbjId => (
-              <Link to={`/subject/${sbjId}`}>
+              <Link to={`/projects/${projectSlug}/subject/${sbjId}`} key={`home-subject-${sbjId}`}>
                 <SubjectImage
                   subjectId={sbjId}
                   width={imgWidth}
@@ -52,3 +57,5 @@ export default function HomePage () {
     </>
   )
 }
+
+export default observer(HomePage)

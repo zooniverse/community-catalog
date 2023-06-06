@@ -1,8 +1,10 @@
-import React from 'react'
 import { Anchor, Box, Text, TextInput } from 'grommet'
 import { Search, Share } from 'grommet-icons'
 import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
+
+import { useStores } from '@src/store'
 
 const HeaderLogoAndTitle = styled(Box)`
   margin-right: 4em;
@@ -30,7 +32,34 @@ const HeaderSearchInput = styled(TextInput)`
   color: black;
 `
 
-export default function Header () {
+function Header () {
+  const store = useStores()
+  const projectSlug = store.project?.slug || ''
+  const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
+  const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
+
+  if (!store.project) return (
+    <Box
+      align='center'
+      alignContent='center'
+      as='header'
+      background='black'
+      direction='row'
+      gap='small'
+      pad='small'
+      wrap={true}
+    >
+      <HeaderLogoAndTitle
+        align='center'
+        flex={false}
+        width='xsmall'
+      >
+        <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
+        <HeaderTitle textAlign='center' size='xsmall'>Communities &amp; Crowds</HeaderTitle>
+      </HeaderLogoAndTitle>
+    </Box>
+  )
+
   return (
     <Box
       align='center'
@@ -53,7 +82,7 @@ export default function Header () {
       <HeaderLink
         icon={<Share size='small' />}
         label='Project Home Page'
-        href='https://www.zooniverse.org'
+        href={projectURL}
         reverse={true}
         size='small'
         target='_blank'
@@ -62,15 +91,14 @@ export default function Header () {
       <HeaderLink
         icon={<Share size='small' />}
         label='Talk Board'
-        href='https://www.zooniverse.org/talk'
+        href={talkURL}
         reverse={true}
         size='small'
         target='_blank'
         weight='normal'
       />
-      
       <HeaderSearchForm
-        action='/search'
+        action={`/projects/${projectSlug}/search`}
         method='get'
       >
         <HeaderSearchInput
@@ -81,3 +109,5 @@ export default function Header () {
     </Box>
   )
 }
+
+export default observer(Header)
