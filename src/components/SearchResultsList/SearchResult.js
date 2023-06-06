@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 
-import { useStores } from '@src/store'
 import SubjectImage from '@src/components/SubjectImage'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 
 export default function SearchResult ({
   subjectId = '',
+  projectSlug = '',
+  titleField = '',
 }) {
-  const store = useStores()
-  const projectSlug = store.project?.slug || ''
-
   const [ subjectData, setSubjectData ] = useState(null)
+  const title = subjectData?.metadata?.[titleField] || ''
 
   useEffect(function () {
     if (subjectId) fetchSubject(subjectId, setSubjectData)
@@ -34,9 +33,11 @@ export default function SearchResult ({
           width={200}
           height={200}
         />
-        <Box pad='small'>
-          <Text color='drawing-pink'>Lorem Ipsum, I don't know what should be here</Text>
-        </Box>
+        {title && (
+          <Box pad='small'>
+            <Text>{title}</Text>
+          </Box>
+        )}
       </Box>
     </Link>
   )

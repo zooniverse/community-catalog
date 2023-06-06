@@ -7,7 +7,8 @@
       "metadata_fields": [
         "Item", "Notes", "folder", "image1", "image2", "#Hazard", "Oversize", "group_id", "Condition", "internal_id", "part_number", "Photographer", "#Other Number", "picture_agency", "Sensitive_Image", "Problematic_Language", "Notes on Problematic Language"
       ],
-      "exampleQuery": "barbados"
+      "exampleQuery": "barbados",
+      "titleField": "folder"
     }, {
       "name": "Scarlets & Blues (Performance Test Only)",
       "slug": "bogden/scarlets-and-blues",
@@ -15,7 +16,8 @@
       "metadata_fields": [
         "Date", "Page", "image", "Catalogue"
       ],
-      "exampleQuery": "tables"
+      "exampleQuery": "tables",
+      "titleField": "Catalogue"
     }
   ]
 }

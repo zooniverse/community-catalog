@@ -12,6 +12,8 @@ function SearchResultsList ({
 }) {
   const store = useStores()
   const projectId = store.project?.id
+  const projectSlug = store.project?.slug || ''
+  const titleField = store.project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
 
   useEffect(function () {
@@ -35,6 +37,8 @@ function SearchResultsList ({
         {searchResults.map(sr => (
           <SearchResult
             subjectId={sr.taggable_id.toString()}
+            projectSlug={projectSlug}
+            titleField={titleField}
             key={sr.taggable_id}
           />
         ))}
