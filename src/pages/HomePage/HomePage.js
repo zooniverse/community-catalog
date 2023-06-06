@@ -19,10 +19,6 @@ function HomePage () {
   const query = getQuery() || 'tables'
   const subjects = [ '69734802', '69734801', '69734803' ]
 
-  useEffect(function () {
-    console.log('beep boop')
-  }, [ store.project ])
-
   return (
     <>
       <Box
