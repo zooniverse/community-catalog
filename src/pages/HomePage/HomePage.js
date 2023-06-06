@@ -12,6 +12,7 @@ import getQuery from '@src/helpers/getQuery'
 function HomePage () {
   const store = useStores()
   const projectSlug = store.project?.slug || ''
+  const exampleQuery = store.project?.exampleQuery || ''
 
   const imgWidth = 600
   const imgHeight = 300
@@ -53,7 +54,7 @@ function HomePage () {
         </Box>
       </Box>
       <KeywordsList />
-      <SearchResultsList query={query} />
+      <SearchResultsList query={exampleQuery} />
     </>
   )
 }

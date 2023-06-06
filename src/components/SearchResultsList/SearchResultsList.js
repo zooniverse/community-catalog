@@ -8,7 +8,7 @@ import fetchTagSearchResults from '@src/helpers/fetchTagSearchResults.js'
 import SearchResult from './SearchResult.js'
 
 function SearchResultsList ({
-  query = 'tables',
+  query = '',
 }) {
   const store = useStores()
   const projectId = store.project?.id
