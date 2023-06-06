@@ -12,13 +12,13 @@ import getQuery from '@src/helpers/getQuery'
 function HomePage () {
   const store = useStores()
   const projectSlug = store.project?.slug || ''
+  const exampleSubjects = store.project?.exampleSubjects || []
   const exampleQuery = store.project?.exampleQuery || ''
 
   const imgWidth = 600
   const imgHeight = 300
 
-  const query = getQuery() || 'tables'
-  const subjects = [ '69734802', '69734801', '69734803' ]
+  const query = getQuery() || exampleQuery
 
   return (
     <>
@@ -35,7 +35,7 @@ function HomePage () {
           <Carousel
             wrap={true}
           >
-            {subjects.map(sbjId => (
+            {exampleSubjects.map(sbjId => (
               <Link to={`/projects/${projectSlug}/subject/${sbjId}`} key={`home-subject-${sbjId}`}>
                 <SubjectImage
                   subjectId={sbjId}
@@ -54,7 +54,7 @@ function HomePage () {
         </Box>
       </Box>
       <KeywordsList />
-      <SearchResultsList query={exampleQuery} />
+      <SearchResultsList query={query} />
     </>
   )
 }
