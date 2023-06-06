@@ -10,8 +10,7 @@ import fetchKeywords from '@src/helpers/fetchKeywords'
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
-
-export default function SubjectKeywords ({
+function SubjectKeywords ({
   subject = undefined,
 }) {
   const store = useStores()
@@ -58,3 +57,5 @@ export default function SubjectKeywords ({
     </Box>
   )
 }
+
+export default observer(SubjectKeywords)
