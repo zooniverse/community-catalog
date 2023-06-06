@@ -1,10 +1,10 @@
 import { talkAPI } from '@zooniverse/panoptes-js'
 
-export default async function fetchKeywords ({
+export default async function fetchKeywords (
   projectId,
   setData = (data) => { console.log('fetchKeywords: ', data) },
   subject = undefined,
-}) {
+) {
   if (!projectId) return
 
   // Examples:

@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
 
+import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords'
 
 const KeywordLink = styled(Link)`
@@ -12,17 +14,20 @@ const KeywordLink = styled(Link)`
 export default function SubjectKeywords ({
   subject = undefined,
 }) {
+  const store = useStores()
+  const projectId = store.project?.id
 
   const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
     if (subject) {
-      fetchKeywords({
-        setData: setKeywordsData,
+      fetchKeywords(
+        projectId,
+        setKeywordsData,
         subject
-      })
+      )
     }
-  }, [ subject ])
+  }, [ projectId, subject ])
 
   return (
     <Box

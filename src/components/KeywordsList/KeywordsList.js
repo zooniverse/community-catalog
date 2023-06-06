@@ -17,10 +17,10 @@ function KeywordsList () {
   const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
-    fetchKeywords({ 
-      setData: setKeywordsData,
-      projectId: projectId
-    })
+    fetchKeywords(
+      projectId,
+      setKeywordsData
+    )
 
   }, [ projectId ])
 
