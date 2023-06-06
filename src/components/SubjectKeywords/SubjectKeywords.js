@@ -41,7 +41,10 @@ function SubjectKeywords ({
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`}>
+          <KeywordLink
+            key={`subject-keyword-${i}`}
+            to={`/search?query=${encodeURIComponent(keyword.name)}`}
+          >
             <Box
               background='light-2'
               elevation='xsmall'

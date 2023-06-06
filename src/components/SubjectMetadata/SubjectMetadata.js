@@ -1,4 +1,4 @@
-import { Box, Table, TableCell, TableRow, Text } from 'grommet'
+import { Box, Table, TableBody, TableCell, TableRow, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -25,16 +25,18 @@ export default function SubjectMetadata ({
         INSTITUTIONAL METADATA:
       </Text>
       <Table>
-        {metadata.map(m => (
-          <TableRow>
-            <TableCell>
-              <strong>{m.key}</strong>
-            </TableCell>
-            <TableCell>
-              {m.value}
-            </TableCell>
-          </TableRow>
-        ))}
+        <TableBody>
+          {metadata.map((m, i) => (
+            <TableRow key={`subject-metadata-${i}`}>
+              <TableCell>
+                <strong>{m.key}</strong>
+              </TableCell>
+              <TableCell>
+                {m.value}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
       <Text color='drawing-pink'>(Should this be pulled from Panoptes or aux database?)</Text>
     </Box>
