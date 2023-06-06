@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 
-import SearchResult from './SearchResult.js'
+import { useStores } from '@src/store'
 import fetchTagSearchResults from '@src/helpers/fetchTagSearchResults.js'
+
+import SearchResult from './SearchResult.js'
 
 export default function SearchResultsList ({
   query = 'tables',
 }) {
+  const store = useStores()
   const [ searchResults, setSearchResults ] = useState([])
 
   useEffect(function () {
-    fetchTagSearchResults(query, setSearchResults)
+    fetchTagSearchResults(store.project?.id, query, setSearchResults)
   }, [ query ])
 
   return (
