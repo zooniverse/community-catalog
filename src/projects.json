@@ -6,14 +6,20 @@
       "id": 21084,
       "metadata_fields": [
         "Item", "Notes", "folder", "image1", "image2", "#Hazard", "Oversize", "group_id", "Condition", "internal_id", "part_number", "Photographer", "#Other Number", "picture_agency", "Sensitive_Image", "Problematic_Language", "Notes on Problematic Language"
-      ]
+      ],
+      "exampleQuery": "devtest",
+      "exampleSubjects": [ "87892458", "87892456", "87892462" ],
+      "titleField": "folder"
     }, {
       "name": "Scarlets & Blues (Performance Test Only)",
       "slug": "bogden/scarlets-and-blues",
       "id": 12268,
       "metadata_fields": [
         "Date", "Page", "image", "Catalogue"
-      ]
+      ],
+      "exampleQuery": "tables",
+      "exampleSubjects": [ "69734802", "69734801", "69734803" ],
+      "titleField": "Catalogue"
     }
   ]
 }

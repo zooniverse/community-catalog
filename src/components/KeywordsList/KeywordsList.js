@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Text } from 'grommet'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
@@ -9,18 +10,19 @@ import fetchKeywords from '@src/helpers/fetchKeywords.js'
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
-
-export default function KeywordsList () {
+function KeywordsList () {
   const store = useStores()
+  const projectId = store.project?.id
+  const projectSlug = store.project?.slug
   const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
-    fetchKeywords({ 
-      setData: setKeywordsData,
-      projectId: store.project?.id
-    })
+    fetchKeywords(
+      projectId,
+      setKeywordsData
+    )
 
-  }, [])
+  }, [ projectId ])
 
   return (
     <Box elevation='medium'>
@@ -38,7 +40,7 @@ export default function KeywordsList () {
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
+          <KeywordLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
             <Box
               background='white'
               elevation='xsmall'
@@ -62,3 +64,5 @@ export default function KeywordsList () {
     </Box>
   )
 }
+
+export default observer(KeywordsList)

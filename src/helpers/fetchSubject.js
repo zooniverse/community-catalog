@@ -1,9 +1,11 @@
 import { subjects } from '@zooniverse/panoptes-js'
 
 export default async function fetchSubject (
-  subjectId = '',
+  subjectId,
   setData = (data) => { console.log('fetchSubject: ', data) },
 ) {
+  if (!subjectId) return
+
   try {
     const { body } = await subjects.get({ id: subjectId })
     const [ data ] = body.subjects

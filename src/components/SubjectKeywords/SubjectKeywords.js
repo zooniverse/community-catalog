@@ -2,27 +2,31 @@ import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
 
+import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords'
 
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
-
-export default function SubjectKeywords ({
+function SubjectKeywords ({
   subject = undefined,
 }) {
+  const store = useStores()
+  const projectId = store.project?.id
 
   const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
     if (subject) {
-      fetchKeywords({
-        setData: setKeywordsData,
+      fetchKeywords(
+        projectId,
+        setKeywordsData,
         subject
-      })
+      )
     }
-  }, [ subject ])
+  }, [ projectId, subject ])
 
   return (
     <Box
@@ -37,7 +41,10 @@ export default function SubjectKeywords ({
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`}>
+          <KeywordLink
+            key={`subject-keyword-${i}`}
+            to={`/search?query=${encodeURIComponent(keyword.name)}`}
+          >
             <Box
               background='light-2'
               elevation='xsmall'
@@ -53,3 +60,5 @@ export default function SubjectKeywords ({
     </Box>
   )
 }
+
+export default observer(SubjectKeywords)
