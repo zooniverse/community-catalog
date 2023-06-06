@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
+import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
 import fetchTagSearchResults from '@src/helpers/fetchTagSearchResults.js'
 
 import SearchResult from './SearchResult.js'
 
-export default function SearchResultsList ({
+function SearchResultsList ({
   query = 'tables',
 }) {
   const store = useStores()
@@ -41,3 +42,5 @@ export default function SearchResultsList ({
     </Box>
   )
 }
+
+export default observer(SearchResultsList)

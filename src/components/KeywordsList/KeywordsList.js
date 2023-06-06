@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Text } from 'grommet'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
@@ -9,8 +10,7 @@ import fetchKeywords from '@src/helpers/fetchKeywords.js'
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
-
-export default function KeywordsList () {
+function KeywordsList () {
   const store = useStores()
   const [ keywordsData, setKeywordsData ] = useState([])
 
@@ -62,3 +62,5 @@ export default function KeywordsList () {
     </Box>
   )
 }
+
+export default observer(KeywordsList)
