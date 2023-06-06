@@ -12,15 +12,17 @@ const KeywordLink = styled(Link)`
 `
 function KeywordsList () {
   const store = useStores()
+  const projectId = store.project?.id
+  const projectSlug = store.project?.slug
   const [ keywordsData, setKeywordsData ] = useState([])
 
   useEffect(function () {
     fetchKeywords({ 
       setData: setKeywordsData,
-      projectId: store.project?.id
+      projectId: projectId
     })
 
-  }, [])
+  }, [ projectId ])
 
   return (
     <Box elevation='medium'>
@@ -38,7 +40,7 @@ function KeywordsList () {
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <KeywordLink to={`/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
+          <KeywordLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
             <Box
               background='white'
               elevation='xsmall'

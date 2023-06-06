@@ -1,10 +1,12 @@
 import { talkAPI } from '@zooniverse/panoptes-js'
 
 export default async function fetchTagSearchResults (
-  projectId = '',
+  projectId,
   query = '',
   setData = (data) => { console.log('fetchTagSearchResults: ', data) }
 ) {
+  if (!projectId) return
+
   // Example: https://talk.zooniverse.org/tags/popular?http_cache=true&page=1&taggable_type=Subject&section=project-7929&name=flares
   try {
     const response = await talkAPI.get('/tags/popular', {

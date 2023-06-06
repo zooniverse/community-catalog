@@ -11,11 +11,12 @@ function SearchResultsList ({
   query = 'tables',
 }) {
   const store = useStores()
+  const projectId = store.project?.id
   const [ searchResults, setSearchResults ] = useState([])
 
   useEffect(function () {
-    fetchTagSearchResults(store.project?.id, query, setSearchResults)
-  }, [ query ])
+    fetchTagSearchResults(projectId, query, setSearchResults)
+  }, [ projectId, query ])
 
   return (
     <Box
