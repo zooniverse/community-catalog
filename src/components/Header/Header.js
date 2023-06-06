@@ -2,6 +2,9 @@ import { Anchor, Box, Text, TextInput } from 'grommet'
 import { Search, Share } from 'grommet-icons'
 import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
+
+import { useStores } from '@src/store'
 
 const HeaderLogoAndTitle = styled(Box)`
   margin-right: 4em;
@@ -29,7 +32,10 @@ const HeaderSearchInput = styled(TextInput)`
   color: black;
 `
 
-export default function Header () {
+function Header () {
+  const store = useStores()
+  const projectSlug = store.project?.slug || ''
+
   return (
     <Box
       align='center'
@@ -67,16 +73,20 @@ export default function Header () {
         target='_blank'
         weight='normal'
       />
-      
-      <HeaderSearchForm
-        action='/search'
-        method='get'
-      >
-        <HeaderSearchInput
-          name='query'
-          icon={<Search size='small' />}
-        />
-      </HeaderSearchForm>
+
+      {store.project && (
+        <HeaderSearchForm
+          action={`/projects/${projectSlug}/search`}
+          method='get'
+        >
+          <HeaderSearchInput
+            name='query'
+            icon={<Search size='small' />}
+          />
+        </HeaderSearchForm>
+      )}
     </Box>
   )
 }
+
+export default observer(Header)

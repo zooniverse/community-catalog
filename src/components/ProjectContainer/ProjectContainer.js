@@ -17,7 +17,6 @@ export default function ProjectContainer ({}) {
 
   useEffect(function () {
     store.setProject(selectedProject)
-    console.log('+++ ProjectContainer: set')
   }, [ selectedProject ])
 
   if (!selectedProject) throw new Error('ERROR: could not find project')

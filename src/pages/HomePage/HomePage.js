@@ -12,7 +12,6 @@ import getQuery from '@src/helpers/getQuery'
 function HomePage () {
   const store = useStores()
   const projectSlug = store.project?.slug || ''
-  console.log('+++ HomePage ', store.project)
 
   const imgWidth = 600
   const imgHeight = 300
