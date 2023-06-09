@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '@src/App'
 
 import ProjectContainer from '@src/components/ProjectContainer'
-import HomePage from '@src/pages/HomePage'
+import ProjectPage from '@src/pages/ProjectPage'
 import SearchPage from '@src/pages/SearchPage'
 import SubjectPage from '@src/pages/SubjectPage'
 import Tester from '@src/components/Tester'
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '',
-            element: <HomePage />,
+            element: <ProjectPage />,
           },
           {
             path: 'search',

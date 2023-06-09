@@ -9,7 +9,7 @@ import SearchResultsList from '@src/components/SearchResultsList'
 import KeywordsList from '@src/components/KeywordsList'
 import getQuery from '@src/helpers/getQuery'
 
-function HomePage () {
+function ProjectPage () {
   const store = useStores()
   const projectSlug = store.project?.slug || ''
   const exampleSubjects = store.project?.exampleSubjects || []
@@ -59,4 +59,4 @@ function HomePage () {
   )
 }
 
-export default observer(HomePage)
+export default observer(ProjectPage)
