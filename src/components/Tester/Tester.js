@@ -13,7 +13,7 @@ export default function Tester () {
 
   function formTester_onSubmit () {
     console.log('+++ SUBMITTED: ', query)
-    fetchTagSearchResults(query)
+    fetchTalkSearchResults(query)
   }
 
   async function fetchTalkSearchResults (query) {
@@ -36,7 +36,7 @@ export default function Tester () {
     }
   }
 
-  async function fetchTagSearchResults (query) {
+  async function fetchTalkSearchResults (query) {
     // https://talk.zooniverse.org/tags/popular?http_cache=true&page=1&taggable_type=Subject&section=project-7929&name=flares
     try {
       const response = await talkAPI.get('/tags/popular', {
