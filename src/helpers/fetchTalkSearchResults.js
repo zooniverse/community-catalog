@@ -4,8 +4,8 @@ Fetches search results from Zooniverse Talk. Specifically, it searches for TAGs
 
 Inputs:
 - (string/int) projectId
-- (string) query: tag/hashtag to search for.
-  e.g. to search for Talk posts tagged with "#penguins", pass in query="penguins"
+- (string) queryString: tag/hashtag to search for.
+  e.g. to search for Talk posts tagged with "#penguins", pass in queryString="penguins"
 - (function) setData: callback function after successful data fetch
 
 Outputs:
@@ -16,7 +16,7 @@ import { talkAPI } from '@zooniverse/panoptes-js'
 
 export default async function fetchTalkSearchResults (
   projectId,
-  query = '',
+  queryString = '',
   setData = (data) => { console.log('fetchTalkSearchResults: ', data) }
 ) {
   if (!projectId) return
@@ -28,7 +28,7 @@ export default async function fetchTalkSearchResults (
       taggable_type: 'Subject',
       page: 1,
       page_size: 20,
-      name: query
+      name: queryString
     })
 
     if (!response?.ok) throw new Error('Couldn\'t fetch Talk search results')

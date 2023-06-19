@@ -4,7 +4,7 @@ Fetches search results from the Subjects database. Specifically, it searches for
 
 Inputs:
 - (string/int) projectId
-- (object) query: contains keys with values to search for.
+- (object) queryObject: contains keys with values to search for.
   e.g. { colour: [ 'red', 'blue' ], shape: ['circle'], texture: ['%soft%'] }
   becomes "SELECT * FROM whatever WHERE (colour = 'red' OR colour = 'blue') AND (shape = 'circle) AND (texture LIKE '%soft%')"
 - (function) setData: callback function after successful data fetch
@@ -20,7 +20,7 @@ const SUBJECT_ID_KEY = 'subject_id'
 
 export default async function fetchDatabaseSearchResults (
   projectId,
-  query = {},
+  queryObject = {},
   setData = (data) => { console.log('fetchTalkSearchResults: ', data) }
 ) {
   if (!projectId) return
