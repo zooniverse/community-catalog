@@ -37,7 +37,12 @@ export default async function fetchSearchResults (
 }
 
 function convertQueryStringToQueryObject (project, query = '') {
+  if (!project) return {}
+
   const queryObject = {}
+  project.metadata_fields.map(field => (
+    queryObject[field] = [`%${query}%`]
+  ))
 
   return queryObject
 }

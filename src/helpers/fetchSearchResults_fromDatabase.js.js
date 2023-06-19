@@ -26,8 +26,11 @@ export default async function fetchSearchResults_fromDatabase (
 
   // Example: https://subject-set-search-api.zooniverse.org/projects.json?sql=select+*+from+proj_21084+where+%5Bfolder%5D+like+%27%25jamaica%25%27
   try {
-    const sqlQuery = `SELECT subject_id FROM ${TABLE_PREFIX}${projectId} WHERE true`
-    const url = `${DATABASE_URL}/${DATABASE_NAME}.json?sql=${encodeURIComponent(sqlQuery)}`
+    const { where = '', params = [] } = convertQueryObjectToSqlWhere(queryObject)
+    const sqlQuery = encodeURIComponent(`SELECT subject_id FROM ${TABLE_PREFIX}${projectId} ${where ? `WHERE ${where}` : ''}`)
+    const sqlParam = params.map(p => `&${p[0]}=${encodeURIComponent(p[1])}`, '').join('')
+
+    const url = `${DATABASE_URL}/${DATABASE_NAME}.json?sql=${sqlQuery}${sqlParam}`
 
     const response = await fetch(url)
 
@@ -42,4 +45,34 @@ export default async function fetchSearchResults_fromDatabase (
     throw(err)
     // TODO: handle errors
   }
+}
+
+function convertQueryObjectToSqlWhere (queryObject = {}) {
+  const params = []
+  let paramCounter = 0
+  const where = Object.entries(queryObject).map(([field, arr]) => {
+    const fieldPart = arr.map(val => {
+      const existingParam = params.find(p => p[1] === val)
+      let paramKey = ''
+      if (existingParam) {
+        paramKey = existingParam[0]
+      } else {
+        paramKey = `p${paramCounter++}`
+        params.push([paramKey, val])
+      }
+      
+      if (val.includes('%')) return `[${field}] LIKE :${paramKey}`
+      else return `[${field}] = :${paramKey}`
+    }).join(' OR ')
+
+    return `(${fieldPart})`
+  }).join(' OR ')  // TODO: fix! Is this OR or AND?
+
+  return {
+    where, params
+  }
+}
+
+function cleanSqlParam (str) {
+  return str
 }
