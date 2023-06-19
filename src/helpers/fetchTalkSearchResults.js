@@ -16,8 +16,7 @@ import { talkAPI } from '@zooniverse/panoptes-js'
 
 export default async function fetchTalkSearchResults (
   projectId,
-  queryString = '',
-  setData = (data) => { console.log('fetchTalkSearchResults: ', data) }
+  queryString = ''
 ) {
   if (!projectId) return
 
@@ -34,11 +33,11 @@ export default async function fetchTalkSearchResults (
     if (!response?.ok) throw new Error('Couldn\'t fetch Talk search results')
 
     let results = response.body?.popular || []
-    results = results.map(item => item.taggable_id?.toString() || '')
-    setData(results)
+    return results.map(item => item.taggable_id?.toString() || '') || []
 
   } catch (err) {
     console.error(err)
+    throw(err)
     // TODO: handle errors
   }
 }

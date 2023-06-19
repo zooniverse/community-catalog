@@ -20,8 +20,7 @@ const SUBJECT_ID_KEY = 'subject_id'
 
 export default async function fetchDatabaseSearchResults (
   projectId,
-  queryObject = {},
-  setData = (data) => { console.log('fetchTalkSearchResults: ', data) }
+  queryObject = {}
 ) {
   if (!projectId) return
 
@@ -36,11 +35,11 @@ export default async function fetchDatabaseSearchResults (
 
     let results =  await response.json()
     const indexOfSubjectId = results?.columns?.indexOf(SUBJECT_ID_KEY)
-    results = results?.rows?.map(item => (item[indexOfSubjectId] || '').toString()) || []
-    setData(results)
+    return results?.rows?.map(item => (item[indexOfSubjectId] || '').toString()) || []
 
   } catch (err) {
     console.error(err)
+    throw(err)
     // TODO: handle errors
   }
 }

@@ -3,8 +3,7 @@ import { Box, Text } from 'grommet'
 import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
-import fetchTalkSearchResults from '@src/helpers/fetchTalkSearchResults.js'
-import fetchDatabaseSearchResults from '@src/helpers/fetchDatabaseSearchResults.js'
+import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
 
 import SearchResult from './SearchResult.js'
 
@@ -18,8 +17,7 @@ function SearchResultsList ({
   const [ searchResults, setSearchResults ] = useState([])
 
   useEffect(function () {
-    fetchTalkSearchResults(projectId, query, setSearchResults)
-    fetchDatabaseSearchResults(projectId, query, (data) => { console.log('+++ data: ', data) })
+    fetchSearchResults(projectId, query, setSearchResults)
   }, [ projectId, query ])
 
   return (
