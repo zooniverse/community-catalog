@@ -18,7 +18,7 @@ const DATABASE_NAME = 'projects'
 const TABLE_PREFIX = 'proj_'
 const SUBJECT_ID_KEY = 'subject_id'
 
-export default async function fetchDatabaseSearchResults (
+export default async function fetchSearchResults_fromDatabase (
   projectId,
   queryObject = {}
 ) {

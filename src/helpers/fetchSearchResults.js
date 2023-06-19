@@ -12,21 +12,21 @@ Outputs:
 - Array of subject IDs (strings)
  */
 
-import fetchTalkSearchResults from './fetchTalkSearchResults.js'
-import fetchDatabaseSearchResults from './fetchDatabaseSearchResults.js'
+import fetchSearchResults_fromTalk from './fetchSearchResults_fromTalk.js'
+import fetchSearchResults_fromDatabase from './fetchSearchResults_fromDatabase.js'
 
 export default async function fetchSearchResults (
   projectId,
   query = '',
-  setData = (data) => { console.log('fetchTalkSearchResults: ', data) }
+  setData = (data) => { console.log('fetchSearchResults_fromTalk: ', data) }
 ) {
 
   const queryString = query
   const queryObject = {}
 
   const allSubjectIds = await Promise.all([
-    fetchTalkSearchResults(projectId, queryString),
-    fetchDatabaseSearchResults(projectId, queryObject)
+    fetchSearchResults_fromTalk(projectId, queryString),
+    fetchSearchResults_fromDatabase(projectId, queryObject)
   ])
 
   // Flatten into a single array, then remove duplicates

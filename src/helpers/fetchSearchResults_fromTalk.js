@@ -14,7 +14,7 @@ Outputs:
 
 import { talkAPI } from '@zooniverse/panoptes-js'
 
-export default async function fetchTalkSearchResults (
+export default async function fetchSearchResults_fromTalk (
   projectId,
   queryString = ''
 ) {
