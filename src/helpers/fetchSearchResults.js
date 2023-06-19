@@ -1,6 +1,5 @@
 /*
-Fetches search results from Zooniverse Talk. Specifically, it searches for TAGs
-(hashtags) in posts, for a specific project.
+Fetches search results from both Zooniverse Talk and the Subjects database.
 
 Inputs:
 - (string/int) projectId
@@ -9,7 +8,7 @@ Inputs:
 - (function) setData: callback function after successful data fetch
 
 Outputs:
-- Array of subject IDs (strings)
+- Array of unique subject IDs (strings)
  */
 
 import fetchSearchResults_fromTalk from './fetchSearchResults_fromTalk.js'
