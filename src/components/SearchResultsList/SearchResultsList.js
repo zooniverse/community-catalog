@@ -3,7 +3,7 @@ import { Box, Text } from 'grommet'
 import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
-import fetchTagSearchResults from '@src/helpers/fetchTagSearchResults.js'
+import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
 
 import SearchResult from './SearchResult.js'
 
@@ -11,14 +11,14 @@ function SearchResultsList ({
   query = '',
 }) {
   const store = useStores()
-  const projectId = store.project?.id
-  const projectSlug = store.project?.slug || ''
-  const titleField = store.project?.titleField || ''
+  const project = store.project
+  const projectSlug = project?.slug || ''
+  const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
 
   useEffect(function () {
-    fetchTagSearchResults(projectId, query, setSearchResults)
-  }, [ projectId, query ])
+    if (project) fetchSearchResults(project, query, setSearchResults)
+  }, [ project, query ])
 
   return (
     <Box
@@ -34,12 +34,12 @@ function SearchResultsList ({
         justify='center'
         wrap={true}
       >
-        {searchResults.map(sr => (
+        {searchResults.map(subjectId => (
           <SearchResult
-            subjectId={sr.taggable_id.toString()}
+            subjectId={subjectId}
             projectSlug={projectSlug}
             titleField={titleField}
-            key={sr.taggable_id}
+            key={subjectId}
           />
         ))}
       </Box>

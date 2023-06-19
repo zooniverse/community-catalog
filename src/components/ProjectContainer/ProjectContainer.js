@@ -19,7 +19,7 @@ export default function ProjectContainer ({}) {
     store.setProject(selectedProject)
   }, [ selectedProject ])
 
-  if (!selectedProject) throw new Error('ERROR: could not find project')
+  if (!selectedProject) throw new Error('ERROR: couldn\'t find project')
 
   return (
     <>
