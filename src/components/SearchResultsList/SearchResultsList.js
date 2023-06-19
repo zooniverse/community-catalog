@@ -4,6 +4,7 @@ import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
 import fetchTalkSearchResults from '@src/helpers/fetchTalkSearchResults.js'
+import fetchDatabaseSearchResults from '@src/helpers/fetchDatabaseSearchResults.js'
 
 import SearchResult from './SearchResult.js'
 
@@ -18,6 +19,7 @@ function SearchResultsList ({
 
   useEffect(function () {
     fetchTalkSearchResults(projectId, query, setSearchResults)
+    fetchDatabaseSearchResults(projectId, query, (data) => { console.log('+++ data: ', data) })
   }, [ projectId, query ])
 
   return (
@@ -34,12 +36,12 @@ function SearchResultsList ({
         justify='center'
         wrap={true}
       >
-        {searchResults.map(sr => (
+        {searchResults.map(subjectId => (
           <SearchResult
-            subjectId={sr.taggable_id.toString()}
+            subjectId={subjectId}
             projectSlug={projectSlug}
             titleField={titleField}
-            key={sr.taggable_id}
+            key={subjectId}
           />
         ))}
       </Box>

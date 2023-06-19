@@ -9,7 +9,7 @@ Inputs:
 - (function) setData: callback function after successful data fetch
 
 Outputs:
-- Array of Talk posts (Panoptes resource)
+- Array of subject IDs (strings)
  */
 
 import { talkAPI } from '@zooniverse/panoptes-js'
@@ -31,9 +31,10 @@ export default async function fetchTalkSearchResults (
       name: query
     })
 
-    if (!response?.ok) throw new Error('Couldn\'t fetch tag search results')
+    if (!response?.ok) throw new Error('Couldn\'t fetch Talk search results')
 
-    const results = response.body?.popular || []
+    let results = response.body?.popular || []
+    results = results.map(item => item.taggable_id?.toString() || '')
     setData(results)
 
   } catch (err) {
