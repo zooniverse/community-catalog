@@ -11,14 +11,14 @@ function SearchResultsList ({
   query = '',
 }) {
   const store = useStores()
-  const projectId = store.project?.id
-  const projectSlug = store.project?.slug || ''
-  const titleField = store.project?.titleField || ''
+  const project = store.project
+  const projectSlug = project?.slug || ''
+  const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
 
   useEffect(function () {
-    fetchSearchResults(projectId, query, setSearchResults)
-  }, [ projectId, query ])
+    if (project) fetchSearchResults(project, query, setSearchResults)
+  }, [ project, query ])
 
   return (
     <Box

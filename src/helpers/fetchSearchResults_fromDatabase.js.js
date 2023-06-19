@@ -22,7 +22,7 @@ export default async function fetchSearchResults_fromDatabase (
   projectId,
   queryObject = {}
 ) {
-  if (!projectId) return
+  if (!projectId) return []
 
   // Example: https://subject-set-search-api.zooniverse.org/projects.json?sql=select+*+from+proj_21084+where+%5Bfolder%5D+like+%27%25jamaica%25%27
   try {

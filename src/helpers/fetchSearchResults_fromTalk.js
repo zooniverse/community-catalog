@@ -18,7 +18,7 @@ export default async function fetchSearchResults_fromTalk (
   projectId,
   queryString = ''
 ) {
-  if (!projectId) return
+  if (!projectId) return []
 
   // Example: https://talk.zooniverse.org/tags/popular?http_cache=true&page=1&taggable_type=Subject&section=project-7929&name=flares
   try {
