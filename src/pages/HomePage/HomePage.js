@@ -1,5 +1,5 @@
 import { Box } from 'grommet'
-import { Link } from 'react-router-dom'
+import Link from '@src/components/Link'
 
 import projectsJson from '@src/projects.json'
 
@@ -12,6 +12,7 @@ function HomePage () {
     >
       {projectsJson.projects.map(proj => (
         <Box
+          key={`project-${proj.id}`}
           background='light-1'
           pad='small'
         >
