@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '@src/App'
 
+import HomePage from '@src/pages/HomePage'
 import ProjectContainer from '@src/components/ProjectContainer'
 import ProjectPage from '@src/pages/ProjectPage'
 import SearchPage from '@src/pages/SearchPage'
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <h1>Unspecified Error</h1>,
     children: [
+      {
+        path: '',
+        element: <HomePage />,
+      },
       {
         path: '/projects/:projectOwner/:projectName',
         element: <ProjectContainer />,
