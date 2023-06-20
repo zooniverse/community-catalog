@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
-import { Link } from 'react-router-dom'
 
+import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 

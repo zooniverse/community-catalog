@@ -1,6 +1,6 @@
 import { Box } from 'grommet'
-import Link from '@src/components/Link'
 
+import Link from '@src/components/Link'
 import projectsJson from '@src/projects.json'
 
 function HomePage () {

@@ -11,7 +11,9 @@ export default function Link ({ to, children }) {
 
   if (!to.includes('?')) toUrl.push('?')
   if (env) toUrl.push(`&env=${encodeURIComponent(env)}`)
-  if (query) toUrl.push(`&env=${encodeURIComponent(query)}`)
+
+  // Keep the query consistent, if the intended URL doesn't already have its own query
+  if (query && !to.match(/[\?&]env=/ig)) toUrl.push(`&env=${encodeURIComponent(query)}`)
   
   return (
     <BaseLink

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Box, Text } from 'grommet'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
+import Link from '@src/components/Link'
 
 const KeywordLink = styled(Link)`
   text-decoration: none;
