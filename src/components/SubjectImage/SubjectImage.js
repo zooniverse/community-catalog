@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Box, Image } from 'grommet'
+import { Box, Image, Spinner } from 'grommet'
+import { Image as ImageIcon } from 'grommet-icons'
 import fetchSubject from '@src/helpers/fetchSubject'
 
 export default function SubjectImage ({
@@ -34,19 +35,25 @@ export default function SubjectImage ({
     }
   }
 
-  if (!imgSrc) imgSrc = 'https://placekitten.com/g/200/200'  // TODO: placeholder 
-  
   return (
     <Box
       background='light-1'
       border={true}
       width={`${width}px`}
-      height={`${height}px`} 
+      height={`${height}px`}
+      align={imgSrc ? undefined : 'center'} 
+      justify={imgSrc ? undefined : 'center'} 
     >
-      <Image
-        fit={fit || (small ? 'cover' : 'contain')}
-        src={imgSrc}
-      />
+      {imgSrc ? (
+        <Image
+          fit={fit || (small ? 'cover' : 'contain')}
+          src={imgSrc}
+        />
+      ) : (  /* Placeholder when there's no image to load, or Subject is in process of loading */
+        <ImageIcon
+          size='large'
+        />
+      )}
     </Box>
   )
 }
