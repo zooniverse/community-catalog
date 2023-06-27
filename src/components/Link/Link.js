@@ -18,7 +18,7 @@ export default function Link (props) {
   if (env) toUrl.push(`&env=${encodeURIComponent(env)}`)
 
   // Keep the query consistent, if the intended URL doesn't already have its own query
-  if (query && !to.match(/[\?&]env=/ig)) toUrl.push(`&env=${encodeURIComponent(query)}`)
+  if (query && !to.match(/[\?&]query=/ig)) toUrl.push(`&query=${encodeURIComponent(query)}`)
   
   return (
     <BaseLink
