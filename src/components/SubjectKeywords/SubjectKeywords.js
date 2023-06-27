@@ -14,7 +14,9 @@ function SubjectKeywords ({
   subject = undefined,
 }) {
   const store = useStores()
-  const projectId = store.project?.id
+  const project = store.project
+  const projectId = project?.id
+  const projectSlug = project?.slug || '' 
 
   const [ keywordsData, setKeywordsData ] = useState([])
 
@@ -43,7 +45,7 @@ function SubjectKeywords ({
         {keywordsData.map((keyword, i) => (
           <KeywordLink
             key={`subject-keyword-${i}`}
-            to={`/search?query=${encodeURIComponent(keyword.name)}`}
+            to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`}
           >
             <Box
               background='light-2'
