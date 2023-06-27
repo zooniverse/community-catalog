@@ -36,11 +36,6 @@ export default function App () {
           {(initialised) ?
           <Box as='main'>
             <Outlet />
-
-            <Box size='small' border={true}>
-              <Heading as='h6'>Debug Panel</Heading>
-              <P size='small'>{(store.user) ? `Logged in as ${store.user.display_name || store.user.login}` : 'User isn\'t logged in'}</P>
-            </Box>
           </Box> :
           <P>Initialising...</P>
           }
