@@ -1,8 +1,8 @@
 import { Box, Table, TableBody, TableCell, TableRow, Text } from 'grommet'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import fetchKeywords from '@src/helpers/fetchKeywords'
+import Link from '@src/components/Link'
 
 const KeywordLink = styled(Link)`
   text-decoration: none;

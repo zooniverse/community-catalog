@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { Box, Button, Carousel, Text } from 'grommet'
-import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
+import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
 import SearchResultsList from '@src/components/SearchResultsList'
 import KeywordsList from '@src/components/KeywordsList'

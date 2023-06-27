@@ -19,7 +19,8 @@ export default function SubjectPage () {
 
   useEffect(function () {
     fetchSubject(subjectId, setSubjectData)
-  }, [])
+    window.scrollTo(0, 0)
+  }, [ subjectId ])
 
   return (
     <>

@@ -36,14 +36,6 @@ export default function App () {
           {(initialised) ?
           <Box as='main'>
             <Outlet />
-
-            <Box size='small' border={true}>
-              <Heading as='h6'>Debug Panel</Heading>
-              <P size='small'>{(store.user) ? `Logged in as ${store.user.display_name || store.user.login}` : 'User isn\'t logged in'}</P>
-              <Box size='small' as='nav' direction='row'>
-                <Link to='/'>Home Page</Link> | <Link to='/search'>Search Page</Link> | <Link to='/subject/12345'>Subject Page</Link>
-              </Box>
-            </Box>
           </Box> :
           <P>Initialising...</P>
           }
