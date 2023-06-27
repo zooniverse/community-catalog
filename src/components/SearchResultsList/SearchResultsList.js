@@ -27,7 +27,7 @@ function SearchResultsList ({
       pad='small'
       gap='small'
     >
-      <Text>Results for the tag "{query}" on Talk:</Text>
+      <Text>Search results for "{query}":</Text>
       <Box
         direction='row'
         gap='medium'
