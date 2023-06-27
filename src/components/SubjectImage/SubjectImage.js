@@ -26,10 +26,11 @@ export default function SubjectImage ({
   
   let imgSrc = src
   if (subjectData) {
-      // TODO: improve URL extraction
+    // TODO: improve URL extraction
     imgSrc = subjectData.locations?.[0]?.['image/jpeg']
              || subjectData.locations?.[0]?.['image/png']
 
+    // Send Zooniverse-hosted images through the thumbnail service
     if (small && imgSrc.match(/^https?:\/\/panoptes-uploads.zooniverse.org\//)) {
       imgSrc = `https://thumbnails.zooniverse.org/${width}x${height}/${imgSrc?.replace(/^https?:\/\//ig, '')}`
     }
