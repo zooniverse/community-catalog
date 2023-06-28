@@ -31,18 +31,21 @@ function ProjectPage () {
           gap='small'
           width={`${imgWidth}px`}
         >
-          <Text>Examples from Project 12268, Subject Set 98889</Text>
           <Carousel
             wrap={true}
           >
             {exampleSubjects.map(sbjId => (
-              <Link to={`/projects/${projectSlug}/subject/${sbjId}`} key={`home-subject-${sbjId}`}>
-                <SubjectImage
-                  subjectId={sbjId}
-                  width={imgWidth}
-                  height={imgHeight}
-                />
-              </Link>
+              <Box>
+                <Text color='drawing-pink'>TODO: description for each subject</Text>
+            
+                <Link to={`/projects/${projectSlug}/subject/${sbjId}`} key={`home-subject-${sbjId}`}>
+                  <SubjectImage
+                    subjectId={sbjId}
+                    width={imgWidth}
+                    height={imgHeight}
+                  />
+                </Link>
+              </Box>
             ))}
           </Carousel>
           <Button
