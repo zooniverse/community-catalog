@@ -28,7 +28,7 @@ function SearchResultsList ({
       pad='small'
       gap='small'
     >
-      <Text>{strings.components.search_results_list.search_results.replace(/{query}/ig, query)}</Text>
+      <Text>{strings.components.search_results_list.search_results.replace(/{query}/g, query)}</Text>
       <Box
         direction='row'
         gap='medium'

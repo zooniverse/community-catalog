@@ -14,6 +14,10 @@
       "no_results": "No items found, sorry",
       "search_results": "Search results for \"{query}\":"
     },
+    "subject_image": {
+      "placeholder": "Placeholder for Subject image",
+      "image": "Image {index} for Subject {subject_id}"
+    },
     "subject_keywords": {
       "community_tags": "COMMUNITY TAGS:"
     },

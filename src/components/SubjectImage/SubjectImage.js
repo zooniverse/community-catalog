@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Box, Image, Spinner } from 'grommet'
 import { Image as ImageIcon } from 'grommet-icons'
+
+import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
 
 export default function SubjectImage ({
@@ -47,11 +49,13 @@ export default function SubjectImage ({
     >
       {imgSrc ? (
         <Image
+          alt={strings.components.subject_image.image.replace(/{index}/g, '0').replace(/{subject_id}/g, subjectId)}
           fit={fit || (small ? 'cover' : 'contain')}
           src={imgSrc}
         />
       ) : (  /* Placeholder when there's no image to load, or Subject is in process of loading */
         <ImageIcon
+          a11yTitle={strings.components.subject_image.placeholder}
           size='large'
         />
       )}
