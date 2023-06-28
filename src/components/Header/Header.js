@@ -1,11 +1,17 @@
 import { Anchor, Box, Text, TextInput } from 'grommet'
 import { Search, Share } from 'grommet-icons'
+import { Link } from 'react-router-dom'
 import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
 import strings from '@src/strings.json'
 import { useStores } from '@src/store'
+
+const LogoLink = styled(Link)`
+  color: #e2e5e9;
+  text-decoration: none;
+`
 
 const HeaderLogoAndTitle = styled(Box)`
   margin-right: 4em;
@@ -50,14 +56,18 @@ function Header () {
       pad='small'
       wrap={true}
     >
-      <HeaderLogoAndTitle
-        align='center'
-        flex={false}
-        width='xsmall'
+      <LogoLink
+        to={`/`}
       >
-        <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-        <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
-      </HeaderLogoAndTitle>
+        <HeaderLogoAndTitle
+          align='center'
+          flex={false}
+          width='xsmall'
+        >
+          <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
+          <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
+        </HeaderLogoAndTitle>
+      </LogoLink>
     </Box>
   )
 
@@ -72,14 +82,18 @@ function Header () {
       pad='small'
       wrap={true}
     >
-      <HeaderLogoAndTitle
-        align='center'
-        flex={false}
-        width='xsmall'
+      <LogoLink
+        to={`/`}
       >
-        <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-        <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
-      </HeaderLogoAndTitle>
+        <HeaderLogoAndTitle
+          align='center'
+          flex={false}
+          width='xsmall'
+        >
+          <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
+          <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
+        </HeaderLogoAndTitle>
+      </LogoLink>
       <HeaderLink
         icon={<Share size='small' />}
         label='Project Home Page'
