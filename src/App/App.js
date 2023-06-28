@@ -7,6 +7,7 @@ import { Link, Outlet } from 'react-router-dom'
 
 import { AppContext, useStores } from '@src/store'
 import Header from '@src/components/Header'
+import Footer from '@src/components/Footer'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
@@ -50,6 +51,7 @@ export default function App () {
             />
           </Box>
           }
+          <Footer />
         </Box>
       </AppContext.Provider>
     </Grommet>
