@@ -13,6 +13,12 @@
     "search_results_list": {
       "no_results": "No items found, sorry",
       "search_results": "Search results for \"{query}\":"
+    },
+    "subject_keywords": {
+      "community_tags": "COMMUNITY TAGS:"
+    },
+    "subject_metadata": {
+      "institutional_metadata": "INSTITUTIONAL METADATA:"
     }
   },
   "errors": {

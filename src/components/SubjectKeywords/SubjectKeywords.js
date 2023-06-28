@@ -3,6 +3,7 @@ import { Box, Text } from 'grommet'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
+import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords'
 import Link from '@src/components/Link'
@@ -35,7 +36,7 @@ function SubjectKeywords ({
       align='end'
     >
       <Text color='light-6' margin={{ bottom: 'small' }}>
-        COMMUNITY TAGS:
+        {strings.components.subject_keywords.community_tags}
       </Text>
       <Box
         direction='row'
