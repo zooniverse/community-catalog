@@ -11,6 +11,9 @@
       "start_exploring": "Use these keywords to start exploring:"
     }
   },
+  "errors": {
+    "could_not_find_project": "Could not find project"
+  },
   "general": {
     "app_name": "Communities & Crowds"
   },

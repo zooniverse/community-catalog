@@ -11,6 +11,7 @@ import Link from '@src/components/Link'
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
+
 function KeywordsList () {
   const store = useStores()
   const projectId = store.project?.id
