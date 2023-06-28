@@ -9,6 +9,10 @@
       "advanced_search": "Advanced Search",
       "show_more": "Show More",
       "start_exploring": "Use these keywords to start exploring:"
+    },
+    "search_results_list": {
+      "no_results": "No items found, sorry",
+      "search_results": "Search results for \"{query}\":"
     }
   },
   "errors": {
