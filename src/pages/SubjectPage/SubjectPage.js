@@ -7,6 +7,7 @@ import SearchResultsList from '@src/components/SearchResultsList'
 import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
 
+import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 import getQuery from '@src/helpers/getQuery.js'
 
@@ -28,8 +29,10 @@ export default function SubjectPage () {
         pad='medium'
       >
         <Heading as='h2'>
-          Subject page &nbsp;
-          {subjectId ? `for subject ${subjectId}` : '(no subject chosen)'}
+          {(subjectId)
+            ? strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)
+            : strings.pages.subject_page.no_subject
+          }
         </Heading>
         <Box
           direction='row'
@@ -40,7 +43,7 @@ export default function SubjectPage () {
             width={800}
             height={500}
           />
-          <Box border={true}>Subject Discussion</Box>
+          <Box border={true} color='drawing-pink'>Subject Discussion</Box>
         </Box>
       </Box>
       <Box
@@ -54,9 +57,9 @@ export default function SubjectPage () {
             gap='small'
             pad='small'
           >
-            <Text>Add to Favorites</Text>
-            <Text>Add to Collection</Text>
-            <Text>Classify this Subject</Text>
+            <Text color='drawing-pink'>Add to Favorites</Text>
+            <Text color='drawing-pink'>Add to Collection</Text>
+            <Text color='drawing-pink'>Classify this Subject</Text>
           </Box>
           <Box
             direction='row'
@@ -69,7 +72,7 @@ export default function SubjectPage () {
           </Box>
         </Box>
         <Box border={true}>
-          <Text>Your Activity</Text>
+          <Text color='drawing-pink'>Your Activity</Text>
         </Box>
 
       </Box>

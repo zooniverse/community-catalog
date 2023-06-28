@@ -35,5 +35,11 @@
     "app_ready": "App ready.",
     "app_initialising": "Initialising app...",
     "no_keywords_found": "No keywords found, sorry"
+  },
+  "pages": {
+    "subject_page": {
+      "no_subject": "(no subject chosen)",
+      "title": "Subject Page for subject {subject_id}"
+    }
   }
 }
