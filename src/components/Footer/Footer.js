@@ -1,5 +1,7 @@
 import { Footer as GrommetFooter, Text } from 'grommet'
 
+import strings from '@src/strings.json'
+
 export default function Footer () {
   return (
     <GrommetFooter
@@ -10,7 +12,7 @@ export default function Footer () {
         size='small'
         textAlign='center'
       >
-        This page made possible by Communities and Crowds, Zooniverse, and viewers like you.
+        {strings.components.footer}
       </Text>
     </GrommetFooter>
   )

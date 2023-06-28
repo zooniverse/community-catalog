@@ -4,6 +4,7 @@ import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
+import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 
 const HeaderLogoAndTitle = styled(Box)`
@@ -55,7 +56,7 @@ function Header () {
         width='xsmall'
       >
         <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-        <HeaderTitle textAlign='center' size='xsmall'>Communities &amp; Crowds</HeaderTitle>
+        <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
       </HeaderLogoAndTitle>
     </Box>
   )
@@ -77,7 +78,7 @@ function Header () {
         width='xsmall'
       >
         <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-        <HeaderTitle textAlign='center' size='xsmall'>Communities &amp; Crowds</HeaderTitle>
+        <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
       </HeaderLogoAndTitle>
       <HeaderLink
         icon={<Share size='small' />}

@@ -3,6 +3,7 @@ import { Box, Text } from 'grommet'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
+import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
 import Link from '@src/components/Link'
@@ -30,7 +31,7 @@ function KeywordsList () {
         background='white'
         pad='small'
       >
-        <Text>Use these keywords to start exploring:</Text>
+        <Text>{strings.components.keywords_list.start_exploring}</Text>
       </Box>
       <Box
         background='accent-1'
@@ -52,14 +53,14 @@ function KeywordsList () {
             </Box>
           </KeywordLink>
         ))}
-        {(keywordsData.length === 0) && <Text>No keywords found, sorry</Text>}
+        {(keywordsData.length === 0) && <Text>{strings.messages.no_keywords_found}</Text>}
       </Box>
       <Box
         align='end'
         alignContent='end'
         pad='small'
       >
-        <Text color='drawing-pink'>Advanced Search &nbsp; &nbsp; Show more</Text>
+        <Text color='drawing-pink'>{strings.components.keywords_list.advanced_search} &nbsp; &nbsp; {strings.components.keywords_list.show_more}</Text>
       </Box>
     </Box>
   )

@@ -1,0 +1,22 @@
+{
+  "components": {
+    "footer": "This page made possible by Communities and Crowds, Zooniverse, and viewers like you.",
+    "header": {
+      "project_button": "Project Home Page",
+      "talk_button": "Talk Board"
+    },
+    "keywords_list": {
+      "advanced_search": "Advanced Search",
+      "show_more": "Show More",
+      "start_exploring": "Use these keywords to start exploring:"
+    }
+  },
+  "general": {
+    "app_name": "Communities & Crowds"
+  },
+  "messages": {
+    "app_ready": "App ready.",
+    "app_initialising": "Initialising app...",
+    "no_keywords_found": "No keywords found, sorry"
+  }
+}
