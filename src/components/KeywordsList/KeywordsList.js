@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Box, Text } from 'grommet'
+import { Anchor, Box, Text } from 'grommet'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
@@ -8,7 +8,7 @@ import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
 import Link from '@src/components/Link'
 
-const KeywordLink = styled(Link)`
+const CleanLink = styled(Link)`
   text-decoration: none;
 `
 
@@ -42,7 +42,7 @@ function KeywordsList () {
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <KeywordLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
+          <CleanLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
             <Box
               background='white'
               elevation='xsmall'
@@ -52,16 +52,22 @@ function KeywordsList () {
             >
               <Text color='black'>#{keyword.name}</Text>
             </Box>
-          </KeywordLink>
+          </CleanLink>
         ))}
         {(keywordsData.length === 0) && <Text>{strings.messages.no_keywords_found}</Text>}
       </Box>
       <Box
-        align='end'
-        alignContent='end'
+        direction='row'
+        justify='end'
         pad='small'
       >
-        <Text color='drawing-pink'>{strings.components.keywords_list.advanced_search} &nbsp; &nbsp; {strings.components.keywords_list.show_more}</Text>
+        <CleanLink to={`/projects/${projectSlug}/search`}>
+          <Text color='black'>{strings.components.keywords_list.advanced_search}</Text>
+        </CleanLink>
+        &nbsp; &nbsp;
+        <CleanLink>
+          <Text color='black'>{strings.components.keywords_list.show_more}</Text>
+        </CleanLink>
       </Box>
     </Box>
   )
