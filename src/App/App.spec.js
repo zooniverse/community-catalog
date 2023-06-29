@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom' 
 import App from './App.js'
 
 // mock Panoptes auth calls
@@ -8,7 +9,11 @@ auth.checkCurrent.mockResolvedValue(null)
 
 describe('App', function () {
   test('should render logo', async function () {
-    render(<App />)
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>
+    )
     const logo = await screen.findByText(/Zooniverse Logo/i)
     expect(logo).toBeInTheDocument()
   })
