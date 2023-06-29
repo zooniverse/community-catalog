@@ -17,14 +17,31 @@ function KeywordsList () {
   const projectId = store.project?.id
   const projectSlug = store.project?.slug
   const [ keywordsData, setKeywordsData ] = useState([])
+  const [ page, setPage ] = useState(1)
+  const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
+
+  function getMoreKeywords () {
+    setPage(page + 1)
+  }
+
+  function addToKeywordsData (data) {
+    setKeywordsData([ ...keywordsData, ...data ])
+    if (data.length === 0) setMoreToShow(false)
+  }
 
   useEffect(function () {
+    if (page <= 1) {  // Reset if necessary
+      setKeywordsData([])
+      setMoreToShow(true)
+    }
+
     fetchKeywords(
       projectId,
-      setKeywordsData
+      addToKeywordsData,
+      page
     )
 
-  }, [ projectId ])
+  }, [ projectId, page ])
 
   return (
     <Box elevation='medium'>
@@ -65,9 +82,15 @@ function KeywordsList () {
           <Text color='black'>{strings.components.keywords_list.advanced_search}</Text>
         </CleanLink>
         &nbsp; &nbsp;
-        <CleanLink>
-          <Text color='black'>{strings.components.keywords_list.show_more}</Text>
-        </CleanLink>
+        {moreToShow ? (
+          <CleanLink onClick={getMoreKeywords}>
+            <Text color='black'>{strings.components.keywords_list.show_more}</Text>
+          </CleanLink>
+        ) : (
+          <CleanLink>
+            <Text color='black'>{strings.components.keywords_list.no_more}</Text>
+          </CleanLink>
+        )}
       </Box>
     </Box>
   )

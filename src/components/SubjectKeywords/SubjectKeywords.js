@@ -26,6 +26,7 @@ function SubjectKeywords ({
       fetchKeywords(
         projectId,
         setKeywordsData,
+        1,  // Page
         subject
       )
     }
