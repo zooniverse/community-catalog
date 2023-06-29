@@ -1,7 +1,6 @@
 import { Box, Text } from 'grommet'
 
 import SearchResultsList from '@src/components/SearchResultsList'
-import KeywordsList from '@src/components/KeywordsList'
 import getQuery from '@src/helpers/getQuery'
 
 export default function SearchPage () {
