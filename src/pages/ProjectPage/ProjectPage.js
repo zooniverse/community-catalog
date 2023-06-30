@@ -36,13 +36,12 @@ function ProjectPage () {
           <Carousel
             wrap={true}
           >
-            {exampleSubjects.map(sbjId => (
-              <Box key={`example-subject-${sbjId}`}>
-                <Text color='drawing-pink'>TODO: description for each subject</Text>
-            
-                <Link to={`/projects/${projectSlug}/subject/${sbjId}`} key={`home-subject-${sbjId}`}>
+            {exampleSubjects.map(sbj => (
+              <Box key={`example-subject-${sbj.id}`}>
+                <Text>{sbj.title}</Text>
+                <Link to={`/projects/${projectSlug}/subject/${sbj.id}`} key={`home-subject-${sbj.id}`}>
                   <SubjectImage
-                    subjectId={sbjId}
+                    subjectId={sbj.id}
                     width={imgWidth}
                     height={imgHeight}
                   />
