@@ -1,7 +1,7 @@
 import { Link as BaseLink } from 'react-router-dom'
 
-import getEnv from '@src/helpers/getEnv'
-import getQuery from '@src/helpers/getQuery'
+import getEnv from '@src/helpers/getEnv.js'
+import getQuery from '@src/helpers/getQuery.js'
 
 export default function Link (props) {
   const { to, children, ...rest } = props

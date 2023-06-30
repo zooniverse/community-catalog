@@ -11,6 +11,11 @@
       "show_more": "Show More",
       "start_exploring": "Use these keywords to start exploring:"
     },
+    "random_button": {
+      "ready": "Random Subject",
+      "working": "Please wait...",
+      "error": "Couldn't find anything, sorry"
+    },
     "search_results_list": {
       "no_results": "No items found, sorry",
       "search_results": "Search results for \"{query}\":"

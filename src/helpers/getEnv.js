@@ -1,3 +1,7 @@
+/*
+Gets ?env parameter from URL. Used for dev purposes.
+ */
+
 export default function getEnv () {
   try {
     const param = new URLSearchParams(window?.location?.search)
