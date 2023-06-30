@@ -22,8 +22,9 @@ export default async function getRandomSubject (
   // Example: https://subject-set-search-api.zooniverse.org/projects-d2c21b9.json?sql=SELECT+subject_id+FROM+proj_12268+ORDER+BY+RANDOM%28%29+LIMIT+1
   try {
     const sqlQuery = encodeURIComponent(`SELECT subject_id FROM ${TABLE_PREFIX}${projectId} ORDER BY RANDOM() LIMIT 1`)
+    const randomiser = Math.floor(Math.random() * 10000)  // Bypasses cached results
 
-    const url = `${DATABASE_URL}/${DATABASE_NAME}.json?sql=${sqlQuery}`
+    const url = `${DATABASE_URL}/${DATABASE_NAME}.json?sql=${sqlQuery}&rnd=${randomiser}`
     const response = await fetch(url)
 
     if (!response?.ok) throw new Error('Couldn\'t get random subject')
