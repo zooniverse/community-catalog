@@ -1,3 +1,14 @@
+/*
+Fetches a Zooniverse Subject resource
+
+Inputs:
+- (string) subjectId
+- (function) setData: callback function after successful data fetch
+
+Outputs:
+- (object) Zooniverse Subject resource.
+ */
+
 import { subjects } from '@zooniverse/panoptes-js'
 
 export default async function fetchSubject (

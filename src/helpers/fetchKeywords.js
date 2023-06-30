@@ -1,3 +1,18 @@
+/*
+Fetches keywords (Talk tags) from a project, or from a specific Subject in that project.
+
+Inputs:
+- (string) projectId
+- (function) setData: callback function after successful data fetch
+- (number) page
+- (optional) (object) subject: Zooniverse Subject resource.
+  Specify only if we want tags for that specific Subject.
+  Otherwise, this function will pull tags for the project as a whole.
+
+Outputs:
+- Array of tags (Zooniverse resource object), ordered by most popular to least.
+ */
+
 import { talkAPI } from '@zooniverse/panoptes-js'
 
 export default async function fetchKeywords (
@@ -32,6 +47,7 @@ export default async function fetchKeywords (
 
   } catch (err) {
     console.error(err)
+    throw(err)
     // TODO: handle errors
   }
 }
