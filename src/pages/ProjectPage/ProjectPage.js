@@ -7,13 +7,16 @@ import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
 import SearchResultsList from '@src/components/SearchResultsList'
 import KeywordsList from '@src/components/KeywordsList'
+import RandomButton from '@src/components/RandomButton'
 import getQuery from '@src/helpers/getQuery'
 
 function ProjectPage () {
   const store = useStores()
-  const projectSlug = store.project?.slug || ''
-  const exampleSubjects = store.project?.exampleSubjects || []
-  const exampleQuery = store.project?.exampleQuery || ''
+  const project = store.project
+  const projectId = project?.id
+  const projectSlug = project?.slug || ''
+  const exampleSubjects = project?.exampleSubjects || []
+  const exampleQuery = project?.exampleQuery || ''
 
   const imgWidth = 600
   const imgHeight = 300
@@ -48,11 +51,9 @@ function ProjectPage () {
               </Box>
             ))}
           </Carousel>
-          <Button
+          <RandomButton
+            projectId={projectId}
             alignSelf='end'
-            background='drawing-pink'
-            color='drawing-pink'
-            label='Random Subject'
           />
         </Box>
       </Box>
