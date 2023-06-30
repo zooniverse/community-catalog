@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
-import { Heading } from 'grommet'
-import { Link, Outlet, useParams } from 'react-router-dom'
+import { Heading, Text } from 'grommet'
+import { Outlet, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import projectsJson from '@src/projects.json'
+import Link from '@src/components/Link'
 
 const ProjectLink = styled(Link)`
   text-decoration: none;
@@ -28,15 +29,15 @@ export default function ProjectContainer ({}) {
 
   return (
     <>
-      <Heading
-        as='h1'
-        margin='small'
-        textAlign='center'
-      >
-        <ProjectLink to={`/projects/${projectSlug}`}>
+      <ProjectLink to={`/projects/${projectSlug}`}>
+        <Heading
+          level='1'
+          color='dark-4'
+          textAlign='center'
+        >
           {selectedProject.name}
-        </ProjectLink>
-      </Heading>
+        </Heading>
+      </ProjectLink>
       <Outlet />
     </>
   )
