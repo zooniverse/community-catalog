@@ -13,7 +13,6 @@ import getQuery from '@src/helpers/getQuery'
 function ProjectPage () {
   const store = useStores()
   const project = store.project
-  const projectId = project?.id
   const projectSlug = project?.slug || ''
   const exampleSubjects = project?.exampleSubjects || []
   const exampleQuery = project?.exampleQuery || ''
@@ -52,7 +51,7 @@ function ProjectPage () {
             ))}
           </Carousel>
           <RandomButton
-            projectId={projectId}
+            project={project}
             alignSelf='end'
           />
         </Box>
