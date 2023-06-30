@@ -14,6 +14,7 @@ Outputs:
  */
 
 import { talkAPI } from '@zooniverse/panoptes-js'
+import { PAGE_SIZE } from '@src/config.js'
 
 export default async function fetchKeywords (
   projectId,
@@ -30,7 +31,7 @@ export default async function fetchKeywords (
     const options = {
       section: `project-${projectId}`,
       page,
-      page_size: 20,
+      page_size: PAGE_SIZE,
     }
 
     if (subject) {

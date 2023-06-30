@@ -13,11 +13,9 @@ Outputs:
 - Array of subject IDs (strings)
  */
 
-const DATABASE_URL = 'https://subject-set-search-api.zooniverse.org/'
-const DATABASE_NAME = 'projects'
-const TABLE_PREFIX = 'proj_'
-const SUBJECT_ID_KEY = 'subject_id'
-const PAGE_SIZE = 20
+import {
+  DATABASE_NAME, DATABASE_URL, TABLE_PREFIX, SUBJECT_ID_KEY, PAGE_SIZE
+} from '@src/config.js'
 
 export default async function fetchSearchResults_fromDatabase (
   projectId,

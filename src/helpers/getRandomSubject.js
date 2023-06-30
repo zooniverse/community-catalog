@@ -8,17 +8,15 @@ Outputs:
 - (string) Subject ID
  */
 
-const DATABASE_URL = 'https://subject-set-search-api.zooniverse.org/'
-const DATABASE_NAME = 'projects'
-const TABLE_PREFIX = 'proj_'
-const SUBJECT_ID_KEY = 'subject_id'
+import {
+  DATABASE_NAME, DATABASE_URL, TABLE_PREFIX, SUBJECT_ID_KEY
+} from '@src/config.js'
 
 export default async function getRandomSubject (
   projectId,
 ) {
   if (!projectId) return []
 
-  // SQL query: SELECT subject_id FROM (table) ORDER BY RANDOM() LIMIT 1
   // Example: https://subject-set-search-api.zooniverse.org/projects-d2c21b9.json?sql=SELECT+subject_id+FROM+proj_12268+ORDER+BY+RANDOM%28%29+LIMIT+1
   try {
     const sqlQuery = encodeURIComponent(`SELECT subject_id FROM ${TABLE_PREFIX}${projectId} ORDER BY RANDOM() LIMIT 1`)
