@@ -37,7 +37,7 @@ function ProjectPage () {
             wrap={true}
           >
             {exampleSubjects.map(sbjId => (
-              <Box>
+              <Box key={`example-subject-${sbjId}`}>
                 <Text color='drawing-pink'>TODO: description for each subject</Text>
             
                 <Link to={`/projects/${projectSlug}/subject/${sbjId}`} key={`home-subject-${sbjId}`}>
