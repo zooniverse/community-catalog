@@ -1,21 +1,24 @@
 import { Box, Text } from 'grommet'
+import { observer } from 'mobx-react'
 
+import AdvancedSearchForm from '@src/components/AdvancedSearchForm'
 import SearchResultsList from '@src/components/SearchResultsList'
 import getQuery from '@src/helpers/getQuery'
+import { useStores } from '@src/store'
 
-export default function SearchPage () {
+function SearchPage () {
   const query = getQuery() || ''
+  const store = useStores()
+  const project = store.project
+
+  console.log('+++ project', project)
 
   return (
     <>
-      <Box
-        border={true}
-        pad='medium'
-        margin='medium'
-      >
-        <Text color='drawing-pink'>Advanced Search Options/Filters</Text>
-      </Box>
+      <AdvancedSearchForm project={project} />
       <SearchResultsList query={query} />
     </>
   )
 }
+
+export default observer(SearchPage)
