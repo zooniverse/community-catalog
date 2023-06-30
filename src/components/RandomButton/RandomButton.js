@@ -8,7 +8,7 @@ It is not, in fact, a randomly created button.
  */
 
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import { Button } from 'grommet'
 
 import strings from '@src/strings.json'
@@ -34,7 +34,7 @@ export default function RandomButton ({
       if (subjectId) {
         const env = getEnv()
         navigate(`/projects/${project.slug}/subject/${subjectId}${
-          (env) ? `?env=${env}` : ''
+          (env) ? `?env=${encodeURIComponent(env)}` : ''
         }`)
       } else {
         throw new Error ('No Subjects available, apparently. Check database table isn\'t empty.')

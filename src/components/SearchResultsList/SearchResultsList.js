@@ -24,7 +24,6 @@ function SearchResultsList ({
   return (
     <Box
       background='light-1'
-      border={true}
       pad='small'
       gap='small'
     >
