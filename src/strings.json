@@ -13,7 +13,7 @@
     },
     "random_button": {
       "ready": "Random Subject",
-      "fetching": "Please wait...",
+      "working": "Please wait...",
       "error": "Couldn't find anything, sorry"
     },
     "search_results_list": {
