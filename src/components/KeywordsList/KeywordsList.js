@@ -1,28 +1,47 @@
 import { useEffect, useState } from 'react'
-import { Box, Text } from 'grommet'
+import { Anchor, Box, Text } from 'grommet'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
+import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
 import Link from '@src/components/Link'
 
-const KeywordLink = styled(Link)`
+const CleanLink = styled(Link)`
   text-decoration: none;
 `
+
 function KeywordsList () {
   const store = useStores()
   const projectId = store.project?.id
   const projectSlug = store.project?.slug
   const [ keywordsData, setKeywordsData ] = useState([])
+  const [ page, setPage ] = useState(1)
+  const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
+
+  function getMoreKeywords () {
+    setPage(page + 1)
+  }
+
+  function addToKeywordsData (data) {
+    setKeywordsData([ ...keywordsData, ...data ])
+    if (data.length === 0) setMoreToShow(false)
+  }
 
   useEffect(function () {
+    if (page <= 1) {  // Reset if necessary
+      setKeywordsData([])
+      setMoreToShow(true)
+    }
+
     fetchKeywords(
       projectId,
-      setKeywordsData
+      addToKeywordsData,
+      page
     )
 
-  }, [ projectId ])
+  }, [ projectId, page ])
 
   return (
     <Box elevation='medium'>
@@ -30,7 +49,7 @@ function KeywordsList () {
         background='white'
         pad='small'
       >
-        <Text>Use these keywords to start exploring:</Text>
+        <Text>{strings.components.keywords_list.start_exploring}</Text>
       </Box>
       <Box
         background='accent-1'
@@ -40,7 +59,7 @@ function KeywordsList () {
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <KeywordLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
+          <CleanLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
             <Box
               background='white'
               elevation='xsmall'
@@ -50,16 +69,28 @@ function KeywordsList () {
             >
               <Text color='black'>#{keyword.name}</Text>
             </Box>
-          </KeywordLink>
+          </CleanLink>
         ))}
-        {(keywordsData.length === 0) && <Text>No keywords found, sorry</Text>}
+        {(keywordsData.length === 0) && <Text>{strings.messages.no_keywords_found}</Text>}
       </Box>
       <Box
-        align='end'
-        alignContent='end'
+        direction='row'
+        justify='end'
         pad='small'
       >
-        <Text color='drawing-pink'>Advanced Search &nbsp; &nbsp; Show more</Text>
+        <CleanLink to={`/projects/${projectSlug}/search`}>
+          <Text color='black'>{strings.components.keywords_list.advanced_search}</Text>
+        </CleanLink>
+        &nbsp; &nbsp;
+        {moreToShow ? (
+          <CleanLink onClick={getMoreKeywords}>
+            <Text color='black'>{strings.components.keywords_list.show_more}</Text>
+          </CleanLink>
+        ) : (
+          <CleanLink>
+            <Text color='black'>{strings.components.keywords_list.no_more}</Text>
+          </CleanLink>
+        )}
       </Box>
     </Box>
   )

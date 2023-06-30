@@ -1,0 +1,46 @@
+{
+  "components": {
+    "footer": "This page made possible by Communities and Crowds, Zooniverse, and viewers like you.",
+    "header": {
+      "project_button": "Project Home Page",
+      "talk_button": "Talk Board"
+    },
+    "keywords_list": {
+      "advanced_search": "Advanced Search",
+      "no_more": "No more to show",
+      "show_more": "Show More",
+      "start_exploring": "Use these keywords to start exploring:"
+    },
+    "search_results_list": {
+      "no_results": "No items found, sorry",
+      "search_results": "Search results for \"{query}\":"
+    },
+    "subject_image": {
+      "placeholder": "Placeholder for Subject image",
+      "image": "Image {index} for Subject {subject_id}"
+    },
+    "subject_keywords": {
+      "community_tags": "COMMUNITY TAGS:"
+    },
+    "subject_metadata": {
+      "institutional_metadata": "INSTITUTIONAL METADATA:"
+    }
+  },
+  "errors": {
+    "could_not_find_project": "Could not find project"
+  },
+  "general": {
+    "app_name": "Communities & Crowds"
+  },
+  "messages": {
+    "app_ready": "App ready.",
+    "app_initialising": "Initialising app...",
+    "no_keywords_found": "No keywords found, sorry"
+  },
+  "pages": {
+    "subject_page": {
+      "no_subject": "(no subject chosen)",
+      "title": "Subject Page for subject {subject_id}"
+    }
+  }
+}

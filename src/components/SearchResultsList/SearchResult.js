@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
+import styled from 'styled-components'
 
 import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
 import fetchSubject from '@src/helpers/fetchSubject.js'
+
+const CleanLink = styled(Link)`
+  text-decoration: none;
+`
 
 export default function SearchResult ({
   subjectId = '',
@@ -18,7 +23,7 @@ export default function SearchResult ({
   }, [ subjectId ])
 
   return (
-    <Link
+    <CleanLink
       to={`/projects/${projectSlug}/subject/${subjectId}`}
     >
       <Box
@@ -39,6 +44,6 @@ export default function SearchResult ({
           </Box>
         )}
       </Box>
-    </Link>
+    </CleanLink>
   )
 }

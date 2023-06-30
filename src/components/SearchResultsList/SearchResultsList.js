@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
 import { observer } from 'mobx-react'
 
+import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
 
@@ -27,7 +28,7 @@ function SearchResultsList ({
       pad='small'
       gap='small'
     >
-      <Text>Search results for "{query}":</Text>
+      <Text>{strings.components.search_results_list.search_results.replace(/{query}/g, query)}</Text>
       <Box
         direction='row'
         gap='medium'
@@ -43,7 +44,7 @@ function SearchResultsList ({
           />
         ))}
       </Box>
-      {(searchResults.length === 0) && <Text>No items found, sorry</Text>}
+      {(searchResults.length === 0) && <Text>{strings.components.search_results_list.no_results}</Text>}
     </Box>
   )
 }

@@ -1,6 +1,7 @@
 import { Box, Table, TableBody, TableCell, TableRow, Text } from 'grommet'
 import styled from 'styled-components'
 
+import strings from '@src/strings.json'
 import fetchKeywords from '@src/helpers/fetchKeywords'
 import Link from '@src/components/Link'
 
@@ -22,7 +23,7 @@ export default function SubjectMetadata ({
       align='start'
     >
       <Text margin={{ bottom: 'small' }}>
-        INSTITUTIONAL METADATA:
+        {strings.components.subject_metadata.institutional_metadata}
       </Text>
       <Table>
         <TableBody>
@@ -38,7 +39,6 @@ export default function SubjectMetadata ({
           ))}
         </TableBody>
       </Table>
-      <Text color='drawing-pink'>(Should this be pulled from Panoptes or aux database?)</Text>
     </Box>
   )
 }

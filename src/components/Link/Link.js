@@ -4,17 +4,13 @@ import getEnv from '@src/helpers/getEnv'
 import getQuery from '@src/helpers/getQuery'
 
 export default function Link (props) {
-  const { to, children } = props
+  const { to, children, ...rest } = props
 
-  const otherProps = { ...props }
-  otherProps.to && delete otherProps.to
-  otherProps.children && delete otherProps.children
-  
   const toUrl = [ to ]
   const env = getEnv()
   const query = getQuery()
 
-  if (!to.includes('?')) toUrl.push('?')
+  if (!to?.includes('?')) toUrl.push('?')
   if (env) toUrl.push(`&env=${encodeURIComponent(env)}`)
 
   // Keep the query consistent, if the intended URL doesn't already have its own query
@@ -23,7 +19,7 @@ export default function Link (props) {
   return (
     <BaseLink
       to={toUrl.join('')}
-      {...otherProps}
+      {...rest}
     >
       {children}
     </BaseLink>

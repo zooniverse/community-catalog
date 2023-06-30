@@ -3,6 +3,7 @@ import { talkAPI } from '@zooniverse/panoptes-js'
 export default async function fetchKeywords (
   projectId,
   setData = (data) => { console.log('fetchKeywords: ', data) },
+  page = 1,
   subject = undefined,
 ) {
   if (!projectId) return
@@ -13,7 +14,7 @@ export default async function fetchKeywords (
   try {
     const options = {
       section: `project-${projectId}`,
-      page: 1,
+      page,
       page_size: 20,
     }
 

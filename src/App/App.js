@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
-import { base as baseTheme, Box, Grommet, Heading, Paragraph as P } from 'grommet'
+import { base as baseTheme, Box, Grommet, Spinner } from 'grommet'
 import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
+import strings from '@src/strings.json'
 import { AppContext, useStores } from '@src/store'
 import Header from '@src/components/Header'
+import Footer from '@src/components/Footer'
 
 const appTheme = deepMerge(baseTheme, zooTheme)
 
@@ -37,8 +39,20 @@ export default function App () {
           <Box as='main'>
             <Outlet />
           </Box> :
-          <P>Initialising...</P>
+          <Box
+            align='center'
+            justify='center'
+            pad='small'
+          >
+            <Spinner
+              message={{
+                start: strings.messages.app_initialising,
+                end: strings.messages.app_ready
+              }}
+            />
+          </Box>
           }
+          <Footer />
         </Box>
       </AppContext.Provider>
     </Grommet>

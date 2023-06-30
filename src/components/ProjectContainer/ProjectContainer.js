@@ -1,10 +1,15 @@
 import { useEffect } from 'react'
 import { Heading } from 'grommet'
-import { Outlet, useParams } from 'react-router-dom'
+import { Link, Outlet, useParams } from 'react-router-dom'
+import styled from 'styled-components'
 
+import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import projectsJson from '@src/projects.json'
 
+const ProjectLink = styled(Link)`
+  text-decoration: none;
+`
 
 export default function ProjectContainer ({}) {
   const store = useStores()
@@ -19,11 +24,19 @@ export default function ProjectContainer ({}) {
     store.setProject(selectedProject)
   }, [ selectedProject ])
 
-  if (!selectedProject) throw new Error('ERROR: couldn\'t find project')
+  if (!selectedProject) throw new Error(strings?.errors?.could_not_find_project || 'Could not find project')
 
   return (
     <>
-      <Heading as='h1'>{selectedProject.name}</Heading>
+      <Heading
+        as='h1'
+        margin='small'
+        textAlign='center'
+      >
+        <ProjectLink to={`/projects/${projectSlug}`}>
+          {selectedProject.name}
+        </ProjectLink>
+      </Heading>
       <Outlet />
     </>
   )
