@@ -11,6 +11,10 @@ const InputForText = styled(TextInput)`
   color: black;
 `
 
+function convertAdvancedQueryToString (data) {
+  
+}
+
 export default function AdvancedSearchForm ({ project }) {
   if (!project) return null
   const projectSlug = project.slug
@@ -28,7 +32,7 @@ export default function AdvancedSearchForm ({ project }) {
         .filter(([ key, val ]) => !!val)
         .map(([ key, val ]) => `${key}=${encodeURIComponent(val)}`)
     ]
-    navigate(`/projects/${projectSlug}/search?${params.join('&')}`, { replace: true })
+    navigate(`/projects/${projectSlug}/search?${params.join('&')}`)
   }
 
   return (
