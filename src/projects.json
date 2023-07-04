@@ -10,8 +10,10 @@
       "advanced_search": [
         { "field": "Item", "type": "text" },
         { "field": "Notes", "type": "text" },
+        { "field": "folder", "alias": "Folder", "type": "text" },
+        { "field": "Photographer", "type": "text" },
         { "field": "Sensitive_Image", "alias": "Sensitive Image", "type": "bool" },
-        { "field": "Problematic_Language", "alias": "Problematic Language", "type": "text" }
+        { "field": "Problematic_Language", "alias": "Problematic Language", "type": "bool" }
       ],
       "exampleQuery": "devtest",
       "exampleSubjects": [
