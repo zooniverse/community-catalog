@@ -21,7 +21,8 @@
     },
     "search_results_list": {
       "no_results": "No items found, sorry",
-      "search_results": "Search results for \"{query}\":"
+      "search_results": "Search results for \"{query}\":",
+      "search_results_all": "No query, so showing a sample of all items:"
     },
     "subject_image": {
       "placeholder": "Placeholder for Subject image",

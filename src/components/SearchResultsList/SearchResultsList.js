@@ -27,7 +27,11 @@ function SearchResultsList ({
       pad='small'
       gap='small'
     >
-      <Text>{strings.components.search_results_list.search_results.replace(/{query}/g, query)}</Text>
+      <Text>{
+        (query)
+        ? strings.components.search_results_list.search_results.replace(/{query}/g, query)
+        : strings.components.search_results_list.search_results_all  /* No query, so show all results */
+      }</Text>
       <Box
         direction='row'
         gap='medium'
