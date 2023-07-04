@@ -23,6 +23,8 @@ export default async function fetchSearchResults_fromDatabase (
 ) {
   if (!projectId) return []
 
+  if (Object.entries(queryObject).length === 0) return []
+
   // Example: https://subject-set-search-api.zooniverse.org/projects.json?sql=select+*+from+proj_21084+where+%5Bfolder%5D+like+%27%25jamaica%25%27
   try {
     const { where = '', params = [] } = convertQueryObjectToSqlWhere(queryObject)
