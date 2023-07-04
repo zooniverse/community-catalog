@@ -49,7 +49,7 @@ export default function AdvancedSearchForm ({ project }) {
         <Box>
           <Box>
             <Text as='label' htmlFor='tag'>{strings.components.advanced_search.keywords_label}</Text>
-            <InputForText name={`${KEYWORDS_KEY}`} defaultValue={initialValues[KEYWORDS_KEY]} />
+            <InputForText name={`${KEYWORDS_KEY}`} />
           </Box>
           {project.advanced_search?.map(item => {
             const name = `${item.field}`
@@ -59,13 +59,13 @@ export default function AdvancedSearchForm ({ project }) {
             return (
               <Box key={name}>
                 <Text as='label' htmlFor={name}>{display}</Text>
-                <InputForText name={name} defaultValue={defaultValue} />
+                <InputForText name={name} />
               </Box>
             )
           })}
         </Box>
         <Box>
-          <button type='submit'>TEST</button>
+          <button type='submit'>SUBMIT</button>
         </Box>
       </Form>
     </Box>
