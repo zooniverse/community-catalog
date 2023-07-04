@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import strings from '@src/strings.json'
 import { KEYWORDS_KEY } from '@src/config.js'
 import getEnv from '@src/helpers/getEnv.js'
+import getQuery from '@src/helpers/getQuery.js'
 import convertAdvancedQueryFromString from '@src/helpers/convertAdvancedQueryFromString.js'
 import convertAdvancedQueryToString from '@src/helpers/convertAdvancedQueryToString.js'
 
@@ -18,6 +19,10 @@ export default function AdvancedSearchForm ({ project }) {
   const projectSlug = project.slug
   const env = getEnv()
   const navigate = useNavigate()
+
+  // Only relevant when the component loads for the first time
+  const initialQuery = getQuery()
+  const initialValues = convertAdvancedQueryFromString(initialQuery)
 
   // Submit the advanced search query
   // Note that the parent SearchPage has to listen for changes in the URL, since
@@ -44,16 +49,17 @@ export default function AdvancedSearchForm ({ project }) {
         <Box>
           <Box>
             <Text as='label' htmlFor='tag'>{strings.components.advanced_search.keywords_label}</Text>
-            <InputForText name={`${KEYWORDS_KEY}`} />
+            <InputForText name={`${KEYWORDS_KEY}`} defaultValue={initialValues[KEYWORDS_KEY]} />
           </Box>
           {project.advanced_search?.map(item => {
             const name = `${item.field}`
             const display = item.alias || item.field
+            const defaultValue = initialValues[name]
             
             return (
               <Box key={name}>
                 <Text as='label' htmlFor={name}>{display}</Text>
-                <InputForText name={name} />
+                <InputForText name={name} defaultValue={defaultValue} />
               </Box>
             )
           })}
