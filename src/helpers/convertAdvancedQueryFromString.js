@@ -6,7 +6,7 @@ Converts an advanced query string to an object.
 - Assumption: keys don't contain '='
  */
 
-function convertAdvancedQueryFromString (str = '') {
+export default function convertAdvancedQueryFromString (str = '') {
   const data = {}
   str.match(/{[^{}=]+=[^{}]*}/g)?.forEach(item => {
     const match = item.match(/^{([^=]+)=(.*)}$/)  // Don't use global (g)

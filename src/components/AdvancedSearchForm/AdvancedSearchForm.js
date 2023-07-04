@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
 import strings from '@src/strings.json'
-import { ADVANCED_QUERY_PREFIX, KEYWORDS_KEY } from '@src/config.js'
+import { KEYWORDS_KEY } from '@src/config.js'
 import getEnv from '@src/helpers/getEnv.js'
 import convertAdvancedQueryFromString from '@src/helpers/convertAdvancedQueryFromString.js'
 import convertAdvancedQueryToString from '@src/helpers/convertAdvancedQueryToString.js'
@@ -24,12 +24,13 @@ export default function AdvancedSearchForm ({ project }) {
   // navigating to the same /search route won't automatically re-render the
   // component.
   function onSubmit ({ value: data }) {
+    console.log('+++ data: ', data)
     const query = convertAdvancedQueryToString(data)
     console.log('+++ query: ', query)
     const testData = convertAdvancedQueryFromString(query)
     console.log('+++ testData: ', testData)
 
-    navigate(`/projects/${projectSlug}/search?query=${encodeURIComponent(query)}`)
+    navigate(`/projects/${projectSlug}/search?query=${encodeURIComponent(query)}${(env) ? `&env=${encodeURIComponent(env)}` : ''}`)
   }
 
   return (
@@ -43,10 +44,10 @@ export default function AdvancedSearchForm ({ project }) {
         <Box>
           <Box>
             <Text as='label' htmlFor='tag'>{strings.components.advanced_search.keywords_label}</Text>
-            <InputForText name={`${ADVANCED_QUERY_PREFIX}${KEYWORDS_KEY}`} />
+            <InputForText name={`${KEYWORDS_KEY}`} />
           </Box>
           {project.advanced_search?.map(item => {
-            const name = `${ADVANCED_QUERY_PREFIX}${item.field}`
+            const name = `${item.field}`
             const display = item.alias || item.field
             
             return (
