@@ -5,8 +5,8 @@ Fetches search results from the Subjects database. Specifically, it searches for
 Inputs:
 - (string/int) projectId
 - (object) queryObject: contains keys with values to search for.
-  e.g. { colour: [ 'red', 'blue' ], shape: ['circle'], texture: ['%soft%'] }
-  becomes "SELECT * FROM whatever WHERE (colour = 'red' OR colour = 'blue') AND (shape = 'circle) AND (texture LIKE '%soft%')"
+  e.g. { colour: 'red', shape: 'circle' }
+  becomes "SELECT * FROM whatever WHERE (colour = '%red%') OR (shape = '%circle%')"
 - (function) setData: callback function after successful data fetch
 
 Outputs:
@@ -49,22 +49,18 @@ export default async function fetchSearchResults_fromDatabase (
 function convertQueryObjectToSqlWhere (queryObject = {}) {
   const params = []
   let paramCounter = 0
-  const where = Object.entries(queryObject).map(([field, arr]) => {
-    const fieldPart = arr.map(val => {
-      const existingParam = params.find(p => p[1] === val)
-      let paramKey = ''
-      if (existingParam) {
-        paramKey = existingParam[0]
-      } else {
-        paramKey = `p${paramCounter++}`
-        params.push([paramKey, val])
-      }
-      
-      if (val.includes('%')) return `[${field}] LIKE :${paramKey}`
-      else return `[${field}] = :${paramKey}`
-    }).join(' OR ')
+  const where = Object.entries(queryObject).map(([field, val]) => {
+    const _val = `%${val}%`
+    const existingParam = params.find(p => p[1] === _val)
+    let paramKey = ''
+    if (existingParam) {
+      paramKey = existingParam[0]
+    } else {
+      paramKey = `p${paramCounter++}`
+      params.push([paramKey, _val])
+    }
 
-    return `(${fieldPart})`
+    return `[${field}] LIKE :${paramKey}`
   }).join(' OR ')  // TODO: fix! Is this OR or AND?
 
   return {

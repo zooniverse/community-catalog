@@ -29,12 +29,7 @@ export default function AdvancedSearchForm ({ project }) {
   // navigating to the same /search route won't automatically re-render the
   // component.
   function onSubmit ({ value: data }) {
-    console.log('+++ data: ', data)
     const query = convertAdvancedQueryToString(data)
-    console.log('+++ query: ', query)
-    const testData = convertAdvancedQueryFromString(query)
-    console.log('+++ testData: ', testData)
-
     navigate(`/projects/${projectSlug}/search?query=${encodeURIComponent(query)}${(env) ? `&env=${encodeURIComponent(env)}` : ''}`)
   }
 

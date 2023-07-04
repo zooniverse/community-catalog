@@ -51,9 +51,6 @@ export default async function fetchSearchResults (
     queryForDatabase = applyQueryToAllDatabaseFields(project, query)
   }
 
-  console.log('+++ queryForTalk:', queryForTalk)
-  console.log('+++ queryForDatabase:', queryForDatabase)
-
   const allSubjectIds = await Promise.all([
     fetchSearchResults_fromTalk(project.id, queryForTalk),
     fetchSearchResults_fromDatabase(project.id, queryForDatabase)
@@ -74,7 +71,7 @@ function applyQueryToAllDatabaseFields (project, query = '') {
 
   const queryObject = {}
   project.metadata_fields.map(field => (
-    queryObject[field] = [`%${query}%`]
+    queryObject[field] = query
   ))
 
   return queryObject
