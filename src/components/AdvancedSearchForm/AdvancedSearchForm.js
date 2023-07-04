@@ -3,38 +3,15 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
 import strings from '@src/strings.json'
-import { ADVANCED_QUERY_PREFIX } from '@src/config.js'
+import { ADVANCED_QUERY_PREFIX, KEYWORDS_KEY } from '@src/config.js'
 import getEnv from '@src/helpers/getEnv.js'
+import convertAdvancedQueryFromString from '@src/helpers/convertAdvancedQueryFromString.js'
+import convertAdvancedQueryToString from '@src/helpers/convertAdvancedQueryToString.js'
 
 const InputForText = styled(TextInput)`
   background: white;
   color: black;
 `
-
-// Example: { one: 'abc', two: '', three: '===' } should return "{one=abc} {three====}"
-// Assumption: keys don't contain '='
-function convertAdvancedQueryToString (data) {
-  return Object.entries(data).map(([key, val = '']) => {
-    const _key = key.replace(RegExp(`^${ADVANCED_QUERY_PREFIX}`), '')
-    const _val = val.trim()  // TODO: what if val has { or } ?
-    return (_val)
-      ? `{${_key}=${_val}}`
-      : ''
-  }).join(' ')
-}
-
-// Example: "{one=abc} {two=} {three====}" should return { one: 'abc', three: '===' }
-// Assumption: keys don't contain '='
-function convertAdvancedQueryFromString (str = '') {
-  const data = {}
-  str.match(/{[^{}=]+=[^{}]*}/g)?.forEach(item => {
-    const match = item.match(/^{([^=]+)=(.*)}$/)  // Don't use global (g)
-    if (match?.[1] && match?.[2]) {  // match[1] is the key, match[2] is the value
-      data[match[1]] = match[2]
-    }
-  })
-  return data
-}
 
 export default function AdvancedSearchForm ({ project }) {
   if (!project) return null
@@ -65,8 +42,8 @@ export default function AdvancedSearchForm ({ project }) {
       >
         <Box>
           <Box>
-            <Text as='label' htmlFor='query'>DEBUG QUERY</Text>
-            <InputForText name='query' />
+            <Text as='label' htmlFor='tag'>{strings.components.advanced_search.keywords_label}</Text>
+            <InputForText name={`${ADVANCED_QUERY_PREFIX}${KEYWORDS_KEY}`} />
           </Box>
           {project.advanced_search?.map(item => {
             const name = `${ADVANCED_QUERY_PREFIX}${item.field}`

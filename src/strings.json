@@ -1,5 +1,8 @@
 {
   "components": {
+    "advanced_search": {
+      "keywords_label": "Keywords (Talk tags)"
+    },
     "footer": "This page made possible by Communities and Crowds, Zooniverse, and viewers like you.",
     "header": {
       "project_button": "Project Home Page",
