@@ -7,8 +7,27 @@
       "metadata_fields": [
         "Item", "Notes", "folder", "image1", "image2", "#Hazard", "Oversize", "group_id", "Condition", "internal_id", "part_number", "Photographer", "#Other Number", "picture_agency", "Sensitive_Image", "Problematic_Language", "Notes on Problematic Language"
       ],
+      "advanced_search": [
+        { "field": "Item", "type": "text" },
+        { "field": "Notes", "type": "text" },
+        { "field": "folder", "alias": "Folder", "type": "text" },
+        { "field": "Photographer", "type": "text" },
+        { "field": "Sensitive_Image", "alias": "Sensitive Image", "type": "bool" },
+        { "field": "Problematic_Language", "alias": "Problematic Language", "type": "bool" }
+      ],
       "exampleQuery": "devtest",
-      "exampleSubjects": [ "87892458", "87892456", "87892462" ],
+      "exampleSubjects": [
+        {
+          "id": "87892458",
+          "title": "Example Photo A"
+        }, {
+          "id": "87892456",
+          "title": "Example Photo B"
+        }, {
+          "id": "87892462",
+          "title": "Example Photo C"
+        }
+      ],
       "titleField": "folder"
     }, {
       "name": "Scarlets & Blues (Performance Test Only)",
@@ -17,8 +36,20 @@
       "metadata_fields": [
         "Date", "Page", "image", "Catalogue"
       ],
+      "advanced_search": [],
       "exampleQuery": "tables",
-      "exampleSubjects": [ "69734802", "69734801", "69734803" ],
+      "exampleSubjects": [
+        {
+          "id": "69734802",
+          "title": "Example Photo A (S&B)"
+        }, {
+          "id": "69734801",
+          "title": "Example Photo B (S&B)"
+        }, {
+          "id": "69734803",
+          "title": "Example Photo C (S&B)"
+        }
+      ],
       "titleField": "Catalogue"
     }
   ]

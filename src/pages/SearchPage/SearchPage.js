@@ -1,21 +1,28 @@
-import { Box, Text } from 'grommet'
+import { useEffect } from 'react'
+import { observer } from 'mobx-react'
+import { useLocation } from 'react-router-dom'
 
+import AdvancedSearchForm from '@src/components/AdvancedSearchForm'
 import SearchResultsList from '@src/components/SearchResultsList'
 import getQuery from '@src/helpers/getQuery'
+import { useStores } from '@src/store'
 
-export default function SearchPage () {
+function SearchPage () {
   const query = getQuery() || ''
+  const store = useStores()
+  const location = useLocation();
+  const project = store.project
+
+  useEffect(() => {
+    console.log('Query parameters changed, refreshing Search Page.')
+  }, [ location ])
 
   return (
     <>
-      <Box
-        border={true}
-        pad='medium'
-        margin='medium'
-      >
-        <Text color='drawing-pink'>Advanced Search Options/Filters</Text>
-      </Box>
+      <AdvancedSearchForm project={project} />
       <SearchResultsList query={query} />
     </>
   )
 }
+
+export default observer(SearchPage)

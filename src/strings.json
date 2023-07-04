@@ -1,5 +1,8 @@
 {
   "components": {
+    "advanced_search": {
+      "keywords_label": "Keywords (Talk tags)"
+    },
     "footer": "This page made possible by Communities and Crowds, Zooniverse, and viewers like you.",
     "header": {
       "project_button": "Project Home Page",
@@ -18,7 +21,8 @@
     },
     "search_results_list": {
       "no_results": "No items found, sorry",
-      "search_results": "Search results for \"{query}\":"
+      "search_results": "Search results for \"{query}\":",
+      "search_results_all": "No query, so showing a sample of all items:"
     },
     "subject_image": {
       "placeholder": "Placeholder for Subject image",
