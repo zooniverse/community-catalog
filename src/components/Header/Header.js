@@ -7,6 +7,7 @@ import { observer } from 'mobx-react'
 
 import strings from '@src/strings.json'
 import { useStores } from '@src/store'
+import getEnv from '@src/helpers/getEnv.js'
 
 const LogoLink = styled(Link)`
   color: #e2e5e9;
@@ -44,6 +45,7 @@ function Header () {
   const projectSlug = store.project?.slug || ''
   const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
   const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
+  const env = getEnv()
 
   if (!store.project) return (
     <Box
@@ -120,6 +122,10 @@ function Header () {
           name='query'
           icon={<Search size='small' />}
         />
+        {(env)
+          ? <input name='env' value={env} type='hidden' />
+          : null
+        }
       </HeaderSearchForm>
     </Box>
   )
