@@ -22,21 +22,26 @@ export default function SubjectPage () {
 
   useEffect(function () {
     fetchSubject(subjectId, setSubjectData)
-    window.scrollTo(0, 0)
+    // TODO: handle invalid subjects
+
+    window.scrollTo(0, 0)  // TODO: improve scroll target
   }, [ subjectId ])
+
+  const title = (subjectId)
+    ? subjectData?.metadata?.[project?.titleField]  // Use the title field of the Subject, if any
+      || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
+    : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
 
   return (
     <>
-      <Heading as='h2' margin={{ horizontal: 'medium' }}>
-        {(subjectId)
-          ? strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)
-          : strings.pages.subject_page.no_subject
-        }
+      <Heading level='2' margin={{ horizontal: 'medium', vertical: 'xsmall' }}>
+        {title}
       </Heading>
       <Grid
         rows={['auto', 'auto']}
         columns={['auto', 'auto']}
-        pad='medium'
+        pad={{ horizontal: 'medium', vertical: 'none' }}
+        margin={{ bottom: 'small' }}
         gap='small'
         areas={[
           { name: 'subject-viewer', start: [0, 0], end: [1, 0] },
