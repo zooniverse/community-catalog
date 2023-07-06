@@ -1,7 +1,9 @@
 import { Anchor, Box, Text } from 'grommet'
 import {
+  Article as ClassifyIcon,
+  BladesHorizontal as CollectionIcon,
   Code as CodeIcon,
-  Clipboard as ClassifyIcon,
+  Favorite as FavoritesIcon,
   ShareOption as ShareIcon,
 } from 'grommet-icons'
 import styled from 'styled-components'
@@ -10,7 +12,7 @@ import Link from '@src/components/Link'
 import strings from '@src/strings.json'
 
 const StyledLink = styled(Anchor)`
-  color: ${props => props.color};
+  color: #000000;
   text-decoration: none;
   text-transform: uppercase;
 `
@@ -32,11 +34,31 @@ export default function SubjectActionsPanel ({
       round='xsmall'
     >
       <StyledLink
-        color='#000000'
+        disabled={true}
+        gap='xsmall'
+        icon={<CollectionIcon size='small' />}
+        label={<Text>{strings.components.subject_actions.add_to_collection}</Text>}
+        margin='small'
+      />
+      <StyledLink
         gap='xsmall'
         href={classifySubjectUrl}
         icon={<ClassifyIcon size='small' />}
         label={<Text>{strings.components.subject_actions.classify_subject}</Text>}
+        margin='small'
+      />
+      <StyledLink
+        disabled={true}
+        gap='xsmall'
+        icon={<FavoritesIcon size='small' />}
+        label={<Text>{strings.components.subject_actions.add_to_favorites}</Text>}
+        margin='small'
+      />
+      <StyledLink
+        disabled={true}
+        gap='xsmall'
+        icon={<ShareIcon size='small' />}
+        label={<Text>{strings.components.subject_actions.share}</Text>}
         margin='small'
       />
     </Box>
