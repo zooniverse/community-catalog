@@ -43,7 +43,10 @@ export default function SubjectPage () {
           { name: 'additional-actions', start: [1, 1], end: [1, 1] },
         ]}
       >
-        <Box gridArea='subject-viewer'>
+        <Box
+          gridArea='subject-viewer'
+          align='center'
+        >
           <SubjectViewer
             subject={subjectData}
             width={800}
