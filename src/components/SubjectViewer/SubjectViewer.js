@@ -33,6 +33,9 @@ export default function SubjectViewer ({
     if (!subjectData && subjectId) {
       fetchSubject(subjectId, setSubjectData)
     }
+
+    setIndex(0)
+
   }, [subject, subjectId])
   
   let filmstripSrcs = []
