@@ -36,6 +36,10 @@
       "institutional_metadata": "INSTITUTIONAL METADATA:"
     },
     "subject_actions": {
+      "add_to_collection": "ADD TO COLLECTION",
+      "add_to_favorites": "ADD TO FAVORITES",
+      "classify_subject": "CLASSIFY THIS SUBJECT",
+      "share": "SHARE"
     }
   },
   "errors": {

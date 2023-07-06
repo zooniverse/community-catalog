@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Anchor, Box, Text } from 'grommet'
+import { Box, Text } from 'grommet'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
