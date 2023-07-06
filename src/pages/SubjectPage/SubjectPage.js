@@ -37,7 +37,7 @@ export default function SubjectPage () {
     <>
       <Heading
         level='2'
-        margin={{ horizontal: 'medium', vertical: 'xsmall' }}
+        margin={{ horizontal: 'small', vertical: 'xsmall' }}
         truncate={true}
       >
         {title}
@@ -45,7 +45,7 @@ export default function SubjectPage () {
       <Grid
         rows={['auto', 'auto']}
         columns={['auto', 'auto']}
-        pad={{ horizontal: 'medium', vertical: 'none' }}
+        pad={{ horizontal: 'small', vertical: 'none' }}
         margin={{ bottom: 'small' }}
         gap='small'
         areas={[
@@ -77,6 +77,7 @@ export default function SubjectPage () {
           direction='row'
           gap='small'
           justify='around'
+          pad={{ top: 'small' }}
         >
           <SubjectMetadata subject={subjectData} />
           <SubjectKeywords subject={subjectData} />
