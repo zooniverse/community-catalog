@@ -6,6 +6,7 @@ import SubjectViewer from '@src/components/SubjectViewer'
 import SearchResultsList from '@src/components/SearchResultsList'
 import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
+import SubjectActionsPanel from '@src/components/SubjectActionsPanel'
 
 import strings from '@src/strings.json'
 import useStores from '@src/store/useStores.js'
@@ -51,7 +52,7 @@ export default function SubjectPage () {
           { name: 'subject-viewer', start: [0, 0], end: [1, 0] },
           { name: 'subject-discussion', start: [1, 0], end: [1, 0] },
           { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
-          { name: 'additional-actions', start: [1, 1], end: [1, 1] },
+          { name: 'subject-actions', start: [1, 1], end: [1, 1] },
         ]}
       >
         <Box
@@ -81,10 +82,9 @@ export default function SubjectPage () {
           <SubjectKeywords subject={subjectData} />
         </Box>
         <Box
-          border={true}
-          gridArea='additional-actions'
+          gridArea='subject-actions'
         >
-          <Text color='drawing-pink'>Additional Actions</Text>
+          <SubjectActionsPanel project={project} subject={subjectData} />
         </Box>
       </Grid>
       <SearchResultsList query={query} />
