@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
+import { Code as CodeIcon } from 'grommet-icons'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
@@ -30,6 +31,10 @@ function SubjectKeywords ({
       )
     }
   }, [ projectId, subject ])
+
+  if (!subject) return (
+    <CodeIcon a11yTitle={strings.general.data_placeholder} />
+  )
 
   return (
     <Box

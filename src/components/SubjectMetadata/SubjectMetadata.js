@@ -1,8 +1,8 @@
-import { Box, Table, TableBody, TableCell, TableRow, Text } from 'grommet'
+import { Box, Text } from 'grommet'
+import { Code as CodeIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
 import strings from '@src/strings.json'
-import fetchKeywords from '@src/helpers/fetchKeywords'
 import Link from '@src/components/Link'
 
 const KeywordLink = styled(Link)`
@@ -12,6 +12,10 @@ const KeywordLink = styled(Link)`
 export default function SubjectMetadata ({
   subject = undefined,
 }) {
+  if (!subject) return (
+    <CodeIcon a11yTitle={strings.general.data_placeholder} />
+  )
+  
   const metadata = (subject?.metadata)
     ? Object.entries(subject.metadata)
       .map(m => ({ key: m[0], value: m[1] }))

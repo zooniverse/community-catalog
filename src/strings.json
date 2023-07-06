@@ -42,7 +42,8 @@
     "could_not_find_project": "Could not find project"
   },
   "general": {
-    "app_name": "Communities & Crowds"
+    "app_name": "Communities & Crowds",
+    "data_placeholder": "Data placeholder"
   },
   "messages": {
     "app_ready": "App ready.",
