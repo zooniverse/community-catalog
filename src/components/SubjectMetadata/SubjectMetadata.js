@@ -25,6 +25,36 @@ export default function SubjectMetadata ({
       <Text margin={{ bottom: 'small' }}>
         {strings.components.subject_metadata.institutional_metadata}
       </Text>
+      <Box>
+        {metadata.map((m, i) => (
+          <Box
+            key={`subject-metadata-${i}`}
+            direction='row'
+            margin={{ bottom: 'xsmall' }}
+          >
+            <Text
+              weight='bold'
+              margin={{ right: 'small' }}
+            >
+              {m.key}
+            </Text>
+            <Text>
+              {m.value}
+            </Text>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  )
+
+  /* Table version
+  return (
+    <Box
+      align='start'
+    >
+      <Text margin={{ bottom: 'small' }}>
+        {strings.components.subject_metadata.institutional_metadata}
+      </Text>
       <Table>
         <TableBody>
           {metadata.map((m, i) => (
@@ -41,4 +71,5 @@ export default function SubjectMetadata ({
       </Table>
     </Box>
   )
+  */
 }
