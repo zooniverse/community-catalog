@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Image } from 'grommet'
 import { Image as ImageIcon } from 'grommet-icons'
+import styled from 'styled-components'
 
-import strings from '@src/strings.json'
+import strings, { css } from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
 
 const FILMSTRIP_IMAGE_SIZE = 44
-      
+const GOLD_COLOUR = '#F0B200'
+
+const ImageWithBorder = styled(Image)`
+  border: 3px solid ${props => props.color}
+`
+
 export default function SubjectViewer ({
   src,
   subject = undefined,
@@ -75,22 +81,26 @@ export default function SubjectViewer ({
         direction='row'
         justify='center'
       >
-        {filmstripSrcs.map((filmstripSrc, _index) => (
-          <Button
-            key={`subject-viewer-filmstrip-${_index}`}
-            height={FILMSTRIP_IMAGE_SIZE}
-            width={FILMSTRIP_IMAGE_SIZE}
-          >
-            <Image
-              /* TODO alt={strings.components.subject_image.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
-              fit='cover'
-              src={filmstripSrc}
-              height={FILMSTRIP_IMAGE_SIZE}
-              width={FILMSTRIP_IMAGE_SIZE}
-              onClick={() => { setIndex(_index) }}
-            />
-          </Button>
-        ))}
+        {filmstripSrcs.map((filmstripSrc, _index) => {
+          const isSelected = _index === index
+
+          return (
+            <Button
+              key={`subject-viewer-filmstrip-${_index}`}
+              margin={{ horizontal: 'xxsmall', vertical: 'small' }}
+            >
+              <ImageWithBorder
+                /* TODO alt={strings.components.subject_image.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
+                color={(isSelected) ? GOLD_COLOUR : 'transparent'}
+                fit='cover'
+                src={filmstripSrc}
+                height={FILMSTRIP_IMAGE_SIZE}
+                width={FILMSTRIP_IMAGE_SIZE}
+                onClick={() => { setIndex(_index) }}
+              />
+            </Button>
+          )
+          })}
       </Box>
     </Box>
   )
