@@ -14,8 +14,8 @@ export default function SubjectImage ({
   fit,
   small = false,
 }) {
-
   const [ subjectData, setSubjectData ] = useState(subject)
+  const index = 0
 
   useEffect(function () {
     if (subject) setSubjectData(subject)
@@ -29,8 +29,8 @@ export default function SubjectImage ({
   let imgSrc = src
   if (subjectData) {
     // TODO: improve URL extraction
-    imgSrc = subjectData.locations?.[0]?.['image/jpeg']
-             || subjectData.locations?.[0]?.['image/png']
+    imgSrc = subjectData.locations?.[index]?.['image/jpeg']
+             || subjectData.locations?.[index]?.['image/png']
 
     // Send Zooniverse-hosted images through the thumbnail service
     if (small && imgSrc.match(/^https?:\/\/panoptes-uploads.zooniverse.org\//)) {
@@ -49,7 +49,7 @@ export default function SubjectImage ({
     >
       {imgSrc ? (
         <Image
-          alt={strings.components.subject_image.image.replace(/{index}/g, '0').replace(/{subject_id}/g, subjectId)}
+          alt={strings.components.subject_image.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
           fit={fit || (small ? 'cover' : 'contain')}
           src={imgSrc}
         />
