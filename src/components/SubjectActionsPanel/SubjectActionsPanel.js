@@ -8,7 +8,6 @@ import {
 } from 'grommet-icons'
 import styled from 'styled-components'
 
-import Link from '@src/components/Link'
 import strings from '@src/strings.json'
 
 const StyledLink = styled(Anchor)`
@@ -62,6 +61,5 @@ export default function SubjectActionsPanel ({
         margin='small'
       />
     </Box>
-
   )
 }

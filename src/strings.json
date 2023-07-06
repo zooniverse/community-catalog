@@ -24,6 +24,16 @@
       "search_results": "Search results for \"{query}\":",
       "search_results_all": "No query, so showing a sample of all items:"
     },
+    "subject_actions": {
+      "add_to_collection": "Add to Collection",
+      "add_to_favorites": "Add to Favorites",
+      "classify_subject": "Classify this Subject",
+      "share": "Share"
+    },
+    "subject_discussion": {
+      "title": "Subject Discussion",
+      "view_on_talk": "View this Subject Discussion on Talk"
+    },
     "subject_image": {
       "placeholder": "Placeholder for Subject image",
       "image": "Image {index} for Subject {subject_id}"
@@ -34,12 +44,6 @@
     },
     "subject_metadata": {
       "institutional_metadata": "INSTITUTIONAL METADATA:"
-    },
-    "subject_actions": {
-      "add_to_collection": "Add to Collection",
-      "add_to_favorites": "Add to Favorites",
-      "classify_subject": "Classify this Subject",
-      "share": "Share"
     }
   },
   "errors": {

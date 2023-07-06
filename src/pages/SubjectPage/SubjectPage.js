@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Box, Grid, Heading, Text } from 'grommet'
 import { useParams } from 'react-router-dom'
 
-import SubjectViewer from '@src/components/SubjectViewer'
 import SearchResultsList from '@src/components/SearchResultsList'
+import SubjectActionsPanel from '@src/components/SubjectActionsPanel'
+import SubjectDiscussion from '@src/components/SubjectDiscussion'
 import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
-import SubjectActionsPanel from '@src/components/SubjectActionsPanel'
+import SubjectViewer from '@src/components/SubjectViewer'
 
 import strings from '@src/strings.json'
 import useStores from '@src/store/useStores.js'
@@ -66,10 +67,12 @@ export default function SubjectPage () {
           />
         </Box>
         <Box
-          background='light-2'
           gridArea='subject-discussion'
         >
-          <Text color='drawing-pink'>Subject Discussion</Text>
+          <SubjectDiscussion
+            project={project}
+            subject={subjectData}
+          />
         </Box>
         <Box
           border={{ color: 'light-3', size: 'small', style: 'solid', side: 'top' }}
