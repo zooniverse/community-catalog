@@ -34,7 +34,11 @@ export default function SubjectPage () {
 
   return (
     <>
-      <Heading level='2' margin={{ horizontal: 'medium', vertical: 'xsmall' }}>
+      <Heading
+        level='2'
+        margin={{ horizontal: 'medium', vertical: 'xsmall' }}
+        truncate={true}
+      >
         {title}
       </Heading>
       <Grid
