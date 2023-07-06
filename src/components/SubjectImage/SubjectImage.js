@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Box, Image, Spinner } from 'grommet'
+import { Box, Image } from 'grommet'
 import { Image as ImageIcon } from 'grommet-icons'
 
 import strings from '@src/strings.json'

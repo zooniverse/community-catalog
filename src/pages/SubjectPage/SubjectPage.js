@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Box, Heading, Text } from 'grommet'
 import { useParams } from 'react-router-dom'
 
-import SubjectImage from '@src/components/SubjectImage'
+import SubjectViewer from '@src/components/SubjectViewer'
 import SearchResultsList from '@src/components/SearchResultsList'
 import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
@@ -38,7 +38,7 @@ export default function SubjectPage () {
           direction='row'
           gap='medium'
         >
-          <SubjectImage
+          <SubjectViewer
             subject={subjectData}
             width={800}
             height={500}
