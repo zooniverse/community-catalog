@@ -11,8 +11,7 @@ import RandomButton from '@src/components/RandomButton'
 import getQuery from '@src/helpers/getQuery'
 
 function ProjectPage () {
-  const store = useStores()
-  const project = store.project
+  const { project } = useStores()
   const projectSlug = project?.slug || ''
   const exampleSubjects = project?.exampleSubjects || []
   const exampleQuery = project?.exampleQuery || ''

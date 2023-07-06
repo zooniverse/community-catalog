@@ -14,8 +14,7 @@ const KeywordLink = styled(Link)`
 function SubjectKeywords ({
   subject = undefined,
 }) {
-  const store = useStores()
-  const project = store.project
+  const { project } = useStores()
   const projectId = project?.id
   const projectSlug = project?.slug || '' 
 

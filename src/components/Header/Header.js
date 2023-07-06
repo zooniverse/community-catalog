@@ -41,13 +41,13 @@ const HeaderSearchInput = styled(TextInput)`
 `
 
 function Header () {
-  const store = useStores()
-  const projectSlug = store.project?.slug || ''
+  const { project } = useStores()
+  const projectSlug = project?.slug || ''
   const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
   const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
   const env = getEnv()
 
-  if (!store.project) return (
+  if (!project) return (
     <Box
       align='center'
       alignContent='center'

@@ -13,9 +13,9 @@ const CleanLink = styled(Link)`
 `
 
 function KeywordsList () {
-  const store = useStores()
-  const projectId = store.project?.id
-  const projectSlug = store.project?.slug
+  const { project } = useStores()
+  const projectId = project?.id
+  const projectSlug = project?.slug
   const [ keywordsData, setKeywordsData ] = useState([])
   const [ page, setPage ] = useState(1)
   const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?

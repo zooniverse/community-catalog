@@ -8,12 +8,14 @@ import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
 
 import strings from '@src/strings.json'
+import useStores from '@src/store/useStores.js'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 import getQuery from '@src/helpers/getQuery.js'
 
 export default function SubjectPage () {
   const [ subjectData, setSubjectData ] = useState(undefined)
 
+  const { project } = useStores()
   const params = useParams()
   const subjectId = params.subjectId
   const query = getQuery()
