@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
+import { Code as CodeIcon } from 'grommet-icons'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
@@ -14,8 +15,7 @@ const KeywordLink = styled(Link)`
 function SubjectKeywords ({
   subject = undefined,
 }) {
-  const store = useStores()
-  const project = store.project
+  const { project } = useStores()
   const projectId = project?.id
   const projectSlug = project?.slug || '' 
 
@@ -32,6 +32,10 @@ function SubjectKeywords ({
     }
   }, [ projectId, subject ])
 
+  if (!subject) return (
+    <CodeIcon a11yTitle={strings.general.data_placeholder} />
+  )
+
   return (
     <Box
       align='end'
@@ -42,8 +46,13 @@ function SubjectKeywords ({
       <Box
         direction='row'
         gap='small'
+        justify='end'
         wrap={true}
       >
+        {(keywordsData.length === 0)
+          ? <Text>{strings.components.subject_keywords.no_keywords}</Text>
+          : null
+        }
         {keywordsData.map((keyword, i) => (
           <KeywordLink
             key={`subject-keyword-${i}`}

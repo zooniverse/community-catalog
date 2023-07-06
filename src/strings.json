@@ -24,12 +24,23 @@
       "search_results": "Search results for \"{query}\":",
       "search_results_all": "No query, so showing a sample of all items:"
     },
+    "subject_actions": {
+      "add_to_collection": "Add to Collection",
+      "add_to_favorites": "Add to Favorites",
+      "classify_subject": "Classify this Subject",
+      "share": "Share"
+    },
+    "subject_discussion": {
+      "title": "Subject Discussion",
+      "view_on_talk": "View this Subject Discussion on Talk"
+    },
     "subject_image": {
       "placeholder": "Placeholder for Subject image",
       "image": "Image {index} for Subject {subject_id}"
     },
     "subject_keywords": {
-      "community_tags": "COMMUNITY TAGS:"
+      "community_tags": "COMMUNITY TAGS:",
+      "no_keywords": "This subject has no community-created keywords yet."
     },
     "subject_metadata": {
       "institutional_metadata": "INSTITUTIONAL METADATA:"
@@ -39,7 +50,8 @@
     "could_not_find_project": "Could not find project"
   },
   "general": {
-    "app_name": "Communities & Crowds"
+    "app_name": "Communities & Crowds",
+    "data_placeholder": "Data placeholder"
   },
   "messages": {
     "app_ready": "App ready.",

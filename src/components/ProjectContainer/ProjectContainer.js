@@ -34,6 +34,7 @@ export default function ProjectContainer ({}) {
           level='1'
           color='dark-4'
           textAlign='center'
+          truncate={true}
         >
           {selectedProject.name}
         </Heading>

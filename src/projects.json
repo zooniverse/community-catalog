@@ -28,7 +28,9 @@
           "title": "Example Photo C"
         }
       ],
-      "titleField": "folder"
+      "titleField": "folder",
+      "classifyUrl": "https://frontend.preview.zooniverse.org/projects/darkeshard/community-catalog/classify/workflow/23968/subject/{subject_id}",
+      "viewOnTalkUrl": "https://www.zooniverse.org/projects/darkeshard/community-catalog/talk/subjects/{subject_id}"
     }, {
       "name": "Scarlets & Blues (Performance Test Only)",
       "slug": "bogden/scarlets-and-blues",
@@ -50,7 +52,9 @@
           "title": "Example Photo C (S&B)"
         }
       ],
-      "titleField": "Catalogue"
+      "titleField": "Catalogue",
+      "classifyUrl": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues",
+      "viewOnTalkUrl": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/{subject_id}"
     }
   ]
 }

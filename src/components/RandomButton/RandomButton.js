@@ -28,7 +28,7 @@ export default function RandomButton ({
   async function onClick () {
     try {
       setIsWorking(true)
-      setMessage(strings.components.random_button.working)
+      setMessage(strings.components.random_button.working)  // NOTE: Button.busy may make the "working" message unnecessary
 
       const subjectId = await getRandomSubject(project.id)
       if (subjectId) {
@@ -49,6 +49,7 @@ export default function RandomButton ({
   return (
     <Button
       primary
+      busy={isWorking}
       disabled={isWorking}
       label={message}
       onClick={onClick}

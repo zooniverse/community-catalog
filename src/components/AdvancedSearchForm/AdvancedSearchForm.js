@@ -59,9 +59,6 @@ export default function AdvancedSearchForm ({ project }) {
             )
           })}
         </Box>
-        <Box>
-          <button type='submit'>SUBMIT</button>
-        </Box>
       </Form>
     </Box>
   )

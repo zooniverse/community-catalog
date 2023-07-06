@@ -9,10 +9,9 @@ import { useStores } from '@src/store'
 
 function SearchPage () {
   const query = getQuery() || ''
-  const store = useStores()
+  const { project } = useStores()
   const location = useLocation();
-  const project = store.project
-
+  
   useEffect(() => {
     console.log('Query parameters changed, refreshing Search Page.')
   }, [ location ])

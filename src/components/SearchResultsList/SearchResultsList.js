@@ -11,8 +11,7 @@ import SearchResult from './SearchResult.js'
 function SearchResultsList ({
   query = '',
 }) {
-  const store = useStores()
-  const project = store.project
+  const { project } = useStores()
   const projectSlug = project?.slug || ''
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
