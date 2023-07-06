@@ -44,6 +44,10 @@ function SubjectKeywords ({
         gap='small'
         wrap={true}
       >
+        {(keywordsData.length === 0)
+          ? <Text>{strings.components.subject_keywords.no_keywords}</Text>
+          : null
+        }
         {keywordsData.map((keyword, i) => (
           <KeywordLink
             key={`subject-keyword-${i}`}

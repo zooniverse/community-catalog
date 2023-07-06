@@ -29,7 +29,8 @@
       "image": "Image {index} for Subject {subject_id}"
     },
     "subject_keywords": {
-      "community_tags": "COMMUNITY TAGS:"
+      "community_tags": "COMMUNITY TAGS:",
+      "no_keywords": "This subject has no community-created keywords yet."
     },
     "subject_metadata": {
       "institutional_metadata": "INSTITUTIONAL METADATA:"
