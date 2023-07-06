@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Box, Heading, Text } from 'grommet'
+import { Box, Grid, Heading, Text } from 'grommet'
 import { useParams } from 'react-router-dom'
 
 import SubjectViewer from '@src/components/SubjectViewer'
@@ -25,59 +25,54 @@ export default function SubjectPage () {
 
   return (
     <>
-      <Box
+      <Heading as='h2' margin={{ horizontal: 'medium' }}>
+        {(subjectId)
+          ? strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)
+          : strings.pages.subject_page.no_subject
+        }
+      </Heading>
+      <Grid
+        rows={['auto', 'auto']}
+        columns={['auto', 'auto']}
         pad='medium'
+        gap='small'
+        areas={[
+          { name: 'subject-viewer', start: [0, 0], end: [1, 0] },
+          { name: 'subject-discussion', start: [1, 0], end: [1, 0] },
+          { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
+          { name: 'additional-actions', start: [1, 1], end: [1, 1] },
+        ]}
       >
-        <Heading as='h2'>
-          {(subjectId)
-            ? strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)
-            : strings.pages.subject_page.no_subject
-          }
-        </Heading>
-        <Box
-          direction='row'
-          gap='medium'
-        >
+        <Box gridArea='subject-viewer'>
           <SubjectViewer
             subject={subjectData}
             width={800}
             height={500}
           />
-          <Box border={true} color='drawing-pink'>Subject Discussion</Box>
         </Box>
-      </Box>
-      <Box
-        direction='row'
-        gap='medium'
-        pad='small'
-      >
+        <Box
+          background='light-2'
+          gridArea='subject-discussion'
+        >
+          <Text color='drawing-pink'>Subject Discussion</Text>
+        </Box>
         <Box
           border={{ color: 'light-3', size: 'small', style: 'solid', side: 'top' }}
+          gridArea='subject-metadata-and-keywords'
+          direction='row'
+          gap='small'
+          justify='around'
         >
-          <Box
-            direction='row'
-            gap='small'
-            pad='small'
-          >
-            <Text color='drawing-pink'>Add to Favorites</Text>
-            <Text color='drawing-pink'>Add to Collection</Text>
-            <Text color='drawing-pink'>Classify this Subject</Text>
-          </Box>
-          <Box
-            direction='row'
-            gap='small'
-            justify='around'
-            width='800px'
-          >
-            <SubjectMetadata subject={subjectData} />
-            <SubjectKeywords subject={subjectData} />
-          </Box>
+          <SubjectMetadata subject={subjectData} />
+          <SubjectKeywords subject={subjectData} />
         </Box>
-        <Box border={true}>
-          <Text color='drawing-pink'>Your Activity</Text>
+        <Box
+          border={true}
+          gridArea='additional-actions'
+        >
+          <Text color='drawing-pink'>Additional Actions</Text>
         </Box>
-
-      </Box>
+      </Grid>
       <SearchResultsList query={query} />
     </>
   )
