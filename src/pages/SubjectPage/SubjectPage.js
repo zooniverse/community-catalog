@@ -51,7 +51,9 @@ export default function SubjectPage () {
         gap='medium'
         pad='small'
       >
-        <Box>
+        <Box
+          border={{ color: 'light-3', size: 'small', style: 'solid', side: 'top' }}
+        >
           <Box
             direction='row'
             gap='small'
