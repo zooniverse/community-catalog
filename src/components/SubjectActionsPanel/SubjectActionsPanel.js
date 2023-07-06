@@ -1,8 +1,19 @@
-import { Box, Text } from 'grommet'
-import { Code as CodeIcon } from 'grommet-icons'
-import Link from '@src/components/Link'
+import { Anchor, Box, Text } from 'grommet'
+import {
+  Code as CodeIcon,
+  Clipboard as ClassifyIcon,
+  ShareOption as ShareIcon,
+} from 'grommet-icons'
+import styled from 'styled-components'
 
+import Link from '@src/components/Link'
 import strings from '@src/strings.json'
+
+const StyledLink = styled(Anchor)`
+  color: ${props => props.color};
+  text-decoration: none;
+  text-transform: uppercase;
+`
 
 export default function SubjectActionsPanel ({
   project, subject
@@ -20,13 +31,14 @@ export default function SubjectActionsPanel ({
       pad='xsmall'
       round='xsmall'
     >
-      Subject Actions Panel
-
-      <Link
-        to={classifySubjectUrl}
-      >
-        <Text>{strings.components.subject_actions.classify_subject}</Text>
-      </Link>
+      <StyledLink
+        color='#000000'
+        gap='xsmall'
+        href={classifySubjectUrl}
+        icon={<ClassifyIcon size='small' />}
+        label={<Text>{strings.components.subject_actions.classify_subject}</Text>}
+        margin='small'
+      />
     </Box>
 
   )
