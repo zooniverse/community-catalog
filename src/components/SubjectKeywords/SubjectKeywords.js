@@ -46,6 +46,7 @@ function SubjectKeywords ({
       <Box
         direction='row'
         gap='small'
+        justify='end'
         wrap={true}
       >
         {(keywordsData.length === 0)
