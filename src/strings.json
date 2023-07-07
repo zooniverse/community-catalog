@@ -44,6 +44,10 @@
     },
     "subject_metadata": {
       "institutional_metadata": "INSTITUTIONAL METADATA:"
+    },
+    "subject_viewer": {
+      "next_item": "View next image",
+      "prev_item": "View previous image"
     }
   },
   "errors": {
