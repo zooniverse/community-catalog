@@ -49,7 +49,6 @@ export default function AdvancedSearchForm ({ project }) {
           {project.advanced_search?.map(item => {
             const name = `${item.field}`
             const display = item.alias || item.field
-            const defaultValue = initialValues[name]
             
             return (
               <Box key={name}>
