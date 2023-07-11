@@ -1,4 +1,5 @@
-import { Anchor, Box, Text, TextInput } from 'grommet'
+import { useContext } from 'react'
+import { Anchor, Box, ResponsiveContext, Text, TextInput } from 'grommet'
 import { Search, Share } from 'grommet-icons'
 import { Link } from 'react-router-dom'
 import { ZooniverseLogo } from '@zooniverse/react-components'
@@ -12,10 +13,6 @@ import getEnv from '@src/helpers/getEnv.js'
 const LogoLink = styled(Link)`
   color: #e2e5e9;
   text-decoration: none;
-`
-
-const HeaderLogoAndTitle = styled(Box)`
-  margin-right: 4em;
 `
 
 const HeaderTitle = styled(Text)`
@@ -40,62 +37,39 @@ const HeaderSearchInput = styled(TextInput)`
   color: black;
 `
 
+const containerProps = {
+  align: 'center',
+  alignContent: 'center',
+  as: 'header',
+  background: 'black',
+  direction: 'row',
+  gap: 'small',
+  pad: 'small',
+  wrap: true,
+}
+
 function Header () {
   const { project } = useStores()
   const projectSlug = project?.slug || ''
   const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
   const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
   const env = getEnv()
+  const size = useContext(ResponsiveContext)
 
   if (!project) return (
     <Box
-      align='center'
-      alignContent='center'
-      as='header'
-      background='black'
-      direction='row'
-      gap='small'
-      pad='small'
-      wrap={true}
+      {...containerProps}
     >
-      <LogoLink
-        to={`/`}
-      >
-        <HeaderLogoAndTitle
-          align='center'
-          flex={false}
-          width='xsmall'
-        >
-          <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-          <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
-        </HeaderLogoAndTitle>
-      </LogoLink>
+      <HeaderLogoAndTitle />
     </Box>
   )
 
   return (
     <Box
-      align='center'
-      alignContent='center'
-      as='header'
-      background='black'
-      direction='row'
-      gap='small'
-      pad='small'
-      wrap={true}
+      {...containerProps}
     >
-      <LogoLink
-        to={`/`}
-      >
-        <HeaderLogoAndTitle
-          align='center'
-          flex={false}
-          width='xsmall'
-        >
-          <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-          <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
-        </HeaderLogoAndTitle>
-      </LogoLink>
+      <HeaderLogoAndTitle />
+      <Box flex='grow' />
       <HeaderLink
         icon={<Share size='small' />}
         label='Project Home Page'
@@ -128,6 +102,23 @@ function Header () {
         }
       </HeaderSearchForm>
     </Box>
+  )
+}
+
+function HeaderLogoAndTitle () {
+  return (
+    <LogoLink
+      to={`/`}
+    >
+      <Box
+        align='center'
+        flex={false}
+        width='xsmall'
+      >
+        <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
+        <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
+      </Box>
+    </LogoLink>
   )
 }
 
