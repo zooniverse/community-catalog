@@ -5,6 +5,7 @@
     },
     "footer": "This page made possible by Communities and Crowds, Zooniverse, and viewers like you.",
     "header": {
+      "narrow_view_menu": "Menu",
       "project_button": "Project Home Page",
       "talk_button": "Talk Board"
     },

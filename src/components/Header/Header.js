@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { Anchor, Box, ResponsiveContext, Text, TextInput } from 'grommet'
+import { useContext, useState } from 'react'
+import { Accordion, AccordionPanel, Anchor, Box, ResponsiveContext, Text, TextInput } from 'grommet'
 import { Search, Share } from 'grommet-icons'
 import { Link } from 'react-router-dom'
 import { ZooniverseLogo } from '@zooniverse/react-components'
@@ -43,22 +43,29 @@ const containerProps = {
   as: 'header',
   background: 'black',
   direction: 'row',
-  gap: 'small',
   pad: 'small',
   wrap: true,
 }
 
+const headerLinkProps = {
+  icon: <Share size='small' />,
+  reverse: true,
+  size: 'small',
+  target: '_blank',
+  weight: 'normal',
+  
+}
+
 function Header () {
   const { project } = useStores()
-  const projectSlug = project?.slug || ''
-  const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
-  const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
   const env = getEnv()
   const size = useContext(ResponsiveContext)
+  const isNarrowView = size === 'small'
 
   if (!project) return (
     <Box
       {...containerProps}
+      direction={(!isNarrowView) ? 'row' : 'column'}
     >
       <HeaderLogoAndTitle />
     </Box>
@@ -67,40 +74,16 @@ function Header () {
   return (
     <Box
       {...containerProps}
+      direction={(!isNarrowView) ? 'row' : 'column'}
     >
       <HeaderLogoAndTitle />
-      <Box flex='grow' />
-      <HeaderLink
-        icon={<Share size='small' />}
-        label='Project Home Page'
-        href={projectURL}
-        reverse={true}
-        size='small'
-        target='_blank'
-        weight='normal'
-      />
-      <HeaderLink
-        icon={<Share size='small' />}
-        label='Talk Board'
-        href={talkURL}
-        reverse={true}
-        size='small'
-        target='_blank'
-        weight='normal'
-      />
-      <HeaderSearchForm
-        action={`/projects/${projectSlug}/search`}
-        method='get'
-      >
-        <HeaderSearchInput
-          name='query'
-          icon={<Search size='small' />}
-        />
-        {(env)
-          ? <input name='env' value={env} type='hidden' />
-          : null
-        }
-      </HeaderSearchForm>
+      {(!isNarrowView)
+        ? <WideProjectControls project={project} env={env} />
+        : <NarrowProjectControls
+            project={project}
+            env={env}
+          />
+      }
     </Box>
   )
 }
@@ -119,6 +102,94 @@ function HeaderLogoAndTitle () {
         <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
       </Box>
     </LogoLink>
+  )
+}
+
+function WideProjectControls ({
+  project,
+  env
+}) {
+  const projectSlug = project?.slug || ''
+  const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
+  const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
+  
+  return (
+    <Box
+      direction='row'
+      flex='grow'
+      gap='small'
+    >
+      <Box flex='grow' />
+      <HeaderLink
+        {...headerLinkProps}
+        label='Project Home Page'
+        href={projectURL}
+      />
+      <HeaderLink
+        {...headerLinkProps}
+        label='Talk Board'
+        href={talkURL}
+      />
+      <HeaderSearchForm
+        action={`/projects/${projectSlug}/search`}
+        method='get'
+      >
+        <HeaderSearchInput
+          name='query'
+          icon={<Search size='small' />}
+        />
+        {(env)
+          ? <input name='env' value={env} type='hidden' />
+          : null
+        }
+      </HeaderSearchForm>
+    </Box>
+  )
+}
+
+function NarrowProjectControls ({
+  project,
+  env
+}) {
+  const projectSlug = project?.slug || ''
+  const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
+  const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
+
+  return (
+    <Accordion
+      flex='grow'
+    >
+      <AccordionPanel label={strings.components.header.narrow_view_menu}>
+        <Box
+          direction='column'
+          gap='small'
+        >
+          <HeaderLink
+            {...headerLinkProps}
+            label='Project Home Page'
+            href={projectURL}
+          />
+          <HeaderLink
+            {...headerLinkProps}
+            label='Talk Board'
+            href={talkURL}
+          />
+          <HeaderSearchForm
+            action={`/projects/${projectSlug}/search`}
+            method='get'
+          >
+            <HeaderSearchInput
+              name='query'
+              icon={<Search size='small' />}
+            />
+            {(env)
+              ? <input name='env' value={env} type='hidden' />
+              : null
+            }
+          </HeaderSearchForm>
+        </Box>
+      </AccordionPanel>
+    </Accordion>
   )
 }
 
