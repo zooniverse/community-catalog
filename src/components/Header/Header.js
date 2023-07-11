@@ -101,8 +101,10 @@ function Header () {
       {(!isNarrowView)
         ? <ProjectLink to={`/projects/${project?.slug}`}>
             <Heading
+              size='1.1em'
               level='1'
               color='light-1'
+              margin={{ bottom: '0' }}
             >
               {project?.name}
             </Heading>
@@ -183,17 +185,25 @@ function NarrowProjectControls ({
   return (
     <Accordion
       flex='grow'
+      width='100%'
     >
-      <AccordionPanel label={project?.name || strings.components.header.narrow_view_menu}>
+      <AccordionPanel label={strings.components.header.narrow_view_menu}>
         <Box
           direction='column'
           gap='small'
         >
-          <Link          
+          <ProjectLink
             to={`/projects/${projectSlug}`}
           >
-            <Text color='light-1'>Home</Text>
-          </Link>
+            <Heading
+              size='1.1em'
+              level='1'
+              color='light-1'
+              margin={{ bottom: '0' }}
+            >
+              {project?.name}
+            </Heading>
+          </ProjectLink>
           <HeaderLink
             {...headerLinkProps}
             label='Project Home Page'
