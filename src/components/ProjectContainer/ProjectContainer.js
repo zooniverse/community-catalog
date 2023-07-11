@@ -28,18 +28,6 @@ export default function ProjectContainer ({}) {
   if (!selectedProject) throw new Error(strings?.errors?.could_not_find_project || 'Could not find project')
 
   return (
-    <>
-      <ProjectLink to={`/projects/${projectSlug}`}>
-        <Heading
-          level='1'
-          color='dark-4'
-          textAlign='center'
-          truncate={true}
-        >
-          {selectedProject.name}
-        </Heading>
-      </ProjectLink>
-      <Outlet />
-    </>
+    <Outlet />
   )
 }
