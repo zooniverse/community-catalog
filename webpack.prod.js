@@ -33,6 +33,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.EnvironmentPlugin(['HEAD_COMMIT']),
     new webpack.ProvidePlugin({
       favicon: 'src/favicon.ico',
       process: 'process/browser',
