@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Box, Grid, Heading, Text } from 'grommet'
+import { useContext, useEffect, useState } from 'react'
+import { Box, Grid, Heading, ResponsiveContext } from 'grommet'
 import { useParams } from 'react-router-dom'
 
 import SearchResultsList from '@src/components/SearchResultsList'
@@ -16,6 +16,7 @@ import getQuery from '@src/helpers/getQuery.js'
 
 export default function SubjectPage () {
   const [ subjectData, setSubjectData ] = useState(undefined)
+  const size = useContext(ResponsiveContext)
 
   const { project } = useStores()
   const params = useParams()
@@ -34,6 +35,23 @@ export default function SubjectPage () {
       || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
     : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
 
+  const isNarrowView = size === 'small'
+  const rows = (!isNarrowView) ? ['auto', 'auto'] : ['auto', 'auto', 'auto', 'auto']
+  const columns = (!isNarrowView) ? ['auto', 'auto'] : ['auto']
+  const areas = (!isNarrowView)
+    ? [
+        { name: 'subject-viewer', start: [0, 0], end: [0, 0] },
+        { name: 'subject-discussion', start: [1, 0], end: [1, 0] },
+        { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
+        { name: 'subject-actions', start: [1, 1], end: [1, 1] },
+      ]
+    : [
+        { name: 'subject-viewer', start: [0, 0], end: [0, 0] },
+        { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
+        { name: 'subject-actions', start: [0, 2], end: [0, 2] },
+        { name: 'subject-discussion', start: [0, 3], end: [0, 3] },
+      ]
+
   return (
     <>
       <Heading
@@ -44,17 +62,12 @@ export default function SubjectPage () {
         {title}
       </Heading>
       <Grid
-        rows={['auto', 'auto']}
-        columns={['auto', 'auto']}
+        rows={rows}
+        columns={columns}
         pad={{ horizontal: 'small', vertical: 'none' }}
         margin={{ bottom: 'small' }}
         gap='small'
-        areas={[
-          { name: 'subject-viewer', start: [0, 0], end: [1, 0] },
-          { name: 'subject-discussion', start: [1, 0], end: [1, 0] },
-          { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
-          { name: 'subject-actions', start: [1, 1], end: [1, 1] },
-        ]}
+        areas={areas}
       >
         <Box
           gridArea='subject-viewer'

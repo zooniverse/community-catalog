@@ -4,13 +4,30 @@ import { deepMerge } from 'grommet/utils'
 import auth from 'panoptes-client/lib/auth'
 import zooTheme from '@zooniverse/grommet-theme'
 import { Outlet } from 'react-router-dom'
+import styled from 'styled-components'
 
+import { LAYOUT_MAIN_MAX_WIDTH, NARROW_VIEW_WIDTH } from '@src/config.js'
 import strings from '@src/strings.json'
 import { AppContext, useStores } from '@src/store'
 import Header from '@src/components/Header'
 import Footer from '@src/components/Footer'
 
-const appTheme = deepMerge(baseTheme, zooTheme)
+let appTheme = deepMerge(baseTheme, zooTheme)
+appTheme = deepMerge(appTheme, {
+  global: {
+    breakpoints: {
+      small: {
+        value: NARROW_VIEW_WIDTH
+      }
+    }
+  }
+})
+
+const MainBox = styled(Box)`
+  width: 100%;
+  max-width: ${LAYOUT_MAIN_MAX_WIDTH}px;
+  margin: 0 auto;
+`  // Limit size on extremely wide screens.
 
 export default function App () {
   const [ initialised, setInitialised ] = useState(false)
@@ -36,9 +53,11 @@ export default function App () {
         <Box>
           <Header />
           {(initialised) ?
-          <Box as='main'>
+          <MainBox
+            as='main'
+          >
             <Outlet />
-          </Box> :
+          </MainBox> :
           <Box
             align='center'
             justify='center'

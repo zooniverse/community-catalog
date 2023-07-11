@@ -5,8 +5,14 @@ import strings from '@src/strings.json'
 export default function Footer () {
   return (
     <GrommetFooter
-      pad='small'
+      align='center'
+      alignContent='center'
+      as='header'
+      background='black'
       direction='column'
+      gap='small'
+      pad='small'
+      wrap={true}
     >
       <Text
         size='small'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Image } from 'grommet'
-import { Image as ImageIcon } from 'grommet-icons'
+import { FormNext as RightIcon, FormPrevious as LeftIcon, Image as ImageIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
 import strings, { css } from '@src/strings.json'
@@ -37,6 +37,14 @@ export default function SubjectViewer ({
     setIndex(0)
 
   }, [subject, subjectId])
+
+  function goPrevIndex () {
+    setIndex(Math.max(index - 1, 0))
+  }
+
+  function goNextIndex () {
+    setIndex(Math.min(index + 1, subjectData?.locations?.length - 1 || 0))
+  }
   
   let filmstripSrcs = []
   let imgSrc = src
@@ -84,6 +92,15 @@ export default function SubjectViewer ({
         direction='row'
         justify='center'
       >
+        {(filmstripSrcs.length > 0)
+          ? <Button
+              a11yTitle={strings.components.subject_viewer.prev_item}
+              icon={<LeftIcon />}
+              onClick={goPrevIndex}
+            />
+          : null
+        }
+
         {filmstripSrcs.map((filmstripSrc, _index) => {
           const isSelected = _index === index
 
@@ -103,7 +120,16 @@ export default function SubjectViewer ({
               />
             </Button>
           )
-          })}
+        })}
+
+        {(filmstripSrcs.length > 0)
+          ? <Button
+              a11yTitle={strings.components.subject_viewer.next_item}
+              icon={<RightIcon />}
+              onClick={goNextIndex}
+            />
+          : null
+        }
       </Box>
     </Box>
   )
