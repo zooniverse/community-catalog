@@ -1,7 +1,16 @@
 import { useContext, useState } from 'react'
-import { Accordion, AccordionPanel, Anchor, Box, ResponsiveContext, Text, TextInput } from 'grommet'
+import {
+  Accordion,
+  AccordionPanel,
+  Anchor,
+  Box,
+  Heading,
+  ResponsiveContext,
+  Text,
+  TextInput
+} from 'grommet'
 import { Search, Share } from 'grommet-icons'
-import { Link } from 'react-router-dom'
+import Link from '@src/components/Link'
 import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
@@ -35,6 +44,11 @@ const HeaderSearchForm = styled('form')`
 const HeaderSearchInput = styled(TextInput)`
   background: white;
   color: black;
+`
+
+const ProjectLink = styled(Link)`
+  text-decoration: none;
+  width: 100%;
 `
 
 const containerProps = {
@@ -83,6 +97,17 @@ function Header () {
             project={project}
             env={env}
           />
+      }
+      {(!isNarrowView)
+        ? <ProjectLink to={`/projects/${project?.slug}`}>
+            <Heading
+              level='1'
+              color='light-1'
+            >
+              {project?.name}
+            </Heading>
+          </ProjectLink>
+        : null
       }
     </Box>
   )
@@ -159,11 +184,16 @@ function NarrowProjectControls ({
     <Accordion
       flex='grow'
     >
-      <AccordionPanel label={strings.components.header.narrow_view_menu}>
+      <AccordionPanel label={project?.name || strings.components.header.narrow_view_menu}>
         <Box
           direction='column'
           gap='small'
         >
+          <Link          
+            to={`/projects/${projectSlug}`}
+          >
+            <Text color='light-1'>Home</Text>
+          </Link>
           <HeaderLink
             {...headerLinkProps}
             label='Project Home Page'
