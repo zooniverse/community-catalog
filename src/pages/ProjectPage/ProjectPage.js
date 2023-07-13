@@ -40,6 +40,7 @@ function ProjectPage () {
                 <Text>{sbj.title}</Text>
                 <Link to={`/projects/${projectSlug}/subject/${sbj.id}`} key={`home-subject-${sbj.id}`}>
                   <SubjectImage
+                    background='dark-1'
                     subjectId={sbj.id}
                     width={imgWidth}
                     height={imgHeight}
