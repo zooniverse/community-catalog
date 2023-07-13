@@ -17,10 +17,7 @@ function SearchPage () {
   }, [ location ])
 
   return (
-    <>
-      <AdvancedSearchForm project={project} />
-      <SearchResultsList query={query} />
-    </>
+    <SearchResultsList query={query} />
   )
 }
 
