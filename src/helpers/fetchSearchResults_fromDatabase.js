@@ -1,13 +1,11 @@
 /*
-Fetches search results from the Subjects database. Specifically, it searches for TAGs
-(hashtags) in posts, for a specific project.
+Fetches search results from the Subjects database.
 
 Inputs:
 - (string/int) projectId
 - (object) queryObject: contains keys with values to search for.
   e.g. { colour: 'red', shape: 'circle' }
   becomes "SELECT * FROM whatever WHERE (colour = '%red%') OR (shape = '%circle%')"
-- (function) setData: callback function after successful data fetch
 
 Outputs:
 - Array of subject IDs (strings)

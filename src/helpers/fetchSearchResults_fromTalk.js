@@ -6,7 +6,6 @@ Inputs:
 - (string/int) projectId
 - (string) queryString: tag/hashtag to search for.
   e.g. to search for Talk posts tagged with "#penguins", pass in queryString="penguins"
-- (function) setData: callback function after successful data fetch
 
 Outputs:
 - Array of subject IDs (strings)
