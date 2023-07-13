@@ -78,10 +78,6 @@ function KeywordsList () {
         justify='end'
         pad='small'
       >
-        <CleanLink to={`/projects/${projectSlug}/search`}>
-          <Text color='black'>{strings.components.keywords_list.advanced_search}</Text>
-        </CleanLink>
-        &nbsp; &nbsp;
         {moreToShow ? (
           <CleanLink onClick={getMoreKeywords}>
             <Text color='black'>{strings.components.keywords_list.show_more}</Text>
