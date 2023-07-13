@@ -12,6 +12,17 @@ import Link from '@src/components/Link'
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
+
+const KeywordBox = styled(Box)`
+  &:hover {
+    background: #00979d;
+  }
+
+  &:active {
+    background: #005D69;
+  }
+`
+
 function SubjectKeywords ({
   subject = undefined,
 }) {
@@ -58,7 +69,7 @@ function SubjectKeywords ({
             key={`subject-keyword-${i}`}
             to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`}
           >
-            <Box
+            <KeywordBox
               background='light-2'
               elevation='xsmall'
               margin={{ bottom: 'small' }}
@@ -66,7 +77,7 @@ function SubjectKeywords ({
               round='large'
             >
               <Text color='black'>#{keyword.name}</Text>
-            </Box>
+            </KeywordBox>
           </KeywordLink>
         ))}
       </Box>
