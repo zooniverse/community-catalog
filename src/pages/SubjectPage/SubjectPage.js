@@ -75,7 +75,7 @@ export default function SubjectPage () {
         >
           <SubjectViewer
             subject={subjectData}
-            width={800}
+            width={1000}
             height={500}
           />
         </Box>
