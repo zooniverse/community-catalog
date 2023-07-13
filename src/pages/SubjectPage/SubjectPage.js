@@ -57,6 +57,7 @@ export default function SubjectPage () {
       <Heading
         level='2'
         margin={{ horizontal: 'small', vertical: 'xsmall' }}
+        size='1.1em'
         truncate={true}
       >
         {title}
