@@ -12,6 +12,16 @@ const CleanLink = styled(Link)`
   text-decoration: none;
 `
 
+const KeywordBox = styled(Box)`
+  &:hover {
+    background: #00979d;
+  }
+
+  &:active {
+    background: #005D69;
+  }
+`
+
 function KeywordsList () {
   const { project } = useStores()
   const projectId = project?.id
@@ -60,7 +70,7 @@ function KeywordsList () {
       >
         {keywordsData.map((keyword, i) => (
           <CleanLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
-            <Box
+            <KeywordBox
               background='white'
               elevation='xsmall'
               margin={{ bottom: 'small' }}
@@ -68,7 +78,7 @@ function KeywordsList () {
               round='large'
             >
               <Text color='black'>#{keyword.name}</Text>
-            </Box>
+            </KeywordBox>
           </CleanLink>
         ))}
         {(keywordsData.length === 0) && <Text>{strings.messages.no_keywords_found}</Text>}
@@ -78,10 +88,6 @@ function KeywordsList () {
         justify='end'
         pad='small'
       >
-        <CleanLink to={`/projects/${projectSlug}/search`}>
-          <Text color='black'>{strings.components.keywords_list.advanced_search}</Text>
-        </CleanLink>
-        &nbsp; &nbsp;
         {moreToShow ? (
           <CleanLink onClick={getMoreKeywords}>
             <Text color='black'>{strings.components.keywords_list.show_more}</Text>

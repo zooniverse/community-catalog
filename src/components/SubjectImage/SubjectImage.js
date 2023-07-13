@@ -6,6 +6,8 @@ import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
 
 export default function SubjectImage ({
+  background = 'light-1',
+  border = true,
   src,
   subject = undefined,
   subjectId = '',  // For an example, use Subject '69734802', of Project 12268, in Subject Set 98889. see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
@@ -40,8 +42,8 @@ export default function SubjectImage ({
 
   return (
     <Box
-      background='light-1'
-      border={true}
+      background={background}
+      border={border}
       width={`${width}px`}
       height={`${height}px`}
       align={imgSrc ? undefined : 'center'} 

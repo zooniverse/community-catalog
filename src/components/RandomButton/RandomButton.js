@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from 'grommet'
 
 import strings from '@src/strings.json'
-import getRandomSubject from '@src/helpers/getRandomSubject.js'
+import fetchRandomSubjects from '@src/helpers/fetchRandomSubjects.js'
 import getEnv from '@src/helpers/getEnv.js'
 
 export default function RandomButton ({
@@ -30,7 +30,8 @@ export default function RandomButton ({
       setIsWorking(true)
       setMessage(strings.components.random_button.working)  // NOTE: Button.busy may make the "working" message unnecessary
 
-      const subjectId = await getRandomSubject(project.id)
+      const subjects = await fetchRandomSubjects(project.id, 1)
+      const subjectId = subjects?.[0]
       if (subjectId) {
         const env = getEnv()
         navigate(`/projects/${project.slug}/subject/${subjectId}${

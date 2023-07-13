@@ -6,11 +6,10 @@
     "footer": "This page made possible by Communities and Crowds, Zooniverse, and viewers like you.",
     "header": {
       "narrow_view_menu": "Menu",
-      "project_button": "Project Home Page",
+      "project_button": "Project Home",
       "talk_button": "Talk Board"
     },
     "keywords_list": {
-      "advanced_search": "Advanced Search",
       "no_more": "No more to show",
       "show_more": "Show More",
       "start_exploring": "Use these keywords to start exploring:"
@@ -23,7 +22,7 @@
     "search_results_list": {
       "no_results": "No items found, sorry",
       "search_results": "Search results for \"{query}\":",
-      "search_results_all": "No query, so showing a sample of all items:"
+      "search_results_random": "Continue exploring:"
     },
     "subject_actions": {
       "add_to_collection": "Add to Collection",

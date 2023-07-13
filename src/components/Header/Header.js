@@ -34,8 +34,17 @@ const HeaderLink = styled(Anchor)`
   flex: 0 0 auto;
   padding: 1em;
   text-align: center;
-  width: 13em;
+  max-width: 11em;
+  width: 100%;
 `
+
+const headerLinkProps = {
+  icon: <Share size='small' color='black' />,
+  reverse: true,
+  size: 'small',
+  target: '_blank',
+  weight: 'normal',
+}
 
 const HeaderSearchForm = styled('form')`
   margin: 0;
@@ -59,15 +68,6 @@ const containerProps = {
   direction: 'row',
   pad: 'small',
   wrap: true,
-}
-
-const headerLinkProps = {
-  icon: <Share size='small' />,
-  reverse: true,
-  size: 'small',
-  target: '_blank',
-  weight: 'normal',
-  
 }
 
 function Header () {
@@ -149,12 +149,12 @@ function WideProjectControls ({
       <Box flex='grow' />
       <HeaderLink
         {...headerLinkProps}
-        label='Project Home Page'
+        label={strings.components.header.project_button}
         href={projectURL}
       />
       <HeaderLink
         {...headerLinkProps}
-        label='Talk Board'
+        label={strings.components.header.talk_button}
         href={talkURL}
       />
       <HeaderSearchForm
@@ -163,7 +163,8 @@ function WideProjectControls ({
       >
         <HeaderSearchInput
           name='query'
-          icon={<Search size='small' />}
+          icon={<Search color='black' size='small' />}
+          width={{ min: 'medium', max: 'xlarge' }}
         />
         {(env)
           ? <input name='env' value={env} type='hidden' />
@@ -206,12 +207,12 @@ function NarrowProjectControls ({
           </ProjectLink>
           <HeaderLink
             {...headerLinkProps}
-            label='Project Home Page'
+            label={strings.components.header.project_button}
             href={projectURL}
           />
           <HeaderLink
             {...headerLinkProps}
-            label='Talk Board'
+            label={strings.components.header.talk_button}
             href={talkURL}
           />
           <HeaderSearchForm

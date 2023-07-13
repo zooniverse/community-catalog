@@ -57,6 +57,7 @@ export default function SubjectPage () {
       <Heading
         level='2'
         margin={{ horizontal: 'small', vertical: 'xsmall' }}
+        size='1.1em'
         truncate={true}
       >
         {title}
@@ -75,7 +76,7 @@ export default function SubjectPage () {
         >
           <SubjectViewer
             subject={subjectData}
-            width={800}
+            width={1000}
             height={500}
           />
         </Box>

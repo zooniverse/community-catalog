@@ -15,6 +15,7 @@ import { KEYWORDS_KEY } from '@src/config.js'
 import convertAdvancedQueryFromString from './convertAdvancedQueryFromString.js'
 import fetchSearchResults_fromTalk from './fetchSearchResults_fromTalk.js'
 import fetchSearchResults_fromDatabase from './fetchSearchResults_fromDatabase.js'
+import fetchRandomSubjects from './fetchRandomSubjects.js'
 
 export default async function fetchSearchResults (
   project,
@@ -31,7 +32,14 @@ export default async function fetchSearchResults (
   let queryForDatabase = {}
   const queryObject = convertAdvancedQueryFromString(query)
 
-  if (isThisAnAdvancedQuery(query)) {
+  if (!query.trim()) {
+    // The default query simply results in a random 
+
+    const subjectIds = await fetchRandomSubjects(project.id)
+    setData(subjectIds)
+    return
+
+  } else if (isThisAnAdvancedQuery(query)) {
     // An advanced query searches for specific values in specific fields,
     // e.g. "{animal=cat} {color=orange} {loves=lasagna} {hates=mondays}"
 
