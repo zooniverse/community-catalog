@@ -1,4 +1,6 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 import {
   Accordion,
   AccordionPanel,
@@ -76,8 +78,13 @@ function Header () {
   const env = getEnv()
   const size = useContext(ResponsiveContext)
   const isNarrowView = size === 'small'
-  const defaultQuery = getQuery() || ''
-  const [ query, setQuery ] = useState(defaultQuery)
+  const queryFromUrl = getQuery() || ''
+  const [ query, setQuery ] = useState(queryFromUrl)
+  const location = useLocation()
+
+  useEffect(function onUrlChange () {
+    setQuery(queryFromUrl)
+  }, [ location ])
 
   if (!project) return (
     <Box

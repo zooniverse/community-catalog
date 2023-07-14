@@ -2,17 +2,14 @@ import { useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { useLocation } from 'react-router-dom'
 
-import AdvancedSearchForm from '@src/components/AdvancedSearchForm'
 import SearchResultsList from '@src/components/SearchResultsList'
 import getQuery from '@src/helpers/getQuery'
-import { useStores } from '@src/store'
 
 function SearchPage () {
   const query = getQuery() || ''
-  const { project } = useStores()
-  const location = useLocation();
+  const location = useLocation()
   
-  useEffect(() => {
+  useEffect(function onUrlChange () {
     console.log('Query parameters changed, refreshing Search Page.')
   }, [ location ])
 
