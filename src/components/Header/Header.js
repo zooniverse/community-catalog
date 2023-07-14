@@ -18,6 +18,7 @@ import { observer } from 'mobx-react'
 import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import getEnv from '@src/helpers/getEnv.js'
+import getQuery from '@src/helpers/getQuery.js'
 
 const LogoLink = styled(Link)`
   color: #e2e5e9;
@@ -75,6 +76,8 @@ function Header () {
   const env = getEnv()
   const size = useContext(ResponsiveContext)
   const isNarrowView = size === 'small'
+  const defaultQuery = getQuery() || ''
+  const [ query, setQuery ] = useState(defaultQuery)
 
   if (!project) return (
     <Box
@@ -92,10 +95,17 @@ function Header () {
     >
       <HeaderLogoAndTitle />
       {(!isNarrowView)
-        ? <WideProjectControls project={project} env={env} />
+        ? <WideProjectControls
+            project={project}
+            env={env}
+            query={query}
+            setQuery={setQuery}
+          />
         : <NarrowProjectControls
             project={project}
             env={env}
+            query={query}
+            setQuery={setQuery}
           />
       }
       {(!isNarrowView)
@@ -134,7 +144,9 @@ function HeaderLogoAndTitle () {
 
 function WideProjectControls ({
   project,
-  env
+  env,
+  query = '',
+  setQuery = () => {},
 }) {
   const projectSlug = project?.slug || ''
   const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
@@ -164,6 +176,8 @@ function WideProjectControls ({
         <HeaderSearchInput
           name='query'
           icon={<Search color='black' size='small' />}
+          value={query}
+          onChange={e => setQuery(e?.target?.value)}
           width={{ min: 'medium', max: 'xlarge' }}
         />
         {(env)
@@ -177,7 +191,9 @@ function WideProjectControls ({
 
 function NarrowProjectControls ({
   project,
-  env
+  env,
+  query = '',
+  setQuery = () => {},
 }) {
   const projectSlug = project?.slug || ''
   const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
@@ -222,6 +238,8 @@ function NarrowProjectControls ({
             <HeaderSearchInput
               name='query'
               icon={<Search size='small' />}
+              value={query}
+              onChange={e => setQuery(e?.target?.value)}
             />
             {(env)
               ? <input name='env' value={env} type='hidden' />

@@ -47,8 +47,6 @@ export default function Tester () {
         name: query
       })
 
-      console.log('+++ response.body: ', response.body)
-
       if (!response?.ok) throw new Error('Couldn\'t fetch tag search results')
 
       const results = response.body?.popular.filter(s => s?.body) || []
