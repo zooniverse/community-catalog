@@ -7,14 +7,7 @@
       "metadata_fields": [
         "Item", "Notes", "folder", "image1", "image2", "#Hazard", "Oversize", "group_id", "Condition", "internal_id", "part_number", "Photographer", "#Other Number", "picture_agency", "Sensitive_Image", "Problematic_Language", "Notes on Problematic Language"
       ],
-      "advanced_search": [
-        { "field": "Item", "type": "text" },
-        { "field": "Notes", "type": "text" },
-        { "field": "folder", "alias": "Folder", "type": "text" },
-        { "field": "Photographer", "type": "text" },
-        { "field": "Sensitive_Image", "alias": "Sensitive Image", "type": "bool" },
-        { "field": "Problematic_Language", "alias": "Problematic Language", "type": "bool" }
-      ],
+      "advanced_search": [],
       "exampleQuery": "devtest",
       "exampleSubjects": [
         {
@@ -55,6 +48,32 @@
       "titleField": "Catalogue",
       "classifyUrl": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues",
       "viewOnTalkUrl": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/{subject_id}"
+    }, {
+      "name": "How Did We Get Here?",
+      "slug": "communitiesandcrowds/how-did-we-get-here",
+      "id": 20816,
+      "metadata_fields": [
+        "image1", "image2", "internal_id", "group_id", "part_number", "folder", "#Hazard", "condition", "item", "picture_agency", "photographer", "oversize", "sensitive_image", "sensitive_image_note", "problematic_language", "probelmatic_language_notes", "#Other Number", "notes"
+      ],
+      "advanced_search": [],
+      "exampleQuery": "",
+      "exampleSubjects": [
+        {
+          "id": "90433314",
+          "title": "West Indies | Jamaica - Misc"
+        },
+        {
+          "id": "90433314",
+          "title": "West Indies | Jamaica - Misc"
+        },
+        {
+          "id": "90433314",
+          "title": "West Indies | Jamaica - Misc"
+        }
+      ],
+      "titleField": "folder",
+      "classifyUrl": "https://frontend.preview.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/classify/workflow/23790/subject/{subject_id}",
+      "viewOnTalkUrl": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/talk/subjects/{subject_id}"
     }
   ]
 }
