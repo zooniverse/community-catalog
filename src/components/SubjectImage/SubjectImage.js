@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, Image } from 'grommet'
 import { Image as ImageIcon } from 'grommet-icons'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
