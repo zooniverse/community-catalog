@@ -78,7 +78,8 @@ function applyQueryToAllDatabaseFields (project, query = '') {
   if (!project) return {}
 
   const queryObject = {}
-  project.metadata_fields.map(field => (
+  const fieldsToSearch = project.metadata_fields_to_search_for_keywords || project.metadata_fields || []
+  fieldsToSearch.map(field => (
     queryObject[field] = query
   ))
 
