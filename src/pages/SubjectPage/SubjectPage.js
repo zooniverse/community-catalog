@@ -18,7 +18,7 @@ export default function SubjectPage () {
   const [ subjectData, setSubjectData ] = useState(undefined)
   const size = useContext(ResponsiveContext)
 
-  const { project } = useStores()
+  const { project, showSensitive, setShowSensitive } = useStores()
   const params = useParams()
   const subjectId = params.subjectId
   const query = getQuery()
@@ -75,8 +75,11 @@ export default function SubjectPage () {
         >
           <SubjectViewer
             subject={subjectData}
+            project={project}
             width={1000}
             height={500}
+            showSensitive={showSensitive}
+            setShowSensitive={setShowSensitive}
           />
         </Box>
         <Box

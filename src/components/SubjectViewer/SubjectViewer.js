@@ -16,27 +16,17 @@ const ImageWithBorder = styled(Image)`
 export default function SubjectViewer ({
   src,
   subject = undefined,
-  subjectId = '',  // For an example, use Subject '69734802', of Project 12268, in Subject Set 98889. see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
   width = 200,
   height = 200,
-  fit,
-  small = false,
 }) {
-
-  const [ subjectData, setSubjectData ] = useState(subject)
+  const subjectData = subject
+  const subjectId = subject?.id
   const [ index, setIndex ] = useState(0)
 
   useEffect(function onSubjectChange () {
-    if (subject) setSubjectData(subject)
-
-    // If no Subject has been specified, but we have a Subject ID, fetch that Subject.
-    if (!subjectData && subjectId) {
-      fetchSubject(subjectId, setSubjectData)
-    }
-
     setIndex(0)
 
-  }, [subject, subjectId])
+  }, [subject])
 
   function goPrevIndex () {
     setIndex(Math.max(index - 1, 0))
@@ -53,11 +43,6 @@ export default function SubjectViewer ({
     // TODO: improve URL extraction
     imgSrc = subjectData.locations?.[index]?.['image/jpeg']
              || subjectData.locations?.[index]?.['image/png']
-
-    // Send Zooniverse-hosted images through the thumbnail service
-    if (small && imgSrc.match(/^https?:\/\/panoptes-uploads.zooniverse.org\//)) {
-      imgSrc = `https://thumbnails.zooniverse.org/${width}x${height}/${imgSrc?.replace(/^https?:\/\//ig, '')}`
-    }
 
     filmstripSrcs = subjectData.locations.map(src => {
       const filmstripSrc = src['image/jpeg'] || src['image/png']
@@ -78,7 +63,7 @@ export default function SubjectViewer ({
         {imgSrc ? (
           <Image
             alt={strings.components.subject_image.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
-            fit={fit || (small ? 'cover' : 'contain')}
+            fit={'contain'}
             src={imgSrc}
           />
         ) : (  /* Placeholder when there's no image to load, or Subject is in process of loading */
