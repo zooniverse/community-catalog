@@ -64,7 +64,7 @@ export default function SubjectImage ({
     >
       {imgSrc ? (
         <StyledImage
-          alt={strings.components.subject_image.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
+          alt={strings.components.subject_image.image.replace(/{subject_id}/g, (subjectId || subject?.id))}
           fit={fit || (small ? 'cover' : 'contain')}
           src={imgSrc}
           blur={blur}

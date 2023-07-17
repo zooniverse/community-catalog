@@ -38,7 +38,7 @@
     },
     "subject_image": {
       "placeholder": "Placeholder for Subject image",
-      "image": "Image {index} for Subject {subject_id}"
+      "image": "Preview image for Subject {subject_id}"
     },
     "subject_keywords": {
       "community_tags": "COMMUNITY TAGS:",
@@ -48,6 +48,8 @@
       "institutional_metadata": "INSTITUTIONAL METADATA:"
     },
     "subject_viewer": {
+      "placeholder": "Placeholder for Subject image",
+      "image": "Image {index} for Subject {subject_id}",
       "next_item": "View next image",
       "prev_item": "View previous image"
     }

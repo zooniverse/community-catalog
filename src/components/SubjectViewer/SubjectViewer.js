@@ -62,13 +62,13 @@ export default function SubjectViewer ({
       >
         {imgSrc ? (
           <Image
-            alt={strings.components.subject_image.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
+            alt={strings.components.subject_viewer.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
             fit={'contain'}
             src={imgSrc}
           />
         ) : (  /* Placeholder when there's no image to load, or Subject is in process of loading */
           <ImageIcon
-            a11yTitle={strings.components.subject_image.placeholder}
+            a11yTitle={strings.components.subject_viewer.placeholder}
             size='large'
           />
         )}
@@ -95,7 +95,7 @@ export default function SubjectViewer ({
               margin={{ horizontal: 'xxsmall', vertical: 'small' }}
             >
               <ImageWithBorder
-                /* TODO alt={strings.components.subject_image.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
+                /* TODO alt={strings.components.subject_viewer.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
                 color={(isSelected) ? GOLD_COLOUR : 'transparent'}
                 fit='cover'
                 src={filmstripSrc}
