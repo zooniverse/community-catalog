@@ -55,6 +55,7 @@ function SearchResultsList ({
             projectSlug={projectSlug}
             titleField={titleField}
             key={subjectId}
+            showSensitive={showingSensitiveImages}
           />
         ))}
       </Box>

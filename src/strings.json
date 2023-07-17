@@ -20,6 +20,7 @@
       "error": "Couldn't find anything, sorry"
     },
     "search_results_list": {
+      "may_contain_sensitive_content": "This image may contain sensitive content",
       "no_results": "No items found, sorry",
       "search_results": "Search results for \"{query}\":",
       "search_results_random": "Continue exploring:",
