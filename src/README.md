@@ -49,3 +49,7 @@ The website is organised into a few basic page templates.
 **SubjectPage:** shows a single Subject and all its Talk + database details. Allows users to further interact with the specific Subject, e.g. classifying it (note: individual Subject classification is only supported on the [FEM](http://github.com/zooniverse/front-end-monorepo) classifier) or viewing the Talk discussion of it.
 - Path: `/projects/{project_owner}/{project_name}/subject/{subject_id}`
 - Example: https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog/subject/87892458
+
+## /store
+
+App-wide data store.
