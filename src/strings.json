@@ -22,7 +22,8 @@
     "search_results_list": {
       "no_results": "No items found, sorry",
       "search_results": "Search results for \"{query}\":",
-      "search_results_random": "Continue exploring:"
+      "search_results_random": "Continue exploring:",
+      "show_sensitive_images": "Show sensitive images"
     },
     "subject_actions": {
       "add_to_collection": "Add to Collection",
