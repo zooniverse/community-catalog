@@ -13,7 +13,6 @@ function SearchResultsList ({
 }) {
   const size = useContext(ResponsiveContext)
   const { project, showingSensitiveImages, setShowingSensitiveImages } = useStores()
-  const projectSlug = project?.slug || ''
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
 
@@ -52,7 +51,7 @@ function SearchResultsList ({
         {searchResults.map(subjectId => (
           <SearchResult
             subjectId={subjectId}
-            projectSlug={projectSlug}
+            project={project}
             titleField={titleField}
             key={subjectId}
             showSensitive={showingSensitiveImages}

@@ -7,6 +7,7 @@ import strings from '@src/strings.json'
 import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
 import fetchSubject from '@src/helpers/fetchSubject.js'
+import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 
 const CleanLink = styled(Link)`
   text-decoration: none;
@@ -23,7 +24,7 @@ const SensitiveContentBox = styled(Box)`
 
 export default function SearchResult ({
   subjectId = '',
-  projectSlug = '',
+  project,
   titleField = '',
   showSensitive = false,
 }) {
@@ -33,12 +34,13 @@ export default function SearchResult ({
   useEffect(function () {
     if (subjectId) fetchSubject(subjectId, setSubjectData)
   }, [ subjectId ])
-
-  const hideContent = !showSensitive
+  
+  const hasSensitiveContent = checkForSensitiveContent(subjectData, project)
+  const hideContent = (!showSensitive && hasSensitiveContent)
 
   return (
     <CleanLink
-      to={`/projects/${projectSlug}/subject/${subjectId}`}
+      to={`/projects/${project?.slug}/subject/${subjectId}`}
     >
       <Box
         background='white'
