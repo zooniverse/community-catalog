@@ -6,10 +6,6 @@ import styled from 'styled-components'
 import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
 
-const ContainerBox = styled(Box)`
-  overflow: hidden;
-`
-
 const StyledImage = styled(Image)`
   ${props => props.blur
     ? 'filter: blur(8px);'
@@ -54,13 +50,14 @@ export default function SubjectImage ({
   }
 
   return (
-    <ContainerBox
+    <Box
       background={background}
       border={border}
       width={`${width}px`}
       height={`${height}px`}
       align={imgSrc ? undefined : 'center'} 
-      justify={imgSrc ? undefined : 'center'} 
+      justify={imgSrc ? undefined : 'center'}
+      overflow='hidden'
     >
       {imgSrc ? (
         <StyledImage
@@ -75,6 +72,6 @@ export default function SubjectImage ({
           size='large'
         />
       )}
-    </ContainerBox>
+    </Box>
   )
 }

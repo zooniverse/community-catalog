@@ -58,7 +58,8 @@ export default function SubjectViewer ({
         width={`${width}px`}
         height={`${height}px`}
         align={imgSrc ? undefined : 'center'} 
-        justify={imgSrc ? undefined : 'center'} 
+        justify={imgSrc ? undefined : 'center'}
+        overflow='hidden' 
       >
         {imgSrc ? (
           <Image
