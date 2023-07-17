@@ -9,6 +9,10 @@ Outputs:
 - (bool) true if ANY of the Subject's metadata fields meets the project config's
   sensitive_content_conditions clauses. False by default.
 
+Notes:
+- Due to how Zooniverse subject resources are structured, we're comparing
+  metadata values as (lower case) strings.
+
 For example, the following config will mark any subject that's red, blue,
 sweet, or sour as "sensitive":
 
@@ -32,7 +36,7 @@ export default function checkForSensitiveContent (
 
   for (let i = 0 ; i < conditions.length ; i ++) {
     const { field, values: valuesToCheckFor } = conditions[i]
-    const metadataValue = metadata[field]
+    const metadataValue = (metadata[field] || '').toLowerCase()
     if (valuesToCheckFor.includes(metadataValue)) return true
   }
 

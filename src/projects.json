@@ -64,11 +64,11 @@
       "sensitive_content_conditions": [
         {
           "field": "sensitive_image",
-          "values": [ "TRUE", "true", "1" ]
+          "values": [ "true", "yes", "y", "1" ]
         },
         {
           "field": "problematic_language",
-          "values": [ "TRUE", "true", "1" ]
+          "values": [ "true", "yes", "y", "1" ]
         }
       ],
       "advanced_search": [],
