@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box, Text } from 'grommet'
-import { Hide as SensitivityIcon } from 'grommet-icons'
+import { Hide as SensitiveContentIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
 import strings from '@src/strings.json'
@@ -12,7 +12,7 @@ const CleanLink = styled(Link)`
   text-decoration: none;
 `
 
-const SensitivityBox = styled(Box)`
+const SensitiveContentBox = styled(Box)`
   position: relative;
   top: -200px;
   width: 200px;
@@ -51,12 +51,12 @@ export default function SearchResult ({
           height={200}
         />
         {(!showSensitive)
-          ? <SensitivityBox
+          ? <SensitiveContentBox
               align='center'
               pad='small'
               justify='center'
             >
-              <SensitivityIcon
+              <SensitiveContentIcon
                 color='white'
                 size='large'
               />
@@ -67,7 +67,7 @@ export default function SearchResult ({
               >
                 {strings.components.search_results_list.may_contain_sensitive_content}
               </Text>
-            </SensitivityBox>
+            </SensitiveContentBox>
           : null
         }
         {title && (
