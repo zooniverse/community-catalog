@@ -3,7 +3,7 @@ import { Box, Button, Image } from 'grommet'
 import { FormNext as RightIcon, FormPrevious as LeftIcon, Image as ImageIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
-import strings, { css } from '@src/strings.json'
+import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
 
 const FILMSTRIP_IMAGE_SIZE = 44

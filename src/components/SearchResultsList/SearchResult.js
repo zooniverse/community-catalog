@@ -34,6 +34,8 @@ export default function SearchResult ({
     if (subjectId) fetchSubject(subjectId, setSubjectData)
   }, [ subjectId ])
 
+  const hideContent = !showSensitive
+
   return (
     <CleanLink
       to={`/projects/${projectSlug}/subject/${subjectId}`}
@@ -49,8 +51,9 @@ export default function SearchResult ({
           small={true}
           width={200}
           height={200}
+          blur={hideContent}
         />
-        {(!showSensitive)
+        {(hideContent)
           ? <SensitiveContentBox
               align='center'
               pad='small'
