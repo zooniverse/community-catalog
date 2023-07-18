@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
 
-const StyledImage = styled(Image)`
+const MainImage = styled(Image)`
   ${props => props.blur
     ? 'filter: blur(8px);'
     : ''
@@ -60,7 +60,7 @@ export default function SubjectImage ({
       overflow='hidden'
     >
       {imgSrc ? (
-        <StyledImage
+        <MainImage
           alt={strings.components.subject_image.image.replace(/{subject_id}/g, (subjectId || subject?.id))}
           fit={fit || (small ? 'cover' : 'contain')}
           src={imgSrc}

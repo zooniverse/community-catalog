@@ -53,8 +53,6 @@ function SubjectPage () {
         { name: 'subject-discussion', start: [0, 3], end: [0, 3] },
       ]
 
-  console.log('+++ SubjectPage: ', showingSensitiveContent)
-
   return (
     <>
       <Heading

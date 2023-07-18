@@ -12,6 +12,13 @@ import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 const FILMSTRIP_IMAGE_SIZE = 44
 const GOLD_COLOUR = '#F0B200'
 
+const MainImage = styled(Image)`
+  ${props => props.blur
+    ? 'filter: blur(8px);'
+    : ''
+  }
+`
+
 const ImageWithBorder = styled(Image)`
   border: 3px solid ${props => props.color}
 `
@@ -20,7 +27,7 @@ const SensitiveContentBox = styled(Box)`
   position: relative;
   top: -${props => props.height};
   margin-bottom: -${props => props.height};
-  background: rgba(255, 0, 0, 0.5);
+  background: rgba(128, 128, 128, 0.5);
 `
 
 export default function SubjectViewer ({
@@ -64,8 +71,6 @@ export default function SubjectViewer ({
   const hasSensitiveContent = checkForSensitiveContent(subjectData, project)
   const hideContent = (!showSensitive && hasSensitiveContent)
 
-  console.log('+++ ', showSensitive, hasSensitiveContent, hideContent)
-
   return (
     <Box>
       <Box
@@ -78,8 +83,9 @@ export default function SubjectViewer ({
         overflow='hidden' 
       >
         {imgSrc ? (
-          <Image
+          <MainImage
             alt={strings.components.subject_viewer.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
+            blur={hideContent}
             fit={'contain'}
             src={imgSrc}
           />
