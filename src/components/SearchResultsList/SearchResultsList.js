@@ -1,12 +1,19 @@
 import { useContext, useEffect, useState } from 'react'
-import { Box, CheckBox, ResponsiveContext, Text } from 'grommet'
+import { Anchor, Box, CheckBox, ResponsiveContext, Spinner, Text } from 'grommet'
 import { observer } from 'mobx-react'
+import styled from 'styled-components'
 
 import strings from '@src/strings.json'
+import { ASYNC_STATES } from '@src/config.js'
 import { useStores } from '@src/store'
 import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
 
 import SearchResult from './SearchResult.js'
+
+const { READY, FETCHING, ERROR } = ASYNC_STATES
+const CleanLink = styled(Anchor)`
+  text-decoration: none;
+`
 
 function SearchResultsList ({
   query = '',
@@ -15,10 +22,50 @@ function SearchResultsList ({
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
+  const [ status, setStatus ] = useState(READY)  // ready|fetching|error
+  const [ page, setPage ] = useState(1)
+  const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
 
-  useEffect(function () {
-    if (project) fetchSearchResults(project, query, setSearchResults)
+  useEffect(function onQueryChange () {
+    setSearchResults([])
+    setStatus(READY)
+    setPage(1)
+    setMoreToShow(true)
+  }, [ query ])
+
+  useEffect(function onProjectOrQueryChange () {
+    doFetchData(1)
   }, [ project, query ])
+
+  async function doFetchData (pageToFetch = 1) {
+    if (project) {
+      try {
+        setPage(pageToFetch)
+        setStatus(FETCHING)
+        const subjectIds = await fetchSearchResults(project, query, pageToFetch)
+        addToSearchResults(subjectIds)
+        setStatus(READY)
+
+      } catch (err) {
+        setStatus('error')
+        console.error(err)
+      }
+    }
+  }
+
+  function addToSearchResults (subjectIds = []) {
+    const newResults = [ ...searchResults, ...subjectIds ]
+    const noDuplicates = Array.from(new Set(newResults))
+    setSearchResults(noDuplicates)
+    if (subjectIds.length === 0) setMoreToShow(false)
+  }
+
+  const showMoreButton = (status === READY) && query.trim().length > 0  // Don't show "Show More" for the randomised Subjects
+
+  function fetchMore () {
+    if (status !== READY) return
+    doFetchData(page + 1)
+  }
 
   return (
     <Box
@@ -58,7 +105,22 @@ function SearchResultsList ({
           />
         ))}
       </Box>
-      {(searchResults.length === 0) && <Text>{strings.components.search_results_list.no_results}</Text>}
+      {(status === READY && searchResults.length === 0) && (<Text textAlign='center'>{strings.components.search_results_list.no_results}</Text>)}
+      {(status === FETCHING) && (<Box direction='row' justify='center'><Spinner /></Box>)}
+      {(status === ERROR) && (<Text color='red' textAlign='center'>{strings.general.error}</Text>)}
+      {(showMoreButton) && (moreToShow ? (
+        <Box direction='row' justify='center'>
+          <CleanLink onClick={fetchMore}>
+            <Text color='black'>{strings.components.search_results_list.show_more}</Text>
+          </CleanLink>
+          </Box>
+      ) : (
+        <Box direction='row' justify='center'>
+          <CleanLink>
+            <Text color='black'>{strings.components.search_results_list.no_more}</Text>
+          </CleanLink>
+        </Box>
+      ))}
     </Box>
   )
 }

@@ -12,10 +12,12 @@ Outputs:
  */
 
 import { talkAPI } from '@zooniverse/panoptes-js'
+import { PAGE_SIZE } from '@src/config.js'
 
 export default async function fetchSearchResults_fromTalk (
   projectId,
-  queryString = ''
+  queryString = '',
+  page = 1
 ) {
   if (!projectId) return []
 
@@ -24,8 +26,8 @@ export default async function fetchSearchResults_fromTalk (
     const response = await talkAPI.get('/tags/popular', {
       section: `project-${projectId}`,
       taggable_type: 'Subject',
-      page: 1,
-      page_size: 20,
+      page,
+      page_size: PAGE_SIZE,
       name: queryString
     })
 
