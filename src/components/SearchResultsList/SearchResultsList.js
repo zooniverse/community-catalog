@@ -57,9 +57,10 @@ function SearchResultsList ({
     const newResults = [ ...searchResults, ...subjectIds ]
     const noDuplicates = Array.from(new Set(newResults))
     setSearchResults(noDuplicates)
+    if (subjectIds.length === 0) setMoreToShow(false)
   }
 
-  const showMoreButton = query.trim().length > 0
+  const showMoreButton = (status === READY) && query.trim().length > 0  // Don't show "Show More" for the randomised Subjects
 
   function fetchMore () {
     if (status !== READY) return
@@ -107,19 +108,19 @@ function SearchResultsList ({
       {(status === READY && searchResults.length === 0) && (<Text textAlign='center'>{strings.components.search_results_list.no_results}</Text>)}
       {(status === FETCHING) && (<Box direction='row' justify='center'><Spinner /></Box>)}
       {(status === ERROR) && (<Text color='red' textAlign='center'>{strings.general.error}</Text>)}
-      {(showMoreButton) && moreToShow ? (
+      {(showMoreButton) && (moreToShow ? (
         <Box direction='row' justify='center'>
           <CleanLink onClick={fetchMore}>
-            <Text color='black'>{strings.components.keywords_list.show_more}</Text>
+            <Text color='black'>{strings.components.search_results_list.show_more}</Text>
           </CleanLink>
           </Box>
       ) : (
         <Box direction='row' justify='center'>
           <CleanLink>
-            <Text color='black'>{strings.components.keywords_list.no_more}</Text>
+            <Text color='black'>{strings.components.search_results_list.no_more}</Text>
           </CleanLink>
         </Box>
-      )}
+      ))}
     </Box>
   )
 }
