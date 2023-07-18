@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { Box, Grid, Heading, ResponsiveContext } from 'grommet'
 import { useParams } from 'react-router-dom'
+import { observer } from 'mobx-react'
 
 import SearchResultsList from '@src/components/SearchResultsList'
 import SubjectActionsPanel from '@src/components/SubjectActionsPanel'
@@ -14,11 +15,11 @@ import useStores from '@src/store/useStores.js'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 import getQuery from '@src/helpers/getQuery.js'
 
-export default function SubjectPage () {
+function SubjectPage () {
   const [ subjectData, setSubjectData ] = useState(undefined)
   const size = useContext(ResponsiveContext)
 
-  const { project } = useStores()
+  const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const params = useParams()
   const subjectId = params.subjectId
   const query = getQuery()
@@ -75,8 +76,11 @@ export default function SubjectPage () {
         >
           <SubjectViewer
             subject={subjectData}
+            project={project}
             width={1000}
             height={500}
+            showSensitive={showingSensitiveContent}
+            setShowSensitive={setShowingSensitiveContent}
           />
         </Box>
         <Box
@@ -108,3 +112,5 @@ export default function SubjectPage () {
     </>
   )
 }
+
+export default observer(SubjectPage)

@@ -1,42 +1,64 @@
 import { useEffect, useState } from 'react'
-import { Box, Button, Image } from 'grommet'
-import { FormNext as RightIcon, FormPrevious as LeftIcon, Image as ImageIcon } from 'grommet-icons'
+import { Box, Button, CheckBox, Image, Text } from 'grommet'
+import {
+  FormNext as RightIcon,
+  FormPrevious as LeftIcon,
+  Hide as SensitiveContentIcon,
+  Image as ImageIcon
+} from 'grommet-icons'
 import styled from 'styled-components'
 
-import strings, { css } from '@src/strings.json'
-import fetchSubject from '@src/helpers/fetchSubject'
+import strings from '@src/strings.json'
+import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 
 const FILMSTRIP_IMAGE_SIZE = 44
 const GOLD_COLOUR = '#F0B200'
+
+const MainImage = styled(Image)`
+  ${props => props.blur
+    ? 'filter: blur(8px);'
+    : ''
+  }
+`
+
+const TextWithShadow = styled(Text)`
+  text-shadow: 0px 0px 2px #808080;
+`
 
 const ImageWithBorder = styled(Image)`
   border: 3px solid ${props => props.color}
 `
 
+const SensitiveContentBox = styled(Box)`
+  position: relative;
+  top: -${props => props.height};
+  margin-bottom: -${props => props.height};
+  background: rgba(128, 128, 128, 0.5);
+`
+
+const SensitiveContentCheckboxBox = styled(Box)`
+  height: 2em;
+  position: relative;
+  top: -2em;
+  margin-bottom: -2em;
+`
+
 export default function SubjectViewer ({
-  src,
+  project = undefined,
+  setShowSensitive = () => {},
+  showSensitive,
   subject = undefined,
-  subjectId = '',  // For an example, use Subject '69734802', of Project 12268, in Subject Set 98889. see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
   width = 200,
   height = 200,
-  fit,
-  small = false,
 }) {
-
-  const [ subjectData, setSubjectData ] = useState(subject)
+  const subjectData = subject  // Look a lot of the other code I'm copy-pasting uses 'subjectData' so it's easier to rename the variable
+  const subjectId = subject?.id
   const [ index, setIndex ] = useState(0)
 
   useEffect(function onSubjectChange () {
-    if (subject) setSubjectData(subject)
-
-    // If no Subject has been specified, but we have a Subject ID, fetch that Subject.
-    if (!subjectData && subjectId) {
-      fetchSubject(subjectId, setSubjectData)
-    }
-
     setIndex(0)
 
-  }, [subject, subjectId])
+  }, [subject])
 
   function goPrevIndex () {
     setIndex(Math.max(index - 1, 0))
@@ -46,24 +68,21 @@ export default function SubjectViewer ({
     setIndex(Math.min(index + 1, subjectData?.locations?.length - 1 || 0))
   }
   
-  let filmstripSrcs = []
-  let imgSrc = src
+  let imgSrc, filmstripSrcs = []
 
   if (subjectData) {
     // TODO: improve URL extraction
     imgSrc = subjectData.locations?.[index]?.['image/jpeg']
              || subjectData.locations?.[index]?.['image/png']
 
-    // Send Zooniverse-hosted images through the thumbnail service
-    if (small && imgSrc.match(/^https?:\/\/panoptes-uploads.zooniverse.org\//)) {
-      imgSrc = `https://thumbnails.zooniverse.org/${width}x${height}/${imgSrc?.replace(/^https?:\/\//ig, '')}`
-    }
-
     filmstripSrcs = subjectData.locations.map(src => {
       const filmstripSrc = src['image/jpeg'] || src['image/png']
       return `https://thumbnails.zooniverse.org/${FILMSTRIP_IMAGE_SIZE}x${FILMSTRIP_IMAGE_SIZE}/${filmstripSrc?.replace(/^https?:\/\//ig, '')}`
     })
   }
+
+  const hasSensitiveContent = checkForSensitiveContent(subjectData, project)
+  const hideContent = (!showSensitive && hasSensitiveContent)
 
   return (
     <Box>
@@ -73,21 +92,66 @@ export default function SubjectViewer ({
         width={`${width}px`}
         height={`${height}px`}
         align={imgSrc ? undefined : 'center'} 
-        justify={imgSrc ? undefined : 'center'} 
+        justify={imgSrc ? undefined : 'center'}
+        overflow='hidden' 
       >
         {imgSrc ? (
-          <Image
-            alt={strings.components.subject_image.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
-            fit={fit || (small ? 'cover' : 'contain')}
+          <MainImage
+            alt={strings.components.subject_viewer.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
+            blur={hideContent}
+            fit={'contain'}
             src={imgSrc}
           />
         ) : (  /* Placeholder when there's no image to load, or Subject is in process of loading */
           <ImageIcon
-            a11yTitle={strings.components.subject_image.placeholder}
+            a11yTitle={strings.components.subject_viewer.placeholder}
             size='large'
           />
         )}
       </Box>
+      {(hideContent)
+        ? <SensitiveContentBox
+            align='center'
+            pad='small'
+            justify='center'
+            width={`${width}px`}
+            height={`${height}px`}
+          >
+            <SensitiveContentIcon
+              color='white'
+              size='xlarge'
+            />
+            <Text
+              color='white'
+              size='medium'
+              textAlign='center'
+            >
+              {strings.components.subject_viewer.may_contain_sensitive_content}
+            </Text>
+          </SensitiveContentBox>
+        : null
+      }
+      {(hasSensitiveContent)
+        ? <SensitiveContentCheckboxBox
+            align='end'
+            justify='center'
+            pad={{ horizontal: 'small' }}
+          >
+            <CheckBox
+              checked={showSensitive}
+              onChange={e => setShowSensitive(!!e?.target?.checked)}
+              label={
+                <TextWithShadow
+                  color='white'
+                >
+                  {strings.components.subject_viewer.show_sensitive_images}
+                </TextWithShadow>
+              }
+              reverse={true}
+            />
+          </SensitiveContentCheckboxBox>
+        : null
+      }
       <Box
         direction='row'
         justify='center'
@@ -110,7 +174,7 @@ export default function SubjectViewer ({
               margin={{ horizontal: 'xxsmall', vertical: 'small' }}
             >
               <ImageWithBorder
-                /* TODO alt={strings.components.subject_image.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
+                /* TODO alt={strings.components.subject_viewer.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
                 color={(isSelected) ? GOLD_COLOUR : 'transparent'}
                 fit='cover'
                 src={filmstripSrc}

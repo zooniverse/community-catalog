@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Box, Text } from 'grommet'
+import { useContext, useEffect, useState } from 'react'
+import { Box, CheckBox, ResponsiveContext, Text } from 'grommet'
 import { observer } from 'mobx-react'
 
 import strings from '@src/strings.json'
@@ -11,8 +11,8 @@ import SearchResult from './SearchResult.js'
 function SearchResultsList ({
   query = '',
 }) {
-  const { project } = useStores()
-  const projectSlug = project?.slug || ''
+  const size = useContext(ResponsiveContext)
+  const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
 
@@ -26,11 +26,22 @@ function SearchResultsList ({
       pad='small'
       gap='small'
     >
-      <Text>{
-        (query)
-        ? strings.components.search_results_list.search_results.replace(/{query}/g, query)
-        : strings.components.search_results_list.search_results_random  /* No query, so show all results */
-      }</Text>
+      <Box
+        direction={(size !== 'small') ? 'row' : 'column'}
+      >
+        <Text>{
+          (query)
+          ? strings.components.search_results_list.search_results.replace(/{query}/g, query)
+          : strings.components.search_results_list.search_results_random  /* No query, so show all results */
+        }</Text>
+        <Box flex='grow' />
+        <CheckBox
+          checked={showingSensitiveContent}
+          onChange={e => setShowingSensitiveContent(!!e?.target?.checked)}
+          label={<Text>{strings.components.search_results_list.show_sensitive_images}</Text>}
+          reverse={(size !== 'small')}
+        />
+      </Box>
       <Box
         direction='row'
         gap='medium'
@@ -40,9 +51,10 @@ function SearchResultsList ({
         {searchResults.map(subjectId => (
           <SearchResult
             subjectId={subjectId}
-            projectSlug={projectSlug}
+            project={project}
             titleField={titleField}
             key={subjectId}
+            showSensitive={showingSensitiveContent}
           />
         ))}
       </Box>

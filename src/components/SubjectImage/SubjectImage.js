@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Box, Image } from 'grommet'
 import { Image as ImageIcon } from 'grommet-icons'
+import styled from 'styled-components'
 
 import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
+
+const MainImage = styled(Image)`
+  ${props => props.blur
+    ? 'filter: blur(8px);'
+    : ''
+  }
+`
 
 export default function SubjectImage ({
   background = 'light-1',
@@ -15,6 +23,7 @@ export default function SubjectImage ({
   height = 200,
   fit,
   small = false,
+  blur = false,  // Blur the image. Used to "hide" sensitive content.
 }) {
   const [ subjectData, setSubjectData ] = useState(subject)
   const index = 0
@@ -47,13 +56,15 @@ export default function SubjectImage ({
       width={`${width}px`}
       height={`${height}px`}
       align={imgSrc ? undefined : 'center'} 
-      justify={imgSrc ? undefined : 'center'} 
+      justify={imgSrc ? undefined : 'center'}
+      overflow='hidden'
     >
       {imgSrc ? (
-        <Image
-          alt={strings.components.subject_image.image.replace(/{index}/g, index).replace(/{subject_id}/g, subjectId)}
+        <MainImage
+          alt={strings.components.subject_image.image.replace(/{subject_id}/g, (subjectId || subject?.id))}
           fit={fit || (small ? 'cover' : 'contain')}
           src={imgSrc}
+          blur={blur}
         />
       ) : (  /* Placeholder when there's no image to load, or Subject is in process of loading */
         <ImageIcon
