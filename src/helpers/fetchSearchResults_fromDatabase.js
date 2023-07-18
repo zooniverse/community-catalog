@@ -27,7 +27,7 @@ export default async function fetchSearchResults_fromDatabase (
   // Example: https://subject-set-search-api.zooniverse.org/projects.json?sql=select+*+from+proj_21084+where+%5Bfolder%5D+like+%27%25jamaica%25%27
   try {
     const { where = '', params = [] } = convertQueryObjectToSqlWhere(queryObject)
-    const sqlQuery = encodeURIComponent(`SELECT subject_id FROM ${TABLE_PREFIX}${projectId} ${where ? `WHERE ${where}` : ''} LIMIT ${PAGE_SIZE}`)
+    const sqlQuery = encodeURIComponent(`SELECT subject_id FROM ${TABLE_PREFIX}${projectId} ${where ? `WHERE ${where}` : ''} LIMIT ${PAGE_SIZE} OFFSET ${(page - 1) * PAGE_SIZE}`)
     const sqlParam = params.map(p => `&${p[0]}=${encodeURIComponent(p[1])}`, '').join('')
 
     const url = `${DATABASE_URL}/${DATABASE_NAME}.json?sql=${sqlQuery}${sqlParam}`

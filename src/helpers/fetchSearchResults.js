@@ -36,8 +36,8 @@ export default async function fetchSearchResults (
     const queryForDatabase = applyQueryToRelevantDatabaseFields(project, query)
 
     const allSubjectIds = await Promise.all([
-      fetchSearchResults_fromTalk(project.id, queryForTalk),
-      fetchSearchResults_fromDatabase(project.id, queryForDatabase)
+      fetchSearchResults_fromTalk(project.id, queryForTalk, page),
+      fetchSearchResults_fromDatabase(project.id, queryForDatabase, page)
     ])
   
     // // Flatten into a single array, then remove duplicates

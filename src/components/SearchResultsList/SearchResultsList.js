@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
-import { Box, CheckBox, ResponsiveContext, Spinner, Text } from 'grommet'
+import { Anchor, Box, CheckBox, ResponsiveContext, Spinner, Text } from 'grommet'
 import { observer } from 'mobx-react'
+import styled from 'styled-components'
 
 import strings from '@src/strings.json'
 import { ASYNC_STATES } from '@src/config.js'
@@ -10,6 +11,9 @@ import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
 import SearchResult from './SearchResult.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
+const CleanLink = styled(Anchor)`
+  text-decoration: none;
+`
 
 function SearchResultsList ({
   query = '',
@@ -30,14 +34,15 @@ function SearchResultsList ({
   }, [ query ])
 
   useEffect(function onProjectOrQueryChange () {
-    doFetchData()
+    doFetchData(1)
   }, [ project, query ])
 
-  async function doFetchData () {
+  async function doFetchData (pageToFetch = 1) {
     if (project) {
       try {
+        setPage(pageToFetch)
         setStatus(FETCHING)
-        const subjectIds = await fetchSearchResults(project, query, page)
+        const subjectIds = await fetchSearchResults(project, query, pageToFetch)
         addToSearchResults(subjectIds)
         setStatus(READY)
 
@@ -54,7 +59,12 @@ function SearchResultsList ({
     setSearchResults(noDuplicates)
   }
 
-  const showMoreButton = moreToShow && query.trim().length > 0
+  const showMoreButton = query.trim().length > 0
+
+  function fetchMore () {
+    if (status !== READY) return
+    doFetchData(page + 1)
+  }
 
   return (
     <Box
@@ -97,6 +107,19 @@ function SearchResultsList ({
       {(status === READY && searchResults.length === 0) && (<Text textAlign='center'>{strings.components.search_results_list.no_results}</Text>)}
       {(status === FETCHING) && (<Box direction='row' justify='center'><Spinner /></Box>)}
       {(status === ERROR) && (<Text color='red' textAlign='center'>{strings.general.error}</Text>)}
+      {(showMoreButton) && moreToShow ? (
+        <Box direction='row' justify='center'>
+          <CleanLink onClick={fetchMore}>
+            <Text color='black'>{strings.components.keywords_list.show_more}</Text>
+          </CleanLink>
+          </Box>
+      ) : (
+        <Box direction='row' justify='center'>
+          <CleanLink>
+            <Text color='black'>{strings.components.keywords_list.no_more}</Text>
+          </CleanLink>
+        </Box>
+      )}
     </Box>
   )
 }
