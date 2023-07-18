@@ -3,10 +3,13 @@ import { Box, CheckBox, ResponsiveContext, Spinner, Text } from 'grommet'
 import { observer } from 'mobx-react'
 
 import strings from '@src/strings.json'
+import { ASYNC_STATES } from '@src/config.js'
 import { useStores } from '@src/store'
 import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
 
 import SearchResult from './SearchResult.js'
+
+const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 function SearchResultsList ({
   query = '',
@@ -15,10 +18,10 @@ function SearchResultsList ({
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
-  const [ status, setStatus ] = useState('ready')  // ready|fetching|error
+  const [ status, setStatus ] = useState(READY)  // ready|fetching|error
 
   useEffect(function onQueryChange () {
-    setStatus('ready')
+    setStatus(READY)
     setSearchResults([])
   }, [ query ])
 
@@ -26,9 +29,9 @@ function SearchResultsList ({
     async function doFetchData () {
       if (project) {
         try {
-          setStatus('fetching')
+          setStatus(FETCHING)
           await fetchSearchResults(project, query, setSearchResults)
-          setStatus('ready')
+          setStatus(READY)
 
         } catch (err) {
           setStatus('error')
@@ -77,9 +80,9 @@ function SearchResultsList ({
           />
         ))}
       </Box>
-      {(status === 'ready' && searchResults.length === 0) && (<Text textAlign='center'>{strings.components.search_results_list.no_results}</Text>)}
-      {(status === 'fetching') && (<Box direction='row' justify='center'><Spinner /></Box>)}
-      {(status === 'error') && (<Text color='red' textAlign='center'>{strings.general.error}</Text>)}
+      {(status === READY && searchResults.length === 0) && (<Text textAlign='center'>{strings.components.search_results_list.no_results}</Text>)}
+      {(status === FETCHING) && (<Box direction='row' justify='center'><Spinner /></Box>)}
+      {(status === ERROR) && (<Text color='red' textAlign='center'>{strings.general.error}</Text>)}
     </Box>
   )
 }
