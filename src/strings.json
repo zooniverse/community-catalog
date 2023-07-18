@@ -50,9 +50,10 @@
     "subject_viewer": {
       "may_contain_sensitive_content": "This image may contain sensitive content",
       "image": "Image {index} for Subject {subject_id}",
-      "placeholder": "Placeholder for Subject image",
       "next_item": "View next image",
-      "prev_item": "View previous image"
+      "placeholder": "Placeholder for Subject image",
+      "prev_item": "View previous image",
+      "show_sensitive_images": "Show sensitive images"
     }
   },
   "errors": {

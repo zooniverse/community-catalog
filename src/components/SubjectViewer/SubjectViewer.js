@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Box, Button, Image, Text } from 'grommet'
+import { Box, Button, CheckBox, Image, Text } from 'grommet'
 import {
   FormNext as RightIcon,
   FormPrevious as LeftIcon,
@@ -21,6 +21,10 @@ const MainImage = styled(Image)`
   }
 `
 
+const TextWithShadow = styled(Text)`
+  text-shadow: 0px 0px 2px #808080;
+`
+
 const ImageWithBorder = styled(Image)`
   border: 3px solid ${props => props.color}
 `
@@ -30,6 +34,13 @@ const SensitiveContentBox = styled(Box)`
   top: -${props => props.height};
   margin-bottom: -${props => props.height};
   background: rgba(128, 128, 128, 0.5);
+`
+
+const SensitiveContentCheckboxBox = styled(Box)`
+  height: 2em;
+  position: relative;
+  top: -2em;
+  margin-bottom: -2em;
 `
 
 export default function SubjectViewer ({
@@ -118,7 +129,28 @@ export default function SubjectViewer ({
               {strings.components.subject_viewer.may_contain_sensitive_content}
             </Text>
           </SensitiveContentBox>
-        : undefined
+        : null
+      }
+      {(hasSensitiveContent)
+        ? <SensitiveContentCheckboxBox
+            align='end'
+            justify='center'
+            pad={{ horizontal: 'small' }}
+          >
+            <CheckBox
+              checked={showSensitive}
+              onChange={e => setShowSensitive(!!e?.target?.checked)}
+              label={
+                <TextWithShadow
+                  color='white'
+                >
+                  {strings.components.subject_viewer.show_sensitive_images}
+                </TextWithShadow>
+              }
+              reverse={true}
+            />
+          </SensitiveContentCheckboxBox>
+        : null
       }
       <Box
         direction='row'
