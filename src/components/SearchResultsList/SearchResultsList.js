@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { Box, CheckBox, ResponsiveContext, Text } from 'grommet'
+import { Box, CheckBox, ResponsiveContext, Spinner, Text } from 'grommet'
 import { observer } from 'mobx-react'
 
 import strings from '@src/strings.json'
@@ -77,7 +77,9 @@ function SearchResultsList ({
           />
         ))}
       </Box>
-      {(searchResults.length === 0) && <Text>{strings.components.search_results_list.no_results}</Text>}
+      {(status === 'ready' && searchResults.length === 0) && (<Text textAlign='center'>{strings.components.search_results_list.no_results}</Text>)}
+      {(status === 'fetching') && (<Box direction='row' justify='center'><Spinner /></Box>)}
+      {(status === 'error') && (<Text color='red' textAlign='center'>{strings.general.error}</Text>)}
     </Box>
   )
 }

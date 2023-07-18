@@ -61,7 +61,8 @@
   },
   "general": {
     "app_name": "Communities & Crowds",
-    "data_placeholder": "Data placeholder"
+    "data_placeholder": "Data placeholder",
+    "error": "ERROR: please see dev console for details"
   },
   "messages": {
     "app_ready": "App ready.",
