@@ -39,21 +39,8 @@ export default async function fetchSearchResults (
     setData(subjectIds)
     return
 
-  } else if (isThisAnAdvancedQuery(query)) {
-    // An advanced query searches for specific values in specific fields,
-    // e.g. "{animal=cat} {color=orange} {loves=lasagna} {hates=mondays}"
-
-    const {
-      [KEYWORDS_KEY]: a,
-      ...b
-    } = queryObject
-
-    queryForTalk = a
-    queryForDatabase = b
-
   } else {
-    // A simple query searches for a common value across all fields,
-    // e.g. "cat" will return results if either animal/color/loves/hates/etc contains that word.
+    // A simple query searches for a common value across all fields.
     
     queryForTalk = query
     queryForDatabase = applyQueryToAllDatabaseFields(project, query)
@@ -68,10 +55,6 @@ export default async function fetchSearchResults (
   const subjectIds = Array.from(new Set(allSubjectIds.flat()))
 
   setData(subjectIds)
-}
-
-function isThisAnAdvancedQuery(str) {
-  return str.includes('{') && str.includes('}')
 }
 
 function applyQueryToAllDatabaseFields (project, query = '') {
