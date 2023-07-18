@@ -12,7 +12,7 @@ function SearchResultsList ({
   query = '',
 }) {
   const size = useContext(ResponsiveContext)
-  const { project, showingSensitiveImages, setShowingSensitiveImages } = useStores()
+  const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
 
@@ -36,8 +36,8 @@ function SearchResultsList ({
         }</Text>
         <Box flex='grow' />
         <CheckBox
-          checked={showingSensitiveImages}
-          onChange={e => setShowingSensitiveImages(!!e?.target?.checked)}
+          checked={showingSensitiveContent}
+          onChange={e => setShowingSensitiveContent(!!e?.target?.checked)}
           label={<Text>{strings.components.search_results_list.show_sensitive_images}</Text>}
           reverse={(size !== 'small')}
         />
@@ -54,7 +54,7 @@ function SearchResultsList ({
             project={project}
             titleField={titleField}
             key={subjectId}
-            showSensitive={showingSensitiveImages}
+            showSensitive={showingSensitiveContent}
           />
         ))}
       </Box>

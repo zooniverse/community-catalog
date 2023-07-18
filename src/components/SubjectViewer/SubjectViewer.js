@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Box, Button, Image } from 'grommet'
-import { FormNext as RightIcon, FormPrevious as LeftIcon, Image as ImageIcon } from 'grommet-icons'
+import { Box, Button, Image, Text } from 'grommet'
+import {
+  FormNext as RightIcon, FormPrevious as LeftIcon, Hide as SensitiveContentIcon,
+  Image as ImageIcon
+} from 'grommet-icons'
 import styled from 'styled-components'
 
 import strings from '@src/strings.json'
-import fetchSubject from '@src/helpers/fetchSubject'
+import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 
 const FILMSTRIP_IMAGE_SIZE = 44
 const GOLD_COLOUR = '#F0B200'
@@ -13,13 +16,22 @@ const ImageWithBorder = styled(Image)`
   border: 3px solid ${props => props.color}
 `
 
+const SensitiveContentBox = styled(Box)`
+  position: relative;
+  top: -${props => props.height};
+  margin-bottom: -${props => props.height};
+  background: rgba(255, 0, 0, 0.5);
+`
+
 export default function SubjectViewer ({
-  src,
+  project = undefined,
+  setShowSensitive = () => {},
+  showSensitive,
   subject = undefined,
   width = 200,
   height = 200,
 }) {
-  const subjectData = subject
+  const subjectData = subject  // Look a lot of the other code I'm copy-pasting uses 'subjectData' so it's easier to rename the variable
   const subjectId = subject?.id
   const [ index, setIndex ] = useState(0)
 
@@ -36,8 +48,7 @@ export default function SubjectViewer ({
     setIndex(Math.min(index + 1, subjectData?.locations?.length - 1 || 0))
   }
   
-  let filmstripSrcs = []
-  let imgSrc = src
+  let imgSrc, filmstripSrcs = []
 
   if (subjectData) {
     // TODO: improve URL extraction
@@ -49,6 +60,11 @@ export default function SubjectViewer ({
       return `https://thumbnails.zooniverse.org/${FILMSTRIP_IMAGE_SIZE}x${FILMSTRIP_IMAGE_SIZE}/${filmstripSrc?.replace(/^https?:\/\//ig, '')}`
     })
   }
+
+  const hasSensitiveContent = checkForSensitiveContent(subjectData, project)
+  const hideContent = (!showSensitive && hasSensitiveContent)
+
+  console.log('+++ ', showSensitive, hasSensitiveContent, hideContent)
 
   return (
     <Box>
@@ -74,6 +90,28 @@ export default function SubjectViewer ({
           />
         )}
       </Box>
+      {(hideContent)
+        ? <SensitiveContentBox
+            align='center'
+            pad='small'
+            justify='center'
+            width={`${width}px`}
+            height={`${height}px`}
+          >
+            <SensitiveContentIcon
+              color='white'
+              size='large'
+            />
+            <Text
+              color='white'
+              size='xsmall'
+              textAlign='center'
+            >
+              {strings.components.subject_viewer.may_contain_sensitive_content}
+            </Text>
+          </SensitiveContentBox>
+        : undefined
+      }
       <Box
         direction='row'
         justify='center'

@@ -4,7 +4,7 @@ const AppStore = types.model('AppStore', {
   
   project: types.maybe(types.frozen()),  // Selected Zooniverse project config. See projects.json
   user: types.maybe(types.frozen()),  // Logged in user. It's a Panoptes resource.
-  showingSensitiveImages: types.optional(types.boolean, false)  // If enabled, show sensitive images.
+  showingSensitiveContent: types.optional(types.boolean, false)  // If enabled, show sensitive images.
   
 }).actions(self => {
   return {
@@ -17,8 +17,8 @@ const AppStore = types.model('AppStore', {
       self.user = val
     },
 
-    setShowingSensitiveImages (val) {
-      self.showingSensitiveImages = val
+    setShowingSensitiveContent (val) {
+      self.showingSensitiveContent = val
     }
 
   }
