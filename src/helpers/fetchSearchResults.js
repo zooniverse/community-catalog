@@ -11,8 +11,6 @@ Outputs:
 - Array of unique subject IDs (strings)
  */
 
-import { KEYWORDS_KEY } from '@src/config.js'
-import convertAdvancedQueryFromString from './convertAdvancedQueryFromString.js'
 import fetchSearchResults_fromTalk from './fetchSearchResults_fromTalk.js'
 import fetchSearchResults_fromDatabase from './fetchSearchResults_fromDatabase.js'
 import fetchRandomSubjects from './fetchRandomSubjects.js'
@@ -25,13 +23,6 @@ export default async function fetchSearchResults (
 
   if (!project) throw new Error('fetchSearchResults() requires a project')
   
-  // const queryString = query
-  // const queryObject = applyQueryToAllDatabaseFields(project, query)
-
-  let queryForTalk = ''
-  let queryForDatabase = {}
-  const queryObject = convertAdvancedQueryFromString(query)
-
   if (!query.trim()) {
     // The default query simply results in a random 
 
@@ -42,22 +33,23 @@ export default async function fetchSearchResults (
   } else {
     // A simple query searches for a common value across all fields.
     
-    queryForTalk = query
-    queryForDatabase = applyQueryToAllDatabaseFields(project, query)
+    const queryForTalk = query
+    const queryForDatabase = applyQueryToRelevantDatabaseFields(project, query)
+
+    const allSubjectIds = await Promise.all([
+      fetchSearchResults_fromTalk(project.id, queryForTalk),
+      fetchSearchResults_fromDatabase(project.id, queryForDatabase)
+    ])
+  
+    // Flatten into a single array, then remove duplicates
+    const subjectIds = Array.from(new Set(allSubjectIds.flat()))
+
+    setData(subjectIds)
+    return
   }
-
-  const allSubjectIds = await Promise.all([
-    fetchSearchResults_fromTalk(project.id, queryForTalk),
-    fetchSearchResults_fromDatabase(project.id, queryForDatabase)
-  ])
-
-  // Flatten into a single array, then remove duplicates
-  const subjectIds = Array.from(new Set(allSubjectIds.flat()))
-
-  setData(subjectIds)
 }
 
-function applyQueryToAllDatabaseFields (project, query = '') {
+function applyQueryToRelevantDatabaseFields (project, query = '') {
   if (!project) return {}
 
   const queryObject = {}

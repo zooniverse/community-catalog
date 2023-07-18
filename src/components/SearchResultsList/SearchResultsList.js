@@ -17,7 +17,9 @@ function SearchResultsList ({
   const [ searchResults, setSearchResults ] = useState([])
 
   useEffect(function () {
-    if (project) fetchSearchResults(project, query, setSearchResults)
+    if (project) {
+      fetchSearchResults(project, query, setSearchResults)
+    }
   }, [ project, query ])
 
   return (
