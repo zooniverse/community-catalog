@@ -18,7 +18,7 @@ import fetchRandomSubjects from './fetchRandomSubjects.js'
 export default async function fetchSearchResults (
   project,
   query = '',
-  setData = (data) => { console.log('fetchSearchResults_fromTalk: ', data) }
+  page = 1,
 ) {
 
   if (!project) throw new Error('fetchSearchResults() requires a project')
@@ -27,8 +27,7 @@ export default async function fetchSearchResults (
     // The default query simply results in a random 
 
     const subjectIds = await fetchRandomSubjects(project.id)
-    setData(subjectIds)
-    return
+    return subjectIds
 
   } else {
     // A simple query searches for a common value across all fields.
@@ -41,11 +40,10 @@ export default async function fetchSearchResults (
       fetchSearchResults_fromDatabase(project.id, queryForDatabase)
     ])
   
-    // Flatten into a single array, then remove duplicates
-    const subjectIds = Array.from(new Set(allSubjectIds.flat()))
+    // // Flatten into a single array, then remove duplicates
+    // const subjectIds = Array.from(new Set(allSubjectIds.flat()))
 
-    setData(subjectIds)
-    return
+    return allSubjectIds.flat()
   }
 }
 

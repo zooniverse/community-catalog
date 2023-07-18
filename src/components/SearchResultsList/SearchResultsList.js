@@ -19,28 +19,42 @@ function SearchResultsList ({
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
   const [ status, setStatus ] = useState(READY)  // ready|fetching|error
+  const [ page, setPage ] = useState(1)
+  const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
 
   useEffect(function onQueryChange () {
-    setStatus(READY)
     setSearchResults([])
+    setStatus(READY)
+    setPage(1)
+    setMoreToShow(true)
   }, [ query ])
 
   useEffect(function onProjectOrQueryChange () {
-    async function doFetchData () {
-      if (project) {
-        try {
-          setStatus(FETCHING)
-          await fetchSearchResults(project, query, setSearchResults)
-          setStatus(READY)
-
-        } catch (err) {
-          setStatus('error')
-          console.error(err)
-        }
-      }
-    }
     doFetchData()
   }, [ project, query ])
+
+  async function doFetchData () {
+    if (project) {
+      try {
+        setStatus(FETCHING)
+        const subjectIds = await fetchSearchResults(project, query, page)
+        addToSearchResults(subjectIds)
+        setStatus(READY)
+
+      } catch (err) {
+        setStatus('error')
+        console.error(err)
+      }
+    }
+  }
+
+  function addToSearchResults (subjectIds = []) {
+    const newResults = [ ...searchResults, ...subjectIds ]
+    const noDuplicates = Array.from(new Set(newResults))
+    setSearchResults(noDuplicates)
+  }
+
+  const showMoreButton = moreToShow && query.trim().length > 0
 
   return (
     <Box
