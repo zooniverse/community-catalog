@@ -11,7 +11,7 @@
     },
     "keywords_list": {
       "no_more": "No more to show",
-      "show_more": "Show More",
+      "show_more": "Show more",
       "start_exploring": "Use these keywords to start exploring:"
     },
     "random_button": {
@@ -25,8 +25,8 @@
       "search_results": "Search results for \"{query}\":",
       "search_results_random": "Continue exploring:",
       "show_sensitive_images": "Show sensitive images",
-      "no_more": "No more to show",
-      "show_more": "Show More"
+      "no_more": "No more to see",
+      "show_more": "See more"
     },
     "subject_actions": {
       "add_to_collection": "Add to Collection",
