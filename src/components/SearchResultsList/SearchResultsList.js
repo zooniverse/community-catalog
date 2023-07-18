@@ -15,11 +15,28 @@ function SearchResultsList ({
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
+  const [ status, setStatus ] = useState('ready')  // ready|fetching|error
 
-  useEffect(function () {
-    if (project) {
-      fetchSearchResults(project, query, setSearchResults)
+  useEffect(function onQueryChange () {
+    setStatus('ready')
+    setSearchResults([])
+  }, [ query ])
+
+  useEffect(function onProjectOrQueryChange () {
+    async function doFetchData () {
+      if (project) {
+        try {
+          setStatus('fetching')
+          await fetchSearchResults(project, query, setSearchResults)
+          setStatus('ready')
+
+        } catch (err) {
+          setStatus('error')
+          console.error(err)
+        }
+      }
     }
+    doFetchData()
   }, [ project, query ])
 
   return (
