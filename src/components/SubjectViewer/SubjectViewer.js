@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Image, Text } from 'grommet'
 import {
-  FormNext as RightIcon, FormPrevious as LeftIcon, Hide as SensitiveContentIcon,
+  FormNext as RightIcon,
+  FormPrevious as LeftIcon,
+  Hide as SensitiveContentIcon,
   Image as ImageIcon
 } from 'grommet-icons'
 import styled from 'styled-components'
@@ -106,11 +108,11 @@ export default function SubjectViewer ({
           >
             <SensitiveContentIcon
               color='white'
-              size='large'
+              size='xlarge'
             />
             <Text
               color='white'
-              size='xsmall'
+              size='medium'
               textAlign='center'
             >
               {strings.components.subject_viewer.may_contain_sensitive_content}
