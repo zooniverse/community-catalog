@@ -17,7 +17,8 @@ import {
 
 export default async function fetchSearchResults_fromDatabase (
   projectId,
-  queryObject = {}
+  queryObject = {},
+  page = 1,
 ) {
   if (!projectId) return []
 
