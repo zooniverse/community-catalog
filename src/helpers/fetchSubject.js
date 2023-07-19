@@ -18,7 +18,7 @@ export default async function fetchSubject (subjectId) {
     const [ data ] = body.subjects
     return data
   } catch (err) {
-    console.error(err)
+    console.error('fetchSubject()', err)
     throw(err)
   }
 }

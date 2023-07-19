@@ -45,7 +45,7 @@ function SubjectPage () {
       setStatus(READY)
     } catch (err) {
       setStatus(ERROR)
-      console.error(err)
+      console.error('SubjectPage', err)
     }
   }
 
@@ -79,8 +79,9 @@ function SubjectPage () {
         level='2'
         margin={{ horizontal: 'small', vertical: 'xsmall' }}
         size='1.1em'
+        color={(status !== ERROR) ? undefined : 'red' }
       >
-        {title}
+        {(status !== ERROR) ? title : strings.general.error}
       </Heading>
       <Grid
         rows={rows}
