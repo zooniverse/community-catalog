@@ -41,7 +41,7 @@ export default function RandomButton ({
         throw new Error ('No Subjects available, apparently. Check database table isn\'t empty.')
       }
     } catch (err) {
-      console.error(err)
+      console.error('<RandomButton>', err)
       setIsWorking(false)
       setMessage(strings.components.random_button.error)
     }

@@ -39,7 +39,7 @@ export default function App () {
       store.setUser(user)
       setInitialised(true)
     } catch (err) {
-      console.error(err)
+      console.error('<App>', err)
     }
   }
 

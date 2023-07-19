@@ -53,7 +53,7 @@ function KeywordsList () {
 
       } catch (err) {
         setStatus(ERROR)
-        console.error(err)
+        console.error('<KeywordsList>', err)
       }
     }
   }

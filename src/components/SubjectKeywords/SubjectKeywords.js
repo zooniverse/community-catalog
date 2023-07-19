@@ -53,7 +53,7 @@ function SubjectKeywords ({
 
       } catch (err) {
         setStatus(ERROR)
-        console.error(err)
+        console.error('<SubjectKeyword>', err)
       }
     }
   }

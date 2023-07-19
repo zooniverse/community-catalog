@@ -45,7 +45,7 @@ function SubjectPage () {
       setStatus(READY)
     } catch (err) {
       setStatus(ERROR)
-      console.error('SubjectPage', err)
+      console.error('<SubjectPage>', err)
     }
   }
 

@@ -51,7 +51,7 @@ export default function SubjectImage ({
       setStatus(READY)
     } catch (err) {
       setStatus(ERROR)
-      console.error(err)
+      console.error('<SubjectImage>', err)
     }
   }
   

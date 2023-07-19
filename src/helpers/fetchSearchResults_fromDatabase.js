@@ -41,7 +41,7 @@ export default async function fetchSearchResults_fromDatabase (
     return results?.rows?.map(item => (item[indexOfSubjectId] || '').toString()) || []
 
   } catch (err) {
-    console.error(err)
+    console.error('fetchSearchResults_fromDatabase()', err)
     throw(err)
     // TODO: handle errors
   }

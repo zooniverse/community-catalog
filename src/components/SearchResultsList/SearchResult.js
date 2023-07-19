@@ -50,7 +50,7 @@ export default function SearchResult ({
       setStatus(READY)
     } catch (err) {
       setStatus(ERROR)
-      console.error(err)
+      console.error('<SearchResult>', err)
     }
   }
   

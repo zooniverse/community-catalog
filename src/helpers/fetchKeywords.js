@@ -45,7 +45,7 @@ export default async function fetchKeywords (
     return keywords
 
   } catch (err) {
-    console.error(err)
+    console.error('fetchKeyword()', err)
     throw(err)
   }
 }

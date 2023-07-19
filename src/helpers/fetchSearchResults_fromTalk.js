@@ -37,7 +37,7 @@ export default async function fetchSearchResults_fromTalk (
     return results.map(item => item.taggable_id?.toString() || '') || []
 
   } catch (err) {
-    console.error(err)
+    console.error('fetchSearchResults_fromTalk()', err)
     throw(err)
     // TODO: handle errors
   }

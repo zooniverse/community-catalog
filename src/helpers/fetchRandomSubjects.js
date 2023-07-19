@@ -35,7 +35,7 @@ export default async function fetchRandomSubjects (
     return results?.rows?.map(item => (item[indexOfSubjectId] || '').toString()) || []
 
   } catch (err) {
-    console.error(err)
+    console.error('fetchRandomSubjects()', err)
     throw(err)
   }
 }

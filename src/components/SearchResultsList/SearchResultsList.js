@@ -49,7 +49,7 @@ function SearchResultsList ({
 
       } catch (err) {
         setStatus(ERROR)
-        console.error(err)
+        console.error('<SearchResultsList>', err)
       }
     }
   }
