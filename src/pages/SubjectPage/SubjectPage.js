@@ -10,13 +10,17 @@ import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
 import SubjectViewer from '@src/components/SubjectViewer'
 
+import { ASYNC_STATES } from '@src/config.js'
 import strings from '@src/strings.json'
 import useStores from '@src/store/useStores.js'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 import getQuery from '@src/helpers/getQuery.js'
 
+const { READY, FETCHING, ERROR } = ASYNC_STATES
+
 function SubjectPage () {
   const [ subjectData, setSubjectData ] = useState(undefined)
+  const [ status, setStatus ] = useState(READY)
   const size = useContext(ResponsiveContext)
 
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
@@ -24,13 +28,26 @@ function SubjectPage () {
   const subjectId = params.subjectId
   const query = getQuery()
 
-  useEffect(function onTargetChange_fetchData () {
-    // fetch new Subject
-    fetchSubject(subjectId, setSubjectData)
-    // TODO: handle invalid subjects
+  useEffect(function onTargetChange_resetThenFetchData () {
+    setSubjectData(undefined)
+    setStatus(READY)
+    doFetchData(subjectId)
 
     window.scrollTo(0, 0)  // TODO: improve scroll target
   }, [ subjectId ])
+
+  async function doFetchData (subjectId) {
+    if (!subjectId) return
+    try {
+      setStatus(FETCHING)
+      const subject = await fetchSubject(subjectId)
+      setSubjectData(subject)
+      setStatus(READY)
+    } catch (err) {
+      setStatus(ERROR)
+      console.error(err)
+    }
+  }
 
   const title = (subjectId)
     ? subjectData?.metadata?.[project?.titleField]  // Use the title field of the Subject, if any
