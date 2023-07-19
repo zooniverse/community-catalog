@@ -54,6 +54,7 @@ export default function SubjectImage ({
     <Box
       background={background}
       border={border}
+      className='subject-image'
       width={`${width}px`}
       height={`${height}px`}
       align={imgSrc ? undefined : 'center'} 

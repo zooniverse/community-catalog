@@ -49,6 +49,7 @@ export default function RandomButton ({
 
   return (
     <Button
+      className='random-button'
       primary
       busy={isWorking}
       disabled={isWorking}

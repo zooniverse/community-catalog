@@ -35,6 +35,7 @@ export default function AdvancedSearchForm ({ project }) {
 
   return (
     <Box
+      className='advanced-search-form'
       pad='small'
       gap='small'
     >

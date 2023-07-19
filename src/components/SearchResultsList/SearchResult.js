@@ -41,6 +41,7 @@ export default function SearchResult ({
 
   return (
     <CleanLink
+      className='search-result'
       to={`/projects/${project?.slug}/subject/${subjectId}`}
     >
       <Box

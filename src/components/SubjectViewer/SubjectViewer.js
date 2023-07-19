@@ -85,7 +85,9 @@ export default function SubjectViewer ({
   const hideContent = (!showSensitive && hasSensitiveContent)
 
   return (
-    <Box>
+    <Box
+      className='subject-viewer'
+    >
       <Box
         background='light-1'
         border={true}
