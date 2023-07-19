@@ -3,7 +3,6 @@ Fetches keywords (Talk tags) from a project, or from a specific Subject in that 
 
 Inputs:
 - (string) projectId
-- (function) setData: callback function after successful data fetch
 - (number) page
 - (optional) (object) subject: Zooniverse Subject resource.
   Specify only if we want tags for that specific Subject.
@@ -18,7 +17,6 @@ import { PAGE_SIZE } from '@src/config.js'
 
 export default async function fetchKeywords (
   projectId,
-  setData = (data) => { console.log('fetchKeywords: ', data) },
   page = 1,
   subject = undefined,
 ) {
@@ -44,7 +42,7 @@ export default async function fetchKeywords (
     if (!response?.ok) throw new Error('Couldn\'t fetch keywords')
 
     const keywords = response.body?.popular || []
-    setData(keywords)
+    return keywords
 
   } catch (err) {
     console.error(err)

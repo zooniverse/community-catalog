@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
-import { Box, Text } from 'grommet'
+import { Box, Spinner, Text } from 'grommet'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
 import strings from '@src/strings.json'
+import { ASYNC_STATES } from '@src/config.js'
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
 import Link from '@src/components/Link'
+
+const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 const CleanLink = styled(Link)`
   text-decoration: none;
@@ -27,18 +30,46 @@ function KeywordsList () {
   const projectId = project?.id
   const projectSlug = project?.slug
   const [ keywordsData, setKeywordsData ] = useState([])
+  const [ status, setStatus ] = useState(READY)
   const [ page, setPage ] = useState(1)
   const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
 
-  /*
-  useEffect(function onProjectChange () {
-    // Reset
+  useEffect(function onTargetChange_resetThenFetchData () {
     setKeywordsData([])
+    setStatus(READY)
     setPage(1)
     setMoreToShow(true)
+    doFetchData(1)
   }, [ project ])
-  */
 
+  async function doFetchData (pageToFetch = 1) {
+    if (project) {
+      try {
+        setPage(pageToFetch)
+        setStatus(FETCHING)
+        const keywords = await fetchKeywords(projectId, page)
+        addToKeywordsData(keywords)
+        setStatus(READY)
+
+      } catch (err) {
+        setStatus(ERROR)
+        console.error(err)
+      }
+    }
+  }
+
+  function addToKeywordsData (keywords = []) {
+    const newKeywords = [ ...keywordsData, ...keywords ]
+    setKeywordsData(newKeywords)
+    if (keywords.length === 0) setMoreToShow(false)
+  }
+
+  function fetchMore () {
+    if (status !== READY) return
+    doFetchData(page + 1)
+  }
+
+  /*
   function getMoreKeywords () {
     setPage(page + 1)
   }
@@ -48,6 +79,7 @@ function KeywordsList () {
     if (data.length === 0) setMoreToShow(false)
   }
 
+  /*
   useEffect(function onTargetChange_fetchData () {
     if (page <= 1) {  // Reset if necessary
       setKeywordsData([])
@@ -61,6 +93,7 @@ function KeywordsList () {
     )
 
   }, [ projectId, page ])
+  */
 
   return (
     <Box
@@ -93,22 +126,24 @@ function KeywordsList () {
             </KeywordBox>
           </CleanLink>
         ))}
-        {(keywordsData.length === 0) && <Text>{strings.messages.no_keywords_found}</Text>}
+        {(status === READY && keywordsData.length === 0) && (<Text>{strings.messages.no_keywords_found}</Text>)}
       </Box>
       <Box
         direction='row'
         justify='end'
         pad='small'
       >
-        {moreToShow ? (
-          <CleanLink onClick={getMoreKeywords}>
+        {(status === READY) && (moreToShow ? (
+          <CleanLink onClick={fetchMore}>
             <Text color='black'>{strings.components.keywords_list.show_more}</Text>
           </CleanLink>
         ) : (
           <CleanLink>
             <Text color='black'>{strings.components.keywords_list.no_more}</Text>
           </CleanLink>
-        )}
+        ))}
+        {(status === FETCHING) && <Spinner />}
+        {(status === ERROR) && (<Text color='red'>{strings.general.error}</Text>)}
       </Box>
     </Box>
   )

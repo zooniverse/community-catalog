@@ -11,6 +11,7 @@ import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
 import SearchResult from './SearchResult.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
+
 const CleanLink = styled(Anchor)`
   text-decoration: none;
 `
@@ -22,7 +23,7 @@ function SearchResultsList ({
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const titleField = project?.titleField || ''
   const [ searchResults, setSearchResults ] = useState([])
-  const [ status, setStatus ] = useState(READY)  // ready|fetching|error
+  const [ status, setStatus ] = useState(READY)
   const [ page, setPage ] = useState(1)
   const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
 
@@ -47,7 +48,7 @@ function SearchResultsList ({
         setStatus(READY)
 
       } catch (err) {
-        setStatus('error')
+        setStatus(ERROR)
         console.error(err)
       }
     }
