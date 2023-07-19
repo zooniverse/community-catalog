@@ -91,7 +91,7 @@ function SearchResultsList ({
       </Box>
       <Box
         direction='row'
-        justify='start'
+        justify={(size !== 'small') ? 'start' : 'center'}
         wrap={true}
       >
         {searchResults.map(subjectId => (
