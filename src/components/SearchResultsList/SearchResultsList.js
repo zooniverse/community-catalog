@@ -26,14 +26,14 @@ function SearchResultsList ({
   const [ page, setPage ] = useState(1)
   const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
 
-  useEffect(function onQueryChange () {
+  useEffect(function onQueryChange_resetData () {
     setSearchResults([])
     setStatus(READY)
     setPage(1)
     setMoreToShow(true)
   }, [ query ])
 
-  useEffect(function onProjectOrQueryChange () {
+  useEffect(function onTargetChange_fetchData () {
     doFetchData(1)
   }, [ project, query ])
 

@@ -55,9 +55,8 @@ export default function SubjectViewer ({
   const subjectId = subject?.id
   const [ index, setIndex ] = useState(0)
 
-  useEffect(function onSubjectChange () {
+  useEffect(function onTargetChange_resetData () {
     setIndex(0)
-
   }, [subject])
 
   function goPrevIndex () {

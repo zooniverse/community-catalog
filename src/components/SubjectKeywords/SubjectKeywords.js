@@ -32,7 +32,7 @@ function SubjectKeywords ({
 
   const [ keywordsData, setKeywordsData ] = useState([])
 
-  useEffect(function () {
+  useEffect(function onTargetChange_fetchData () {
     if (subject) {
       fetchKeywords(
         projectId,
@@ -41,6 +41,7 @@ function SubjectKeywords ({
         subject
       )
     }
+    // TODO: fetch more than one page of keywords?
   }, [ projectId, subject ])
 
   if (!subject) return (

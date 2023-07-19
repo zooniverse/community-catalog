@@ -30,6 +30,15 @@ function KeywordsList () {
   const [ page, setPage ] = useState(1)
   const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
 
+  /*
+  useEffect(function onProjectChange () {
+    // Reset
+    setKeywordsData([])
+    setPage(1)
+    setMoreToShow(true)
+  }, [ project ])
+  */
+
   function getMoreKeywords () {
     setPage(page + 1)
   }
@@ -39,7 +48,7 @@ function KeywordsList () {
     if (data.length === 0) setMoreToShow(false)
   }
 
-  useEffect(function () {
+  useEffect(function onTargetChange_fetchData () {
     if (page <= 1) {  // Reset if necessary
       setKeywordsData([])
       setMoreToShow(true)

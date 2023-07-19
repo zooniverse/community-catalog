@@ -1,16 +1,9 @@
 import { useEffect } from 'react'
-import { Heading, Text } from 'grommet'
 import { Outlet, useParams } from 'react-router-dom'
-import styled from 'styled-components'
 
 import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import projectsJson from '@src/projects.json'
-import Link from '@src/components/Link'
-
-const ProjectLink = styled(Link)`
-  text-decoration: none;
-`
 
 export default function ProjectContainer ({}) {
   const store = useStores()
@@ -21,7 +14,7 @@ export default function ProjectContainer ({}) {
   const projectSlug = `${projectOwner}/${projectName}`.toLowerCase()
   const selectedProject = projectsJson.projects.find(p => p.slug === projectSlug)
 
-  useEffect(function () {
+  useEffect(function onTargetChange_setData () {
     store.setProject(selectedProject)
   }, [ selectedProject ])
 

@@ -29,7 +29,7 @@ export default function SubjectImage ({
   const [ subjectData, setSubjectData ] = useState(subject)
   const index = 0
 
-  useEffect(function () {
+  useEffect(function onTargetChange_fetchData () {
     if (subject) setSubjectData(subject)
 
     // If no Subject has been specified, but we have a Subject ID, fetch that Subject.

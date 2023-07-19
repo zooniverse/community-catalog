@@ -32,7 +32,7 @@ export default function SearchResult ({
   const [ subjectData, setSubjectData ] = useState(null)
   const title = subjectData?.metadata?.[titleField] || ''
 
-  useEffect(function () {
+  useEffect(function onTargetChange_fetchData () {
     if (subjectId) fetchSubject(subjectId, setSubjectData)
   }, [ subjectId ])
   

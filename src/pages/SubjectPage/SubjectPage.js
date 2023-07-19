@@ -24,7 +24,8 @@ function SubjectPage () {
   const subjectId = params.subjectId
   const query = getQuery()
 
-  useEffect(function () {
+  useEffect(function onTargetChange_fetchData () {
+    // fetch new Subject
     fetchSubject(subjectId, setSubjectData)
     // TODO: handle invalid subjects
 
