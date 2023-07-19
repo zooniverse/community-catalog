@@ -47,6 +47,5 @@ export default async function fetchKeywords (
   } catch (err) {
     console.error(err)
     throw(err)
-    // TODO: handle errors
   }
 }

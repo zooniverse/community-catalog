@@ -37,6 +37,5 @@ export default async function fetchRandomSubjects (
   } catch (err) {
     console.error(err)
     throw(err)
-    // TODO: handle errors
   }
 }

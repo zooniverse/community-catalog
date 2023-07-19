@@ -3,9 +3,11 @@ import { Box, Image } from 'grommet'
 import { Image as ImageIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
-import { SUBJECT_IMAGE_SIZE } from '@src/config.js'
+import { ASYNC_STATES, SUBJECT_IMAGE_SIZE } from '@src/config.js'
 import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
+
+const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 const MainImage = styled(Image)`
   ${props => props.blur
@@ -27,16 +29,31 @@ export default function SubjectImage ({
   blur = false,  // Blur the image. Used to "hide" sensitive content.
 }) {
   const [ subjectData, setSubjectData ] = useState(subject)
+  const [ status, setStatus ] = useState(READY)
   const index = 0
 
   useEffect(function onTargetChange_fetchData () {
+    setStatus(READY)
     if (subject) setSubjectData(subject)
 
     // If no Subject has been specified, but we have a Subject ID, fetch that Subject.
     if (!subjectData && subjectId) {
-      fetchSubject(subjectId, setSubjectData)
+      doFetchData(subjectId)
     }
   }, [subject, subjectId])
+
+  async function doFetchData(subjectId) {
+    if (!subjectId) return
+    try {
+      setStatus(FETCHING)
+      const subject = await fetchSubject(subjectId)
+      setSubjectData(subject)
+      setStatus(READY)
+    } catch (err) {
+      setStatus(ERROR)
+      console.error(err)
+    }
+  }
   
   let imgSrc = src
   if (subjectData) {

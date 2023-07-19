@@ -3,12 +3,14 @@ import { Box, Text } from 'grommet'
 import { Hide as SensitiveContentIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
-import { SUBJECT_IMAGE_SIZE } from '@src/config.js'
+import { ASYNC_STATES, SUBJECT_IMAGE_SIZE } from '@src/config.js'
 import strings from '@src/strings.json'
 import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
 import fetchSubject from '@src/helpers/fetchSubject.js'
 import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
+
+const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 const CleanLink = styled(Link)`
   text-decoration: none;
@@ -30,11 +32,27 @@ export default function SearchResult ({
   showSensitive = false,
 }) {
   const [ subjectData, setSubjectData ] = useState(null)
+  const [ status, setStatus ] = useState(READY)
   const title = subjectData?.metadata?.[titleField] || ''
 
-  useEffect(function onTargetChange_fetchData () {
-    if (subjectId) fetchSubject(subjectId, setSubjectData)
+  useEffect(function onTargetChange_resetThenFetchData () {
+    setStatus(READY)
+    setSubjectData(null)
+    doFetchData(subjectId)
   }, [ subjectId ])
+
+  async function doFetchData (subjectId) {
+    if (!subjectId) return
+    try {
+      setStatus(FETCHING)
+      const subject = await fetchSubject(subjectId)
+      setSubjectData(subject)
+      setStatus(READY)
+    } catch (err) {
+      setStatus(ERROR)
+      console.error(err)
+    }
+  }
   
   const hasSensitiveContent = checkForSensitiveContent(subjectData, project)
   const hideContent = (!showSensitive && hasSensitiveContent)

@@ -5,7 +5,6 @@ Inputs:
 - (object) project: project config object (see projects.json)
 - (string) query
   e.g. to search for Talk posts tagged with "#penguins", pass in queryString="penguins"
-- (function) setData: callback function after successful data fetch
 
 Outputs:
 - Array of unique subject IDs (strings)
