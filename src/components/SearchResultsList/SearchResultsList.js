@@ -91,7 +91,6 @@ function SearchResultsList ({
       </Box>
       <Box
         direction='row'
-        gap='medium'
         justify='start'
         wrap={true}
       >

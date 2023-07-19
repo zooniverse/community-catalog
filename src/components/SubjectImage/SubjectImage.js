@@ -3,6 +3,7 @@ import { Box, Image } from 'grommet'
 import { Image as ImageIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
+import { SUBJECT_IMAGE_SIZE } from '@src/config.js'
 import strings from '@src/strings.json'
 import fetchSubject from '@src/helpers/fetchSubject'
 
@@ -19,8 +20,8 @@ export default function SubjectImage ({
   src,
   subject = undefined,
   subjectId = '',  // For an example, use Subject '69734802', of Project 12268, in Subject Set 98889. see https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/69734802
-  width = 200,
-  height = 200,
+  width = SUBJECT_IMAGE_SIZE,
+  height = SUBJECT_IMAGE_SIZE,
   fit,
   small = false,
   blur = false,  // Blur the image. Used to "hide" sensitive content.

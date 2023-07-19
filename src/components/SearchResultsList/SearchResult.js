@@ -3,6 +3,7 @@ import { Box, Text } from 'grommet'
 import { Hide as SensitiveContentIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
+import { SUBJECT_IMAGE_SIZE } from '@src/config.js'
 import strings from '@src/strings.json'
 import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
@@ -15,10 +16,10 @@ const CleanLink = styled(Link)`
 
 const SensitiveContentBox = styled(Box)`
   position: relative;
-  top: -200px;
-  width: 200px;
-  height: 200px;
-  margin-bottom: -200px;
+  top: -${SUBJECT_IMAGE_SIZE}px;
+  width: ${SUBJECT_IMAGE_SIZE}px;
+  height: ${SUBJECT_IMAGE_SIZE}px;
+  margin-bottom: -${SUBJECT_IMAGE_SIZE}px;
   background: rgba(128, 128, 128, 0.5);
 `
 
@@ -45,14 +46,14 @@ export default function SearchResult ({
       <Box
         background='white'
         elevation='small'
-        width='200px'
-        margin={{ bottom: 'small' }}
+        width={`${SUBJECT_IMAGE_SIZE}px`}
+        margin={{ bottom: 'small', right: 'small' }}
       >
         <SubjectImage
           subject={subjectData}
           small={true}
-          width={200}
-          height={200}
+          width={SUBJECT_IMAGE_SIZE}
+          height={SUBJECT_IMAGE_SIZE}
           blur={hideContent}
         />
         {(hideContent)
