@@ -91,8 +91,7 @@ function SearchResultsList ({
       </Box>
       <Box
         direction='row'
-        gap='medium'
-        justify='center'
+        justify={(size !== 'small') ? 'start' : 'center'}
         wrap={true}
       >
         {searchResults.map(subjectId => (
@@ -109,15 +108,15 @@ function SearchResultsList ({
       {(status === FETCHING) && (<Box direction='row' justify='center'><Spinner /></Box>)}
       {(status === ERROR) && (<Text color='red' textAlign='center'>{strings.general.error}</Text>)}
       {(showMoreButton) && (moreToShow ? (
-        <Box direction='row' justify='center'>
+        <Box direction='row' justify='end'>
           <CleanLink onClick={fetchMore}>
-            <Text color='black'>{strings.components.search_results_list.show_more}</Text>
+            <Text color='black' weight='normal'>{strings.components.search_results_list.show_more}</Text>
           </CleanLink>
           </Box>
       ) : (
-        <Box direction='row' justify='center'>
+        <Box direction='row' justify='end'>
           <CleanLink>
-            <Text color='black'>{strings.components.search_results_list.no_more}</Text>
+            <Text color='black' weight='normal'>{strings.components.search_results_list.no_more}</Text>
           </CleanLink>
         </Box>
       ))}
