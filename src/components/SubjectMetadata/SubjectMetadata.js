@@ -25,6 +25,7 @@ export default function SubjectMetadata ({
   return (
     <Box
       align='start'
+      className='subject-metadata'
     >
       <Text margin={{ bottom: 'small' }}>
         {strings.components.subject_metadata.institutional_metadata}

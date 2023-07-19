@@ -50,6 +50,7 @@ function SubjectKeywords ({
   return (
     <Box
       align='end'
+      className='subject-keywords'
     >
       <Text color='light-6' margin={{ bottom: 'small' }}>
         {strings.components.subject_keywords.community_tags}

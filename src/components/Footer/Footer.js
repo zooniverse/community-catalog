@@ -9,6 +9,7 @@ export default function Footer () {
       alignContent='center'
       as='header'
       background='black'
+      className='footer'
       direction='column'
       gap='small'
       pad='small'

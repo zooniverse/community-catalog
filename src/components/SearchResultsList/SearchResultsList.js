@@ -70,6 +70,7 @@ function SearchResultsList ({
   return (
     <Box
       background='light-1'
+      className='search-results-list'
       pad='small'
       gap='small'
     >

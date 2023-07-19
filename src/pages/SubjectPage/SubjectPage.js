@@ -54,7 +54,9 @@ function SubjectPage () {
       ]
 
   return (
-    <>
+    <Box
+      className='subject-page'
+    >
       <Heading
         level='2'
         margin={{ horizontal: 'small', vertical: 'xsmall' }}
@@ -109,7 +111,7 @@ function SubjectPage () {
         </Box>
       </Grid>
       <SearchResultsList query={query} />
-    </>
+    </Box>
   )
 }
 

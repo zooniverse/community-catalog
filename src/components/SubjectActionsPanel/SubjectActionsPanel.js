@@ -28,6 +28,7 @@ export default function SubjectActionsPanel ({
   return (
     <Box
       border={true}
+      className='subject-actions-panel'
       elevation='small'
       pad='xsmall'
       round='xsmall'

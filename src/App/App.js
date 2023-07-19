@@ -50,7 +50,9 @@ export default function App () {
   return (
     <Grommet theme={appTheme}>
       <AppContext.Provider value={store}>
-        <Box>
+        <Box
+          className='community-catalog-app'
+        >
           <Header />
           {(initialised) ?
           <MainBox

@@ -22,7 +22,9 @@ function ProjectPage () {
   const query = getQuery() || exampleQuery
 
   return (
-    <>
+    <Box
+      className='project-page'
+    >
       <Box
         background='dark-1'
         pad='small'
@@ -57,7 +59,7 @@ function ProjectPage () {
       </Box>
       <KeywordsList />
       <SearchResultsList query={query} />
-    </>
+    </Box>
   )
 }
 

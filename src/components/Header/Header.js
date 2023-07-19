@@ -89,6 +89,7 @@ function Header () {
   if (!project) return (
     <Box
       {...containerProps}
+      className='header'
       direction={(!isNarrowView) ? 'row' : 'column'}
     >
       <HeaderLogoAndTitle />
@@ -98,6 +99,7 @@ function Header () {
   return (
     <Box
       {...containerProps}
+      className='header'
       direction={(!isNarrowView) ? 'row' : 'column'}
     >
       <HeaderLogoAndTitle />

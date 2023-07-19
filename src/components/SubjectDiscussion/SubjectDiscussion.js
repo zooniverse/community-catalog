@@ -20,6 +20,7 @@ export default function SubjectDiscussion ({
   return (
     <Box
       background='light-2'
+      className='subject-discussion'
       pad='small'
     >
       <Text size='large'>{strings.components.subject_discussion.title}</Text>

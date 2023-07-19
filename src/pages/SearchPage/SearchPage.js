@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { useLocation } from 'react-router-dom'
+import { Box } from 'grommet'
 
 import SearchResultsList from '@src/components/SearchResultsList'
 import getQuery from '@src/helpers/getQuery'
@@ -14,7 +15,11 @@ function SearchPage () {
   }, [ location ])
 
   return (
-    <SearchResultsList query={query} />
+    <Box
+      className='search-page'
+    >
+      <SearchResultsList query={query} />
+    </Box>
   )
 }
 

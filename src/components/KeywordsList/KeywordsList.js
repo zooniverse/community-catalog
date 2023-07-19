@@ -54,7 +54,10 @@ function KeywordsList () {
   }, [ projectId, page ])
 
   return (
-    <Box elevation='medium'>
+    <Box
+      className='keywords-list'
+      elevation='medium'
+    >
       <Box
         background='white'
         pad='small'
