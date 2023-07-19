@@ -82,7 +82,7 @@ function Header () {
   const [ query, setQuery ] = useState(queryFromUrl)
   const location = useLocation()
 
-  useEffect(function onUrlChange () {
+  useEffect(function onUrlChange_getQueryFromUrl () {
     setQuery(queryFromUrl)
   }, [ location ])
 

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Box, Text } from 'grommet'
+import { Box, Spinner, Text } from 'grommet'
 import { Code as CodeIcon } from 'grommet-icons'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
 import strings from '@src/strings.json'
+import { ASYNC_STATES } from '@src/config.js'
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords'
 import Link from '@src/components/Link'
@@ -23,6 +24,8 @@ const KeywordBox = styled(Box)`
   }
 `
 
+const { READY, FETCHING, ERROR } = ASYNC_STATES
+
 function SubjectKeywords ({
   subject = undefined,
 }) {
@@ -31,17 +34,29 @@ function SubjectKeywords ({
   const projectSlug = project?.slug || '' 
 
   const [ keywordsData, setKeywordsData ] = useState([])
+  const [ status, setStatus ] = useState(READY)
 
-  useEffect(function () {
-    if (subject) {
-      fetchKeywords(
-        projectId,
-        setKeywordsData,
-        1,  // Page
-        subject
-      )
-    }
+  useEffect(function onTargetChange_resetThenFetchData () {
+    setKeywordsData([])
+    setStatus(READY)
+    doFetchData()
   }, [ projectId, subject ])
+
+  async function doFetchData() {
+    if (subject) {
+      try {
+        setStatus(FETCHING)
+        const keywords = await fetchKeywords(projectId, 1, subject)
+        setKeywordsData(keywords)
+        // TODO: fetch more than one page of keywords?
+        setStatus(READY)
+
+      } catch (err) {
+        setStatus(ERROR)
+        console.error('<SubjectKeyword>', err)
+      }
+    }
+  }
 
   if (!subject) return (
     <CodeIcon a11yTitle={strings.general.data_placeholder} />
@@ -61,7 +76,7 @@ function SubjectKeywords ({
         justify='end'
         wrap={true}
       >
-        {(keywordsData.length === 0)
+        {(status === READY && keywordsData.length === 0)
           ? <Text>{strings.components.subject_keywords.no_keywords}</Text>
           : null
         }
@@ -81,6 +96,8 @@ function SubjectKeywords ({
             </KeywordBox>
           </KeywordLink>
         ))}
+        {(status === FETCHING) && (<Spinner />)}
+        {(status === ERROR) && (<Text color='red'>{strings.general.error}</Text>)}
       </Box>
     </Box>
   )

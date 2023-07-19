@@ -10,7 +10,8 @@ function SearchPage () {
   const query = getQuery() || ''
   const location = useLocation()
   
-  useEffect(function onUrlChange () {
+  useEffect(function onUrlChange_doNothing () {
+    // Does nothing technically, but ensures changes to 'query' are listened to properly.
     console.log('Query parameters changed, refreshing Search Page.')
   }, [ location ])
 

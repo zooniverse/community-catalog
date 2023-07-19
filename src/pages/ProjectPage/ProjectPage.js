@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Box, Button, Carousel, Text } from 'grommet'
 import { observer } from 'mobx-react'
 
