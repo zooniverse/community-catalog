@@ -7,6 +7,7 @@ function HomePage () {
   return (
     <Box
       background='dark-1'
+      className='home-page'
       gap='small'
       pad='small'
     >
