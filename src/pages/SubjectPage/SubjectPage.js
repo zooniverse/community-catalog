@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Box, Grid, Heading, ResponsiveContext } from 'grommet'
 import { useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
+import useSWR from 'swr'
 
 import SearchResultsList from '@src/components/SearchResultsList'
 import SubjectActionsPanel from '@src/components/SubjectActionsPanel'
@@ -19,15 +20,25 @@ import getQuery from '@src/helpers/getQuery.js'
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 function SubjectPage () {
+  /*
   const [ subjectData, setSubjectData ] = useState(undefined)
   const [ status, setStatus ] = useState(READY)
-  const size = useContext(ResponsiveContext)
+  */
 
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const params = useParams()
   const subjectId = params.subjectId
   const query = getQuery()
+  const size = useContext(ResponsiveContext)
 
+  const { data: subjectData, error, isLoading } = useSWR(subjectId, fetchSubject)
+  const status = (error) ? ERROR : (isLoading) ? FETCHING : READY
+
+  useEffect(function onTargetChange_scrollToTop () {
+    window.scrollTo(0, 0)  // TODO: improve scroll target
+  }, [ subjectId ])
+
+  /*
   useEffect(function onTargetChange_resetThenFetchData () {
     setSubjectData(undefined)
     setStatus(READY)
@@ -48,6 +59,7 @@ function SubjectPage () {
       console.error('<SubjectPage>', err)
     }
   }
+  */
 
   const title = (subjectId)
     ? subjectData?.metadata?.[project?.titleField]  // Use the title field of the Subject, if any
