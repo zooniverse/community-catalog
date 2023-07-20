@@ -45,30 +45,26 @@ export default function SubjectDiscussion ({
       author_ids = author_ids?.filter((id, i) => author_ids.indexOf(id) === i)  // Remove duplicates
 
       // Prepare to identify authors of each comments, and their roles
-      const authors = {}
-      const authorRoles = {}
-      const rolesKey = projectId ? { userIds: author_ids, project: projectId } : null
+      const authors = {}  // Lookup dictionary
+      const authorRoles = {}  // Lookup dictionary
 
+      // Fetch the User and Roles resources
+      const rolesKey = projectId ? { userIds: author_ids, project: projectId } : null
       const [ allUsers, allRoles ] = await Promise.all([
         fetchUsersById(author_ids),
         fetchTalkRoles(rolesKey)
       ])
 
-      console.log('+++ \nallUsers', allUsers, '\nallRoles', allRoles)
-
-      /*
-      const { data: allUsers } = useSWR([author_ids], getUsersByID, SWROptions)
-      allUsers?.forEach(user => {
+      allUsers?.forEach(user => {  // Make a dictionary of users...
         authors[user.id] = user
         authorRoles[user.id] = []
       })
 
-      const rolesKey = !!subject?.project ? { userIds: author_ids, project: subject.project } : null
-      const { data: allRoles } = useSWR(rolesKey, getTalkRoles, SWROptions)
-      allRoles?.forEach(role => {
+      allRoles?.forEach(role => {  // ...and their roles (e.g. admin, team member, etc)
         authorRoles[role.user_id]?.push(role)
       })
-      */
+
+      console.log('+++ \nallUsers', allUsers, '\nallRoles', allRoles)
 
       // Done
       setStatus(READY)
@@ -94,6 +90,7 @@ export default function SubjectDiscussion ({
     >
       <Text size='large'>{strings.components.subject_discussion.title}</Text>
       {(status === READY) && (commentsData.map((comment, index) => {
+        console.log(`+++ Comment ${index} `, comment)
         return (
           <Box key={index}>Comment {index+1}</Box>
         )
