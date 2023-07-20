@@ -12,12 +12,9 @@ export default function Comment ({
 }) {
   if (!comment || !author) return null
 
-  const imgSrc = undefined
+  const imgSrc = author.avatar_src
   const displayName = author.display_name || author.login
-  const timestamp = '2023.05.23'
-
-  console.log('+++ author: ', author)
-  console.log('+++ comment: ', comment)
+  const timestamp = new Date(author.created_at).toLocaleString()
 
   return (
     <Box
