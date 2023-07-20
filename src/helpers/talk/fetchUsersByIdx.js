@@ -12,3 +12,4 @@ export default async function fetchUsersById (userIds = []) {
   return panoptes.get('/users', query)
     .then(response => response?.body?.users || [])
 }
+
