@@ -37,6 +37,7 @@
     "subject_discussion": {
       "no_results": "Nobody is talking about this Subject yet",
       "title": "Subject Discussion",
+      "user_avatar": "User avatar for {username}",
       "view_on_talk": "View this Subject Discussion on Talk"
     },
     "subject_image": {
