@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import { ASYNC_STATES } from '@src/config.js'
 import strings from '@src/strings.json'
 import fetchTalkComments from '@src/helpers/talk/fetchTalkComments.js'
+import fetchUsersById from '@src/helpers/talk/fetchUsersById.js'
+import fetchTalkRoles from '@src/helpers/talk/fetchTalkRoles.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
@@ -28,12 +30,47 @@ export default function SubjectDiscussion ({
 
   async function doFetchData (subject) {
     if (!subject) return
+    const projectId = subject?.links?.project
 
     try {
+      // We're fetching a bunch of things, so sit tight
       setStatus(FETCHING)
+
+      // Fetch comments for the subject
       const comments = await fetchTalkComments(subject)
       setCommentsData(comments)
 
+      // Extract author IDs from comments
+      let author_ids = comments?.map(comment => comment.user_id)
+      author_ids = author_ids?.filter((id, i) => author_ids.indexOf(id) === i)  // Remove duplicates
+
+      // Prepare to identify authors of each comments, and their roles
+      const authors = {}
+      const authorRoles = {}
+      const rolesKey = projectId ? { userIds: author_ids, project: projectId } : null
+
+      const [ allUsers, allRoles ] = await Promise.all([
+        fetchUsersById(author_ids),
+        fetchTalkRoles(rolesKey)
+      ])
+
+      console.log('+++ \nallUsers', allUsers, '\nallRoles', allRoles)
+
+      /*
+      const { data: allUsers } = useSWR([author_ids], getUsersByID, SWROptions)
+      allUsers?.forEach(user => {
+        authors[user.id] = user
+        authorRoles[user.id] = []
+      })
+
+      const rolesKey = !!subject?.project ? { userIds: author_ids, project: subject.project } : null
+      const { data: allRoles } = useSWR(rolesKey, getTalkRoles, SWROptions)
+      allRoles?.forEach(role => {
+        authorRoles[role.user_id]?.push(role)
+      })
+      */
+
+      // Done
       setStatus(READY)
 
     } catch (err) {

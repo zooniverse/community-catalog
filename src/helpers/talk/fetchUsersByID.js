@@ -1,6 +1,6 @@
 import { panoptes } from '@zooniverse/panoptes-js'
 
-export default async function fetchUsersByID (userIds = []) {
+export default async function fetchUsersById (userIds = []) {
   if (userIds.length === 0) return []
 
   const query = {
