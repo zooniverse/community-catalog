@@ -17,6 +17,7 @@ import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
+import { ZOONIVERSE_URL } from '@src/config.js'
 import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import getEnv from '@src/helpers/getEnv.js'
@@ -158,8 +159,8 @@ function WideProjectControls ({
   setQuery = () => {},
 }) {
   const projectSlug = project?.slug || ''
-  const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
-  const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
+  const projectURL = `${ZOONIVERSE_URL}/projects/${projectSlug}`
+  const talkURL = `${ZOONIVERSE_URL}/projects/${projectSlug}/talk`
   
   return (
     <Box
@@ -205,8 +206,8 @@ function NarrowProjectControls ({
   setQuery = () => {},
 }) {
   const projectSlug = project?.slug || ''
-  const projectURL = `https://www.zooniverse.org/projects/${projectSlug}`
-  const talkURL = `https://www.zooniverse.org/projects/${projectSlug}/talk`
+  const projectURL = `${ZOONIVERSE_URL}/projects/${projectSlug}`
+  const talkURL = `${ZOONIVERSE_URL}/projects/${projectSlug}/talk`
 
   return (
     <Accordion

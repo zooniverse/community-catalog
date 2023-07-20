@@ -21,8 +21,8 @@
         }
       ],
       "advanced_search": [],
-      "exampleQuery": "devtest",
-      "exampleSubjects": [
+      "example_query": "devtest",
+      "example_subjects": [
         {
           "id": "87892458",
           "title": "Example Photo A"
@@ -34,9 +34,10 @@
           "title": "Example Photo C"
         }
       ],
-      "titleField": "folder",
-      "classifyUrl": "https://frontend.preview.zooniverse.org/projects/darkeshard/community-catalog/classify/workflow/23968/subject/{subject_id}",
-      "viewOnTalkUrl": "https://www.zooniverse.org/projects/darkeshard/community-catalog/talk/subjects/{subject_id}"
+      "title_field": "folder",
+      "project_url": "https://www.zooniverse.org/projects/darkeshard/community-catalog",
+      "classify_url": "https://frontend.preview.zooniverse.org/projects/darkeshard/community-catalog/classify/workflow/23968/subject/{subject_id}",
+      "view_on_talk_url": "https://www.zooniverse.org/projects/darkeshard/community-catalog/talk/subjects/{subject_id}"
     }, {
       "name": "Scarlets & Blues (Performance Test Only)",
       "slug": "bogden/scarlets-and-blues",
@@ -45,8 +46,8 @@
         "Date", "Page", "image", "Catalogue"
       ],
       "advanced_search": [],
-      "exampleQuery": "tables",
-      "exampleSubjects": [
+      "example_query": "tables",
+      "example_subjects": [
         {
           "id": "69734802",
           "title": "Example Photo A (S&B)"
@@ -58,9 +59,10 @@
           "title": "Example Photo C (S&B)"
         }
       ],
-      "titleField": "Catalogue",
-      "classifyUrl": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues",
-      "viewOnTalkUrl": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/{subject_id}"
+      "title_field": "Catalogue",
+      "project_url": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues",
+      "classify_url": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues",
+      "view_on_talk_url": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/{subject_id}"
     }, {
       "name": "How Did We Get Here?",
       "slug": "communitiesandcrowds/how-did-we-get-here",
@@ -82,8 +84,8 @@
         }
       ],
       "advanced_search": [],
-      "exampleQuery": "",
-      "exampleSubjects": [
+      "example_query": "",
+      "example_subjects": [
         {
           "id": "90433314",
           "title": "West Indies | Jamaica - Misc"
@@ -97,9 +99,10 @@
           "title": "Medical|Nurses - Foreign, \"Coloured\", etc."
         }
       ],
-      "titleField": "folder",
-      "classifyUrl": "https://frontend.preview.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/classify/workflow/23790/subject/{subject_id}",
-      "viewOnTalkUrl": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/talk/subjects/{subject_id}"
+      "title_field": "folder",
+      "project_url": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here",
+      "classify_url": "https://frontend.preview.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/classify/workflow/23790/subject/{subject_id}",
+      "view_on_talk_url": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/talk/subjects/{subject_id}"
     }
   ]
 }
