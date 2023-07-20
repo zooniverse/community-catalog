@@ -1,3 +1,4 @@
+export const ZOONIVERSE_URL = 'https://www.zooniverse.org'
 export const DATABASE_URL = 'https://subject-set-search-api.zooniverse.org/'
 export const DATABASE_NAME = 'projects'
 export const TABLE_PREFIX = 'proj_'

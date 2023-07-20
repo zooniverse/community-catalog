@@ -68,8 +68,6 @@ export default function SubjectDiscussion ({
         authorRoles[role.user_id]?.push(role)
       })
 
-      console.log('+++ \nallUsers', allUsers, '\nallRoles', allRoles)
-
       // Done
       setCommentsData(comments)
       setAuthors(authors)
@@ -104,6 +102,7 @@ export default function SubjectDiscussion ({
             comment={comment}
             author={authors[comment.user_id]}
             authorRoles={authorRoles[comment.user_id]}
+            projectUrl={project?.project_url}
           />
         )
       }))}
