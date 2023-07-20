@@ -9,6 +9,8 @@ import fetchTalkComments from '@src/helpers/talk/fetchTalkComments.js'
 import fetchUsersById from '@src/helpers/talk/fetchUsersById.js'
 import fetchTalkRoles from '@src/helpers/talk/fetchTalkRoles.js'
 
+import Comment from './Comment.js'
+
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 const StyledLink = styled(Anchor)`
@@ -20,11 +22,14 @@ export default function SubjectDiscussion ({
 }) {
   const [ status, setStatus ] = useState(READY)
   const [ commentsData, setCommentsData ] = useState([])
-
+  const [ authors, setAuthors ] = useState(undefined)
+  const [ authorRoles, setAuthorRoles ] = useState(undefined)
 
   useEffect(function onTargetChange_resetThenFetchData () {
     setStatus(READY)
     setCommentsData([])
+    setAuthors([])
+    setAuthorRoles([])
     doFetchData(subject)
   }, [project, subject])
 
@@ -38,7 +43,6 @@ export default function SubjectDiscussion ({
 
       // Fetch comments for the subject
       const comments = await fetchTalkComments(subject)
-      setCommentsData(comments)
 
       // Extract author IDs from comments
       let author_ids = comments?.map(comment => comment.user_id)
@@ -67,6 +71,9 @@ export default function SubjectDiscussion ({
       console.log('+++ \nallUsers', allUsers, '\nallRoles', allRoles)
 
       // Done
+      setCommentsData(comments)
+      setAuthors(authors)
+      setAuthorRoles(authorRoles)
       setStatus(READY)
 
     } catch (err) {
@@ -92,7 +99,12 @@ export default function SubjectDiscussion ({
       {(status === READY) && (commentsData.map((comment, index) => {
         console.log(`+++ Comment ${index} `, comment)
         return (
-          <Box key={index}>Comment {index+1}</Box>
+          <Comment
+            key={`comment-${comment.id}`}
+            comment={comment}
+            author={authors[comment.user_id]}
+            authorRoles={authorRoles[comment.user_id]}
+          />
         )
       }))}
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}

@@ -101,7 +101,7 @@ function SearchResultsList ({
             subjectId={subjectId}
             project={project}
             titleField={titleField}
-            key={subjectId}
+            key={`search-result-${subjectId}`}
             showSensitive={showingSensitiveContent}
           />
         ))}
