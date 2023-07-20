@@ -56,7 +56,7 @@ function SubjectPage () {
 
   const isNarrowView = size === 'small'
   const rows = (!isNarrowView) ? ['auto', 'auto'] : ['auto', 'auto', 'auto', 'auto']
-  const columns = (!isNarrowView) ? ['auto', 'auto'] : ['auto']
+  const columns = (!isNarrowView) ? ['auto', '1/3'] : ['auto']
   const areas = (!isNarrowView)
     ? [
         { name: 'subject-viewer', start: [0, 0], end: [0, 0] },

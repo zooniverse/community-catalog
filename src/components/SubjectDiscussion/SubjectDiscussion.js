@@ -13,7 +13,7 @@ import Comment from './Comment.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
-const StyledLink = styled(Anchor)`
+const CleanLink = styled(Anchor)`
   text-decoration: none;
 `
 
@@ -109,9 +109,9 @@ export default function SubjectDiscussion ({
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}
       {(status === FETCHING) && (<Box direction='row' justify='center' margin={{ vertical: 'small' }}><Spinner /></Box>)}
       {(status === ERROR) && (<Box margin={{ vertical: 'small' }}><Text color='red' textAlign='center'>{strings.general.error}</Text></Box>)}
-      <StyledLink href={viewOnTalkUrl}>
+      <CleanLink href={viewOnTalkUrl}>
         <Text>{strings.components.subject_discussion.view_on_talk}</Text>
-      </StyledLink>
+      </CleanLink>
     </Box>
 
   )
