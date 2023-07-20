@@ -20,11 +20,6 @@ import getQuery from '@src/helpers/getQuery.js'
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 function SubjectPage () {
-  /*
-  const [ subjectData, setSubjectData ] = useState(undefined)
-  const [ status, setStatus ] = useState(READY)
-  */
-
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const params = useParams()
   const subjectId = params.subjectId
@@ -37,29 +32,6 @@ function SubjectPage () {
   useEffect(function onTargetChange_scrollToTop () {
     window.scrollTo(0, 0)  // TODO: improve scroll target
   }, [ subjectId ])
-
-  /*
-  useEffect(function onTargetChange_resetThenFetchData () {
-    setSubjectData(undefined)
-    setStatus(READY)
-    doFetchData(subjectId)
-
-    window.scrollTo(0, 0)  // TODO: improve scroll target
-  }, [ subjectId ])
-
-  async function doFetchData (subjectId) {
-    if (!subjectId) return
-    try {
-      setStatus(FETCHING)
-      const subject = await fetchSubject(subjectId)
-      setSubjectData(subject)
-      setStatus(READY)
-    } catch (err) {
-      setStatus(ERROR)
-      console.error('<SubjectPage>', err)
-    }
-  }
-  */
 
   const title = (subjectId)
     ? subjectData?.metadata?.[project?.titleField]  // Use the title field of the Subject, if any
