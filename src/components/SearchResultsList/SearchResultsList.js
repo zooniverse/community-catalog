@@ -21,7 +21,7 @@ function SearchResultsList ({
 }) {
   const size = useContext(ResponsiveContext)
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
-  const titleField = project?.titleField || ''
+  const titleField = project?.title_field || ''
   const [ searchResults, setSearchResults ] = useState([])
   const [ status, setStatus ] = useState(READY)
   const [ page, setPage ] = useState(1)

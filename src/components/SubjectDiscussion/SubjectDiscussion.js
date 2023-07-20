@@ -85,7 +85,7 @@ export default function SubjectDiscussion ({
     <CodeIcon a11yTitle={strings.general.data_placeholder} />
   )
 
-  const viewOnTalkUrl = project.viewOnTalkUrl?.replace(/{subject_id}/g, subject.id)
+  const viewOnTalkUrl = project.view_on_talk_url?.replace(/{subject_id}/g, subject.id)
 
   return (
     <Box

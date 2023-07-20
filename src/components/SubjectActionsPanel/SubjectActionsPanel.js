@@ -23,7 +23,7 @@ export default function SubjectActionsPanel ({
     <CodeIcon a11yTitle={strings.general.data_placeholder} />
   )
 
-  const classifySubjectUrl = project.classifyUrl?.replace(/{subject_id}/g, subject.id)
+  const classifySubjectUrl = project.classify_url?.replace(/{subject_id}/g, subject.id)
 
   return (
     <Box

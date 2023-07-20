@@ -12,8 +12,8 @@ import getQuery from '@src/helpers/getQuery'
 function ProjectPage () {
   const { project } = useStores()
   const projectSlug = project?.slug || ''
-  const exampleSubjects = project?.exampleSubjects || []
-  const exampleQuery = project?.exampleQuery || ''
+  const exampleSubjects = project?.example_subjects || []
+  const exampleQuery = project?.example_query || ''
 
   const imgWidth = 600
   const imgHeight = 300
