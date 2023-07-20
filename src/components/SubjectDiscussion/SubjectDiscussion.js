@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import { ASYNC_STATES } from '@src/config.js'
 import strings from '@src/strings.json'
+import fetchTalkComments from '@src/helpers/talk/fetchTalkComments.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
@@ -27,11 +28,12 @@ export default function SubjectDiscussion ({
 
   async function doFetchData (subject) {
     if (!subject) return
-    console.log('+++ doFecthData', subject)
 
     try {
       setStatus(FETCHING)
-      await new Promise(resolve => setTimeout(resolve, 3000))  // Tester
+      const comments = await fetchTalkComments(subject)
+      setCommentsData(comments)
+
       setStatus(READY)
 
     } catch (err) {
@@ -56,7 +58,7 @@ export default function SubjectDiscussion ({
       <Text size='large'>{strings.components.subject_discussion.title}</Text>
       {(status === READY) && (commentsData.map((comment, index) => {
         return (
-          <Box key={index}>Comment ${index+1}</Box>
+          <Box key={index}>Comment {index+1}</Box>
         )
       }))}
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}

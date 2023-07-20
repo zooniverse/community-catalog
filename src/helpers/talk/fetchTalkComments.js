@@ -1,14 +1,15 @@
 import { talkAPI } from '@zooniverse/panoptes-js'
 
 export default async function fetchTalkComments(subject) {
-  if (!subject?.project) return []
+  const projectId = subject?.links?.project
+  if (!subject || !projectId) return []
 
   const query = {
-    section: `project-${subject.project.id}`,
+    section: `project-${projectId}`,
     focus_id: subject.id,
     focus_type: 'Subject',
     page: 1,
-    sort: 'created_at',  // PFE used '-created_at' to sort in reverse order, and I have no idea why.
+    sort: 'created_at',  // Use '-created_at' to sort in reverse order.
   }
 
   return talkAPI.get('/comments', query)
