@@ -17,7 +17,7 @@ function HomePage () {
           background='light-1'
           pad='small'
         >
-          <Link to={`/projects/${proj.slug}`}>{proj.name}</Link>
+          <Link keepQuery={false} to={`/projects/${proj.slug}`}>{proj.name}</Link>
         </Box>
       ))}
     </Box>
