@@ -21,6 +21,13 @@ const CommentsContainer = styled(Box)`
   max-height: 480px;
 `
 
+const CommentsShadow = styled('div')`
+  position: relative;
+  height: 40px;
+  margin-top: -40px;
+  background-image: linear-gradient(to top, #eff2f5, transparent);
+`
+
 export default function SubjectDiscussion ({
   project, subject
 }) {
@@ -99,20 +106,23 @@ export default function SubjectDiscussion ({
     >
       <Text size='large'>{strings.components.subject_discussion.title}</Text>
       {(commentsData.length > 0)
-        ? <CommentsContainer
-            overflow='scroll'
-            margin={{ vertical: 'xsmall' }}
-          >
-            {(status === READY) && (commentsData.map(comment => (
-              <Comment
-                key={`comment-${comment.id}`}
-                comment={comment}
-                author={authors[comment.user_id]}
-                authorRoles={authorRoles[comment.user_id]}
-                projectUrl={project?.project_url}
-              />
-            )))}
-          </CommentsContainer>
+        ? <>
+            <CommentsContainer
+              overflow='scroll'
+              margin={{ vertical: 'xsmall' }}
+            >
+              {(status === READY) && (commentsData.map(comment => (
+                <Comment
+                  key={`comment-${comment.id}`}
+                  comment={comment}
+                  author={authors[comment.user_id]}
+                  authorRoles={authorRoles[comment.user_id]}
+                  projectUrl={project?.project_url}
+                />
+              )))}
+            </CommentsContainer>
+            <CommentsShadow />
+          </>
         : null
       }
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}
