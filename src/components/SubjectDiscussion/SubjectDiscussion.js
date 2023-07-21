@@ -17,6 +17,10 @@ const CleanLink = styled(Anchor)`
   text-decoration: none;
 `
 
+const CommentsContainer = styled(Box)`
+  max-height: 500px;
+`
+
 export default function SubjectDiscussion ({
   project, subject
 }) {
@@ -94,15 +98,23 @@ export default function SubjectDiscussion ({
       pad='small'
     >
       <Text size='large'>{strings.components.subject_discussion.title}</Text>
-      {(status === READY) && (commentsData.map(comment => (
-        <Comment
-          key={`comment-${comment.id}`}
-          comment={comment}
-          author={authors[comment.user_id]}
-          authorRoles={authorRoles[comment.user_id]}
-          projectUrl={project?.project_url}
-        />
-      )))}
+      {(commentsData.length > 0)
+        ? <CommentsContainer
+            overflow='scroll'
+            margin={{ vertical: 'xsmall' }}
+          >
+            {(status === READY) && (commentsData.map(comment => (
+              <Comment
+                key={`comment-${comment.id}`}
+                comment={comment}
+                author={authors[comment.user_id]}
+                authorRoles={authorRoles[comment.user_id]}
+                projectUrl={project?.project_url}
+              />
+            )))}
+          </CommentsContainer>
+        : null
+      }
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}
       {(status === FETCHING) && (<Box direction='row' justify='center' margin={{ vertical: 'small' }}><Spinner /></Box>)}
       {(status === ERROR) && (<Box margin={{ vertical: 'small' }}><Text color='red' textAlign='center'>{strings.general.error}</Text></Box>)}
