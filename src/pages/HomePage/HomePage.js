@@ -1,6 +1,7 @@
 import { Box, Text } from 'grommet'
 import styled from 'styled-components'
 
+import ProjectCard from '@src/components/ProjectCard'
 import Link from '@src/components/Link'
 import projectsJson from '@src/projects.json'
 
@@ -21,7 +22,7 @@ function HomePage () {
         alignSelf='center'
         pad='medium'
       >
-        <Text color='white'>{strings.pages.home_page.intro}</Text>
+        <Text>{strings.pages.home_page.intro}</Text>
       </IntroBox>
       <Box
         background='white'
@@ -32,7 +33,6 @@ function HomePage () {
         pad='small'
       >
         <Text
-          color='black'
           size='large'
           weight='bold'
         >
@@ -47,15 +47,10 @@ function HomePage () {
         background='red'
       >
         {projectsJson.projects.map(proj => (
-          <Box
-            width='200px'
-            key={`project-${proj.id}`}
-            background='light-1'
-            pad='small'
-            margin='small'
-          >
-            <Link keepQuery={false} to={`/projects/${proj.slug}`}>{proj.name}</Link>
-          </Box>
+          <ProjectCard
+            project={proj}
+            key={`project-${proj.id}`} 
+          />
         ))}
       </Box>
       <Box background='white' pad='small' />
