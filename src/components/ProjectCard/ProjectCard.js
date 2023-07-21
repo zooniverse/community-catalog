@@ -1,8 +1,17 @@
 import { Box, Text } from 'grommet'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import Link from '@src/components/Link'
 import { PROJECT_CARD_HEIGHT, PROJECT_CARD_WIDTH } from '@src/config.js'
+
+const projectDescriptionAnimation = keyframes`
+  0% {
+    height: 0;
+  }
+  100% {
+    height: ${PROJECT_CARD_HEIGHT}px;
+  }
+`
 
 const ProjectLink = styled(Link)`
   text-decoration: none;
@@ -13,7 +22,9 @@ const ProjectLink = styled(Link)`
 
   &:hover, &:focus {
     .project-card-description {
+      animation: 0.5s ${projectDescriptionAnimation} ease-in-out;
       display: block;
+      height: ${PROJECT_CARD_HEIGHT}px;
     }
   }
 `
