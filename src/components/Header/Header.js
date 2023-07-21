@@ -117,6 +117,7 @@ function Header () {
       >
         {(isNarrowView)
           ? <ProjectLink
+              keepQuery={false}
               to={`/projects/${project?.slug}`}
             >
               <Heading
@@ -166,7 +167,10 @@ function Header () {
         </HeaderSearchForm>
       </ProjectControls>
       {(!isNarrowView)
-        ? <ProjectLink to={`/projects/${project?.slug}`}>
+        ? <ProjectLink
+            keepQuery={false}
+            to={`/projects/${project?.slug}`}
+          >
             <Heading
               size='1.1em'
               level='1'
@@ -185,6 +189,7 @@ function Header () {
 function HeaderLogoAndTitle () {
   return (
     <LogoLink
+      keepQuery={false}
       to={`/`}
     >
       <Box

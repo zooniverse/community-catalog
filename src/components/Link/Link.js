@@ -4,7 +4,7 @@ import getEnv from '@src/helpers/getEnv.js'
 import getQuery from '@src/helpers/getQuery.js'
 
 export default function Link (props) {
-  const { to, children, ...rest } = props
+  const { to, children, keepQuery = true, ...rest } = props
 
   const toUrl = [ to ]
   const env = getEnv()
@@ -14,7 +14,7 @@ export default function Link (props) {
   if (env) toUrl.push(`&env=${encodeURIComponent(env)}`)
 
   // Keep the query consistent, if the intended URL doesn't already have its own query
-  if (query && !to?.match(/[\?&]query=/ig)) toUrl.push(`&query=${encodeURIComponent(query)}`)
+  if (keepQuery && query && !to?.match(/[\?&]query=/ig)) toUrl.push(`&query=${encodeURIComponent(query)}`)
   
   return (
     <BaseLink
