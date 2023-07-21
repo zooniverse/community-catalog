@@ -98,6 +98,10 @@ function Header () {
     </Box>
   )
 
+  const ProjectControls = (!isNarrowView) ? WideProjectControls : NarrowProjectControls
+  const projectURL = `${ZOONIVERSE_URL}/projects/${project?.slug}`
+  const talkURL = `${ZOONIVERSE_URL}/projects/${project?.slug}/talk`
+
   return (
     <Box
       {...containerProps}
@@ -105,20 +109,62 @@ function Header () {
       direction={(!isNarrowView) ? 'row' : 'column'}
     >
       <HeaderLogoAndTitle />
-      {(!isNarrowView)
-        ? <WideProjectControls
-            project={project}
-            env={env}
-            query={query}
-            setQuery={setQuery}
-          />
-        : <NarrowProjectControls
-            project={project}
-            env={env}
-            query={query}
-            setQuery={setQuery}
-          />
-      }
+      <ProjectControls
+        project={project}
+        env={env}
+        query={query}
+        setQuery={setQuery}
+      >
+        {(isNarrowView)
+          ? <ProjectLink
+              to={`/projects/${project?.slug}`}
+            >
+              <Heading
+                size='1.1em'
+                level='1'
+                color='light-1'
+                margin={{ bottom: '0' }}
+              >
+                {project?.name}
+              </Heading>
+            </ProjectLink>
+          : null
+        }
+        <HeaderLink
+          {...headerLinkProps}
+          label={strings.components.header.project_button}
+          href={projectURL}
+        />
+        <HeaderLink
+          {...headerLinkProps}
+          label={strings.components.header.talk_button}
+          href={talkURL}
+        />
+        <HeaderSearchForm
+          action={`/projects/${project?.slug}/search`}
+          method='get'
+        >
+          <Box
+            background='white'
+            direction='row'
+            pad='11.5px'
+          >
+            <HeaderSearchInput
+              name='query'
+              icon={<Search color='black' size='small' />}
+              value={query}
+              onChange={e => setQuery(e?.target?.value)}
+              width={{ min: 'medium', max: 'xlarge' }}
+              plain='full'
+            />
+            <Button plain icon={<DeleteIcon size='small' a11yTitle={strings.components.header.clear_query} />} onClick={e => setQuery('')} />
+          </Box>
+          {(env)
+            ? <input name='env' value={env} type='hidden' />
+            : null
+          }
+        </HeaderSearchForm>
+      </ProjectControls>
       {(!isNarrowView)
         ? <ProjectLink to={`/projects/${project?.slug}`}>
             <Heading
@@ -154,15 +200,8 @@ function HeaderLogoAndTitle () {
 }
 
 function WideProjectControls ({
-  project,
-  env,
-  query = '',
-  setQuery = () => {},
+  children,
 }) {
-  const projectSlug = project?.slug || ''
-  const projectURL = `${ZOONIVERSE_URL}/projects/${projectSlug}`
-  const talkURL = `${ZOONIVERSE_URL}/projects/${projectSlug}/talk`
-  
   return (
     <Box
       direction='row'
@@ -170,54 +209,14 @@ function WideProjectControls ({
       gap='small'
     >
       <Box flex='grow' />
-      <HeaderLink
-        {...headerLinkProps}
-        label={strings.components.header.project_button}
-        href={projectURL}
-      />
-      <HeaderLink
-        {...headerLinkProps}
-        label={strings.components.header.talk_button}
-        href={talkURL}
-      />
-      <HeaderSearchForm
-        action={`/projects/${projectSlug}/search`}
-        method='get'
-      >
-        <Box
-          background='white'
-          direction='row'
-          pad='11.5px'
-        >
-          <HeaderSearchInput
-            name='query'
-            icon={<Search color='black' size='small' />}
-            value={query}
-            onChange={e => setQuery(e?.target?.value)}
-            width={{ min: 'medium', max: 'xlarge' }}
-            plain='full'
-          />
-          <Button plain icon={<DeleteIcon size='small' a11yTitle={strings.components.header.clear_query} />} onClick={e => setQuery('')} />
-        </Box>
-        {(env)
-          ? <input name='env' value={env} type='hidden' />
-          : null
-        }
-      </HeaderSearchForm>
+      {children}
     </Box>
   )
 }
 
 function NarrowProjectControls ({
-  project,
-  env,
-  query = '',
-  setQuery = () => {},
+  children,
 }) {
-  const projectSlug = project?.slug || ''
-  const projectURL = `${ZOONIVERSE_URL}/projects/${projectSlug}`
-  const talkURL = `${ZOONIVERSE_URL}/projects/${projectSlug}/talk`
-
   return (
     <Accordion
       flex='grow'
@@ -228,52 +227,7 @@ function NarrowProjectControls ({
           direction='column'
           gap='small'
         >
-          <ProjectLink
-            to={`/projects/${projectSlug}`}
-          >
-            <Heading
-              size='1.1em'
-              level='1'
-              color='light-1'
-              margin={{ bottom: '0' }}
-            >
-              {project?.name}
-            </Heading>
-          </ProjectLink>
-          <HeaderLink
-            {...headerLinkProps}
-            label={strings.components.header.project_button}
-            href={projectURL}
-          />
-          <HeaderLink
-            {...headerLinkProps}
-            label={strings.components.header.talk_button}
-            href={talkURL}
-          />
-          <HeaderSearchForm
-            action={`/projects/${projectSlug}/search`}
-            method='get'
-          >
-            <Box
-              background='white'
-              direction='row'
-              pad='11.5px'
-            >
-              <HeaderSearchInput
-                name='query'
-                icon={<Search color='black' size='small' />}
-                value={query}
-                onChange={e => setQuery(e?.target?.value)}
-                width={{ min: 'medium', max: 'xlarge' }}
-                plain='full'
-              />
-              <Button plain icon={<DeleteIcon size='small' a11yTitle={strings.components.header.clear_query} />} onClick={e => setQuery('')} />
-            </Box>
-            {(env)
-              ? <input name='env' value={env} type='hidden' />
-              : null
-            }
-          </HeaderSearchForm>
+          {children}
         </Box>
       </AccordionPanel>
     </Accordion>
