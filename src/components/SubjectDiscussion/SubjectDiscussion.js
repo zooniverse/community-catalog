@@ -18,7 +18,7 @@ const CleanLink = styled(Anchor)`
 `
 
 const CommentsContainer = styled(Box)`
-  max-height: 500px;
+  max-height: 480px;
 `
 
 export default function SubjectDiscussion ({
