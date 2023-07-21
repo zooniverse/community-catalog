@@ -19,6 +19,12 @@ appTheme = deepMerge(appTheme, {
       small: {
         value: NARROW_VIEW_WIDTH
       }
+    },
+    colors: {
+      text: {
+        dark: '#ffffff',
+        light: '#000000'
+      }
     }
   }
 })
@@ -46,8 +52,6 @@ export default function App () {
   useEffect(function init () {
     checkUser()
   }, [])
-
-  console.log('+++ appTheme', appTheme)
 
   return (
     <Grommet theme={appTheme}>

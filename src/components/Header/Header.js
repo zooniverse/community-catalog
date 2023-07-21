@@ -123,7 +123,7 @@ function Header () {
               <Heading
                 size='1.1em'
                 level='1'
-                color='light-1'
+                color='white'
                 margin={{ bottom: '0' }}
               >
                 {project?.name}
@@ -174,7 +174,7 @@ function Header () {
             <Heading
               size='1.1em'
               level='1'
-              color='light-1'
+              color='white'
               margin={{ bottom: '0' }}
             >
               {project?.name}
@@ -198,7 +198,7 @@ function HeaderLogoAndTitle () {
         width='xsmall'
       >
         <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-        <HeaderTitle textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
+        <HeaderTitle color='white' textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
       </Box>
     </LogoLink>
   )
