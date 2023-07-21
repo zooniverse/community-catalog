@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-
 import {
   Accordion,
   AccordionPanel,
   Anchor,
   Box,
+  Button,
   Heading,
   ResponsiveContext,
   Text,
   TextInput
 } from 'grommet'
-import { Search, Share } from 'grommet-icons'
+import { Search, Share, FormClose as DeleteIcon } from 'grommet-icons'
+
 import Link from '@src/components/Link'
 import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
@@ -183,13 +184,21 @@ function WideProjectControls ({
         action={`/projects/${projectSlug}/search`}
         method='get'
       >
-        <HeaderSearchInput
-          name='query'
-          icon={<Search color='black' size='small' />}
-          value={query}
-          onChange={e => setQuery(e?.target?.value)}
-          width={{ min: 'medium', max: 'xlarge' }}
-        />
+        <Box
+          background='white'
+          direction='row'
+          pad='11.5px'
+        >
+          <HeaderSearchInput
+            name='query'
+            icon={<Search color='black' size='small' />}
+            value={query}
+            onChange={e => setQuery(e?.target?.value)}
+            width={{ min: 'medium', max: 'xlarge' }}
+            plain='full'
+          />
+          <Button plain icon={<DeleteIcon size='small' a11yTitle={strings.components.header.clear_query} />} onClick={e => setQuery('')} />
+        </Box>
         {(env)
           ? <input name='env' value={env} type='hidden' />
           : null
@@ -245,12 +254,21 @@ function NarrowProjectControls ({
             action={`/projects/${projectSlug}/search`}
             method='get'
           >
-            <HeaderSearchInput
-              name='query'
-              icon={<Search size='small' />}
-              value={query}
-              onChange={e => setQuery(e?.target?.value)}
-            />
+            <Box
+              background='white'
+              direction='row'
+              pad='11.5px'
+            >
+              <HeaderSearchInput
+                name='query'
+                icon={<Search color='black' size='small' />}
+                value={query}
+                onChange={e => setQuery(e?.target?.value)}
+                width={{ min: 'medium', max: 'xlarge' }}
+                plain='full'
+              />
+              <Button plain icon={<DeleteIcon size='small' a11yTitle={strings.components.header.clear_query} />} onClick={e => setQuery('')} />
+            </Box>
             {(env)
               ? <input name='env' value={env} type='hidden' />
               : null
