@@ -93,7 +93,7 @@ export default function SubjectDiscussion ({
 
   return (
     <Box
-      background='light-2'
+      background='light-1'
       className='subject-discussion'
       pad='small'
     >

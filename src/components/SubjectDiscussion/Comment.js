@@ -19,7 +19,7 @@ export default function Comment ({
   return (
     <Box
       flex={false}
-      background='light-1'
+      background='white'
       className='comment'
       direction='row'
       gap='xsmall'
