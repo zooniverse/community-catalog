@@ -19,6 +19,12 @@ appTheme = deepMerge(appTheme, {
       small: {
         value: NARROW_VIEW_WIDTH
       }
+    },
+    colors: {
+      text: {
+        dark: '#ffffff',
+        light: '#000000'
+      }
     }
   }
 })

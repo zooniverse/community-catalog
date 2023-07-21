@@ -12,13 +12,14 @@ export default function Comment ({
 }) {
   if (!comment || !author) return null
 
-  const imgSrc = author.avatar_src
+  const imgSrc = author.avatar_src || DEFAULT_AVATAR_URL
   const displayName = author.display_name || author.login
   const timestamp = new Date(author.created_at).toLocaleString()
 
   return (
     <Box
-      background='light-1'
+      flex={false}
+      background='white'
       className='comment'
       direction='row'
       gap='xsmall'

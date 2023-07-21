@@ -72,7 +72,6 @@ function SubjectKeywords ({
       </Text>
       <Box
         direction='row'
-        gap='small'
         justify='end'
         wrap={true}
       >
@@ -88,7 +87,7 @@ function SubjectKeywords ({
             <KeywordBox
               background='light-2'
               elevation='xsmall'
-              margin={{ bottom: 'small' }}
+              margin={{ bottom: 'small', left: 'small' }}
               pad={{ horizontal: 'small', vertical: 'xsmall' }}
               round='large'
             >

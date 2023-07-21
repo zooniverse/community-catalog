@@ -110,7 +110,6 @@ function KeywordsList () {
         background='accent-1'
         direction='row'
         pad='small'
-        gap='small'
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
@@ -118,7 +117,7 @@ function KeywordsList () {
             <KeywordBox
               background='white'
               elevation='xsmall'
-              margin={{ bottom: 'small' }}
+              margin={{ bottom: 'small', right: 'small' }}
               pad={{ horizontal: 'small', vertical: 'xsmall' }}
               round='large'
             >

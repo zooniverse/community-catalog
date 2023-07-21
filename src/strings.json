@@ -5,6 +5,7 @@
     },
     "footer": "This page made possible by Communities and Crowds, Zooniverse, and viewers like you.",
     "header": {
+      "clear_query": "Clear query",
       "narrow_view_menu": "Menu",
       "project_button": "Project Home",
       "talk_button": "Talk Board"
@@ -74,6 +75,10 @@
     "no_keywords_found": "No keywords found, sorry"
   },
   "pages": {
+    "home_page": {
+      "intro": "Welcome to the Zooniverse project exploration tool. These pages are intended for volunteers to organically explore a project's subjects through related tags, locations, or other metadata. You can help in this exploration by adding your own tags in the project's comment section.",
+      "pick_a_project": "Pick a project to get started:"
+    },
     "subject_page": {
       "no_subject": "(no subject chosen)",
       "title": "Subject Page for subject {subject_id}"
