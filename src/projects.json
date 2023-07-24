@@ -6,6 +6,7 @@
       "id": 21084,
       "avatar": "",
       "description": "Testing project",
+      "hidden": true,
       "metadata_fields": [
         "Item", "Notes", "folder", "image1", "image2", "#Hazard", "Oversize", "group_id", "Condition", "internal_id", "part_number", "Photographer", "#Other Number", "picture_agency", "Sensitive_Image", "Problematic_Language", "Notes on Problematic Language"
       ],
