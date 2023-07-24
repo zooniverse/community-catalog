@@ -34,8 +34,6 @@ export default function SubjectMetadata ({
       <Box>
         {metadata.map((m, i) => {
           const alias = project?.metadata_fields_aliases?.[m.key] || m.key  // Use an alias for the field, if there's one
-          console.log('+++ alias', alias)
-
           return (
             <Box
               key={`subject-metadata-${i}`}

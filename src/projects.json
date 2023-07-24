@@ -86,6 +86,9 @@
       "metadata_fields_to_search_for_keywords": [
         "image1", "image2", "internal_id", "group_id", "part_number", "folder", "#Hazard", "condition", "item", "picture_agency", "photographer", "sensitive_image_note", "probelmatic_language_notes", "#Other Number", "notes"
       ],
+      "metadata_fields_aliases": {
+        "probelmatic_language_notes": "problematic_language_notes"
+      },
       "sensitive_content_conditions": [
         {
           "field": "sensitive_image",
