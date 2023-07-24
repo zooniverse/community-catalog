@@ -7,6 +7,7 @@ import strings from '@src/strings.json'
 import { ASYNC_STATES } from '@src/config.js'
 import { useStores } from '@src/store'
 import fetchSearchResults from '@src/helpers/fetchSearchResults.js'
+import removeDuplicates from '@src/helpers/removeDuplicates.js'
 
 import SearchResult from './SearchResult.js'
 
@@ -56,7 +57,7 @@ function SearchResultsList ({
 
   function addToSearchResults (subjectIds = []) {
     const newResults = [ ...searchResults, ...subjectIds ]
-    const noDuplicates = Array.from(new Set(newResults))
+    const noDuplicates = removeDuplicates(newResults)
     setSearchResults(noDuplicates)
     if (subjectIds.length === 0) setMoreToShow(false)
   }
