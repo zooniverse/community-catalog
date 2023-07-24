@@ -62,7 +62,8 @@
     }
   },
   "errors": {
-    "could_not_find_project": "Could not find project"
+    "could_not_find_project": "Could not find project",
+    "general_error": "General Error"
   },
   "general": {
     "app_name": "Communities & Crowds",
