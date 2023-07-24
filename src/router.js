@@ -74,6 +74,7 @@ export const router = createBrowserRouter([
 
               console.log('+++ redirectUrl ', redirectUrl)
 
+              return null
               // return redirect(redirectUrl)
             },        
           },
