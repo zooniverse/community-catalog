@@ -65,17 +65,11 @@ export const router = createBrowserRouter([
             path: 'talk/search',
             element: null,
             loader: async ({ request, params }) => {
-              console.log('+++ request, params: ', request, params)
-
               const env = getEnv()
-              const query = getQuery(request.url) || ''
-
-              const redirectUrl = `/projects/${params.projectOwner}/${params.projectName}?query=${query}${env ? `&env=${env}` : ''}`
-
-              console.log('+++ redirectUrl ', redirectUrl)
-
-              return null
-              // return redirect(redirectUrl)
+              const query = (getQuery() || '')
+                            .replace(/#/g, '')
+              const redirectUrl = `/projects/${params.projectOwner}/${params.projectName}/search?query=${query}${env ? `&env=${env}` : ''}`
+              return redirect(redirectUrl)
             },        
           },
         ]
