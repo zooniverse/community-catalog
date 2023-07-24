@@ -1,5 +1,6 @@
 import { createBrowserRouter, redirect } from 'react-router-dom'
 import App from '@src/App'
+import ErrorPage from '@src/App/ErrorPage.js'
 
 import HomePage from '@src/pages/HomePage'
 import ProjectContainer from '@src/components/ProjectContainer'
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <h1>Unspecified Error</h1>,
+    errorElement: <ErrorPage />,
     children: [
       {
         /*
