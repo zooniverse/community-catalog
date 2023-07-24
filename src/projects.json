@@ -22,6 +22,8 @@
           "values": [ "true", "yes", "y", "1" ]
         }
       ],
+      "keywords_to_always_suggest": [ "example_keyword", "westindies" ],
+      "keywords_to_never_suggest": [ "devtest" ],
       "advanced_search": [],
       "example_query": "devtest",
       "example_subjects": [
@@ -89,6 +91,8 @@
           "values": [ "true", "yes", "y", "1" ]
         }
       ],
+      "keywords_to_always_suggest": [],
+      "keywords_to_never_suggest": [ "racistlanguage" ],
       "advanced_search": [],
       "example_query": "",
       "example_subjects": [
