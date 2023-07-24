@@ -97,6 +97,7 @@ export default function SubjectDiscussion ({
   )
 
   const viewOnTalkUrl = project.view_on_talk_url?.replace(/{subject_id}/g, subject.id)
+  const projectUrl = `/projects/${project?.slug}`
 
   return (
     <Box
@@ -117,7 +118,7 @@ export default function SubjectDiscussion ({
                   comment={comment}
                   author={authors[comment.user_id]}
                   authorRoles={authorRoles[comment.user_id]}
-                  projectUrl={project?.project_url}
+                  projectUrl={projectUrl}
                 />
               )))}
             </CommentsContainer>

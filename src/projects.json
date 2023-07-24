@@ -43,7 +43,6 @@
         }
       ],
       "title_field": "folder",
-      "project_url": "https://www.zooniverse.org/projects/darkeshard/community-catalog",
       "classify_url": "https://frontend.preview.zooniverse.org/projects/darkeshard/community-catalog/classify/workflow/23968/subject/{subject_id}",
       "view_on_talk_url": "https://www.zooniverse.org/projects/darkeshard/community-catalog/talk/subjects/{subject_id}"
     }, {
@@ -71,7 +70,6 @@
         }
       ],
       "title_field": "Catalogue",
-      "project_url": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues",
       "classify_url": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues",
       "view_on_talk_url": "https://www.zooniverse.org/projects/bogden/scarlets-and-blues/talk/subjects/{subject_id}"
     }, {
@@ -118,7 +116,6 @@
         }
       ],
       "title_field": "folder",
-      "project_url": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here",
       "classify_url": "https://frontend.preview.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/classify/workflow/23790/subject/{subject_id}",
       "view_on_talk_url": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/talk/subjects/{subject_id}"
     }
