@@ -120,7 +120,7 @@ function SubjectPage () {
           justify='around'
           pad={{ top: 'small' }}
         >
-          <SubjectMetadata subject={subjectData} />
+          <SubjectMetadata subject={subjectData} project={project} />
           <SubjectKeywords subject={subjectData} />
         </Box>
         <Box
