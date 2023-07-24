@@ -39,9 +39,6 @@ export default async function fetchSearchResults (
       fetchSearchResults_fromDatabase(project.id, queryForDatabase, page)
     ])
   
-    // // Flatten into a single array, then remove duplicates
-    // const subjectIds = Array.from(new Set(allSubjectIds.flat()))
-
     return allSubjectIds.flat()
   }
 }

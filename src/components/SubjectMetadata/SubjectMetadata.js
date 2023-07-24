@@ -11,6 +11,7 @@ const KeywordLink = styled(Link)`
 
 export default function SubjectMetadata ({
   subject = undefined,
+  project
 }) {
   if (!subject) return (
     <CodeIcon a11yTitle={strings.general.data_placeholder} />
@@ -31,23 +32,26 @@ export default function SubjectMetadata ({
         {strings.components.subject_metadata.institutional_metadata}
       </Text>
       <Box>
-        {metadata.map((m, i) => (
-          <Box
-            key={`subject-metadata-${i}`}
-            direction='row'
-            margin={{ bottom: 'xsmall' }}
-          >
-            <Text
-              weight='bold'
-              margin={{ right: 'small' }}
+        {metadata.map((m, i) => {
+          const alias = project?.metadata_fields_aliases?.[m.key] || m.key  // Use an alias for the field, if there's one
+          return (
+            <Box
+              key={`subject-metadata-${i}`}
+              direction='row'
+              margin={{ bottom: 'xsmall' }}
             >
-              {m.key}
-            </Text>
-            <Text>
-              {m.value}
-            </Text>
-          </Box>
-        ))}
+              <Text
+                weight='bold'
+                margin={{ right: 'small' }}
+              >
+                {alias}
+              </Text>
+              <Text>
+                {m.value}
+              </Text>
+            </Box>
+          )
+        })}
       </Box>
     </Box>
   )

@@ -6,12 +6,16 @@
       "id": 21084,
       "avatar": "",
       "description": "Testing project",
+      "hidden": true,
       "metadata_fields": [
         "Item", "Notes", "folder", "image1", "image2", "#Hazard", "Oversize", "group_id", "Condition", "internal_id", "part_number", "Photographer", "#Other Number", "picture_agency", "Sensitive_Image", "Problematic_Language", "Notes on Problematic Language"
       ],
       "metadata_fields_to_search_for_keywords": [
         "Item", "Notes", "folder", "image1", "image2", "#Hazard", "Oversize", "group_id", "Condition", "internal_id", "part_number", "Photographer", "#Other Number", "picture_agency", "Sensitive_Image", "Problematic_Language", "Notes on Problematic Language"
       ],
+      "metadata_fields_aliases": {
+        "picture_agency": "Picture Agency (PA)"
+      },
       "sensitive_content_conditions": [
         {
           "field": "Sensitive_Image",
@@ -22,6 +26,8 @@
           "values": [ "true", "yes", "y", "1" ]
         }
       ],
+      "keywords_to_always_suggest": [ "example_keyword", "westindies" ],
+      "keywords_to_never_suggest": [ "devtest" ],
       "advanced_search": [],
       "example_query": "devtest",
       "example_subjects": [
@@ -46,6 +52,7 @@
       "id": 12268,
       "avatar": "https://panoptes-uploads.zooniverse.org/project_avatar/f076e3db-9689-4188-9e49-4c7e8d6962d9.jpeg",
       "description": "Travel back in time and take a behind-the-scenes look at the stories, lives and interactions of WWI-era staff and soldiers at the Royal Hospital Chelsea, one of London’s most iconic and longstanding institutions.",
+      "hidden": true,
       "metadata_fields": [
         "Date", "Page", "image", "Catalogue"
       ],
@@ -79,6 +86,9 @@
       "metadata_fields_to_search_for_keywords": [
         "image1", "image2", "internal_id", "group_id", "part_number", "folder", "#Hazard", "condition", "item", "picture_agency", "photographer", "sensitive_image_note", "probelmatic_language_notes", "#Other Number", "notes"
       ],
+      "metadata_fields_aliases": {
+        "probelmatic_language_notes": "problematic_language_notes"
+      },
       "sensitive_content_conditions": [
         {
           "field": "sensitive_image",
@@ -89,6 +99,8 @@
           "values": [ "true", "yes", "y", "1" ]
         }
       ],
+      "keywords_to_always_suggest": [],
+      "keywords_to_never_suggest": [ "racistlanguage" ],
       "advanced_search": [],
       "example_query": "",
       "example_subjects": [

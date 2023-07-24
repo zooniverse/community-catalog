@@ -8,6 +8,7 @@ import { ASYNC_STATES } from '@src/config.js'
 import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords.js'
 import Link from '@src/components/Link'
+import removeDuplicates from '@src/helpers/removeDuplicates.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
@@ -47,7 +48,19 @@ function KeywordsList () {
       try {
         setPage(pageToFetch)
         setStatus(FETCHING)
-        const keywords = await fetchKeywords(projectId, page)
+        let keywords = await fetchKeywords(projectId, page)
+        keywords = keywords?.map(k => k.name) || [] // Flatten
+
+        if (pageToFetch === 1 && project.keywords_to_always_suggest) {  // On initial fetch, add "always suggested" keywords.
+          keywords = [ ...project.keywords_to_always_suggest, ...keywords ]
+        }
+
+        if (project.keywords_to_never_suggest) {  // Remove any "never suggest" keywords
+          keywords = keywords.filter(k => !project.keywords_to_never_suggest.includes(k))
+        }
+
+        keywords = removeDuplicates(keywords)  // Remove duplicates
+
         addToKeywordsData(keywords)
         setStatus(READY)
 
@@ -113,7 +126,7 @@ function KeywordsList () {
         wrap={true}
       >
         {keywordsData.map((keyword, i) => (
-          <CleanLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword.name)}`} key={`keyword-${i}`}>
+          <CleanLink to={`/projects/${projectSlug}/search?query=${encodeURIComponent(keyword)}`} key={`keyword-${i}`}>
             <KeywordBox
               background='white'
               elevation='xsmall'
@@ -121,7 +134,7 @@ function KeywordsList () {
               pad={{ horizontal: 'small', vertical: 'xsmall' }}
               round='large'
             >
-              <Text color='black'>#{keyword.name}</Text>
+              <Text color='black'>#{keyword}</Text>
             </KeywordBox>
           </CleanLink>
         ))}

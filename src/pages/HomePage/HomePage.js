@@ -56,7 +56,7 @@ function HomePage () {
           justify='center'
           pad='small'
         >
-          {projectsJson.projects.map(proj => (
+          {projectsJson.projects.filter(proj => !proj.hidden).map(proj => (
             <ProjectCard
               project={proj}
               key={`project-${proj.id}`} 
