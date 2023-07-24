@@ -49,6 +49,7 @@
       "id": 12268,
       "avatar": "https://panoptes-uploads.zooniverse.org/project_avatar/f076e3db-9689-4188-9e49-4c7e8d6962d9.jpeg",
       "description": "Travel back in time and take a behind-the-scenes look at the stories, lives and interactions of WWI-era staff and soldiers at the Royal Hospital Chelsea, one of London’s most iconic and longstanding institutions.",
+      "hidden": true,
       "metadata_fields": [
         "Date", "Page", "image", "Catalogue"
       ],
