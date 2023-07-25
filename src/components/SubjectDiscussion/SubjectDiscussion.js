@@ -47,10 +47,10 @@ export default function SubjectDiscussion ({
     setPage(1)
     setTotalComments(0)
     setPageSize(PAGE_SIZE)
-    doFetchData(subject)
+    doFetchData(subject, page)
   }, [project, subject])
 
-  async function doFetchData (subject) {
+  async function doFetchData (subject, page) {
     if (!subject) return
     const projectId = subject?.links?.project
 
@@ -59,7 +59,7 @@ export default function SubjectDiscussion ({
       setStatus(FETCHING)
 
       // Fetch comments for the subject
-      const { comments, pageSize, totalComments } = await fetchTalkComments(subject)
+      const { comments, pageSize, totalComments } = await fetchTalkComments(subject, page)
 
       // Extract author IDs from comments
       let author_ids = comments?.map(comment => comment.user_id)
@@ -99,6 +99,12 @@ export default function SubjectDiscussion ({
     }
   }
 
+  function changePage ({ page }) {
+    if (status !== READY) return
+    doFetchData(subject, page)
+    setPage(page)
+  }
+
   if (!project || !subject) return (
     <CodeIcon a11yTitle={strings.general.data_placeholder} />
   )
@@ -133,7 +139,17 @@ export default function SubjectDiscussion ({
           </>
         : null
       }
-      {(status === READY && totalComments > 0) && (<Pagination page={page} step={pageSize} numberItems={totalComments} />)}
+      {(status === READY && commentsData.length > 0 && totalComments > 0) && (
+        <Pagination
+          page={page}
+          size='small'
+          step={pageSize}
+          numberItems={totalComments}
+          numberEdgePages={1}
+          numberMiddlePages={1}
+          onChange={changePage}
+        />
+      )}
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}
       {(status === FETCHING) && (<Box direction='row' justify='center' margin={{ vertical: 'small' }}><Spinner /></Box>)}
       {(status === ERROR) && (<Box margin={{ vertical: 'small' }}><Text color='red' textAlign='center'>{strings.general.error}</Text></Box>)}
