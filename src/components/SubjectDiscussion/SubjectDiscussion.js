@@ -35,12 +35,16 @@ export default function SubjectDiscussion ({
   const [ commentsData, setCommentsData ] = useState([])
   const [ authors, setAuthors ] = useState(undefined)
   const [ authorRoles, setAuthorRoles ] = useState(undefined)
+  const [ page, setPage ] = useState(1)
+  const [ maxPage, setMaxPage ] = useState(0)
 
   useEffect(function onTargetChange_resetThenFetchData () {
     setStatus(READY)
     setCommentsData([])
     setAuthors([])
     setAuthorRoles([])
+    setPage(1)
+    setPage(0)
     doFetchData(subject)
   }, [project, subject])
 
@@ -53,7 +57,7 @@ export default function SubjectDiscussion ({
       setStatus(FETCHING)
 
       // Fetch comments for the subject
-      const comments = await fetchTalkComments(subject)
+      const { comments, maxPage } = await fetchTalkComments(subject)
 
       // Extract author IDs from comments
       let author_ids = comments?.map(comment => comment.user_id)
@@ -83,6 +87,7 @@ export default function SubjectDiscussion ({
       setCommentsData(comments)
       setAuthors(authors)
       setAuthorRoles(authorRoles)
+      setMaxPage(maxPage)
       setStatus(READY)
 
     } catch (err) {
