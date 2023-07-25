@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Anchor, Box, Spinner, Text } from 'grommet'
+import { Anchor, Box, Pagination, Spinner, Text } from 'grommet'
 import { Code as CodeIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
-import { ASYNC_STATES } from '@src/config.js'
+import { ASYNC_STATES, PAGE_SIZE } from '@src/config.js'
 import strings from '@src/strings.json'
 import fetchTalkComments from '@src/helpers/talk/fetchTalkComments.js'
 import fetchUsersById from '@src/helpers/talk/fetchUsersById.js'
@@ -35,16 +35,22 @@ export default function SubjectDiscussion ({
   const [ commentsData, setCommentsData ] = useState([])
   const [ authors, setAuthors ] = useState(undefined)
   const [ authorRoles, setAuthorRoles ] = useState(undefined)
+  const [ page, setPage ] = useState(1)
+  const [ pageSize, setPageSize ] = useState(PAGE_SIZE)
+  const [ totalComments, setTotalComments ] = useState(0)
 
   useEffect(function onTargetChange_resetThenFetchData () {
     setStatus(READY)
     setCommentsData([])
     setAuthors([])
     setAuthorRoles([])
-    doFetchData(subject)
+    setPage(1)
+    setTotalComments(0)
+    setPageSize(PAGE_SIZE)
+    doFetchData(subject, page)
   }, [project, subject])
 
-  async function doFetchData (subject) {
+  async function doFetchData (subject, page) {
     if (!subject) return
     const projectId = subject?.links?.project
 
@@ -53,7 +59,7 @@ export default function SubjectDiscussion ({
       setStatus(FETCHING)
 
       // Fetch comments for the subject
-      const comments = await fetchTalkComments(subject)
+      const { comments, pageSize, totalComments } = await fetchTalkComments(subject, page)
 
       // Extract author IDs from comments
       let author_ids = comments?.map(comment => comment.user_id)
@@ -83,6 +89,7 @@ export default function SubjectDiscussion ({
       setCommentsData(comments)
       setAuthors(authors)
       setAuthorRoles(authorRoles)
+      setTotalComments(totalComments)
       setStatus(READY)
 
     } catch (err) {
@@ -90,6 +97,12 @@ export default function SubjectDiscussion ({
       console.error('SubjectDiscussion', err)
 
     }
+  }
+
+  function changePage ({ page }) {
+    if (status !== READY) return
+    doFetchData(subject, page)
+    setPage(page)
   }
 
   if (!project || !subject) return (
@@ -126,6 +139,17 @@ export default function SubjectDiscussion ({
           </>
         : null
       }
+      {(status === READY && commentsData.length > 0 && totalComments > 0) && (
+        <Pagination
+          page={page}
+          size='small'
+          step={pageSize}
+          numberItems={totalComments}
+          numberEdgePages={1}
+          numberMiddlePages={1}
+          onChange={changePage}
+        />
+      )}
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}
       {(status === FETCHING) && (<Box direction='row' justify='center' margin={{ vertical: 'small' }}><Spinner /></Box>)}
       {(status === ERROR) && (<Box margin={{ vertical: 'small' }}><Text color='red' textAlign='center'>{strings.general.error}</Text></Box>)}
