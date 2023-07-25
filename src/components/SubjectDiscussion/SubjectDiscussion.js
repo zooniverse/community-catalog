@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Anchor, Box, Spinner, Text } from 'grommet'
+import { Anchor, Box, Pagination, Spinner, Text } from 'grommet'
 import { Code as CodeIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
-import { ASYNC_STATES } from '@src/config.js'
+import { ASYNC_STATES, PAGE_SIZE } from '@src/config.js'
 import strings from '@src/strings.json'
 import fetchTalkComments from '@src/helpers/talk/fetchTalkComments.js'
 import fetchUsersById from '@src/helpers/talk/fetchUsersById.js'
@@ -36,7 +36,8 @@ export default function SubjectDiscussion ({
   const [ authors, setAuthors ] = useState(undefined)
   const [ authorRoles, setAuthorRoles ] = useState(undefined)
   const [ page, setPage ] = useState(1)
-  const [ maxPage, setMaxPage ] = useState(0)
+  const [ pageSize, setPageSize ] = useState(PAGE_SIZE)
+  const [ totalComments, setTotalComments ] = useState(0)
 
   useEffect(function onTargetChange_resetThenFetchData () {
     setStatus(READY)
@@ -44,7 +45,8 @@ export default function SubjectDiscussion ({
     setAuthors([])
     setAuthorRoles([])
     setPage(1)
-    setPage(0)
+    setTotalComments(0)
+    setPageSize(PAGE_SIZE)
     doFetchData(subject)
   }, [project, subject])
 
@@ -57,7 +59,7 @@ export default function SubjectDiscussion ({
       setStatus(FETCHING)
 
       // Fetch comments for the subject
-      const { comments, maxPage } = await fetchTalkComments(subject)
+      const { comments, pageSize, totalComments } = await fetchTalkComments(subject)
 
       // Extract author IDs from comments
       let author_ids = comments?.map(comment => comment.user_id)
@@ -87,7 +89,7 @@ export default function SubjectDiscussion ({
       setCommentsData(comments)
       setAuthors(authors)
       setAuthorRoles(authorRoles)
-      setMaxPage(maxPage)
+      setTotalComments(totalComments)
       setStatus(READY)
 
     } catch (err) {
@@ -131,6 +133,7 @@ export default function SubjectDiscussion ({
           </>
         : null
       }
+      {(status === READY && totalComments > 0) && (<Pagination page={page} step={pageSize} numberItems={totalComments} />)}
       {(status === READY && commentsData.length === 0) && (<Box margin={{ vertical: 'small' }}><Text>{strings.components.subject_discussion.no_results}</Text></Box>)}
       {(status === FETCHING) && (<Box direction='row' justify='center' margin={{ vertical: 'small' }}><Spinner /></Box>)}
       {(status === ERROR) && (<Box margin={{ vertical: 'small' }}><Text color='red' textAlign='center'>{strings.general.error}</Text></Box>)}
