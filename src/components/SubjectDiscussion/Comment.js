@@ -9,6 +9,10 @@ const CommentBox = styled(Box)`
   ${props => props.isDeleted ? 'opacity: 0.25;' : '' }
 `
 
+const AvatarImage = styled(Image)`
+  border-radius: 25px;
+`
+
 export default function Comment ({
   comment,
   author,
@@ -39,12 +43,12 @@ export default function Comment ({
         width='120px'
         justify='start'
       >
-        <Image
+        <AvatarImage
           alt={strings.components.subject_discussion.user_avatar.replace(/{username}/g, displayName)}
           alignSelf='center'
           src={imgSrc}
           fallback={DEFAULT_AVATAR_URL}
-          width='80px'
+          width='50px'
         />
         <Box>
           {(author.display_name) && <Text weight='bold' size='small'>{displayName}</Text>}
