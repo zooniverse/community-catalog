@@ -41,11 +41,11 @@ export default function Comment ({
         flex={false}
         direction='column'
         width='120px'
+        align='center'
         justify='start'
       >
         <AvatarImage
           alt={strings.components.subject_discussion.user_avatar.replace(/{username}/g, displayName)}
-          alignSelf='center'
           src={imgSrc}
           fallback={DEFAULT_AVATAR_URL}
           width='50px'
