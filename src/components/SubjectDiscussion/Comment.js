@@ -1,8 +1,13 @@
 import { Box, Image, Text } from 'grommet'
 import { Markdownz } from '@zooniverse/react-components'
+import styled from 'styled-components'
 
 import { ZOONIVERSE_URL, DEFAULT_AVATAR_URL } from '@src/config.js'
 import strings from '@src/strings.json'
+
+const CommentBox = styled(Box)`
+  ${props => props.isDeleted ? 'opacity: 0.25;' : '' }
+`
 
 export default function Comment ({
   comment,
@@ -15,14 +20,16 @@ export default function Comment ({
   const imgSrc = author.avatar_src || DEFAULT_AVATAR_URL
   const displayName = author.display_name || author.login
   const timestamp = new Date(author.created_at).toLocaleString()
+  const isDeleted = !!comment.is_deleted
 
   return (
-    <Box
+    <CommentBox
       flex={false}
       background='white'
       className='comment'
       direction='row'
       gap='xsmall'
+      isDeleted={isDeleted}
       margin={{ vertical: 'xsmall' }}
       pad='xsmall'
     >
@@ -67,6 +74,6 @@ export default function Comment ({
         </Box>
 
       </Box>
-    </Box>
+    </CommentBox>
   )
 }
