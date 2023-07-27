@@ -141,6 +141,7 @@ export default function SubjectDiscussion ({
       }
       {(status === READY && commentsData.length > 0 && totalComments > 0) && (
         <Pagination
+          alignSelf='center'
           page={page}
           size='small'
           step={pageSize}
