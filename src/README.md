@@ -34,7 +34,7 @@ Contains utility functions. Each function fulfils a niche role and should have a
 
 The website is organised into a few basic page templates.
 
-**HomePage:** Catalog home page. Lists all projects.
+**LandingPage:** Catalog home page. Lists all projects.
 - Path: `/`
 - Example: https://community-catalog.zooniverse.org/
 

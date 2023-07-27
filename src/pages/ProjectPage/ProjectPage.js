@@ -39,7 +39,7 @@ function ProjectPage () {
             {exampleSubjects.map(sbj => (
               <Box key={`example-subject-${sbj.id}`}>
                 <Text>{sbj.title}</Text>
-                <Link to={`/projects/${projectSlug}/subject/${sbj.id}`} key={`home-subject-${sbj.id}`}>
+                <Link to={`/projects/${projectSlug}/subject/${sbj.id}`} key={`landing-subject-${sbj.id}`}>
                   <SubjectImage
                     background='dark-1'
                     subjectId={sbj.id}

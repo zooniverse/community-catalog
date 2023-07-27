@@ -2,7 +2,7 @@ import { createBrowserRouter, redirect } from 'react-router-dom'
 import App from '@src/App'
 import ErrorPage from '@src/App/ErrorPage.js'
 
-import HomePage from '@src/pages/HomePage'
+import LandingPage from '@src/pages/LandingPage'
 import ProjectContainer from '@src/components/ProjectContainer'
 import ProjectPage from '@src/pages/ProjectPage'
 import SearchPage from '@src/pages/SearchPage'
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
         Community Catalog home/landing Page
          */
         path: '',
-        element: <HomePage />,
+        element: <LandingPage />,
       },
       {
         path: '/projects/:projectOwner/:projectName',

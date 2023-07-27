@@ -50,7 +50,7 @@ function SubjectPage () {
   }
 
   const title = (subjectId)
-    ? subjectData?.metadata?.[project?.titleField]  // Use the title field of the Subject, if any
+    ? subjectData?.metadata?.[project?.title_field]  // Use the title field of the Subject, if any
       || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
     : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
 

@@ -16,7 +16,6 @@ export default async function fetchTalkComments(subject, page = 1) {
 
   return talkAPI.get('/comments', query)
     .then(response => {
-      console.log('+++ response', response)
       const comments = response?.body?.comments || []
       const pageSize = response?.body?.meta?.comments?.page_size || 1
       const totalComments = response?.body?.meta?.comments?.count || 1

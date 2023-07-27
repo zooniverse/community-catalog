@@ -48,7 +48,7 @@ function KeywordsList () {
       try {
         setPage(pageToFetch)
         setStatus(FETCHING)
-        let keywords = await fetchKeywords(projectId, page)
+        let keywords = await fetchKeywords(projectId, pageToFetch)
         keywords = keywords?.map(k => k.name) || [] // Flatten
 
         if (pageToFetch === 1 && project.keywords_to_always_suggest) {  // On initial fetch, add "always suggested" keywords.
