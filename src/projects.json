@@ -98,7 +98,7 @@
         }
       ],
       "keywords_to_always_suggest": [],
-      "keywords_to_never_suggest": [ "racistlanguage" ],
+      "keywords_to_never_suggest": [ "racistlanguage", "blackface" ],
       "advanced_search": [],
       "example_query": "",
       "example_subjects": [
