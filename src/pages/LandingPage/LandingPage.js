@@ -5,14 +5,14 @@ import ProjectCard from '@src/components/ProjectCard'
 import projectsJson from '@src/projects.json'
 
 import strings from '@src/strings.json'
-import { HOME_PAGE_BACKGROUND_IMAGE_URL } from '@src/config.js'
+import { LANDING_PAGE_BACKGROUND_IMAGE_URL } from '@src/config.js'
 
 const IntroBox = styled(Box)`
   max-width: 36.5em;
 `
 
 const ProjectsContainerOuter = styled(Box)`
-  background: #808080 url(${HOME_PAGE_BACKGROUND_IMAGE_URL});
+  background: #808080 url(${LANDING_PAGE_BACKGROUND_IMAGE_URL});
   background-size: 120% auto;
   background-position: center 30%;
 `
@@ -21,18 +21,18 @@ const ProjectsContainer = styled(Box)`
   backdrop-filter: sepia(5%) hue-rotate(120deg) blur(6px);
 `
 
-function HomePage () {
+function LandingPage () {
   return (
     <Box
       background='dark-1'
-      className='home-page'
+      className='landing-page'
     >
       <IntroBox
         direction='column'
         alignSelf='center'
         pad='medium'
       >
-        <Text>{strings.pages.home_page.intro}</Text>
+        <Text>{strings.pages.landing_page.intro}</Text>
       </IntroBox>
       <Box
         background='white'
@@ -46,7 +46,7 @@ function HomePage () {
           size='large'
           weight='bold'
         >
-          {strings.pages.home_page.pick_a_project}
+          {strings.pages.landing_page.pick_a_project}
         </Text>
       </Box>
       <ProjectsContainerOuter>
@@ -69,4 +69,4 @@ function HomePage () {
   )
 }
 
-export default HomePage
+export default LandingPage

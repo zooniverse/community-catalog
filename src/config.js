@@ -1,6 +1,6 @@
 // General stuff
 export const ZOONIVERSE_URL = 'https://www.zooniverse.org'
-export const HOME_PAGE_BACKGROUND_IMAGE_URL = 'https://panoptes-uploads.zooniverse.org/subject_location/53a29692-757d-4286-8816-0e6a87be9ed4.jpeg'
+export const LANDING_PAGE_BACKGROUND_IMAGE_URL = 'https://panoptes-uploads.zooniverse.org/subject_location/53a29692-757d-4286-8816-0e6a87be9ed4.jpeg'
 
 // Database stuff
 export const DATABASE_URL = 'https://subject-set-search-api.zooniverse.org/'
