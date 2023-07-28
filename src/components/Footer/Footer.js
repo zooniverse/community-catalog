@@ -13,7 +13,6 @@ export default function Footer () {
     <GrommetFooter
       align='center'
       alignContent='center'
-      as='header'
       background='black'
       className='footer'
       direction='column'
