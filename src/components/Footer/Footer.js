@@ -1,11 +1,15 @@
-import { Footer as GrommetFooter, Text } from 'grommet'
+import { Box, Footer as GrommetFooter } from 'grommet'
 import { Markdownz } from '@zooniverse/react-components'
 import styled from 'styled-components'
 
 import strings from '@src/strings.json'
 
-const StyledMarkdown = styled(Markdownz)`
-  font-size: 0.75em;
+const TextBox = styled(Box)`
+  max-width: 36.5em;
+  
+  p {
+    font-size: 0.75em;
+  }
 `
 
 export default function Footer () {
@@ -13,7 +17,6 @@ export default function Footer () {
     <GrommetFooter
       align='center'
       alignContent='center'
-      as='header'
       background='black'
       className='footer'
       direction='column'
@@ -21,7 +24,9 @@ export default function Footer () {
       pad='small'
       wrap={true}
     >
-      <StyledMarkdown>{strings.components.footer}</StyledMarkdown>
+      <TextBox pad={{ horizontal: 'medium' }}>
+        <Markdownz>{strings.components.footer}</Markdownz>
+      </TextBox>
     </GrommetFooter>
   )
 }
