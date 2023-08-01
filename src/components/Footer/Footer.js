@@ -9,6 +9,7 @@ const TextBox = styled(Box)`
   
   p {
     font-size: 0.75em;
+    text-align: center;
   }
 `
 
