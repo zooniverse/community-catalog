@@ -1,4 +1,5 @@
-import { Box, Footer as GrommetFooter, Image } from 'grommet'
+import { useContext } from 'react'
+import { Box, Footer as GrommetFooter, ResponsiveContext } from 'grommet'
 import { Markdownz } from '@zooniverse/react-components'
 import styled from 'styled-components'
 
@@ -25,13 +26,15 @@ const LogoBox = styled(Box)`
 `
 
 export default function Footer () {
+  const size = useContext(ResponsiveContext)
+  const isNarrowView = size === 'small'
   return (
     <GrommetFooter
       align='center'
       alignContent='center'
       background='black'
       className='footer'
-      direction='row'
+      direction={(!isNarrowView) ? 'row' : 'column' }
       gap='small'
       pad='small'
       wrap={true}
