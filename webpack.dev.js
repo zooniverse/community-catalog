@@ -33,9 +33,9 @@ module.exports = {
       },
       {
         test: /\.ico$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
+        type: 'asset/resource',
+        generator: {
+          filename: '[name][ext]',
         },
       },
       {
