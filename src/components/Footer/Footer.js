@@ -25,7 +25,15 @@ export default function Footer () {
       pad='small'
       wrap={true}
     >
-      <TextBox pad={{ horizontal: 'medium' }}>
+      <Box
+        flex={true}
+      >
+        ...
+      </Box>
+      <TextBox
+        flex={false}
+        pad={{ horizontal: 'medium' }}
+      >
         <Markdownz>{strings.components.footer}</Markdownz>
       </TextBox>
     </GrommetFooter>

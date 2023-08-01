@@ -38,6 +38,10 @@ module.exports = {
           name: '[name].[ext]',
         },
       },
+      {
+        test: /\.png$/i,
+        type: 'asset/resource',
+      },
     ]
   },
   plugins: [
