@@ -6,6 +6,6 @@
   "roots": [
     "<rootDir>/src"
   ],
-  "setupFilesAfterEnv": ["<rootDir>/jest-setup.js"],
+  "setupFilesAfterEnv": ["<rootDir>/jest/jest-setup.js"],
   "testEnvironment": "jsdom"
 }
