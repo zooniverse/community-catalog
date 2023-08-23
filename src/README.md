@@ -4,6 +4,8 @@ Hello fellow developers (and/or future me)! This doc should give you an idea of 
 
 Items with ⭐️ are likely the items future devs would want to modify once the Catalog's core functionality has coalesced. For example, if you want to add new Zooniverse projects to the Catalog, look at projects.json.
 
+If you want a basic overview of how the app's overall structure _from a user's point of view,_ maybe start with the [/pages](https://github.com/zooniverse/community-catalog/tree/master/src#pages) folder
+
 ## / (Root)
 
 ⭐️ **config.js:** contains general config data for the website, e.g. the URL for the indexed Subjects database.
