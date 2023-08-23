@@ -41,7 +41,7 @@ Community Catalog Stable Test Project:
 - [Zooniverse URL](https://www.zooniverse.org/projects/darkeshard/community-catalog)
 - [Community Catalog URL](https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog)
 
-Testing Steps:
+Standard Testing Steps:
 
 - Open the **landing page** ([production](https://community-catalog.zooniverse.org/) / [local](https://local.zooniverse.org:8080/?env=production))
   - Note that the `?env=production` is essential for local development
@@ -55,8 +55,24 @@ Testing Steps:
   - You should see a photo for the Subject, e.g. a nurse
   - Each Subject should have _two_ photos, which you can navigate between by clicking on the filmstrip.
   - You should see some Talk posts pulled from the Subject Discussion, e.g. Shaun A. Noordin saying "#Jamaica #Fulham #Hospital #DevTest"
-  - You should insitutional metadata listed out, e.g. "item: photograph / notes: (nothing) / folder: Medical|Nurses - Foreign, "Coloured", etc.
-"
+  - You should see insitutional metadata listed out, e.g. "item: photograph / notes: (nothing) / folder: Medical|Nurses - Foreign, "Coloured", etc. / image1: SMG00444177_0001.jpg / image2: SMG00444177_0002.jpg / etc etc"
+  - You should see user-generated community tags, e.g. #Jamaica #Fulham #Hospital #DevTest (corresponding with the Subject Discussion)
+  - You should be able to click on "View this Subject Discussion on Talk" to go to Talk [(example)](https://www.zooniverse.org/projects/darkeshard/community-catalog/talk/subjects/87892456)
+  - You should be able to click on "Classify this Subject" to classify that specific Subject on FEM's Classifier [(example)](https://frontend.preview.zooniverse.org/projects/darkeshard/community-catalog/classify/workflow/23968/subject/87892456)
+  - You should be able to see a random assortment of 10 Subjects under "Continue exploring"
+- Type in some text, e.g. "Jamaica", into searchbar in the header then press Enter on the keyboard to view the **search results page** ([projection example](https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog/search?query=jamaica) / [local example](https://local.zooniverse.org:8080/projects/darkeshard/community-catalog/search?query=jamaica&env=production))
+  - You should see Subjects listed in the search results list, if there are any. (For "Jamaica", you should see at least 4 Subjects)
+
+Advanced Testing Steps:
+
+- Feature: Sensitive Image Warning
+  - Some Subjects contain sensitive content. For example, [Subject 87892461](https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog/subject/87892461). For these Subjects, we want to hide the sensitive content behind a simple warning, that users have to opt-in into if they wish to view it.
+  - Open [Subject 87892461's subject page](https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog/subject/87892461).
+  - The photo should be _blurred,_ and a "This image may contain sensitive content" warning should be overlaid on top of the photo.
+  - Clicking on the "show sensitive images" button should now fully display the photo.
+  - Now search for the term "Coloured" to see the [search results page](https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog/search?query=Coloured)
+  - Subject 87892461 should be listed in the results, and its photo should be _blurred out with a similar warning._
+  - Clicking on the "show sensitive images" button should once again fully display the photo.
 
 FYI, the Community Catalog's _intended launch project_ is "How Did We Get Here?", and it served as the template for initial development.
 - [Zooniverse URL](https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here)
