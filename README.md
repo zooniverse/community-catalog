@@ -43,11 +43,20 @@ Community Catalog Stable Test Project:
 
 Testing Steps:
 
-- Open the landing page, e.g. https://community-catalog.zooniverse.org/ or https://local.zooniverse.org:8080/?env=production
+- Open the **landing page** ([production](https://community-catalog.zooniverse.org/) / [local](https://local.zooniverse.org:8080/?env=production))
   - Note that the `?env=production` is essential for local development
   - You should see at least one project listed on the page.
-  - The CCTP _shouldn't_ be listed, as 
-- Open the Community Catalog Test Project
+  - The CCTP _shouldn't_ be listed, as it has `hidden=true` set in the Projects config list.
+- Open the Community Catalog Stable Test Project **project page** ([production](https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog) / [local](https://local.zooniverse.org:8080/projects/darkeshard/community-catalog?env=production))
+  - You should see 3 example Subjects in the highlights, 10 keywords in the keywords list, and at least 4 Subjects under the 'search results for "devtest"'
+  - Every Subject should display a proper photo (i.e. not a placeholder icon)
+- Click on any photo to view that Subject on the **subject page** ([production example](https://community-catalog.zooniverse.org/projects/darkeshard/community-catalog/subject/87892456) / [local example](https://local.zooniverse.org:8080/projects/darkeshard/community-catalog/subject/87892456?&env=production))
+  - You should see the title, e.g. 'Medical|Nurses - Foreign, "Coloured", etc.'
+  - You should see a photo for the Subject, e.g. a nurse
+  - Each Subject should have _two_ photos, which you can navigate between by clicking on the filmstrip.
+  - You should see some Talk posts pulled from the Subject Discussion, e.g. Shaun A. Noordin saying "#Jamaica #Fulham #Hospital #DevTest"
+  - You should insitutional metadata listed out, e.g. "item: photograph / notes: (nothing) / folder: Medical|Nurses - Foreign, "Coloured", etc.
+"
 
 FYI, the Community Catalog's _intended launch project_ is "How Did We Get Here?", and it served as the template for initial development.
 - [Zooniverse URL](https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here)
