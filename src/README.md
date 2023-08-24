@@ -63,6 +63,38 @@ Main website/app component.
 
 Various components used by pages.
 
+**AdvancedSearchForm:** unused.
+
+**Footer:** website footer.
+
+**Header:** website header. Displays more controls when viewing a Project, e.g. a search bar.
+
+**KeywordsList:** works similarly to the "Popular Tags" on a project's Talk page, and pulls the data from Talk.
+
+**Link:** wrapper for `<Link>` from 'react-router-dom'
+
+**ProjectCard:** small cards that link to various projects. Used on LandingPage.
+
+**ProjectContainer:** figures out what's the currently selected project, by looking at the URL.
+
+**RandomButton:** click this button to view a random Subject in the project.
+
+**SearchResultsList:** given a query (`?query=whatever`), display all search results from the database and from Talk.
+
+**SubjectActionsPanel:** allows users to take actions with the Subject, e.g. go to Classify it. Used on SubjectPage.
+
+**SubjectDiscussion:** aka QuickTalk. Shows the subject discussion from Talk. Used on SubjectPage.
+
+**SubjectImage:** displays the Subject. (Specifically, the first image the Subject has.) Simpler version of SubjectViewer. Used everywhere!
+
+**SubjectKeywords:** displays keywords tagged to the Subject. Pulls data from Talk. Used on SubjectPage.
+
+**SubjectMetadata:** displays the institutional metadata of the Subject. Used on the SubjectPage.
+
+**SubjectViewer:** displays the Subject. Allows the user to view all its images, if the Subject has multiple images. Used on SubjectPage, where the Subject is the focus.
+
+**Tester:** unused.
+
 ## /helpers
 
 Contains utility functions. Each function fulfils a niche role and should have additional docs in their comments.
