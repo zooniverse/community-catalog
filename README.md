@@ -15,7 +15,9 @@ Welcome to the Community Catalog, a Zooniverse-powered website for exploring com
 <summary>How to add more Projects to, or modify Projects in, the Catalog</summary>
 
 1. Make changes to the Projects config list, i.e. [src/projects.json](src/projects.json) 
-2. Make equivalent changes in the Projects config list of [subject-set-search-api](https://github.com/zooniverse/subject-set-search-api/blob/main/src/projects.js)
+2. If necessary, make equivalent changes in the Projects config list of [subject-set-search-api](https://github.com/zooniverse/subject-set-search-api/blob/main/src/projects.js)
+
+Of course, you'll need to deploy `community-catalog` (and `subject-set-search-api`) once you've made those changes.
 </details>
 
 <details>
