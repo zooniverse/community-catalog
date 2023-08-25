@@ -14,8 +14,8 @@ jest.mock('@zooniverse/panoptes-js', () => {
   }
 })
 
-describe('Subject Image', function () {
-  test('should render subject image, when given a specific subject', async function () {
+describe('SubjectImage', function () {
+  test('should render an image, when given a subject', async function () {
     render(
       <SubjectImage
         subject={{
@@ -27,5 +27,9 @@ describe('Subject Image', function () {
         }}
       />
     )
+
+    // For multi-image subjects, SubjectImage will render the FIRST image.
+    expect(screen.getByRole('alt')).toHaveProperty('src', 'Preview image for Subject 87892456')
+    expect(screen.getByRole('img')).toHaveProperty('src', 'https://panoptes-uploads.zooniverse.org/subject_location/66fd834d-b13a-40f0-b97d-6d364841d56c.jpeg')
   })
 })
