@@ -1,5 +1,5 @@
 const subjects = {
-  get: () => {
+  get: (subjectId) => {
     return Promise.resolve(null)
   }
 }
