@@ -19,7 +19,7 @@ describe('ProjectContainers', function () {
     setShowingSensitiveContent: () => {},
   }
 
-  test('should find a project based on the route/path', async function () {
+  test('should find (and set) a project based on the route/path', async function () {
     selectedProject = null
 
     render(
