@@ -4,7 +4,7 @@ import ProjectContainer from './ProjectContainer.js'
 
 import { AppContext } from '@src/store'
 
-describe.only('ProjectContainers', function () {
+describe('ProjectContainers', function () {
   let selectedProject
   const store = {
     project: {
