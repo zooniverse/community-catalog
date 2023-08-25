@@ -1,5 +1,7 @@
 const subjects = {
-  get: () => { Promise.resolve(null) }
+  get: () => {
+    return Promise.resolve(null)
+  }
 }
 
 module.exports = {
