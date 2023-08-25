@@ -21,5 +21,6 @@ const config = {
   "testEnvironment": "jsdom"
 }
 
-// Jest (or Jest 29.6.4 at least) doesn't like the "export" keyword (i.e. ES6 modules), so we have to use module.exports (CommonJS modules)
+// Jest doesn't like "export" (i.e. ES6 modules), so we use module.exports (CommonJS modules).
+// Probably because it's running in Node.js.
 module.exports = config
