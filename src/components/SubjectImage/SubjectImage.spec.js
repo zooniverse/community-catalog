@@ -13,7 +13,6 @@ const exampleSubject_87892456 = {
 // mock Panoptes module
 jest.mock('@zooniverse/panoptes-js', () => {
   return {
-    __esModule: true,
     subjects: {
       get: ({ id }) => {
         if (id === '87892456') {
