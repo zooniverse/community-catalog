@@ -5,11 +5,8 @@ import App from './App.js'
 // mock Panoptes auth calls
 jest.mock('panoptes-client/lib/auth', () => {
   return {
-    __esModule: true,
-    default: {
-      checkCurrent: () => {
-        return Promise.resolve(null)
-      }
+    checkCurrent: () => {
+      return Promise.resolve(null)
     }
   }
 })
