@@ -1,6 +1,11 @@
 {
   "plugins": [
-    "@babel/plugin-proposal-optional-chaining"
+    "@babel/plugin-proposal-optional-chaining",
+    ["transform-imports", {
+      "@zooniverse/react-components": {
+        "transform": "@zooniverse/react-components/${member}"
+      }
+    }]
   ],
   "presets": [
     "@babel/preset-env",
