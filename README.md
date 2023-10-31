@@ -87,7 +87,7 @@ FYI, the Community Catalog's _intended launch project_ is "How Did We Get Here?"
 This project is a React website that connects to various Zooniverse databases/services.
 
 Requires:
-- node 18 and npm 9
+- node 20 and npm 10
 
 External requirements:
 - `zooniverse.org`: required for user auth.
