@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/zooniverse/community-catalog#readme",
   "devDependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.3",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
