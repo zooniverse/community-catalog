@@ -41,7 +41,7 @@
   "dependencies": {
     "@zooniverse/grommet-theme": "^3.2.0",
     "@zooniverse/panoptes-js": "^0.5.0",
-    "@zooniverse/react-components": "^1.6.4",
+    "@zooniverse/react-components": "~1.8.0",
     "grommet": "^2.34.1",
     "grommet-icons": "^4.11.0",
     "mobx": "^6.11.0",
@@ -55,6 +55,7 @@
     "url": "^0.11.3"
   },
   "overrides": {
+    "markdown-it": "~13.0.2",
     "trim": "^1.0.1"
   },
   "engines": {

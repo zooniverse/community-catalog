@@ -49,6 +49,9 @@ module.exports = {
       '@src': path.resolve(__dirname, 'src'),
     },
     fallback: {
+      fs: false,
+      path: false,
+      process: false,
       'url': require.resolve('url/'),  // Required by panoptes-client
     },
   },
