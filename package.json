@@ -55,6 +55,7 @@
     "url": "^0.11.3"
   },
   "overrides": {
+    "markdown-it": "~13.0.2",
     "trim": "^1.0.1"
   },
   "engines": {
