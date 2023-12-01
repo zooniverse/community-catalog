@@ -7,7 +7,6 @@ import projectsJson from '@src/projects.json'
 
 export default function ProjectContainer ({}) {
   const store = useStores()
-
   const params = useParams()
   const projectOwner = params.projectOwner || ''
   const projectName = params.projectName || ''

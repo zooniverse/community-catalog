@@ -11,7 +11,7 @@ import SubjectPage from '@src/pages/SubjectPage'
 import getEnv from '@src/helpers/getEnv.js'
 import getQuery from '@src/helpers/getQuery.js'
 
-export const router = createBrowserRouter([
+export const routes = [
   {
     path: '/',
     element: <App />,
@@ -77,4 +77,6 @@ export const router = createBrowserRouter([
       }
     ]
   },
-])
+]
+
+export const router = createBrowserRouter(routes)
