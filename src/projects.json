@@ -116,7 +116,7 @@
         }
       ],
       "title_field": "folder",
-      "classify_url": "https://frontend.preview.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/classify/workflow/23790/subject/{subject_id}",
+      "classify_url": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/classify/workflow/23790/subject/{subject_id}",
       "view_on_talk_url": "https://www.zooniverse.org/projects/communitiesandcrowds/how-did-we-get-here/talk/subjects/{subject_id}"
       }, {
         "name": "Stereovision",
