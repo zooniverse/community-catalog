@@ -124,6 +124,7 @@
         "id": 23052,
         "avatar": "https://panoptes-uploads.zooniverse.org/project_avatar/576b37cd-4d27-4752-95e4-d870890f8f2c.jpeg",
         "description": "Help make our collections at National Museums Scotland more accessible by classifying 19th century stereographs of the Great Exhibition of 1862, through creating keywords and alternative descriptions. ",
+        "hidden": true,
         "metadata_fields": [
           "file name", "object_number", "object_name", "creator", "creator.role", "production.date", "association.person", "credit line"
         ],
