@@ -71,8 +71,10 @@
     "error": "ERROR: please see dev console for details"
   },
   "messages": {
-    "app_ready": "App ready.",
     "app_initialising": "Initialising app...",
+    "app_ready": "App ready.",
+    "project_data_fetching": "Fetching project data...",
+    "project_data_ready": "project data ready.",
     "no_keywords_found": "No keywords found, sorry"
   },
   "pages": {
