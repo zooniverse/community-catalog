@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import { Box, Spinner } from 'grommet'
+import { Box, Spinner, Text } from 'grommet'
 
 import { ASYNC_STATES } from '@src/config.js'
 import strings from '@src/strings.json'
@@ -53,12 +53,15 @@ export default function ProjectContainer ({}) {
         justify='center'
         pad='small'
       >
-        <Spinner
-          message={{
-            start: strings.messages.project_data_fetching,
-            end: strings.messages.project_data_ready
-          }}
-        />
+        {(status === FETCHING) && (
+          <Spinner
+            message={{
+              start: strings.messages.project_data_fetching,
+              end: strings.messages.project_data_ready
+            }}
+          />
+        )}
+        {(status === ERROR) && (<Text color='red'>{strings.general.error}</Text>)}
       </Box>
     )
   }
