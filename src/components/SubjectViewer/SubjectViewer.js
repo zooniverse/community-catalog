@@ -12,6 +12,7 @@ import strings from '@src/strings.json'
 import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 
 const FILMSTRIP_IMAGE_SIZE = 44
+const MIN_IMAGES_TO_SHOW_FILMSTRIP = 2
 const GOLD_COLOUR = '#F0B200'
 
 const MainImage = styled(Image)`
@@ -153,49 +154,42 @@ export default function SubjectViewer ({
           </SensitiveContentCheckboxBox>
         : null
       }
-      <Box
-        direction='row'
-        justify='center'
-      >
-        {(filmstripSrcs.length > 0)
-          ? <Button
-              a11yTitle={strings.components.subject_viewer.prev_item}
-              icon={<LeftIcon />}
-              onClick={goPrevIndex}
-            />
-          : null
-        }
-
-        {filmstripSrcs.map((filmstripSrc, _index) => {
-          const isSelected = _index === index
-
-          return (
-            <Button
-              key={`subject-viewer-filmstrip-${_index}`}
-              margin={{ horizontal: 'xxsmall', vertical: 'small' }}
-            >
-              <ImageWithBorder
-                /* TODO alt={strings.components.subject_viewer.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
-                color={(isSelected) ? GOLD_COLOUR : 'transparent'}
-                fit='cover'
-                src={filmstripSrc}
-                height={FILMSTRIP_IMAGE_SIZE}
-                width={FILMSTRIP_IMAGE_SIZE}
-                onClick={() => { setIndex(_index) }}
-              />
-            </Button>
-          )
-        })}
-
-        {(filmstripSrcs.length > 0)
-          ? <Button
-              a11yTitle={strings.components.subject_viewer.next_item}
-              icon={<RightIcon />}
-              onClick={goNextIndex}
-            />
-          : null
-        }
-      </Box>
+      {(filmstripSrcs.length >= MIN_IMAGES_TO_SHOW_FILMSTRIP) && (
+        <Box
+          direction='row'
+          justify='center'
+        >
+          <Button
+            a11yTitle={strings.components.subject_viewer.prev_item}
+            icon={<LeftIcon />}
+            onClick={goPrevIndex}
+          />
+          {filmstripSrcs.map((filmstripSrc, _index) => {
+            const isSelected = _index === index
+            return (
+              <Button
+                key={`subject-viewer-filmstrip-${_index}`}
+                margin={{ horizontal: 'xxsmall', vertical: 'small' }}
+              >
+                <ImageWithBorder
+                  /* TODO alt={strings.components.subject_viewer.image.replace(/{index}/g, _index).replace(/{subject_id}/g, subjectId)}*/
+                  color={(isSelected) ? GOLD_COLOUR : 'transparent'}
+                  fit='cover'
+                  src={filmstripSrc}
+                  height={FILMSTRIP_IMAGE_SIZE}
+                  width={FILMSTRIP_IMAGE_SIZE}
+                  onClick={() => { setIndex(_index) }}
+                />
+              </Button>
+            )
+          })}
+          <Button
+            a11yTitle={strings.components.subject_viewer.next_item}
+            icon={<RightIcon />}
+            onClick={goNextIndex}
+          />
+        </Box>
+      )}
     </Box>
   )
 }
