@@ -72,7 +72,8 @@
   "general": {
     "app_name": "Communities & Crowds",
     "data_placeholder": "Data placeholder",
-    "error": "ERROR: please see dev console for details"
+    "error": "ERROR: please see dev console for details",
+    "zooniverse_name": "Zooniverse"
   },
   "messages": {
     "app_initialising": "Initialising app...",

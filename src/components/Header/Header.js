@@ -18,6 +18,8 @@ import { ZooniverseLogo } from '@zooniverse/react-components'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
+import wordZooniverse from '@src/images/zooniverse-word-white.png'
+
 import { ZOONIVERSE_URL } from '@src/config.js'
 import strings from '@src/strings.json'
 import { useStores } from '@src/store'
@@ -29,8 +31,18 @@ const LogoLink = styled(Link)`
   text-decoration: none;
 `
 
+// Header title is styled very specifically so it looks like...
+//   Communities (\line break)
+//   & Crowds
 const HeaderTitle = styled(Text)`
+  font-size: 14px;
+  line-height: 14.5px;
+  max-width: 100px;
   text-transform: uppercase;
+`
+
+const ZooniverseWordImage = styled('img')`
+  height: 24px;
 `
 
 const HeaderLink = styled(Anchor)`
@@ -92,9 +104,9 @@ function Header () {
     <Box
       {...containerProps}
       className='header'
-      direction={(!isNarrowView) ? 'row' : 'column'}
+      direction='column'
     >
-      <HeaderLogoAndTitle />
+      <CommunityCatalogHeader isNarrowView={isNarrowView} />
     </Box>
   )
 
@@ -106,9 +118,10 @@ function Header () {
     <Box
       {...containerProps}
       className='header'
-      direction={(!isNarrowView) ? 'row' : 'column'}
+      direction='column'
+      gap='small'
     >
-      <HeaderLogoAndTitle />
+      <CommunityCatalogHeader isNarrowView={isNarrowView} />
       <ProjectControls
         project={project}
         env={env}
@@ -186,21 +199,30 @@ function Header () {
   )
 }
 
-function HeaderLogoAndTitle () {
+function CommunityCatalogHeader ({
+  isNarrowView = false
+}) {
   return (
-    <LogoLink
-      keepQuery={false}
-      to={`/`}
+    <Box
+      align='center'
+      direction='row'
+      width='100%'
     >
-      <Box
-        align='center'
-        flex={false}
-        width='xsmall'
+      <LogoLink
+        keepQuery={false}
+        to={`/`}
       >
-        <ZooniverseLogo id='header-zooniverseLogo' size='3em' style={{ color: '#00979d' }} />
-        <HeaderTitle color='white' textAlign='center' size='xsmall'>{strings.general.app_name}</HeaderTitle>
+        <Box align='center' direction='row' gap='small'>
+          <ZooniverseLogo id='header-zooniverseLogo' size='24px' style={{ color: '#00979d' }} />
+          {!isNarrowView && <ZooniverseWordImage alt={strings.general.zooniverse_name} src={wordZooniverse} />}
+          <HeaderTitle color='white'>{strings.general.app_name}</HeaderTitle>
+        </Box>
+      </LogoLink>
+      <Box flex="grow" />
+      <Box>
+        <Button label='Sign In' />
       </Box>
-    </LogoLink>
+    </Box>
   )
 }
 
