@@ -59,10 +59,14 @@
       "placeholder": "Placeholder for Subject image",
       "prev_item": "View previous image",
       "show_sensitive_images": "Show sensitive images"
+    },
+    "workflow_selection_dialog": {
+      "choose_your_workflow": "Choose which workflow to classify this Subject:"
     }
   },
   "errors": {
     "could_not_find_project": "Could not find project",
+    "expected_classify_url_to_be_array": "Expected project.classify_url to be an array",
     "general_error": "General Error"
   },
   "general": {
@@ -71,8 +75,10 @@
     "error": "ERROR: please see dev console for details"
   },
   "messages": {
-    "app_ready": "App ready.",
     "app_initialising": "Initialising app...",
+    "app_ready": "App ready.",
+    "project_data_fetching": "Fetching project data...",
+    "project_data_ready": "project data ready.",
     "no_keywords_found": "No keywords found, sorry"
   },
   "pages": {

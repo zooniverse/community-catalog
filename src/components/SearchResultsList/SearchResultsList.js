@@ -27,6 +27,7 @@ function SearchResultsList ({
   const [ status, setStatus ] = useState(READY)
   const [ page, setPage ] = useState(1)
   const [ moreToShow, setMoreToShow ] = useState(true)  // If there's more to show, then we should show "Show More", you dig?
+  const projectHasSensitiveContent = project?.sensitive_content_conditions?.length > 0
 
   useEffect(function onQueryChange_resetData () {
     setSearchResults([])
@@ -85,12 +86,14 @@ function SearchResultsList ({
           : strings.components.search_results_list.search_results_random  /* No query, so show all results */
         }</Text>
         <Box flex='grow' />
-        <CheckBox
-          checked={showingSensitiveContent}
-          onChange={e => setShowingSensitiveContent(!!e?.target?.checked)}
-          label={<Text>{strings.components.search_results_list.show_sensitive_images}</Text>}
-          reverse={(size !== 'small')}
-        />
+        {projectHasSensitiveContent && (
+          <CheckBox
+            checked={showingSensitiveContent}
+            onChange={e => setShowingSensitiveContent(!!e?.target?.checked)}
+            label={<Text>{strings.components.search_results_list.show_sensitive_images}</Text>}
+            reverse={(size !== 'small')}
+          />
+        )}
       </Box>
       <Box
         direction='row'
