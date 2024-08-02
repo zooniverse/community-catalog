@@ -155,15 +155,15 @@
         "classify_url": [
           {
             "label": "Classification: Hand-coloured and living people",
-            "value": "https://www.zooniverse.org/projects/juliehgibb/stereovision/classify/workflow/26554/subject/{subject_id}"
+            "url": "https://www.zooniverse.org/projects/juliehgibb/stereovision/classify/workflow/26554/subject/{subject_id}"
           },
           {
             "label": "Alt Text and Extended Description",
-            "value": "https://www.zooniverse.org/projects/juliehgibb/stereovision/classify/workflow/26599/subject/{subject_id}"
+            "url": "https://www.zooniverse.org/projects/juliehgibb/stereovision/classify/workflow/26599/subject/{subject_id}"
           },
           {
             "label": "Keyword classification",
-            "value": "https://www.zooniverse.org/projects/juliehgibb/stereovision/classify/workflow/26600/subject/{subject_id}"
+            "url": "https://www.zooniverse.org/projects/juliehgibb/stereovision/classify/workflow/26600/subject/{subject_id}"
           }
         ],
         "view_on_talk_url": "https://www.zooniverse.org/projects/juliehgibb/stereovision/talk/subjects/{subject_id}"

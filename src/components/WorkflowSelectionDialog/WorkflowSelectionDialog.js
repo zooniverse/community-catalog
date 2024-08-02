@@ -36,8 +36,8 @@ export default function WorkflowSelectionDialog ({
         pad={{ top: "small", right: "large", bottom: "large", left: "large" }}
       >
         <P>{strings.components.workflow_selection_dialog.choose_your_workflow}</P>
-        {project.classify_url.map((({ label, value }) => {
-          const classifySubjectUrl = value?.replace(/{subject_id}/g, subject.id)
+        {project.classify_url.map((({ label, url }) => {
+          const classifySubjectUrl = url?.replace(/{subject_id}/g, subject.id)
           return (
             <Box>
               <StyledLink
