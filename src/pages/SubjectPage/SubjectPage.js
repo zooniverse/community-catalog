@@ -136,7 +136,11 @@ function SubjectPage () {
         <Box
           gridArea='subject-actions'
         >
-          <SubjectActionsPanel project={project} subject={subjectData} />
+          <SubjectActionsPanel
+            project={project}
+            subject={subjectData}
+            showWorkflowSelection={showWorkflowSelection}
+          />
         </Box>
       </Grid>
       <SearchResultsList query={query} />
