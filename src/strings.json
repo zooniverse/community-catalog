@@ -59,6 +59,9 @@
       "placeholder": "Placeholder for Subject image",
       "prev_item": "View previous image",
       "show_sensitive_images": "Show sensitive images"
+    },
+    "workflow_selection_dialog": {
+      "choose_your_workflow": "Choose which workflow to classify this Subject:"
     }
   },
   "errors": {

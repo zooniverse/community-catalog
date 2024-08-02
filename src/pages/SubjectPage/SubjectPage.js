@@ -9,6 +9,7 @@ import SubjectDiscussion from '@src/components/SubjectDiscussion'
 import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
 import SubjectViewer from '@src/components/SubjectViewer'
+import WorkflowSelectionDialog from '@src/components/WorkflowSelectionDialog'
 
 import { ASYNC_STATES } from '@src/config.js'
 import strings from '@src/strings.json'
@@ -21,6 +22,7 @@ const { READY, FETCHING, ERROR } = ASYNC_STATES
 function SubjectPage () {
   const [ subjectData, setSubjectData ] = useState(undefined)
   const [ status, setStatus ] = useState(READY)
+  const [ workflowSelectionVisible, setWorkflowSelectionVisible ] = useState(false)
   const size = useContext(ResponsiveContext)
 
   const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
@@ -70,6 +72,14 @@ function SubjectPage () {
         { name: 'subject-actions', start: [0, 2], end: [0, 2] },
         { name: 'subject-discussion', start: [0, 3], end: [0, 3] },
       ]
+  
+  function showWorkflowSelection () {
+    setWorkflowSelectionVisible(true)
+  }
+
+  function hideWorkflowSelection () {
+    setWorkflowSelectionVisible(false)
+  }
 
   return (
     <Box
@@ -130,6 +140,12 @@ function SubjectPage () {
         </Box>
       </Grid>
       <SearchResultsList query={query} />
+      <WorkflowSelectionDialog
+        project={project}
+        subject={subjectData}
+        show={workflowSelectionVisible}
+        onClose={hideWorkflowSelection}
+      />
     </Box>
   )
 }
