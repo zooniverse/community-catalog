@@ -66,6 +66,7 @@
   },
   "errors": {
     "could_not_find_project": "Could not find project",
+    "expected_classify_url_to_be_array": "Expected project.classify_url to be an array",
     "general_error": "General Error"
   },
   "general": {
