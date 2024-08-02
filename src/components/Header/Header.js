@@ -218,10 +218,12 @@ function CommunityCatalogHeader ({
           <HeaderTitle color='white'>{strings.general.app_name}</HeaderTitle>
         </Box>
       </LogoLink>
+      {/* WIP: hide sign in button until auth is implemented
       <Box flex="grow" />
       <Box>
         <Button label='Sign In' />
       </Box>
+      */}
     </Box>
   )
 }
