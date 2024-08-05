@@ -89,9 +89,63 @@ const containerProps = {
 
 function Header () {
   const { project } = useStores()
-  const env = getEnv()
   const size = useContext(ResponsiveContext)
   const isNarrowView = size === 'small'
+
+  return (
+    <Box
+      {...containerProps}
+      cssGap={true}
+      className='header'
+      direction='column'
+      gap='small'
+    >
+      <CommunityCatalogHeader
+        isNarrowView={isNarrowView}
+      />
+      <ProjectHeader
+        isNarrowView={isNarrowView}
+        project={project}
+      />
+    </Box>
+  )
+}
+
+function CommunityCatalogHeader ({
+  isNarrowView = false
+}) {
+  return (
+    <Box
+      align='center'
+      className='community-catalog-header'
+      direction='row'
+      width='100%'
+    >
+      <LogoLink
+        keepQuery={false}
+        to={`/`}
+      >
+        <Box align='center' direction='row' gap='small'>
+          <ZooniverseLogo id='header-zooniverseLogo' size='24px' style={{ color: '#00979d' }} />
+          {!isNarrowView && <ZooniverseWordImage alt={strings.general.zooniverse_name} src={wordZooniverse} />}
+          <HeaderTitle color='white'>{strings.general.app_name}</HeaderTitle>
+        </Box>
+      </LogoLink>
+      {/* WIP: hide sign in button until auth is implemented
+      <Box flex='grow' />
+      <Box>
+        <Button label='Sign In' />
+      </Box>
+      */}
+    </Box>
+  )
+}
+
+function ProjectHeader ({
+  isNarrowView = false,
+  project,
+}) {
+  const env = getEnv()
   const queryFromUrl = getQuery() || ''
   const [ query, setQuery ] = useState(queryFromUrl)
   const location = useLocation()
@@ -100,15 +154,7 @@ function Header () {
     setQuery(queryFromUrl)
   }, [ location ])
 
-  if (!project) return (
-    <Box
-      {...containerProps}
-      className='header'
-      direction='column'
-    >
-      <CommunityCatalogHeader isNarrowView={isNarrowView} />
-    </Box>
-  )
+  if (!project) return
 
   const ProjectControls = (!isNarrowView) ? WideProjectControls : NarrowProjectControls
   const projectURL = `${ZOONIVERSE_URL}/projects/${project?.slug}`
@@ -116,12 +162,10 @@ function Header () {
 
   return (
     <Box
-      {...containerProps}
-      className='header'
-      direction='column'
-      gap='small'
+      className='project-header'
+      style={{ border: '1px solid cyan' }}
+      width='100%'
     >
-      <CommunityCatalogHeader isNarrowView={isNarrowView} />
       <ProjectControls
         project={project}
         env={env}
@@ -195,35 +239,6 @@ function Header () {
           </ProjectLink>
         : null
       }
-    </Box>
-  )
-}
-
-function CommunityCatalogHeader ({
-  isNarrowView = false
-}) {
-  return (
-    <Box
-      align='center'
-      direction='row'
-      width='100%'
-    >
-      <LogoLink
-        keepQuery={false}
-        to={`/`}
-      >
-        <Box align='center' direction='row' gap='small'>
-          <ZooniverseLogo id='header-zooniverseLogo' size='24px' style={{ color: '#00979d' }} />
-          {!isNarrowView && <ZooniverseWordImage alt={strings.general.zooniverse_name} src={wordZooniverse} />}
-          <HeaderTitle color='white'>{strings.general.app_name}</HeaderTitle>
-        </Box>
-      </LogoLink>
-      {/* WIP: hide sign in button until auth is implemented
-      <Box flex="grow" />
-      <Box>
-        <Button label='Sign In' />
-      </Box>
-      */}
     </Box>
   )
 }
