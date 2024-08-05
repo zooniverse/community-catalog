@@ -1,22 +1,17 @@
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import {
   Accordion,
   AccordionPanel,
   Anchor,
   Box,
-  Button,
-  Heading,
-  TextInput
+  Heading
 } from 'grommet'
-import { Search, Share, FormClose as DeleteIcon } from 'grommet-icons'
+import { Share } from 'grommet-icons'
 import styled from 'styled-components'
 
 import { ZOONIVERSE_URL } from '@src/config.js'
 import strings from '@src/strings.json'
-import getEnv from '@src/helpers/getEnv.js'
-import getQuery from '@src/helpers/getQuery.js'
 
+import HeaderSearchForm from './HeaderSearchForm.js'
 import Link from '@src/components/Link'
 
 const HeaderLink = styled(Anchor)`
@@ -37,15 +32,6 @@ const headerLinkProps = {
   weight: 'normal',
 }
 
-const HeaderSearchForm = styled('form')`
-  margin: 0;
-`
-
-const HeaderSearchInput = styled(TextInput)`
-  background: white;
-  color: black;
-`
-
 const ProjectLink = styled(Link)`
   text-decoration: none;
   width: 100%;
@@ -55,15 +41,7 @@ export default function ProjectHeader ({
   project,
   size,
 }) {
-  const env = getEnv()
-  const queryFromUrl = getQuery() || ''
-  const [ query, setQuery ] = useState(queryFromUrl)
-  const location = useLocation()
   const isNarrowView = size === 'small'
-
-  useEffect(function onUrlChange_getQueryFromUrl () {
-    setQuery(queryFromUrl)
-  }, [ location ])
 
   if (!project) return
 
@@ -79,9 +57,6 @@ export default function ProjectHeader ({
     >
       <ProjectControls
         project={project}
-        env={env}
-        query={query}
-        setQuery={setQuery}
       >
         {(isNarrowView)
           ? <ProjectLink
@@ -109,30 +84,7 @@ export default function ProjectHeader ({
           label={strings.components.header.talk_button}
           href={talkURL}
         />
-        <HeaderSearchForm
-          action={`/projects/${project?.slug}/search`}
-          method='get'
-        >
-          <Box
-            background='white'
-            direction='row'
-            pad='11.5px'
-          >
-            <HeaderSearchInput
-              name='query'
-              icon={<Search color='black' size='small' />}
-              value={query}
-              onChange={e => setQuery(e?.target?.value)}
-              width={{ min: 'medium', max: 'xlarge' }}
-              plain='full'
-            />
-            <Button plain icon={<DeleteIcon size='small' a11yTitle={strings.components.header.clear_query} />} onClick={e => setQuery('')} />
-          </Box>
-          {(env)
-            ? <input name='env' value={env} type='hidden' />
-            : null
-          }
-        </HeaderSearchForm>
+        <HeaderSearchForm project={project} />
       </ProjectControls>
       {(!isNarrowView)
         ? <ProjectLink
