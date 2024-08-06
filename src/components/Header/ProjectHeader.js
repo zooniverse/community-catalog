@@ -13,6 +13,7 @@ import strings from '@src/strings.json'
 
 import HeaderSearchForm from './HeaderSearchForm.js'
 import Link from '@src/components/Link'
+import RandomButton from '@src/components/RandomButton'
 
 const ProjectHeaderInner = styled(Box)`
   backdrop-filter: saturate(50%) blur(8px);
@@ -99,6 +100,10 @@ export default function ProjectHeader ({
             {...headerLinkProps}
             label={strings.components.header.talk_button}
             href={talkURL}
+          />
+          <RandomButton
+            project={project}
+            headerVariant={true}
           />
           <HeaderSearchForm project={project} />
         </ProjectControls>
