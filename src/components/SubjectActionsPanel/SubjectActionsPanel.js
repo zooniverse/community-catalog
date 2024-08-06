@@ -40,8 +40,6 @@ export default function SubjectActionsPanel ({
     ? '#'
     : project.classify_url?.replace(/{subject_id}/g, subject.id)
 
-  console.log('+++ useWorkflowSelection', useWorkflowSelection)
-
   return (
     <Box
       border={true}

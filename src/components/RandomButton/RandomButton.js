@@ -10,21 +10,28 @@ It is not, in fact, a randomly created button.
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'grommet'
+import styled from 'styled-components'
+import { ZooniverseLogo } from '@zooniverse/react-components'
 
 import strings from '@src/strings.json'
 import fetchRandomSubjects from '@src/helpers/fetchRandomSubjects.js'
 import getEnv from '@src/helpers/getEnv.js'
 
+const StyledButton = styled(Button)`
+  border-radius: 0.5em;
+  ${props => props?.headerVariant ? 'width: 200px;' : ''}
+  ${props => props?.headerVariant ? 'padding: 7px;' : ''}
+`
+
 export default function RandomButton ({
   project,
+  headerVariant = false,
   ...rest
 }) {
   const [ isWorking, setIsWorking ] = useState(false)
   const [ message, setMessage ] = useState(strings.components.random_button.ready)
   const navigate = useNavigate()
   
-  if (!project) return null
-
   async function onClick () {
     try {
       setIsWorking(true)
@@ -33,6 +40,8 @@ export default function RandomButton ({
       const subjects = await fetchRandomSubjects(project.id, 1)
       const subjectId = subjects?.[0]
       if (subjectId) {
+        setIsWorking(false)
+        setMessage(strings.components.random_button.ready)
         const env = getEnv()
         navigate(`/projects/${project.slug}/subject/${subjectId}${
           (env) ? `?env=${encodeURIComponent(env)}` : ''
@@ -47,9 +56,15 @@ export default function RandomButton ({
     }
   }
 
+  if (!project) return null
+
   return (
-    <Button
+    <StyledButton
+      color='#005D69'
       className='random-button'
+      headerVariant={headerVariant}
+      icon={headerVariant ? <ZooniverseLogo /> : null}
+      gap={headerVariant ? '6px' : null}
       primary
       busy={isWorking}
       disabled={isWorking}
