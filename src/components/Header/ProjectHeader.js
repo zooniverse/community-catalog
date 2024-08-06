@@ -3,7 +3,8 @@ import {
   AccordionPanel,
   Anchor,
   Box,
-  Heading
+  Heading,
+  Image
 } from 'grommet'
 import { Share } from 'grommet-icons'
 import styled from 'styled-components'
@@ -22,6 +23,13 @@ const HeaderLink = styled(Anchor)`
   text-align: center;
   max-width: 11em;
   width: 100%;
+`
+
+const ProjectIcon = styled('img')`
+  background: black;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 `
 
 const headerLinkProps = {
@@ -51,29 +59,19 @@ export default function ProjectHeader ({
 
   return (
     <Box
+      align='center'
       className='project-header'
+      direction={isNarrowView ? 'column' : 'row'}
       style={{ border: '1px solid cyan' }}
       width='100%'
     >
+      <ProjectTitle
+        project={project}
+        size={size}
+      />
       <ProjectControls
         project={project}
       >
-        {(isNarrowView)
-          ? <ProjectLink
-              keepQuery={false}
-              to={`/projects/${project?.slug}`}
-            >
-              <Heading
-                size='1.1em'
-                level='1'
-                color='white'
-                margin={{ bottom: '0' }}
-              >
-                {project?.name}
-              </Heading>
-            </ProjectLink>
-          : null
-        }
         <HeaderLink
           {...headerLinkProps}
           label={strings.components.header.project_button}
@@ -86,24 +84,48 @@ export default function ProjectHeader ({
         />
         <HeaderSearchForm project={project} />
       </ProjectControls>
-      {(!isNarrowView)
-        ? <ProjectLink
-            keepQuery={false}
-            to={`/projects/${project?.slug}`}
-          >
-            <Heading
-              size='1.1em'
-              level='1'
-              color='white'
-              margin={{ bottom: '0' }}
-            >
-              {project?.name}
-            </Heading>
-          </ProjectLink>
-        : null
-      }
     </Box>
   )
+}
+
+function ProjectTitle ({
+  project,
+  size
+}) {
+  const isNarrowView = size === 'small'
+
+  if (!project) return null
+
+  const projectAvatarUrl = project?.avatar // TODO: add placeholder
+
+  return (
+    <ProjectLink
+      keepQuery={false}
+      to={`/projects/${project?.slug}`}
+    >
+      <Box
+        align='center'
+        className='project-title'
+        cssGap={true}
+        direction={isNarrowView ? 'column' : 'row'}
+        gap='xsmall'
+        style={{ border: '1px solid yellow' }}
+      >
+        <ProjectIcon src={projectAvatarUrl} height='40px' width='40px'
+          style={{ border: '1px solid green' }}
+        />
+        <Heading
+          size='1.1em'
+          level='1'
+          color='white'
+          margin='0'
+        >
+          {project?.name}
+        </Heading>
+      </Box>
+    </ProjectLink>
+  )
+
 }
 
 function WideProjectControls ({

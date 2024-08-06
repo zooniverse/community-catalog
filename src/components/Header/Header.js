@@ -1,8 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
-import {
-  Box,
-  ResponsiveContext,
-} from 'grommet'
+import { useContext } from 'react'
+import { Box, ResponsiveContext } from 'grommet'
 import { observer } from 'mobx-react'
 
 import { useStores } from '@src/store'
