@@ -6,7 +6,7 @@
     "footer": "The Community Catalog was developed as part of the AHRC-funded project [Communities and Crowds](https://www.sciencemuseumgroup.org.uk/project/communities-and-crowds/). This project is run in collaboration with researchers and curators at the National Science and Media Museum in Bradford, United Kingdom, as well as with the Zooniverse teams at Oxford University and the Adler Planetarium in Chicago, United States.\n\nContent Warning: This project contains some graphic depictions of racism, xenophobia, and colonialism. Content may also include problematic language which is now considered discriminatory, offensive, or harmful. You may find some of these images upsetting, so please proceed with caution.",
     "header": {
       "clear_query": "Clear query",
-      "narrow_view_menu": "Menu",
+      "narrow_view_menu": "Explore Project",
       "project_button": "Project Home",
       "talk_button": "Talk Board"
     },

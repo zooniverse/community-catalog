@@ -52,6 +52,30 @@ const ProjectLink = styled(Link)`
   width: 100%;
 `
 
+const StyledAccordion = styled(Accordion)`
+  [role=region] {
+    border: none;
+  }
+  
+  [role=region] > div > div {
+    align-items: center;
+
+  }
+`
+
+// Strangely, this actually styles the button that expands the accordion, not
+// the panel containing the accordion contents.
+const StyledAccordionPanel = styled(AccordionPanel)`
+  color: white;
+  justify-content: center;
+  text-transform: uppercase;
+
+  svg {
+    fill: white;
+    stroke: white;
+  }
+`
+
 export default function ProjectHeader ({
   project,
   size,
@@ -171,18 +195,18 @@ function NarrowProjectControls ({
   children,
 }) {
   return (
-    <Accordion
+    <StyledAccordion
       flex='grow'
       width='100%'
     >
-      <AccordionPanel label={strings.components.header.narrow_view_menu}>
+      <StyledAccordionPanel label={strings.components.header.narrow_view_menu}>
         <Box
           direction='column'
           gap='small'
         >
           {children}
         </Box>
-      </AccordionPanel>
-    </Accordion>
+      </StyledAccordionPanel>
+    </StyledAccordion>
   )
 }
