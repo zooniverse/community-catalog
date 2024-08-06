@@ -61,7 +61,8 @@ export default function ProjectHeader ({
       align='center'
       className='project-header'
       direction={isNarrowView ? 'column' : 'row'}
-      style={{ border: '1px solid cyan' }}
+      pad='30px'
+      style={{ border: '1px solid cyan', background: '#e0c0e0' }}
       width='100%'
     >
       <ProjectTitle

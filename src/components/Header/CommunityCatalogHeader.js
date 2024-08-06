@@ -35,6 +35,7 @@ export default function CommunityCatalogHeader ({
       align='center'
       className='community-catalog-header'
       direction='row'
+      pad='30px'
       width='100%'
     >
       <LogoLink

@@ -6,27 +6,18 @@ import { useStores } from '@src/store'
 import CommunityCatalogHeader from './CommunityCatalogHeader.js'
 import ProjectHeader from './ProjectHeader.js'
 
-const containerProps = {
-  align: 'center',
-  alignContent: 'center',
-  as: 'header',
-  background: 'black',
-  direction: 'row',
-  pad: 'small',
-  wrap: true,
-}
-
 function Header () {
   const { project } = useStores()
   const size = useContext(ResponsiveContext)
 
   return (
     <Box
-      {...containerProps}
-      cssGap={true}
+      align='center'
+      as='header'
       className='header'
+      background='black'
       direction='column'
-      gap='small'
+      style={{ overflow: 'hidden' }}
     >
       <CommunityCatalogHeader
         size={size}
