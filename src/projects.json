@@ -77,6 +77,7 @@
       "slug": "communitiesandcrowds/how-did-we-get-here",
       "id": 20816,
       "avatar": "https://panoptes-uploads.zooniverse.org/project_avatar/9336010a-c0ec-4ab8-b3b9-17b08a771121.jpeg",
+      "background": "https://panoptes-uploads.zooniverse.org/project_background/1516237b-4f46-47bc-a81d-c964b69c6d1d.jpeg",
       "description": "Help preserve African Caribbean history in the United Kingdom by transcribing and classifying images from the Daily Herald Archives.",
       "metadata_fields": [
         "image1", "image2", "internal_id", "group_id", "part_number", "folder", "#Hazard", "condition", "item", "picture_agency", "photographer", "oversize", "sensitive_image", "sensitive_image_note", "problematic_language", "probelmatic_language_notes", "#Other Number", "notes"
@@ -123,6 +124,7 @@
         "slug": "juliehgibb/stereovision",
         "id": 23052,
         "avatar": "https://panoptes-uploads.zooniverse.org/project_avatar/576b37cd-4d27-4752-95e4-d870890f8f2c.jpeg",
+        "background": "https://panoptes-uploads.zooniverse.org/project_background/fa604dda-9b5a-44fc-b1f4-84c835ea468a.jpeg",
         "description": "Help make our collections at National Museums Scotland more accessible by classifying 19th century stereographs of the Great Exhibition of 1862, through creating keywords and alternative descriptions. ",
         "hidden": true,
         "metadata_fields": [

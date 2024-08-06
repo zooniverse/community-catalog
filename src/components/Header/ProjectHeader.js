@@ -14,6 +14,10 @@ import strings from '@src/strings.json'
 import HeaderSearchForm from './HeaderSearchForm.js'
 import Link from '@src/components/Link'
 
+const ProjectHeaderInner = styled(Box)`
+  backdrop-filter: saturate(50%) blur(8px);
+`
+
 const ProjectIcon = styled('img')`
   background: black;
   width: ${props => props.size} ;
@@ -61,34 +65,44 @@ export default function ProjectHeader ({
 
   return (
     <Box
-      align='center'
       className='project-header'
-      cssGap={true}
-      direction={isNarrowView ? 'column' : 'row'}
-      gap='small'
-      pad='30px'
-      style={{ border: '1px solid cyan', background: '#e0c0e0' }}
+      background={{
+        color: 'dark-5',
+        position: 'center',
+        repeat: 'no-repeat',
+        size: 'cover',
+        image: `url(${project?.background})`,
+      }}
       width='100%'
     >
-      <ProjectTitle
-        project={project}
-        size={size}
-      />
-      <ProjectControls
-        project={project}
+      <ProjectHeaderInner
+        align='center'
+        cssGap={true}
+        direction={isNarrowView ? 'column' : 'row'}
+        gap='small'
+        pad='30px'
+        width='100%'
       >
-        <HeaderLink
-          {...headerLinkProps}
-          label={strings.components.header.project_button}
-          href={projectURL}
+        <ProjectTitle
+          project={project}
+          size={size}
         />
-        <HeaderLink
-          {...headerLinkProps}
-          label={strings.components.header.talk_button}
-          href={talkURL}
-        />
-        <HeaderSearchForm project={project} />
-      </ProjectControls>
+        <ProjectControls
+          project={project}
+        >
+          <HeaderLink
+            {...headerLinkProps}
+            label={strings.components.header.project_button}
+            href={projectURL}
+          />
+          <HeaderLink
+            {...headerLinkProps}
+            label={strings.components.header.talk_button}
+            href={talkURL}
+          />
+          <HeaderSearchForm project={project} />
+        </ProjectControls>
+      </ProjectHeaderInner>
     </Box>
   )
 }
@@ -114,7 +128,6 @@ function ProjectTitle ({
         cssGap={true}
         direction={isNarrowView ? 'column' : 'row'}
         gap='xsmall'
-        style={{ border: '1px solid yellow' }}
       >
         <ProjectIcon
           size={isNarrowView ? '40px' : '80px'}

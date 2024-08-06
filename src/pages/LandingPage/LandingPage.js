@@ -11,13 +11,13 @@ const IntroBox = styled(Box)`
   max-width: 36.5em;
 `
 
-const ProjectsContainerOuter = styled(Box)`
+const ProjectsContainer = styled(Box)`
   background: #808080 url(${LANDING_PAGE_BACKGROUND_IMAGE_URL});
   background-size: 120% auto;
   background-position: center 30%;
 `
 
-const ProjectsContainer = styled(Box)`
+const ProjectsContainerInner = styled(Box)`
   backdrop-filter: sepia(5%) hue-rotate(120deg) blur(6px);
 `
 
@@ -49,8 +49,8 @@ function LandingPage () {
           {strings.pages.landing_page.pick_a_project}
         </Text>
       </Box>
-      <ProjectsContainerOuter>
-        <ProjectsContainer
+      <ProjectsContainer>
+        <ProjectsContainerInner
           direction='row'
           wrap={true}
           justify='center'
@@ -62,8 +62,8 @@ function LandingPage () {
               key={`project-${proj.id}`} 
             />
           ))}
-        </ProjectsContainer>
-      </ProjectsContainerOuter>
+        </ProjectsContainerInner>
+      </ProjectsContainer>
       <Box background='white' pad='small' />
     </Box>
   )
