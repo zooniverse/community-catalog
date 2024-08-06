@@ -3,8 +3,7 @@ import {
   AccordionPanel,
   Anchor,
   Box,
-  Heading,
-  Image
+  Heading
 } from 'grommet'
 import { Share } from 'grommet-icons'
 import styled from 'styled-components'
@@ -27,9 +26,9 @@ const HeaderLink = styled(Anchor)`
 
 const ProjectIcon = styled('img')`
   background: black;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: ${props => props.size} ;
+  height: ${props => props.size} ;
+  border-radius: ${props => props.size};
 `
 
 const headerLinkProps = {
@@ -111,11 +110,13 @@ function ProjectTitle ({
         gap='xsmall'
         style={{ border: '1px solid yellow' }}
       >
-        <ProjectIcon src={projectAvatarUrl} height='40px' width='40px'
+        <ProjectIcon
+          size={isNarrowView ? '40px' : '80px'}
+          src={projectAvatarUrl}
           style={{ border: '1px solid green' }}
         />
         <Heading
-          size='1.1em'
+          size={isNarrowView ? '24px' : '32px'}
           level='1'
           color='white'
           margin='0'
