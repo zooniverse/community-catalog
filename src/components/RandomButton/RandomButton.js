@@ -18,8 +18,9 @@ import fetchRandomSubjects from '@src/helpers/fetchRandomSubjects.js'
 import getEnv from '@src/helpers/getEnv.js'
 
 const StyledButton = styled(Button)`
-  border-radius: 1em;
+  border-radius: 0.5em;
   ${props => props?.headerVariant ? 'width: 200px;' : ''}
+  ${props => props?.headerVariant ? 'padding: 7px;' : ''}
 `
 
 export default function RandomButton ({
