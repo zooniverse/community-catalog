@@ -15,6 +15,12 @@ const StyledForm = styled('form')`
 const HeaderSearchInput = styled(TextInput)`
   background: white;
   color: black;
+  font-size: 14px;
+`
+
+const ContainerBox = styled(Box)`
+  border-radius: 0.5em;
+  box-shadow: 1px 1px 4px 0px #00000040 inset;
 `
 
 export default function HeaderSearchForm ({
@@ -36,21 +42,22 @@ export default function HeaderSearchForm ({
       action={`/projects/${project?.slug}/search`}
       method='get'
     >
-      <Box
+      <ContainerBox
+        align='center'
         background='white'
         direction='row'
-        pad='11.5px'
+        gap='4px'
+        pad='7px 7px 7px 14px'
       >
+        <Search color='black' size='small' />
         <HeaderSearchInput
           name='query'
-          icon={<Search color='black' size='small' />}
           value={query}
           onChange={e => setQuery(e?.target?.value)}
-          width={{ min: 'medium', max: 'xlarge' }}
           plain='full'
         />
         <Button plain icon={<DeleteIcon size='small' a11yTitle={strings.components.header.clear_query} />} onClick={e => setQuery('')} />
-      </Box>
+      </ContainerBox>
       {(env)
         ? <input name='env' value={env} type='hidden' />
         : null

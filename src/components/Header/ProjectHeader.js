@@ -14,16 +14,6 @@ import strings from '@src/strings.json'
 import HeaderSearchForm from './HeaderSearchForm.js'
 import Link from '@src/components/Link'
 
-const HeaderLink = styled(Anchor)`
-  background: white;
-  color: black;
-  flex: 0 0 auto;
-  padding: 1em;
-  text-align: center;
-  max-width: 11em;
-  width: 100%;
-`
-
 const ProjectIcon = styled('img')`
   background: black;
   width: ${props => props.size} ;
@@ -31,7 +21,20 @@ const ProjectIcon = styled('img')`
   border-radius: ${props => props.size};
 `
 
+const HeaderLink = styled(Anchor)`
+  background: white;
+  border: 1px solid #005D69;
+  border-radius: 0.5em;
+  color: black;
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  text-align: center;
+  max-width: 140px;
+  width: 100%;
+`
+
 const headerLinkProps = {
+  gap: '8px',
   icon: <Share size='small' color='black' />,
   reverse: true,
   size: 'small',
@@ -60,7 +63,9 @@ export default function ProjectHeader ({
     <Box
       align='center'
       className='project-header'
+      cssGap={true}
       direction={isNarrowView ? 'column' : 'row'}
+      gap='small'
       pad='30px'
       style={{ border: '1px solid cyan', background: '#e0c0e0' }}
       width='100%'
@@ -114,7 +119,6 @@ function ProjectTitle ({
         <ProjectIcon
           size={isNarrowView ? '40px' : '80px'}
           src={projectAvatarUrl}
-          style={{ border: '1px solid green' }}
         />
         <Heading
           size={isNarrowView ? '24px' : '32px'}
@@ -135,11 +139,11 @@ function WideProjectControls ({
 }) {
   return (
     <Box
+      align='center'
       direction='row'
       flex='grow'
       gap='small'
     >
-      <Box flex='grow' />
       {children}
     </Box>
   )

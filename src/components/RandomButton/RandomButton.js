@@ -49,6 +49,7 @@ export default function RandomButton ({
 
   return (
     <Button
+      color='#005D69'
       className='random-button'
       primary
       busy={isWorking}
