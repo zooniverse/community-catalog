@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { Box, Grid, Heading, ResponsiveContext } from 'grommet'
+import { Box, Grid, Heading, ResponsiveContext, Text } from 'grommet'
 import { useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
@@ -83,14 +83,15 @@ function SubjectPage () {
     <Box
       className='subject-page'
     >
-      <Heading
-        level='2'
-        margin={{ horizontal: 'small', vertical: 'xsmall' }}
-        size='1.1em'
-        color={(status !== ERROR) ? undefined : 'red' }
-      >
-        {(status !== ERROR) ? title : strings.general.error}
-      </Heading>
+      {(status === ERROR) && (
+        <Text
+          margin={{ horizontal: 'small', vertical: 'xsmall' }}
+          size='1.1em'
+          color='red'
+        >
+          {strings.general.error}
+        </Text>
+      )}
       <Grid
         rows={rows}
         columns={columns}

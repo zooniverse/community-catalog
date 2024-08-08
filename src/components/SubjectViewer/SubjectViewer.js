@@ -23,6 +23,22 @@ const MainImage = styled(Image)`
   }
 `
 
+const ImageContainer = styled(Box)`
+  position: relative;
+`
+
+// Subject Details appear "on top" of the Subject image.
+// ImageContainer needs to have position: relative to anchor SubjectDetails's position: absolute.
+const SubjectDetails = styled(Box)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  background: rgb(128,128,128,0.5);
+  background: linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(0,0,0,0) 100%);
+`
+
 const TextWithShadow = styled(Text)`
   text-shadow: 0px 0px 2px #808080;
 `
@@ -57,6 +73,11 @@ export default function SubjectViewer ({
   const viewerWidth = DEFAULT_SUBJECT_VIEWER_WIDTH
   const viewerHeight = DEFAULT_SUBJECT_VIEWER_HEIGHT
 
+  const title = (subjectId)
+    ? subjectData?.metadata?.[project?.title_field]  // Use the title field of the Subject, if any
+      || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
+    : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
+
   useEffect(function onTargetChange_resetData () {
     setIndex(0)
   }, [subject])
@@ -89,7 +110,7 @@ export default function SubjectViewer ({
     <Box
       className='subject-viewer'
     >
-      <Box
+      <ImageContainer
         background='light-1'
         border={true}
         width={`${viewerWidth}px`}
@@ -111,7 +132,18 @@ export default function SubjectViewer ({
             size='large'
           />
         )}
-      </Box>
+        {subject && !hideContent && (
+          <SubjectDetails
+            pad='small'
+          >
+            <TextWithShadow
+              color='white'
+            >
+              {title}
+            </TextWithShadow>
+          </SubjectDetails>
+        )}
+      </ImageContainer>
       {(hideContent)
         ? <SensitiveContentBox
             align='center'
@@ -134,7 +166,7 @@ export default function SubjectViewer ({
           </SensitiveContentBox>
         : null
       }
-      {(hasSensitiveContent)
+      {(hasSensitiveContent && !showSensitive)
         ? <SensitiveContentCheckboxBox
             align='end'
             justify='center'
