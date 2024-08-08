@@ -63,7 +63,7 @@ export default function RandomButton ({
       color='#005D69'
       className='random-button'
       headerVariant={headerVariant}
-      icon={headerVariant ? <ZooniverseLogo /> : null}
+      icon={headerVariant ? <ZooniverseLogo id='randomButton-zooniverseLogo' /> : null}
       gap={headerVariant ? '6px' : null}
       primary
       busy={isWorking}
