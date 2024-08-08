@@ -57,20 +57,18 @@ function SubjectPage () {
     : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
 
   const isNarrowView = size === 'small'
-  const rows = (!isNarrowView) ? ['auto', 'auto'] : ['auto', 'auto', 'auto', 'auto']
+  const rows = (!isNarrowView) ? ['auto', 'auto'] : ['auto', 'auto', 'auto']
   const columns = (!isNarrowView) ? ['auto', '1/3'] : ['auto']
   const areas = (!isNarrowView)
     ? [
         { name: 'subject-viewer', start: [0, 0], end: [0, 0] },
-        { name: 'subject-discussion', start: [1, 0], end: [1, 0] },
+        { name: 'subject-discussion', start: [1, 0], end: [1, 1] },
         { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
-        { name: 'subject-actions', start: [1, 1], end: [1, 1] },
       ]
     : [
         { name: 'subject-viewer', start: [0, 0], end: [0, 0] },
         { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
-        { name: 'subject-actions', start: [0, 2], end: [0, 2] },
-        { name: 'subject-discussion', start: [0, 3], end: [0, 3] },
+        { name: 'subject-discussion', start: [0, 2], end: [0, 2] },
       ]
   
   function showWorkflowSelection () {
@@ -131,6 +129,7 @@ function SubjectPage () {
           <SubjectMetadata subject={subjectData} project={project} />
           <SubjectKeywords subject={subjectData} />
         </Box>
+        {/*
         <Box
           gridArea='subject-actions'
         >
@@ -140,6 +139,7 @@ function SubjectPage () {
             showWorkflowSelection={showWorkflowSelection}
           />
         </Box>
+        */}
       </Grid>
       <SearchResultsList query={query} />
       <WorkflowSelectionDialog
