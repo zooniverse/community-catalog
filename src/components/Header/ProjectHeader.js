@@ -164,7 +164,7 @@ function ProjectTitle ({
             src={projectAvatarUrl}
           />
         ) : (
-          <ProjectIconPlaceholder
+          <ProjectIconNoAvatar
             size={isNarrowView ? 40 : 80}
           />
         )}
@@ -217,7 +217,7 @@ function NarrowProjectControls ({
   )
 }
 
-function ProjectIconPlaceholder({
+function ProjectIconNoAvatar({
   size = 40
 }) {
   return (
