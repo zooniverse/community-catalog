@@ -158,10 +158,16 @@ function ProjectTitle ({
         direction={isNarrowView ? 'column' : 'row'}
         gap='xsmall'
       >
-        <ProjectIcon
-          size={isNarrowView ? '40px' : '80px'}
-          src={projectAvatarUrl}
-        />
+        {projectAvatarUrl ? (
+          <ProjectIcon
+            size={isNarrowView ? '40px' : '80px'}
+            src={projectAvatarUrl}
+          />
+        ) : (
+          <ProjectIconNoAvatar
+            size={isNarrowView ? 40 : 80}
+          />
+        )}
         <Heading
           size={isNarrowView ? '24px' : '32px'}
           level='1'
@@ -209,4 +215,15 @@ function NarrowProjectControls ({
       </StyledAccordionPanel>
     </StyledAccordion>
   )
+}
+
+function ProjectIconNoAvatar({
+  size = 40
+}) {
+  return (
+    <svg viewBox={`0 0 100 100`} width={size} height={size}>
+      <circle stroke='#ffffff' strokeWidth='4' fill='#005D69' cx='50' cy='50' r='48' />
+    </svg>
+  )
+
 }

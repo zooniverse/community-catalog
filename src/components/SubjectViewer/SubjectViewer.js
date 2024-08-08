@@ -7,7 +7,9 @@ import {
   Image as ImageIcon
 } from 'grommet-icons'
 import styled from 'styled-components'
+import { ZooniverseLogo } from '@zooniverse/react-components'
 
+import { DEFAULT_SUBJECT_VIEWER_WIDTH, DEFAULT_SUBJECT_VIEWER_HEIGHT } from '@src/config.js'
 import strings from '@src/strings.json'
 import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 
@@ -22,7 +24,31 @@ const MainImage = styled(Image)`
   }
 `
 
+const ImageContainer = styled(Box)`
+  position: relative;
+`
+
+// Subject Details appear "on top" of the Subject image.
+// ImageContainer needs to have position: relative to anchor SubjectDetails's position: absolute.
+const SubjectDetails = styled(Box)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  background: rgb(128,128,128,0.5);
+  background: linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(0,0,0,0) 100%);
+`
+
+const StyledButton = styled(Button)`
+  border-radius: 0.5em;
+  flex: 0 0 auto;
+  padding: 7px;
+  width: 200px;
+`
+
 const TextWithShadow = styled(Text)`
+  flex: 1 1 auto;
   text-shadow: 0px 0px 2px #808080;
 `
 
@@ -45,16 +71,22 @@ const SensitiveContentCheckboxBox = styled(Box)`
 `
 
 export default function SubjectViewer ({
+  openWorkflowSelection = () => {},
   project = undefined,
   setShowSensitive = () => {},
   showSensitive,
   subject = undefined,
-  width = 200,
-  height = 200,
 }) {
   const subjectData = subject  // Look a lot of the other code I'm copy-pasting uses 'subjectData' so it's easier to rename the variable
   const subjectId = subject?.id
   const [ index, setIndex ] = useState(0)
+  const viewerWidth = DEFAULT_SUBJECT_VIEWER_WIDTH
+  const viewerHeight = DEFAULT_SUBJECT_VIEWER_HEIGHT
+
+  const title = (subjectId)
+    ? subjectData?.metadata?.[project?.title_field]  // Use the title field of the Subject, if any
+      || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
+    : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
 
   useEffect(function onTargetChange_resetData () {
     setIndex(0)
@@ -84,15 +116,24 @@ export default function SubjectViewer ({
   const hasSensitiveContent = checkForSensitiveContent(subjectData, project)
   const hideContent = (!showSensitive && hasSensitiveContent)
 
+  // Some projects only have one Workflow, so clicking on the "Classify Subject"
+  // link will immediately open that Subject on that Workflow. Other projects
+  // have more than one workflow, so we need to open the workflow selection
+  // dialog.
+  const useWorkflowSelection = Array.isArray(project?.classify_url)
+  const classifySubjectUrl = (useWorkflowSelection)
+    ? undefined
+    : project?.classify_url?.replace(/{subject_id}/g, subject?.id)
+
   return (
     <Box
       className='subject-viewer'
     >
-      <Box
+      <ImageContainer
         background='light-1'
         border={true}
-        width={`${width}px`}
-        height={`${height}px`}
+        width={`${viewerWidth}px`}
+        height={`${viewerHeight}px`}
         align={imgSrc ? undefined : 'center'} 
         justify={imgSrc ? undefined : 'center'}
         overflow='hidden' 
@@ -110,14 +151,41 @@ export default function SubjectViewer ({
             size='large'
           />
         )}
-      </Box>
+        {subject && !hideContent && (
+          <SubjectDetails
+            align='center'
+            cssGap={true}
+            direction='row'
+            gap='small'
+            pad='small'
+          >
+            <TextWithShadow
+              color='white'
+              size='18px'
+              weight='bold'
+            >
+              {title}
+            </TextWithShadow>
+            <StyledButton
+              color='#005D69'
+              className='classify-button'
+              icon={<ZooniverseLogo id='classifyButton-zooniverseLogo' />}
+              gap={'6px'}
+              href={classifySubjectUrl}
+              primary
+              label={strings.components.subject_actions.classify_subject}
+              onClick={useWorkflowSelection ? openWorkflowSelection : undefined}
+            />
+          </SubjectDetails>
+        )}
+      </ImageContainer>
       {(hideContent)
         ? <SensitiveContentBox
             align='center'
             pad='small'
             justify='center'
-            width={`${width}px`}
-            height={`${height}px`}
+            width={`${viewerWidth}px`}
+            height={`${viewerHeight}px`}
           >
             <SensitiveContentIcon
               color='white'
@@ -133,7 +201,7 @@ export default function SubjectViewer ({
           </SensitiveContentBox>
         : null
       }
-      {(hasSensitiveContent)
+      {(hasSensitiveContent && !showSensitive)
         ? <SensitiveContentCheckboxBox
             align='end'
             justify='center'

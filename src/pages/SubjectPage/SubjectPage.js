@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
-import { Box, Grid, Heading, ResponsiveContext } from 'grommet'
+import { Box, Grid, ResponsiveContext, Text } from 'grommet'
 import { useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
 import SearchResultsList from '@src/components/SearchResultsList'
-import SubjectActionsPanel from '@src/components/SubjectActionsPanel'
 import SubjectDiscussion from '@src/components/SubjectDiscussion'
 import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
@@ -51,33 +50,26 @@ function SubjectPage () {
     }
   }
 
-  const title = (subjectId)
-    ? subjectData?.metadata?.[project?.title_field]  // Use the title field of the Subject, if any
-      || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
-    : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
-
   const isNarrowView = size === 'small'
-  const rows = (!isNarrowView) ? ['auto', 'auto'] : ['auto', 'auto', 'auto', 'auto']
+  const rows = (!isNarrowView) ? ['auto', 'auto'] : ['auto', 'auto', 'auto']
   const columns = (!isNarrowView) ? ['auto', '1/3'] : ['auto']
   const areas = (!isNarrowView)
     ? [
         { name: 'subject-viewer', start: [0, 0], end: [0, 0] },
-        { name: 'subject-discussion', start: [1, 0], end: [1, 0] },
+        { name: 'subject-discussion', start: [1, 0], end: [1, 1] },
         { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
-        { name: 'subject-actions', start: [1, 1], end: [1, 1] },
       ]
     : [
         { name: 'subject-viewer', start: [0, 0], end: [0, 0] },
         { name: 'subject-metadata-and-keywords', start: [0, 1], end: [0, 1] },
-        { name: 'subject-actions', start: [0, 2], end: [0, 2] },
-        { name: 'subject-discussion', start: [0, 3], end: [0, 3] },
+        { name: 'subject-discussion', start: [0, 2], end: [0, 2] },
       ]
   
-  function showWorkflowSelection () {
+  function openWorkflowSelection () {
     setWorkflowSelectionVisible(true)
   }
 
-  function hideWorkflowSelection () {
+  function closeWorkflowSelection () {
     setWorkflowSelectionVisible(false)
   }
 
@@ -85,19 +77,19 @@ function SubjectPage () {
     <Box
       className='subject-page'
     >
-      <Heading
-        level='2'
-        margin={{ horizontal: 'small', vertical: 'xsmall' }}
-        size='1.1em'
-        color={(status !== ERROR) ? undefined : 'red' }
-      >
-        {(status !== ERROR) ? title : strings.general.error}
-      </Heading>
+      {(status === ERROR) && (
+        <Text
+          margin={{ horizontal: 'small', vertical: 'xsmall' }}
+          size='1.1em'
+          color='red'
+        >
+          {strings.general.error}
+        </Text>
+      )}
       <Grid
         rows={rows}
         columns={columns}
-        pad={{ horizontal: 'small', vertical: 'none' }}
-        margin={{ bottom: 'small' }}
+        pad='small'
         gap='small'
         areas={areas}
       >
@@ -106,12 +98,11 @@ function SubjectPage () {
           align='center'
         >
           <SubjectViewer
-            subject={subjectData}
+            openWorkflowSelection={openWorkflowSelection}
             project={project}
-            width={1000}
-            height={500}
             showSensitive={showingSensitiveContent}
             setShowSensitive={setShowingSensitiveContent}
+            subject={subjectData}
           />
         </Box>
         <Box
@@ -123,7 +114,6 @@ function SubjectPage () {
           />
         </Box>
         <Box
-          border={{ color: 'light-3', size: 'small', style: 'solid', side: 'top' }}
           gridArea='subject-metadata-and-keywords'
           direction='row'
           gap='small'
@@ -133,6 +123,7 @@ function SubjectPage () {
           <SubjectMetadata subject={subjectData} project={project} />
           <SubjectKeywords subject={subjectData} />
         </Box>
+        {/*
         <Box
           gridArea='subject-actions'
         >
@@ -142,13 +133,14 @@ function SubjectPage () {
             showWorkflowSelection={showWorkflowSelection}
           />
         </Box>
+        */}
       </Grid>
       <SearchResultsList query={query} />
       <WorkflowSelectionDialog
         project={project}
         subject={subjectData}
         show={workflowSelectionVisible}
-        onClose={hideWorkflowSelection}
+        onClose={closeWorkflowSelection}
       />
     </Box>
   )
