@@ -108,8 +108,6 @@ function SubjectPage () {
           <SubjectViewer
             subject={subjectData}
             project={project}
-            width={1000}
-            height={500}
             showSensitive={showingSensitiveContent}
             setShowSensitive={setShowingSensitiveContent}
           />

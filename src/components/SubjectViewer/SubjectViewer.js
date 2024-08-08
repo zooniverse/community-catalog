@@ -8,6 +8,7 @@ import {
 } from 'grommet-icons'
 import styled from 'styled-components'
 
+import { DEFAULT_SUBJECT_VIEWER_WIDTH, DEFAULT_SUBJECT_VIEWER_HEIGHT } from '@src/config.js'
 import strings from '@src/strings.json'
 import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 
@@ -49,12 +50,12 @@ export default function SubjectViewer ({
   setShowSensitive = () => {},
   showSensitive,
   subject = undefined,
-  width = 200,
-  height = 200,
 }) {
   const subjectData = subject  // Look a lot of the other code I'm copy-pasting uses 'subjectData' so it's easier to rename the variable
   const subjectId = subject?.id
   const [ index, setIndex ] = useState(0)
+  const viewerWidth = DEFAULT_SUBJECT_VIEWER_WIDTH
+  const viewerHeight = DEFAULT_SUBJECT_VIEWER_HEIGHT
 
   useEffect(function onTargetChange_resetData () {
     setIndex(0)
@@ -91,8 +92,8 @@ export default function SubjectViewer ({
       <Box
         background='light-1'
         border={true}
-        width={`${width}px`}
-        height={`${height}px`}
+        width={`${viewerWidth}px`}
+        height={`${viewerHeight}px`}
         align={imgSrc ? undefined : 'center'} 
         justify={imgSrc ? undefined : 'center'}
         overflow='hidden' 
@@ -116,8 +117,8 @@ export default function SubjectViewer ({
             align='center'
             pad='small'
             justify='center'
-            width={`${width}px`}
-            height={`${height}px`}
+            width={`${viewerWidth}px`}
+            height={`${viewerHeight}px`}
           >
             <SensitiveContentIcon
               color='white'

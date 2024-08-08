@@ -20,6 +20,9 @@ export const NARROW_VIEW_WIDTH = 800  // At this width of below, we'll use a nar
 export const PROJECT_CARD_WIDTH = 222
 export const PROJECT_CARD_HEIGHT = 265
 
+export const DEFAULT_SUBJECT_VIEWER_WIDTH = 1000
+export const DEFAULT_SUBJECT_VIEWER_HEIGHT = 500
+
 // Data fetch stuff
 export const ASYNC_STATES = {
   READY: 'ready',
