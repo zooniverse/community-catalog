@@ -89,8 +89,7 @@ function SubjectPage () {
       <Grid
         rows={rows}
         columns={columns}
-        pad={{ horizontal: 'small', vertical: 'none' }}
-        margin={{ bottom: 'small' }}
+        pad='small'
         gap='small'
         areas={areas}
       >
@@ -115,7 +114,6 @@ function SubjectPage () {
           />
         </Box>
         <Box
-          border={{ color: 'light-3', size: 'small', style: 'solid', side: 'top' }}
           gridArea='subject-metadata-and-keywords'
           direction='row'
           gap='small'
