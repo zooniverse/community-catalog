@@ -7,6 +7,7 @@ import {
   Image as ImageIcon
 } from 'grommet-icons'
 import styled from 'styled-components'
+import { ZooniverseLogo } from '@zooniverse/react-components'
 
 import { DEFAULT_SUBJECT_VIEWER_WIDTH, DEFAULT_SUBJECT_VIEWER_HEIGHT } from '@src/config.js'
 import strings from '@src/strings.json'
@@ -39,7 +40,15 @@ const SubjectDetails = styled(Box)`
   background: linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(0,0,0,0) 100%);
 `
 
+const StyledButton = styled(Button)`
+  border-radius: 0.5em;
+  flex: 0 0 auto;
+  padding: 7px;
+  width: 200px;
+`
+
 const TextWithShadow = styled(Text)`
+  flex: 1 1 auto;
   text-shadow: 0px 0px 2px #808080;
 `
 
@@ -62,6 +71,7 @@ const SensitiveContentCheckboxBox = styled(Box)`
 `
 
 export default function SubjectViewer ({
+  openWorkflowSelection = () => {},
   project = undefined,
   setShowSensitive = () => {},
   showSensitive,
@@ -106,6 +116,15 @@ export default function SubjectViewer ({
   const hasSensitiveContent = checkForSensitiveContent(subjectData, project)
   const hideContent = (!showSensitive && hasSensitiveContent)
 
+  // Some projects only have one Workflow, so clicking on the "Classify Subject"
+  // link will immediately open that Subject on that Workflow. Other projects
+  // have more than one workflow, so we need to open the workflow selection
+  // dialog.
+  const useWorkflowSelection = Array.isArray(project?.classify_url)
+  const classifySubjectUrl = (useWorkflowSelection)
+    ? undefined
+    : project?.classify_url?.replace(/{subject_id}/g, subject?.id)
+
   return (
     <Box
       className='subject-viewer'
@@ -134,13 +153,29 @@ export default function SubjectViewer ({
         )}
         {subject && !hideContent && (
           <SubjectDetails
+            align='center'
+            cssGap={true}
+            direction='row'
+            gap='small'
             pad='small'
           >
             <TextWithShadow
               color='white'
+              size='18px'
+              weight='bold'
             >
               {title}
             </TextWithShadow>
+            <StyledButton
+              color='#005D69'
+              className='classify-button'
+              icon={<ZooniverseLogo id='classifyButton-zooniverseLogo' />}
+              gap={'6px'}
+              href={classifySubjectUrl}
+              primary
+              label={strings.components.subject_actions.classify_subject}
+              onClick={useWorkflowSelection ? openWorkflowSelection : undefined}
+            />
           </SubjectDetails>
         )}
       </ImageContainer>

@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
-import { Box, Grid, Heading, ResponsiveContext, Text } from 'grommet'
+import { Box, Grid, ResponsiveContext, Text } from 'grommet'
 import { useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
 import SearchResultsList from '@src/components/SearchResultsList'
-import SubjectActionsPanel from '@src/components/SubjectActionsPanel'
 import SubjectDiscussion from '@src/components/SubjectDiscussion'
 import SubjectKeywords from '@src/components/SubjectKeywords'
 import SubjectMetadata from '@src/components/SubjectMetadata'
@@ -51,11 +50,6 @@ function SubjectPage () {
     }
   }
 
-  const title = (subjectId)
-    ? subjectData?.metadata?.[project?.title_field]  // Use the title field of the Subject, if any
-      || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
-    : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
-
   const isNarrowView = size === 'small'
   const rows = (!isNarrowView) ? ['auto', 'auto'] : ['auto', 'auto', 'auto']
   const columns = (!isNarrowView) ? ['auto', '1/3'] : ['auto']
@@ -71,11 +65,11 @@ function SubjectPage () {
         { name: 'subject-discussion', start: [0, 2], end: [0, 2] },
       ]
   
-  function showWorkflowSelection () {
+  function openWorkflowSelection () {
     setWorkflowSelectionVisible(true)
   }
 
-  function hideWorkflowSelection () {
+  function closeWorkflowSelection () {
     setWorkflowSelectionVisible(false)
   }
 
@@ -105,10 +99,11 @@ function SubjectPage () {
           align='center'
         >
           <SubjectViewer
-            subject={subjectData}
+            openWorkflowSelection={openWorkflowSelection}
             project={project}
             showSensitive={showingSensitiveContent}
             setShowSensitive={setShowingSensitiveContent}
+            subject={subjectData}
           />
         </Box>
         <Box
@@ -147,7 +142,7 @@ function SubjectPage () {
         project={project}
         subject={subjectData}
         show={workflowSelectionVisible}
-        onClose={hideWorkflowSelection}
+        onClose={closeWorkflowSelection}
       />
     </Box>
   )
