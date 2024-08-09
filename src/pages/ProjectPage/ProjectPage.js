@@ -50,10 +50,6 @@ function ProjectPage () {
               </Box>
             ))}
           </Carousel>
-          <RandomButton
-            project={project}
-            alignSelf='end'
-          />
         </Box>
       </Box>
       <KeywordsList />
