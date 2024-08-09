@@ -28,29 +28,27 @@ function ProjectPage () {
         background='dark-1'
         pad='small'
       >
-        <Box
-          alignSelf='center'
-          gap='small'
-          width={`${imgWidth}px`}
+        <Carousel
+          controls='arrows'
+          wrap={true}
         >
-          <Carousel
-            wrap={true}
-          >
-            {exampleSubjects.map(sbj => (
-              <Box key={`example-subject-${sbj.id}`}>
-                <Text>{sbj.title}</Text>
-                <Link to={`/projects/${projectSlug}/subject/${sbj.id}`} key={`landing-subject-${sbj.id}`}>
-                  <SubjectImage
-                    background='dark-1'
-                    subjectId={sbj.id}
-                    width={imgWidth}
-                    height={imgHeight}
-                  />
-                </Link>
-              </Box>
-            ))}
-          </Carousel>
-        </Box>
+          {exampleSubjects.map(sbj => (
+            <Box
+              key={`example-subject-${sbj.id}`}
+              align='center'
+            >
+              <Link to={`/projects/${projectSlug}/subject/${sbj.id}`} key={`landing-subject-${sbj.id}`}>
+                <SubjectImage
+                  background='dark-1'
+                  subjectId={sbj.id}
+                  width={imgWidth}
+                  height={imgHeight}
+                />
+              </Link>
+              {sbj?.title && <Text>{sbj?.title}</Text>}
+            </Box>
+          ))}
+        </Carousel>
       </Box>
       <KeywordsList />
       <SearchResultsList query={query} />
