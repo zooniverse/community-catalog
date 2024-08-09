@@ -15,7 +15,7 @@ export const DEFAULT_AVATAR_URL = 'https://static.zooniverse.org/www.zooniverse.
 
 // Layout stuff
 export const SUBJECT_IMAGE_SIZE = 186
-export const LAYOUT_MAIN_MAX_WIDTH = 1280  // App's <main> element will not exceed this width.
+export const LAYOUT_MAIN_MAX_WIDTH = 1440  // App's <main> element will not exceed this width.
 export const NARROW_VIEW_WIDTH = 800  // At this width of below, we'll use a narrow (responsive mobile) view.
 export const PROJECT_CARD_WIDTH = 222
 export const PROJECT_CARD_HEIGHT = 265
