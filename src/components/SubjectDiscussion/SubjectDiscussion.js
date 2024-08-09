@@ -18,7 +18,7 @@ const CleanLink = styled(Anchor)`
 `
 
 const CommentsContainer = styled(Box)`
-  max-height: 480px;
+  max-height: 80vh;
 `
 
 const CommentsShadow = styled('div')`
