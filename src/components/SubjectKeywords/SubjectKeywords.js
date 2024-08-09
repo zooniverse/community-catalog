@@ -10,6 +10,11 @@ import { useStores } from '@src/store'
 import fetchKeywords from '@src/helpers/fetchKeywords'
 import Link from '@src/components/Link'
 
+const Container = styled(Box)`
+  border: 1px solid red;
+  flex: 1 0 33%;
+`
+
 const KeywordLink = styled(Link)`
   text-decoration: none;
 `
@@ -63,7 +68,7 @@ function SubjectKeywords ({
   )
 
   return (
-    <Box
+    <Container
       align='end'
       className='subject-keywords'
     >
@@ -98,7 +103,7 @@ function SubjectKeywords ({
         {(status === FETCHING) && (<Spinner />)}
         {(status === ERROR) && (<Text color='red'>{strings.general.error}</Text>)}
       </Box>
-    </Box>
+    </Container>
   )
 }
 

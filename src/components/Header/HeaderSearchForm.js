@@ -9,7 +9,12 @@ import getEnv from '@src/helpers/getEnv.js'
 import getQuery from '@src/helpers/getQuery.js'
 
 const StyledForm = styled('form')`
+  flex: 1 0 200px;
   margin: 0;
+
+  @media (min-width: 600px) {
+    max-width: 400px;
+  }
 `
 
 const HeaderSearchInput = styled(TextInput)`

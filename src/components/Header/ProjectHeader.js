@@ -48,8 +48,13 @@ const headerLinkProps = {
 }
 
 const ProjectLink = styled(Link)`
+  flex: 1 1 30%;
   text-decoration: none;
   width: 100%;
+`
+
+const ProjectBoxWide = styled(Box)`
+  flex: 1 1 45%;
 `
 
 const StyledAccordion = styled(Accordion)`
@@ -120,11 +125,13 @@ export default function ProjectHeader ({
             label={strings.components.header.project_button}
             href={projectURL}
           />
+          {/*
           <HeaderLink
             {...headerLinkProps}
             label={strings.components.header.talk_button}
             href={talkURL}
           />
+          */}
           <RandomButton
             project={project}
             headerVariant={true}
@@ -186,14 +193,15 @@ function WideProjectControls ({
   children,
 }) {
   return (
-    <Box
+    <ProjectBoxWide
       align='center'
+      cssGap={true}
       direction='row'
-      flex='grow'
       gap='small'
+      justify='end'
     >
       {children}
-    </Box>
+    </ProjectBoxWide>
   )
 }
 
