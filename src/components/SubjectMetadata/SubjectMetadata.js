@@ -3,10 +3,10 @@ import { Code as CodeIcon } from 'grommet-icons'
 import styled from 'styled-components'
 
 import strings from '@src/strings.json'
-import Link from '@src/components/Link'
 
-const KeywordLink = styled(Link)`
-  text-decoration: none;
+const Container = styled(Box)`
+  border: 1px solid red;
+  flex: 2 0 66%;
 `
 
 export default function SubjectMetadata ({
@@ -24,7 +24,7 @@ export default function SubjectMetadata ({
     : []
 
   return (
-    <Box
+    <Container
       align='start'
       className='subject-metadata'
     >
@@ -53,7 +53,7 @@ export default function SubjectMetadata ({
           )
         })}
       </Box>
-    </Box>
+    </Container>
   )
 
   /* Table version
