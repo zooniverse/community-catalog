@@ -11,7 +11,6 @@ import fetchKeywords from '@src/helpers/fetchKeywords'
 import Link from '@src/components/Link'
 
 const Container = styled(Box)`
-  border: 1px solid red;
   flex: 1 0 33%;
 `
 

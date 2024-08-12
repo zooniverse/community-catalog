@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import strings from '@src/strings.json'
 
 const Container = styled(Box)`
-  border: 1px solid red;
   flex: 2 0 66%;
 `
 
