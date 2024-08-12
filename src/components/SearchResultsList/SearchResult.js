@@ -8,6 +8,7 @@ import strings from '@src/strings.json'
 import Link from '@src/components/Link'
 import SubjectImage from '@src/components/SubjectImage'
 import fetchSubject from '@src/helpers/fetchSubject.js'
+import getSubjectTitle from '@src/helpers/getSubjectTitle.js'
 import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
@@ -33,7 +34,7 @@ export default function SearchResult ({
 }) {
   const [ subjectData, setSubjectData ] = useState(null)
   const [ status, setStatus ] = useState(READY)
-  const title = subjectData?.metadata?.[titleField] || ''
+  const title = getSubjectTitle(subjectData, titleField)
 
   useEffect(function onTargetChange_resetThenFetchData () {
     setStatus(READY)

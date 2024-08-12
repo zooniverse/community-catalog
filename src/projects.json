@@ -142,18 +142,18 @@
         "example_subjects": [
           {
             "id": "100295709",
-            "title": "T.2023.44.6.15.142_001.jpg"
+            "title": "T.2023.44.6.15.142_001"
           },
           {
             "id": "100295710",
-            "title": "T.2023.44.6.15.143_001.jpg"
+            "title": "T.2023.44.6.15.143_001"
           },
           {
             "id": "100295703",
-            "title": "T.2023.44.6.15.121_001.jpg"
+            "title": "T.2023.44.6.15.121_001"
           }
         ],
-        "title_field": "file name",
+        "title_field": "object_number",
         "classify_url": [
           {
             "label": "Classification: Hand-coloured and living people",
