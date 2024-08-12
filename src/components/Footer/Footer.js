@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Box, Footer as GrommetFooter, ResponsiveContext } from 'grommet'
+import { Anchor, Box, Footer as GrommetFooter, ResponsiveContext } from 'grommet'
 import { Markdownz } from '@zooniverse/react-components'
 import styled from 'styled-components'
 
@@ -7,6 +7,7 @@ import strings from '@src/strings.json'
 import logoZooniverse from '@src/images/logo-zooniverse-and-partners.png'
 import logoScienceMediaMuseum from '@src/images/logo-science-and-media-museum.png'
 import logoAhrc from '@src/images/logo-ahrc.png'
+import NMSLogo from '@src/images/logo-nms.js'
 
 const TextBox = styled(Box)`
   max-width: 32.5em;
@@ -20,6 +21,11 @@ const TextBox = styled(Box)`
 const LogoBox = styled(Box)`
   img {
     object-fit: contain;
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  svg {
     max-width: 100%;
     margin: 10px;
   }
@@ -45,7 +51,9 @@ export default function Footer () {
         justify='end'
         pad='small'
       >
-        <img src={logoZooniverse} height='40px' width='166px' />
+        <Anchor href="https://www.zooniverse.org">
+          <img src={logoZooniverse} height='40px' width='166px' />
+        </Anchor>
       </LogoBox>
       <TextBox
         flex={false}
@@ -61,8 +69,15 @@ export default function Footer () {
         pad='small'
         wrap={true}
       >
-        <img src={logoAhrc} height='40px' width='157px' />
-        <img src={logoScienceMediaMuseum} height='40px' width='40px' />
+        <Anchor href="#">
+          <img src={logoAhrc} height='40px' width='157px' />
+        </Anchor>
+        <Anchor href="#">
+          <img src={logoScienceMediaMuseum} height='40px' width='40px' />
+        </Anchor>
+        <Anchor href="#">
+          <NMSLogo fill='white' height={40} width={145} />
+        </Anchor>  
       </LogoBox>
     </GrommetFooter>
   )
