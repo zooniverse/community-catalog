@@ -12,6 +12,7 @@ import { ZooniverseLogo } from '@zooniverse/react-components'
 import { DEFAULT_SUBJECT_VIEWER_WIDTH, DEFAULT_SUBJECT_VIEWER_HEIGHT } from '@src/config.js'
 import strings from '@src/strings.json'
 import checkForSensitiveContent from '@src/helpers/checkForSensitiveContent.js'
+import getSubjectTitle from '@src/helpers/getSubjectTitle.js'
 
 const FILMSTRIP_IMAGE_SIZE = 44
 const MIN_IMAGES_TO_SHOW_FILMSTRIP = 2
@@ -83,10 +84,13 @@ export default function SubjectViewer ({
   const viewerWidth = DEFAULT_SUBJECT_VIEWER_WIDTH
   const viewerHeight = DEFAULT_SUBJECT_VIEWER_HEIGHT
 
-  const title = (subjectId)
-    ? subjectData?.metadata?.[project?.title_field]  // Use the title field of the Subject, if any
-      || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)  //
-    : strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
+  let title = ''
+  if (subjectId) {
+    title = getSubjectTitle(subject, project?.title_field)
+            || strings.pages.subject_page.title.replace(/{subject_id}/g, subjectId)
+  } else {
+    title = strings.pages.subject_page.no_subject  // If there's no subject ID, then there's no subject.
+  }
 
   useEffect(function onTargetChange_resetData () {
     setIndex(0)
