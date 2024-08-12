@@ -69,14 +69,29 @@ export default function Footer () {
         pad='small'
         wrap={true}
       >
-        <Anchor href="#">
-          <img src={logoAhrc} height='40px' width='157px' />
+        <Anchor href="https://www.ukri.org/councils/ahrc/">
+          <img
+            alt='UKRI Arts and Humanities Research Council logo'
+            src={logoAhrc}
+            height='40px'
+            width='157px'
+          />
         </Anchor>
-        <Anchor href="#">
-          <img src={logoScienceMediaMuseum} height='40px' width='40px' />
+        <Anchor href="https://www.sciencemuseumgroup.org.uk/">
+          <img
+            alt="Science + Media Museum logo"
+            src={logoScienceMediaMuseum}
+            height='40px'
+            width='40px'
+          />
         </Anchor>
-        <Anchor href="#">
-          <NMSLogo fill='white' height={40} width={145} />
+        <Anchor href="https://www.nms.ac.uk/">
+          <NMSLogo
+            alt="National Museums Scotland logo"
+            fill='white'
+            height={40}
+            width={145}
+          />
         </Anchor>  
       </LogoBox>
     </GrommetFooter>
