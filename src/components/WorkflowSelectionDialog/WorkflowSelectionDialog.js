@@ -1,11 +1,12 @@
 import { Anchor, Box, Layer, Paragraph as P, Text } from 'grommet'
-import styled from 'styled-components' 
+import styled, { css } from 'styled-components' 
 import { Article as ClassifyIcon } from 'grommet-icons'
 
 import strings from '@src/strings.json'
 
 const StyledLink = styled(Anchor)`
-  color: #000000;
+  color: ${props => props.color};
+  flex: 1 1 auto;
   text-decoration: none;
   text-transform: uppercase;
 `
@@ -25,7 +26,7 @@ export default function WorkflowSelectionDialog ({
   ))
   // Note: only active workflows are saved in the store, so we don't need to
   // filter for workflow.active = true.
-  
+
   return (
     <Layer
       animation="fadeIn"
@@ -47,19 +48,26 @@ export default function WorkflowSelectionDialog ({
         {validWorkflows.map(workflow => {
           const classifySubjectUrl = project.classify_url?.replace(/{workflow_id}/g, workflow.id).replace(/{subject_id}/g, subject.id)
           const label = workflow.display_name || `Workflow ${workflow.id}`
+          let completeness = workflow.completeness
+          const isComplete = completeness >= 1
           return (
-            <Box key={`workflow-${workflow.id}`}>
+            <Box
+              key={`workflow-${workflow.id}`}
+              direction='row'
+              align='center'
+            >
               <StyledLink
+                color={!isComplete ? '#000000' : '#a0a0a0'}
                 gap='xsmall'
                 href={classifySubjectUrl}
                 icon={<ClassifyIcon size='small' />}
                 label={<Text>{label}</Text>}
                 margin='small'
               />
+              {/*<Text>Completeness {Math.floor(completeness * 100).toFixed(1)}%</Text>*/}
             </Box>
           )
         })}
-
       </Box>
     </Layer>
   )
