@@ -53,8 +53,8 @@ This section describes how a "project config" item in projects.json is structure
 - `example_subjects`: defines the Subjects to be highlighted/displayed on the ProjectPage's carousel. (array of objects)
 - `title_field`: defines which metadata field best _describes_ the Subject. For example, if projectConfig.title_field="short_info", and subject1234.metadata.short_info="A picture of a cat", then Subject 1234 will have the title "A picture of a cat". (string)
 - `classify_url`: URL to classify a specific Subject, on the FEM Classifier
-  - For most projects with only one workflow, use a string. (string template, with `{subject_id}` placeholder)
-  - For projects with multiple workflows, use an array. (array of `{ label, url }`, with label being any string, and url following the string template format above )
+  - For projects with only one workflow, use a string that contains the placeholder `{subject_id}`.
+  - For projects with multiple workflows, or projects that keep changing which workflows are active, use a string that contains the placeholder `{subject_id}` AND `{workflow_id}`.
 - `view_on_talk_url`: URL to view a specific Subject on Talk (string template, with `{subject_id}` placeholder)
 </details>
 
