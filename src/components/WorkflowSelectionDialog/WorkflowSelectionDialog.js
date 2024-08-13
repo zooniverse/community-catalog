@@ -19,15 +19,12 @@ export default function WorkflowSelectionDialog ({
 }) {
   if (!show || !project || !subject) return null
 
-  if (!Array.isArray(project.classify_url)) {
-    console.error('<WorkflowSelectionDialog>', strings.errors.expected_classify_url_to_be_array)
-    throw new Error(strings.errors.expected_classify_url_to_be_array)
-  }
-
   const subjectSetsLinkedToSubject = subject?.links?.subject_sets
   const validWorkflows = workflows.filter(wf => (
     wf.links?.subject_sets.some(sset => subjectSetsLinkedToSubject?.includes(sset))
   ))
+  // Note: only active workflows are saved in the store, so we don't need to
+  // filter for workflow.active = true.
   
   return (
     <Layer
@@ -42,10 +39,11 @@ export default function WorkflowSelectionDialog ({
         pad={{ top: "small", right: "large", bottom: "large", left: "large" }}
       >
         <P>{strings.components.workflow_selection_dialog.choose_your_workflow}</P>
-        {project.classify_url.map((({ label, url }) => {
-          const classifySubjectUrl = url?.replace(/{subject_id}/g, subject.id)
+        {validWorkflows.map(workflow => {
+          const classifySubjectUrl = project.classify_url?.replace(/{workflow_id}/g, workflow.id).replace(/{subject_id}/g, subject.id)
+          const label = workflow.display_name || `Workflow ${workflow.id}`
           return (
-            <Box>
+            <Box key={`workflow-${workflow.id}`}>
               <StyledLink
                 gap='xsmall'
                 href={classifySubjectUrl}
@@ -55,7 +53,7 @@ export default function WorkflowSelectionDialog ({
               />
             </Box>
           )
-        }))}
+        })}
 
       </Box>
     </Layer>

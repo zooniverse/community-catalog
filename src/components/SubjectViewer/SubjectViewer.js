@@ -124,7 +124,7 @@ export default function SubjectViewer ({
   // link will immediately open that Subject on that Workflow. Other projects
   // have more than one workflow, so we need to open the workflow selection
   // dialog.
-  const useWorkflowSelection = Array.isArray(project?.classify_url)
+  const useWorkflowSelection = project?.classify_url?.includes('{workflow_id}')
   const classifySubjectUrl = (useWorkflowSelection)
     ? undefined
     : project?.classify_url?.replace(/{subject_id}/g, subject?.id)
