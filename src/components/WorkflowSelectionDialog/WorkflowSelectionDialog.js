@@ -38,7 +38,12 @@ export default function WorkflowSelectionDialog ({
         border={true}
         pad={{ top: "small", right: "large", bottom: "large", left: "large" }}
       >
-        <P>{strings.components.workflow_selection_dialog.choose_your_workflow}</P>
+        <P>
+          {validWorkflows.length > 0
+            ? strings.components.workflow_selection_dialog.choose_your_workflow
+            : strings.components.workflow_selection_dialog.no_workflows
+          }
+          </P>
         {validWorkflows.map(workflow => {
           const classifySubjectUrl = project.classify_url?.replace(/{workflow_id}/g, workflow.id).replace(/{subject_id}/g, subject.id)
           const label = workflow.display_name || `Workflow ${workflow.id}`

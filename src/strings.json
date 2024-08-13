@@ -61,7 +61,8 @@
       "show_sensitive_images": "Show sensitive images"
     },
     "workflow_selection_dialog": {
-      "choose_your_workflow": "Choose which workflow to classify this Subject:"
+      "choose_your_workflow": "Choose which workflow to classify this Subject:",
+      "no_workflows": "Unfortunately, this Subject isn't associated with any workflows that are currently active."
     }
   },
   "errors": {
