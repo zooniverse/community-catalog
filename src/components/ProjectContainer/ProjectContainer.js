@@ -7,11 +7,12 @@ import strings from '@src/strings.json'
 import { useStores } from '@src/store'
 import projectsJson from '@src/projects.json'
 import fetchProjectData from '@src/helpers/fetchProjectData.js'
+import fetchWorkflows from '@src/helpers/fetchWorkflows.js'
 
 const { READY, FETCHING, ERROR } = ASYNC_STATES
 
 export default function ProjectContainer ({}) {
-  const { setProject, projectData, setProjectData } = useStores()
+  const { setProject, projectData, setProjectData, setWorkflowsData, } = useStores()
   const [ status, setStatus ] = useState(READY)
 
   const params = useParams()
@@ -23,10 +24,26 @@ export default function ProjectContainer ({}) {
   async function doFetchData (projectId) {
     if (!projectId) return
     try {
+      // Fetch project data.
       setStatus(FETCHING)
       const projectData = await fetchProjectData(projectId?.toString?.())
       setProjectData(projectData)
       setStatus(READY)
+
+      // Fetch additional data. This doesn't block the app from rendering.
+      doFetchAuxData(projectData)
+      
+    } catch (err) {
+      setStatus(ERROR)
+      console.error('<ProjectContainer>', err)
+    }
+  }
+
+  async function doFetchAuxData (projectData) {
+    if (!projectData) return
+    try {
+      const workflowsData = await fetchWorkflows(projectData?.links?.active_workflows)
+      setWorkflowsData(workflowsData)
     } catch (err) {
       setStatus(ERROR)
       console.error('<ProjectContainer>', err)
@@ -36,6 +53,7 @@ export default function ProjectContainer ({}) {
   function onUnload () {
     setProject(undefined)
     setProjectData(undefined)
+    setWorkflowsData(undefined)
   }
 
   useEffect(function onTargetChange_setData () {
