@@ -43,7 +43,7 @@ export default function WorkflowSelectionDialog ({
             ? strings.components.workflow_selection_dialog.choose_your_workflow
             : strings.components.workflow_selection_dialog.no_workflows
           }
-          </P>
+        </P>
         {validWorkflows.map(workflow => {
           const classifySubjectUrl = project.classify_url?.replace(/{workflow_id}/g, workflow.id).replace(/{subject_id}/g, subject.id)
           const label = workflow.display_name || `Workflow ${workflow.id}`
