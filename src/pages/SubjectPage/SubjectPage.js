@@ -24,7 +24,7 @@ function SubjectPage () {
   const [ workflowSelectionVisible, setWorkflowSelectionVisible ] = useState(false)
   const size = useContext(ResponsiveContext)
 
-  const { project, showingSensitiveContent, setShowingSensitiveContent } = useStores()
+  const { project, workflowsData, showingSensitiveContent, setShowingSensitiveContent } = useStores()
   const params = useParams()
   const subjectId = params.subjectId
   const query = getQuery()
@@ -139,6 +139,7 @@ function SubjectPage () {
       <WorkflowSelectionDialog
         project={project}
         subject={subjectData}
+        workflows={workflowsData}
         show={workflowSelectionVisible}
         onClose={closeWorkflowSelection}
       />

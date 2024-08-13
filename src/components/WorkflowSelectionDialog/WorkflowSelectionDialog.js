@@ -13,6 +13,7 @@ const StyledLink = styled(Anchor)`
 export default function WorkflowSelectionDialog ({
   project = undefined,
   subject = undefined,
+  workflows = [],
   show = false,
   onClose = () => {}
 }) {
@@ -23,6 +24,11 @@ export default function WorkflowSelectionDialog ({
     throw new Error(strings.errors.expected_classify_url_to_be_array)
   }
 
+  const subjectSetsLinkedToSubject = subject?.links?.subject_sets
+  const validWorkflows = workflows.filter(wf => (
+    wf.links?.subject_sets.some(sset => subjectSetsLinkedToSubject?.includes(sset))
+  ))
+  
   return (
     <Layer
       animation="fadeIn"
