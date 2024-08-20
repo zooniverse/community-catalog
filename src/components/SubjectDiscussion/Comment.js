@@ -23,7 +23,7 @@ export default function Comment ({
 
   const imgSrc = author.avatar_src || DEFAULT_AVATAR_URL
   const displayName = author.display_name || author.login
-  const timestamp = new Date(author.created_at).toLocaleString()
+  const timestamp = new Date(comment.created_at).toLocaleString()
   const isDeleted = !!comment.is_deleted
 
   return (
