@@ -28,7 +28,8 @@ This section describes how a "project config" item in projects.json is structure
 - `name`: display name for the project.
 - `slug`: project slug.
 - `id`: Zooniverse project ID.
-- `avatar`: project avatar (image), displayed on the LandingPage. (URL to an image file)
+- `avatar`: project avatar (image), displayed on the LandingPage and the Header. (URL to an image file)
+- `background`: project background (image), displayed on the ProjectPage. (URL to an image file)
 - `description`: exactly what it says.
 - `hidden`: whether this project should be visible on the LandingPage. (boolean, default false)
 - `metadata_fields`: the fields/columns from the Subject's metadata that we want to show. aka the "institutional metadata" we see on the SubjectPage. (array of strings)
@@ -51,8 +52,10 @@ This section describes how a "project config" item in projects.json is structure
 - `example_query`: query to be used for the SearchResultsList on the ProjectPage. Helps to highlight the initial Subjects a volunteer sees. (string)
 - `example_subjects`: defines the Subjects to be highlighted/displayed on the ProjectPage's carousel. (array of objects)
 - `title_field`: defines which metadata field best _describes_ the Subject. For example, if projectConfig.title_field="short_info", and subject1234.metadata.short_info="A picture of a cat", then Subject 1234 will have the title "A picture of a cat". (string)
-- `classify_url`: URL to classify a specific Subject, on the FEM Classifier (string template, with `{subject_id}` placeholder)
-- `classify_url`: URL to view a specific Subject on Talk (string template, with `{subject_id}` placeholder)
+- `classify_url`: URL to classify a specific Subject, on the FEM Classifier
+  - For projects with only one workflow, use a string that contains the placeholder `{subject_id}`.
+  - For projects with multiple workflows, or projects that keep changing which workflows are active, use a string that contains the placeholder `{subject_id}` AND `{workflow_id}`.
+- `view_on_talk_url`: URL to view a specific Subject on Talk (string template, with `{subject_id}` placeholder)
 </details>
 
 ## /App
