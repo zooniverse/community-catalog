@@ -22,7 +22,7 @@ export default function WorkflowSelectionDialog ({
 
   const subjectSetsLinkedToSubject = subject?.links?.subject_sets
   const validWorkflows = workflows.filter(wf => (
-    wf.links?.subject_sets.some(sset => subjectSetsLinkedToSubject?.includes(sset))
+    wf.links?.subject_sets?.some(sset => subjectSetsLinkedToSubject?.includes(sset))
   ))
   // Note: only active workflows are saved in the store, so we don't need to
   // filter for workflow.active = true.
